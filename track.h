@@ -1,8 +1,9 @@
 #ifndef TRACK_H
 #define TRACK_H
 
+#include <QGraphicsScene>
 
-class Track
+class Track : public QGraphicsScene
 {
 public:
     Track();

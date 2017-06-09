@@ -7,7 +7,13 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = IslandRacer
 TEMPLATE = app
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    game.cpp \
+    world.cpp \
+    car.cpp \
+    track.cpp \
+    player.cpp \
+    checkpoint.cpp
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -23,3 +29,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 LIBS += -L$$PWD/libs -lBox2D
 INCLUDEPATH += $$PWD/libs
+
+HEADERS += \
+    game.h \
+    world.h \
+    car.h \
+    track.h \
+    player.h \
+    checkpoint.h
+
+RESOURCES += \
+    res.qrc
