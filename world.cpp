@@ -88,6 +88,10 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
         {
         case None:
             mCurrentInputState = Accelerate; break;
+        case SteerLeft:
+            mCurrentInputState = AccelerateSteerLeft; break;
+        case SteerRight:
+            mCurrentInputState = AccelerateSteerRight; break;
         case Break:
             mCurrentInputState = None; break;
         }
@@ -98,6 +102,10 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
         {
         case None:
             mCurrentInputState = Break; break;
+        case SteerLeft:
+            mCurrentInputState = BreakSteerLeft; break;
+        case SteerRight:
+            mCurrentInputState = BreakSteerRight; break;
         case Accelerate:
             mCurrentInputState = None; break;
         }
