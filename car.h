@@ -8,6 +8,7 @@ class Car : public QGraphicsPixmapItem
 {
 private:
     b2Body* mCarBody;
+    float currentSpeed;
 
 public:
     Car(b2World* world);

@@ -17,7 +17,9 @@ enum InputState
     AccelerateSteerLeft,
     Break,
     BreakSteerRight,
-    BreakSteerLeft
+    BreakSteerLeft,
+    SteerRight,
+    SteerLeft
 };
 
 class World : public QGraphicsView

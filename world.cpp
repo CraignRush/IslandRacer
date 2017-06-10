@@ -58,6 +58,10 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
             mCurrentInputState = BreakSteerLeft; break;
         case BreakSteerRight:
             mCurrentInputState = Break; break;
+        case None:
+            mCurrentInputState = SteerLeft; break;
+        case SteerRight:
+            mCurrentInputState = None; break;
         }
         break;
     case Qt::Key_Right:
@@ -72,6 +76,10 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
             mCurrentInputState = BreakSteerRight; break;
         case BreakSteerLeft:
             mCurrentInputState = Break; break;
+        case None:
+            mCurrentInputState = SteerRight; break;
+        case SteerLeft:
+            mCurrentInputState = None; break;
         }
         break;
     case Qt::Key_Up:
@@ -110,6 +118,8 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
             mCurrentInputState = Accelerate; break;
         case BreakSteerLeft:
             mCurrentInputState = Break; break;
+        case SteerLeft:
+            mCurrentInputState = None; break;
         }
         break;
     case Qt::Key_Right:
@@ -120,6 +130,8 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
             mCurrentInputState = Accelerate; break;
         case BreakSteerRight:
             mCurrentInputState = Break; break;
+        case SteerRight:
+            mCurrentInputState = None; break;
         }
         break;
     case Qt::Key_Up:
@@ -127,9 +139,11 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
         switch(mCurrentInputState)
         {
         case Accelerate:
-        case AccelerateSteerLeft:
-        case AccelerateSteerRight:
             mCurrentInputState = None; break;
+        case AccelerateSteerLeft:
+            mCurrentInputState = SteerLeft; break;
+        case AccelerateSteerRight:
+            mCurrentInputState = SteerRight; break;
         }
         break;
     case Qt::Key_Down:
@@ -137,9 +151,11 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
         switch(mCurrentInputState)
         {
         case Break:
-        case BreakSteerLeft:
-        case BreakSteerRight:
             mCurrentInputState = None; break;
+        case BreakSteerLeft:
+            mCurrentInputState = SteerLeft; break;
+        case BreakSteerRight:
+            mCurrentInputState = SteerRight; break;
         }
         break;
     }

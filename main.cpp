@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    World world(400, 400);
+    World world(800, 800);
     world.show();
 
     return a.exec();
