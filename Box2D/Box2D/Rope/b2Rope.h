@@ -28,9 +28,9 @@ struct b2RopeDef
 {
 	b2RopeDef()
 	{
-		vertices = nullptr;
+        vertices = NULL;
 		count = 0;
-		masses = nullptr;
+        masses = NULL;
 		gravity.SetZero();
 		damping = 0.1f;
 		k2 = 0.9f;

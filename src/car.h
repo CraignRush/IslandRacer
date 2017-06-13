@@ -4,6 +4,19 @@
 #include <QGraphicsPixmapItem>
 #include <Box2D/Box2D.h>
 
+enum InputState
+{
+    None = 0,
+    Accelerate,
+    AccelerateSteerRight,
+    AccelerateSteerLeft,
+    Break,
+    BreakSteerRight,
+    BreakSteerLeft,
+    SteerRight,
+    SteerLeft
+};
+
 class Car : public QGraphicsPixmapItem
 {
 private:
