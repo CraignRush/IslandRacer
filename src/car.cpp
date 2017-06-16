@@ -15,8 +15,8 @@ Car::Car(b2World* world)
     // set up physical body for simulation
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody; //this will be a dynamic body
-    bodyDef.position.Set(0.0, 3.0); //set the starting position
-    bodyDef.angle = 0; //set the starting angle
+    bodyDef.position.Set(10.6f, 12.6f); //set the starting position
+    bodyDef.angle = -0.54f; //set the starting angle
 
     // create body from definition
     mCarBody = world->CreateBody(&bodyDef);
@@ -41,13 +41,13 @@ void Car::render()
     b2Vec2 pos = mCarBody->GetPosition();
     setPos(pos.x * 40.0, pos.y * 40);
     setRotation(mCarBody->GetAngle() * 360.0 / (2.0 * 3.141592));
-    qDebug() << "Angle: " << mCarBody->GetAngle() << "\n";
+    //qDebug() << "Angle: " << mCarBody->GetAngle() << "\n";
     ensureVisible(QRectF(), 100, 100);
 }
 
 void Car::computeForces(InputState input)
 {
-    qDebug() << "Speed: " << currentSpeed;
+    //qDebug() << "Speed: " << currentSpeed;
     switch(input)
     {
     case Accelerate:

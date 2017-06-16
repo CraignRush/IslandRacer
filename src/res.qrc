@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/images">
         <file>images/car1.png</file>
-        <file>Island1gray.png</file>
-        <file>Island1.png</file>
         <file>images/credits.png</file>
         <file>images/garage.png</file>
         <file>images/highscore.png</file>
@@ -14,5 +12,7 @@
         <file>images/quit.png</file>
         <file>images/r-arrow-576725_1280.png</file>
         <file>images/settings.png</file>
+        <file>images/Island1.png</file>
+        <file>images/Island1gray.png</file>
     </qresource>
 </RCC>

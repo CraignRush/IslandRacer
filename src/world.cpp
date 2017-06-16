@@ -174,4 +174,6 @@ void World::gameLoop()
     mCar->computeForces(mCurrentInputState);
     mWorld->Step(mLoopIntervalTime, 8, 3);
     mCar->render();
+    if(!(mTrack->collidingItems(mCar).isEmpty()))
+        mTrack->checkpoint->CheckCheckpoint(mCar);
 }
