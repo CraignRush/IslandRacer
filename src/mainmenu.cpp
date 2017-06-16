@@ -1,5 +1,6 @@
 #include "mainmenu.h"
 #include "ui_mainmenu.h"
+#include "world.h"
 
 mainMenu::mainMenu(QWidget *parent) :
     QMainWindow(parent),
@@ -87,7 +88,7 @@ mainMenu::mainMenu(QWidget *parent) :
 
     // Transparent Background
     QPalette p = palette();
-    QString transparentBackground( "background-color: rgba( 255, 255, 255, 0% );" );
+    QString transparentBackground( "background-color: rgba( 255, 255, 255, 0%);" );
     ui->textBrowser->setPalette(p);
     ui->textBrowser->setStyleSheet(transparentBackground);
     ui->Main2Level1->setPalette(p);
@@ -215,6 +216,7 @@ void mainMenu::on_Level1_2Level2_clicked()
 void mainMenu::on_playLevel1_clicked()
 {
     //start Level 1
+    hide();
 }
 
 // Buttons from Level 2
