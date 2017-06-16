@@ -57,7 +57,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="main">
      <widget class="QPushButton" name="Main2QuitGame">
@@ -94,7 +94,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="text">
-       <string>Quit</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="Main2Level1">
@@ -113,7 +113,7 @@
        </size>
       </property>
       <property name="text">
-       <string>Play</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="Main2Manual">
@@ -132,7 +132,7 @@
        </size>
       </property>
       <property name="text">
-       <string>Manual</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="Main2Garage">
@@ -151,7 +151,7 @@
        </size>
       </property>
       <property name="text">
-       <string>Garage</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="Main2Credits">
@@ -170,7 +170,7 @@
        </size>
       </property>
       <property name="text">
-       <string>Credits</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="Main2Highscore">
@@ -189,7 +189,7 @@
        </size>
       </property>
       <property name="text">
-       <string>Highscore</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="Main2Settings">
@@ -208,7 +208,7 @@
        </size>
       </property>
       <property name="text">
-       <string>Settings</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="mainBackground">
@@ -244,7 +244,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Main Menu</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="level1Background">
@@ -291,12 +291,12 @@
        <rect>
         <x>873</x>
         <y>535</y>
-        <width>80</width>
-        <height>25</height>
+        <width>200</width>
+        <height>100</height>
        </rect>
       </property>
       <property name="text">
-       <string>Play</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="Level1_2Level3">
@@ -304,12 +304,12 @@
        <rect>
         <x>421</x>
         <y>390</y>
-        <width>80</width>
-        <height>25</height>
+        <width>100</width>
+        <height>80</height>
        </rect>
       </property>
       <property name="text">
-       <string>left</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="Level1_2Level2">
@@ -317,12 +317,12 @@
        <rect>
         <x>1325</x>
         <y>390</y>
-        <width>80</width>
-        <height>25</height>
+        <width>100</width>
+        <height>80</height>
        </rect>
       </property>
       <property name="text">
-       <string>right</string>
+       <string/>
       </property>
      </widget>
      <zorder>level1Background</zorder>
@@ -344,7 +344,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Main Menu</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="level2Background">
@@ -380,21 +380,21 @@
        <item row="4" column="2">
         <widget class="QPushButton" name="playLevel2">
          <property name="text">
-          <string>Play</string>
+          <string/>
          </property>
         </widget>
        </item>
        <item row="2" column="4">
         <widget class="QPushButton" name="Level2_2Level3">
          <property name="text">
-          <string>right</string>
+          <string/>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
         <widget class="QPushButton" name="Level2_2Level1">
          <property name="text">
-          <string>left</string>
+          <string/>
          </property>
         </widget>
        </item>
@@ -422,7 +422,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Main Menu</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="level3Background">
@@ -458,21 +458,21 @@
        <item row="4" column="2">
         <widget class="QPushButton" name="playLevel3">
          <property name="text">
-          <string>Play</string>
+          <string/>
          </property>
         </widget>
        </item>
        <item row="2" column="4">
         <widget class="QPushButton" name="Level3_2Level1">
          <property name="text">
-          <string>right</string>
+          <string/>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
         <widget class="QPushButton" name="Level3_2Level2">
          <property name="text">
-          <string>left</string>
+          <string/>
          </property>
         </widget>
        </item>
@@ -500,7 +500,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Main Menu</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="garageBackground">
@@ -538,8 +538,20 @@
         <height>18</height>
        </rect>
       </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksAbove</enum>
+      </property>
+      <property name="tickInterval">
+       <number>1</number>
       </property>
      </widget>
      <widget class="QLabel" name="acceleration">
@@ -572,13 +584,22 @@
       <property name="geometry">
        <rect>
         <x>190</x>
-        <y>450</y>
+        <y>460</y>
         <width>160</width>
         <height>16</height>
        </rect>
       </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksAbove</enum>
+      </property>
+      <property name="tickInterval">
+       <number>1</number>
       </property>
      </widget>
      <widget class="QSlider" name="sliderHandling">
@@ -590,8 +611,20 @@
         <height>18</height>
        </rect>
       </property>
+      <property name="maximum">
+       <number>10</number>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksAbove</enum>
+      </property>
+      <property name="tickInterval">
+       <number>1</number>
       </property>
      </widget>
      <widget class="QLabel" name="handling">
@@ -628,7 +661,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Main Menu</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="highscoreBackground">
@@ -700,7 +733,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Main Menu</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="settingsBackground">
@@ -772,7 +805,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Main Menu</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="manualBackground">
@@ -816,7 +849,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Main Menu</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="creditsBackground">

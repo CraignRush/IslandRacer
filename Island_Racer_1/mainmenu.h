@@ -65,6 +65,12 @@ private slots:
 
     void on_playLevel1_clicked();
 
+    void on_sliderAcceleration_valueChanged(int value);
+
+    void on_sliderTopspeed_valueChanged(int value);
+
+    void on_sliderHandling_valueChanged(int value);
+
 private:
     Ui::mainMenu *ui;
 };
