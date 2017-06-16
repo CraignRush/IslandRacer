@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/images">
-        <file>images/background.jpeg</file>
         <file>images/car1.png</file>
-        <file>Island1grey.png</file>
+        <file>Island1gray.png</file>
+        <file>Island1.png</file>
     </qresource>
 </RCC>
