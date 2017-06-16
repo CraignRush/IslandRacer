@@ -3,5 +3,16 @@
         <file>images/car1.png</file>
         <file>Island1gray.png</file>
         <file>Island1.png</file>
+        <file>images/credits.png</file>
+        <file>images/garage.png</file>
+        <file>images/highscore.png</file>
+        <file>images/l-arrow-576725_1280.png</file>
+        <file>images/manual.png</file>
+        <file>images/menu.png</file>
+        <file>images/palmtree1_1920_1080.jpg</file>
+        <file>images/play.png</file>
+        <file>images/quit.png</file>
+        <file>images/r-arrow-576725_1280.png</file>
+        <file>images/settings.png</file>
     </qresource>
 </RCC>

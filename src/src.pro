@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     car.cpp \
     track.cpp \
     player.cpp \
-    checkpoint.cpp
+    checkpoint.cpp \
+    mainmenu.cpp
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -45,7 +46,11 @@ HEADERS += \
     car.h \
     track.h \
     player.h \
-    checkpoint.h
+    checkpoint.h \
+    mainmenu.h
 
 RESOURCES += \
     res.qrc
+
+FORMS += \
+    mainmenu.ui
