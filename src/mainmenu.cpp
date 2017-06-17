@@ -1,11 +1,10 @@
 #include "mainmenu.h"
 #include "ui_mainmenu.h"
-#include "world.h"
 
 mainMenu::mainMenu(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::mainMenu)
-{
+{    
     ui->setupUi(this);
 
     ui->stackedWidget->setCurrentIndex(0);
@@ -216,7 +215,9 @@ void mainMenu::on_Level1_2Level2_clicked()
 void mainMenu::on_playLevel1_clicked()
 {
     //start Level 1
-    hide();
+    world = new World(800,800);
+    world->show();
+    //hide();
 }
 
 // Buttons from Level 2

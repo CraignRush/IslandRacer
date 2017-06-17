@@ -2,6 +2,7 @@
 #define MAINMENU_H
 
 #include <QMainWindow>
+#include "world.h"
 
 namespace Ui {
 class mainMenu;
@@ -73,6 +74,7 @@ private slots:
 
 private:
     Ui::mainMenu *ui;
+    World* world;
 };
 
 #endif // MAINMENU_H

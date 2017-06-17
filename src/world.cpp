@@ -1,4 +1,5 @@
 #include "world.h"
+#include <QDebug>
 
 World::World(int width, int height)
 {
@@ -6,7 +7,7 @@ World::World(int width, int height)
     mWidth = width;
     mHeight = height;
 
-    mLoopIntervalTime = 40;
+    mLoopIntervalTime = 30;
     mCurrentInputState = None;
 
     // Create Box2D world object
@@ -35,10 +36,23 @@ World::World(int width, int height)
     // Show the scene
     show();
 
-    // Init and start timer for game loop
+    // Init variables for start sequence
+    Opacity = 1.0f;
+    mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
+    mCounter = new QGraphicsTextItem;
+    mCounter->setScale(10);
+    mCounter->setPos(mWidth/2-70,mHeight/2-100);
+    mTrack->addItem(mCounter);
+
+    // Init and start timer for game loop and start loop
     mTimer = new QTimer(this);
+    mStartTimer = new QTimer(this);
     connect(mTimer, SIGNAL(timeout()), this, SLOT(gameLoop()));
-    mTimer->start(mLoopIntervalTime);
+    connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
+    mCar->render(); // necessary to init start position of the car
+    mStartTimer->start(10);
+
+
 }
 
 void World::keyPressEvent(QKeyEvent *keyEvent)
@@ -176,4 +190,34 @@ void World::gameLoop()
     mCar->render();
     if(!(mTrack->collidingItems(mCar).isEmpty()))
         mTrack->checkpoint->CheckCheckpoint(mCar);
+}
+
+void World::startLoop()
+{
+    if(mStartCounter%100==0 && mStartCounter > 0)
+    {
+        Opacity=1.0f;
+        mCounter->setPlainText(QString::number(mStartCounter/100));
+    }
+    if(mStartCounter == 0)
+    {
+        Opacity=1.0f;
+        mCounter->setPos(mWidth/2-90,mHeight/2-100);
+        mCounter->setPlainText("GO!!");
+        mTimer->start(mLoopIntervalTime);
+        mStartTimer->start(20);
+    }
+
+    mCounter->setOpacity(Opacity);
+    Opacity -= 0.01f;
+    mStartCounter--;
+
+
+    if(mStartCounter == -100)
+    {
+        mStartTimer->stop();
+        mTrack->removeItem(mCounter);
+        delete mCounter;
+    }
+
 }

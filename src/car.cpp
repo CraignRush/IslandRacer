@@ -55,7 +55,7 @@ void Car::computeForces(InputState input)
         if(currentSpeed < 0.5f && currentSpeed >-0.5f)                  // Init speed, when standing
         {
             currentSpeed = 0.51f;                                       // change init speed (must be greater than condition value)
-        } else if(currentSpeed > 0.5f && currentSpeed < 4.0f)           // change if-condition to change max Speed (2nd value)
+        } else if(currentSpeed > 0.5f && currentSpeed < 8.0f)           // change if-condition to change max Speed (2nd value)
             currentSpeed += (1/currentSpeed)/5;                         // change equation to change acceleration
         else if(currentSpeed < -0.5f)
             currentSpeed += 0.03f;                                      // linear pos. acceleration if speed is negativ
@@ -67,7 +67,7 @@ void Car::computeForces(InputState input)
         if(currentSpeed < 0.5f && currentSpeed >-0.5f)
         {
             currentSpeed = 0.51f;
-        } else if(currentSpeed > 0.5f && currentSpeed < 4.0f)
+        } else if(currentSpeed > 0.5f && currentSpeed < 8.0f)
             currentSpeed += (1/currentSpeed)/5;
         else if(currentSpeed < -0.5f)
             currentSpeed += 0.03f;
@@ -78,7 +78,7 @@ void Car::computeForces(InputState input)
         if(currentSpeed < 0.5f && currentSpeed >-0.5f)
         {
             currentSpeed = 0.51f;
-        } else if(currentSpeed > 0.5f && currentSpeed < 4.0f)
+        } else if(currentSpeed > 0.5f && currentSpeed < 8.0f)
             currentSpeed += (1/currentSpeed)/5;
         else if(currentSpeed < -0.5f)
             currentSpeed += 0.03f;
