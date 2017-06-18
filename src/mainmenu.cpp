@@ -12,8 +12,15 @@ mainMenu::mainMenu(QWidget *parent) :
     // Set Backgrounds
     QPixmap mainBackgroundPic(":/images/images/palmtree1_1920_1080.jpg");
     ui->mainBackground->setPixmap(mainBackgroundPic);
-    ui->creditsBackground->setPixmap(mainBackgroundPic);
+    ui->level1Background->setPixmap(mainBackgroundPic);
+    ui->level2Background->setPixmap(mainBackgroundPic);
+    ui->level3Background->setPixmap(mainBackgroundPic);
+    ui->highscoreBackground->setPixmap(mainBackgroundPic);
+    ui->settingsBackground->setPixmap(mainBackgroundPic);
     ui->manualBackground->setPixmap(mainBackgroundPic);
+    ui->creditsBackground->setPixmap(mainBackgroundPic);
+    QPixmap garageBackgroundPic(":/images/images/Garage.jpg");
+    ui->garageBackground->setPixmap(garageBackgroundPic);
 
     // Set Icons
     QIcon leftArrow(":/images/images/l-arrow-576725_1280.png");
