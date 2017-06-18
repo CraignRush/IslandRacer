@@ -60,6 +60,9 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
     // handle key press
     switch(keyEvent->key())
     {
+    case Qt::Key_Escape: // Just for debugging, to close game and get back to menu.
+        delete this;
+        break;
     case Qt::Key_Left:
         // set new state depending on current state
         switch(mCurrentInputState)
