@@ -88,8 +88,6 @@ mainMenu::mainMenu(QWidget *parent) :
     // Transparent Background
     QPalette p = palette();
     QString transparentBackground( "background-color: rgba( 255, 255, 255, 0%);" );
-    ui->textBrowser->setPalette(p);
-    ui->textBrowser->setStyleSheet(transparentBackground);
     ui->Main2Level1->setPalette(p);
     ui->Main2Level1->setStyleSheet(transparentBackground);
     ui->Main2Garage->setPalette(p);

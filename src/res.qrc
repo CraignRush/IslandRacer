@@ -14,5 +14,6 @@
         <file>images/settings.png</file>
         <file>images/Island1.png</file>
         <file>images/Island1gray.png</file>
+        <file>images/Logo.png</file>
     </qresource>
 </RCC>
