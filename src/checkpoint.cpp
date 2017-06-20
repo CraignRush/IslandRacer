@@ -9,7 +9,7 @@ Checkpoint::Checkpoint()
     for(int i= 0; i<6; i++)
     {
         mCheckpoint[i].setRect(0,0,170,1);
-        mCheckpoint[i].setOpacity(0.0); // set to 1.0 for debug
+        mCheckpoint[i].setOpacity(1.0); // set to 1.0 for debug
     }
 
     mCheckpoint[0].setRotation(qRadiansToDegrees(1.04));

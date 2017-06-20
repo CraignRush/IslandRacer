@@ -6,6 +6,7 @@ World::World(int width, int height)
     // Set dimensions
     mWidth = width;
     mHeight = height;
+    scale(mWidth/1920.f*3,mHeight/1080.f*3);
 
     mLoopIntervalTime = 30;
     mCurrentInputState = None;
