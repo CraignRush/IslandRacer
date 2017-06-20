@@ -10,18 +10,7 @@
 #include "car.h"
 
 
-enum InputState
-{
-	None = 0,
-	Accelerate,
-	AccelerateSteerRight,
-	AccelerateSteerLeft,
-	Break,
-	BreakSteerRight,
-	BreakSteerLeft,
-	SteerRight,
-	SteerLeft
-};
+
 
 class World : public QGraphicsView
 {

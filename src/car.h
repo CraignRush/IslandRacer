@@ -9,6 +9,18 @@
 #include <QObject>
 
 
+enum InputState
+{
+    None = 0,
+    Accelerate,
+    AccelerateSteerRight,
+    AccelerateSteerLeft,
+    Break,
+    BreakSteerRight,
+    BreakSteerLeft,
+    SteerRight,
+    SteerLeft
+};
 
 
 class Car : public QObject, public QGraphicsPixmapItem
@@ -33,7 +45,7 @@ private:
 	const b2Vec2 rightFrontWheelPosition = b2Vec2(1.5f,-1.9f);
 
 	//! Define the User Input States
-	enum Inputstate input;
+    enum InputState input;
 	//! Variables for user input
 	float mEngineSpeed =0.0f;
 	float mSteeringAngle = 0.0f;

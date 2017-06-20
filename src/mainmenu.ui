@@ -57,7 +57,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="main">
      <widget class="QPushButton" name="Main2QuitGame">
