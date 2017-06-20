@@ -1,142 +1,223 @@
 #include "car.h"
+#include "world.h"
 #include <cmath>
-#include <world.h>
 #include <QDebug>
 
-Car::Car(b2World* world)
+
+Car::Car(b2World* mWorld)
 {
-    setPixmap(QPixmap(":/images/images/car1.png"));
-    setScale(0.05);
-    //render();
-    //setPos(290,370); // TODO generalize to always be in the middle bottom of screen
-    //setRotation(-34.0);
-    ensureVisible(QRectF(), 100, 100);
+	setPixmap(QPixmap(":/images/images/car1.png"));
+	setScale(0.05);
+	ensureVisible(QRectF(), 300, 300);
 
-    // set up physical body for simulation
-    b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody; //this will be a dynamic body
-    bodyDef.position.Set(10.6f, 12.6f); //set the starting position
-    bodyDef.angle = -0.54f; //set the starting angle
+	//! define our Main Car Body
+	b2BodyDef *bodyDef = new b2BodyDef();
+	bodyDef->type = b2_dynamicBody;
+	bodyDef->linearDamping = 1;
+	bodyDef->angularDamping = 7;
+	bodyDef->position = CAR_STARTING_POS;
 
-    // create body from definition
-    mCarBody = world->CreateBody(&bodyDef);
+	//! Add Body to the world
+	mBody = mWorld->CreateBody(bodyDef);
 
-    // create shape
-    b2PolygonShape boxShape;
-    boxShape.SetAsBox(1.0f,1.0f);
+	//! Define the wheel bodies
+	b2BodyDef *leftWheelDef = new b2BodyDef();
+	leftWheelDef->type = b2_dynamicBody;
+	leftWheelDef->position = CAR_STARTING_POS;
+	leftWheelDef->position +=leftFrontWheelPosition;
 
-    // define fixture
-    b2FixtureDef boxFixtureDef;
-    boxFixtureDef.shape = &boxShape;
-    boxFixtureDef.density = 1.0f;
-    boxFixtureDef.friction = 0.3f;
+	b2BodyDef *rightWheelDef = new b2BodyDef();
+	rightWheelDef->type = b2_dynamicBody;
+	rightWheelDef->position = CAR_STARTING_POS;
+	rightWheelDef->position += rightFrontWheelPosition;
 
-    // create fixture and apply to car body
-    mCarBody->CreateFixture(&boxFixtureDef);
-    currentSpeed = 0.0f;
+	b2BodyDef *leftRearWheelDef = new b2BodyDef();
+	leftRearWheelDef->type = b2_dynamicBody;
+	leftRearWheelDef->position = CAR_STARTING_POS;
+	leftRearWheelDef->position += leftRearWheelPosition;
+
+	b2BodyDef *rightRearWheelDef = new b2BodyDef();
+	rightRearWheelDef->type = b2_dynamicBody;
+	rightRearWheelDef->position = CAR_STARTING_POS;
+	rightRearWheelDef->position += rightRearWheelPosition;
+
+	leftWheel = mWorld->CreateBody(leftWheelDef);
+	rightWheel = mWorld->CreateBody(rightWheelDef);
+	leftRearWheel = mWorld->CreateBody(leftRearWheelDef);
+	rightRearWheel = mWorld->CreateBody(rightRearWheelDef);
+
+	//! define shapes of car main body and wheels
+	b2PolygonShape *boxDef = new b2PolygonShape();
+	boxDef->SetAsBox(1.5,2.5);
+	mBody->CreateFixture(boxDef,1.0f);
+
+	//Left Wheel shape
+	b2PolygonShape *leftWheelShapeDef = new b2PolygonShape();
+	leftWheelShapeDef->SetAsBox(0.2f,0.5f);
+	leftWheel->CreateFixture(leftWheelShapeDef,1.0f);
+
+	//Right Wheel shape
+	b2PolygonShape *rightWheelShapeDef = new b2PolygonShape();
+	rightWheelShapeDef->SetAsBox(0.2f,0.5f);
+	rightWheel->CreateFixture(rightWheelShapeDef,1.0f);
+
+	//Left Rear Wheel shape
+	b2PolygonShape *leftRearWheelShapeDef = new b2PolygonShape();
+	leftRearWheelShapeDef->SetAsBox(0.2f,0.5f);
+	leftRearWheel->CreateFixture(leftRearWheelShapeDef,1.0f);
+
+	//Right Rear Wheel shape
+	b2PolygonShape *rightRearWheelShapeDef = new b2PolygonShape();
+	rightRearWheelShapeDef->SetAsBox(0.2f,0.5f);
+	rightRearWheel->CreateFixture(rightRearWheelShapeDef,1.0f);
+
+	//! Create rotatable joints for the front wheels
+	b2RevoluteJointDef *leftJointDef = new b2RevoluteJointDef();
+	leftJointDef->Initialize(mBody, leftWheel, leftWheel->GetWorldCenter());
+	leftJointDef->enableMotor = true;
+	leftJointDef->maxMotorTorque = 200;
+
+	b2RevoluteJointDef *rightJointDef = new b2RevoluteJointDef();
+	rightJointDef->Initialize(mBody, rightWheel, rightWheel->GetWorldCenter());
+	rightJointDef->enableMotor = true;
+	rightJointDef->maxMotorTorque = 200;
+
+	//! Add joints to the world
+	leftJoint = (b2RevoluteJoint*) mWorld->CreateJoint(leftJointDef);
+	rightJoint = (b2RevoluteJoint*) mWorld->CreateJoint(rightJointDef);
+
+	//! Define rear wheel static joints with only one degree of freedom
+	b2PrismaticJointDef *leftRearJointDef = new b2PrismaticJointDef();
+	leftRearJointDef->Initialize(mBody, leftRearWheel, leftRearWheel->GetWorldCenter(), b2Vec2(0,1));
+	leftRearJointDef->enableLimit = true;
+	leftRearJointDef->lowerTranslation = 0;
+	leftRearJointDef->upperTranslation = 0;
+
+	b2PrismaticJointDef *rightRearJointDef = new b2PrismaticJointDef();
+	rightRearJointDef->Initialize(mBody, rightRearWheel, rightRearWheel->GetWorldCenter(), b2Vec2(0,1));
+	rightRearJointDef->enableLimit = true;
+	rightRearJointDef->lowerTranslation = 0;
+	rightRearJointDef->upperTranslation = 0;
+
+	//! Add rear wheel joint to the world
+	mWorld->CreateJoint(leftRearJointDef);
+	mWorld->CreateJoint(rightRearJointDef);
 }
 
 void Car::render()
 {
-    b2Vec2 pos = mCarBody->GetPosition();
-    setPos(pos.x * 40.0, pos.y * 40);
-    setRotation(mCarBody->GetAngle() * 360.0 / (2.0 * 3.141592));
-    //qDebug() << "Angle: " << mCarBody->GetAngle() << "\n";
-    ensureVisible(QRectF(), 100, 100);
+	//! Get position of main car body and scale 1m = 10 px
+	b2Vec2 pos = mBody->GetPosition();
+	setPos(pos.x * PX_TO_M_RATIO, pos.y * PX_TO_M_RATIO);
+	setRotation(mBody->GetAngle() * 360.0 / (2.0 * 3.141592) + CAR_ROTATION_ANGLE);
+	ensureVisible(QRectF(), 300, 300);
 }
 
-void Car::computeForces(InputState input)
+
+void Car::computeUserInput(InputState input)
 {
-    //qDebug() << "Speed: " << currentSpeed;
-    switch(input)
-    {
-    case Accelerate:
-        mCarBody->ApplyForce(mCarBody->GetWorldVector(b2Vec2(currentSpeed/10000.0f,0.0f)), mCarBody->GetWorldCenter(), true);
-        if(currentSpeed < 0.5f && currentSpeed >-0.5f)                  // Init speed, when standing
-        {
-            currentSpeed = 0.51f;                                       // change init speed (must be greater than condition value)
-        } else if(currentSpeed > 0.5f && currentSpeed < 8.0f)           // change if-condition to change max Speed (2nd value)
-            currentSpeed += (1/currentSpeed)/5;                         // change equation to change acceleration
-        else if(currentSpeed < -0.5f)
-            currentSpeed += 0.03f;                                      // linear pos. acceleration if speed is negativ
-
-        break;
-    case AccelerateSteerLeft:
-        mCarBody->ApplyForce(mCarBody->GetWorldVector(b2Vec2(currentSpeed/10000.0f,0.0f)), mCarBody->GetWorldCenter(), true);
-        mCarBody->ApplyTorque(-0.0001f, true);
-        if(currentSpeed < 0.5f && currentSpeed >-0.5f)
-        {
-            currentSpeed = 0.51f;
-        } else if(currentSpeed > 0.5f && currentSpeed < 8.0f)
-            currentSpeed += (1/currentSpeed)/5;
-        else if(currentSpeed < -0.5f)
-            currentSpeed += 0.03f;
-        break;
-    case AccelerateSteerRight:
-        mCarBody->ApplyForce(mCarBody->GetWorldVector(b2Vec2(currentSpeed/10000.0f,0.0f)), mCarBody->GetWorldCenter(), true);
-        mCarBody->ApplyTorque(0.0001f, true);
-        if(currentSpeed < 0.5f && currentSpeed >-0.5f)
-        {
-            currentSpeed = 0.51f;
-        } else if(currentSpeed > 0.5f && currentSpeed < 8.0f)
-            currentSpeed += (1/currentSpeed)/5;
-        else if(currentSpeed < -0.5f)
-            currentSpeed += 0.03f;
-        break;
-    case Break:
-        mCarBody->ApplyForce(mCarBody->GetWorldVector(b2Vec2(currentSpeed/10000.0f,0.0f)), mCarBody->GetWorldCenter(), true);
-        if(currentSpeed < 0.5f && currentSpeed >-0.5f)
-        {
-            currentSpeed = -0.51f;
-        } else if(currentSpeed < -0.5f && currentSpeed > -2.0f)
-            currentSpeed += (1/currentSpeed)/5;
-        else if(currentSpeed > 0.5f)
-            currentSpeed += -0.03f;
-        break;
-    case BreakSteerLeft:
-        mCarBody->ApplyForce(mCarBody->GetWorldVector(b2Vec2(currentSpeed/10000.0f,0.0f)), mCarBody->GetWorldCenter(), true);
-        mCarBody->ApplyTorque(-0.0001f, true);
-        if(currentSpeed < 0.5f && currentSpeed >-0.5f)
-        {
-            currentSpeed = -0.51f;
-        } else if(currentSpeed < -0.5f && currentSpeed > -2.0f)
-            currentSpeed += (1/currentSpeed)/5;
-        else if(currentSpeed > 0.5f)
-            currentSpeed += -0.03f;
-        break;
-    case BreakSteerRight:
-        mCarBody->ApplyForce(mCarBody->GetWorldVector(b2Vec2(currentSpeed/10000.0f,0.0f)), mCarBody->GetWorldCenter(), true);
-        mCarBody->ApplyTorque(0.0001f, true);
-        if(currentSpeed < 0.5f && currentSpeed >-0.5f)
-        {
-            currentSpeed = -0.51f;
-        } else if(currentSpeed < -0.5f && currentSpeed > -2.0f)
-            currentSpeed += (1/currentSpeed)/5;
-        else if(currentSpeed > 0.5f)
-            currentSpeed += -0.03f;
-        break;
-    case None:
-        mCarBody->ApplyForce(mCarBody->GetWorldVector(b2Vec2(currentSpeed/10000.0f,0.0f)), mCarBody->GetWorldCenter(), true);
-        if(currentSpeed > 0.5f || currentSpeed < -0.5f) currentSpeed -= (1/currentSpeed)/2; // let the car roll out
-        else currentSpeed = 0.0f;
-        break;
-    case SteerLeft:
-        if(currentSpeed >0.5f || currentSpeed <-0.5f)
-        {
-            mCarBody->ApplyForce(mCarBody->GetWorldVector(b2Vec2(currentSpeed/10000.0f,0.0f)), mCarBody->GetWorldCenter(), true);
-            mCarBody->ApplyTorque(-0.0001f, true);
-            currentSpeed -= (1/currentSpeed)/2;
-        } else currentSpeed = 0.0f;
-
-        break;
-    case SteerRight:
-        if(currentSpeed > 0.5f || currentSpeed <-0.5f)
-        {
-            mCarBody->ApplyForce(mCarBody->GetWorldVector(b2Vec2(currentSpeed/10000.0f,0.0f)), mCarBody->GetWorldCenter(), true);
-            mCarBody->ApplyTorque(0.0001f, true);
-            currentSpeed -= (1/currentSpeed)/2;
-        } else currentSpeed = 0.0f;
-        break;
-
-    }
+	/*    qDebug() << "Left Wheel Position: " << leftWheel->GetPosition().x << ", " << leftWheel->GetPosition().y;
+	qDebug() << "Right Wheel Position: " << rightWheel->GetPosition().x <<", " <<  rightWheel->GetPosition().y;
+	qDebug() << "Car mBody Position: " << mBody->GetPosition().x <<", " <<  mBody->GetPosition().y;
+	qDebug() << "Car mBody Angle: " << mBody->GetAngle();
+	qDebug() << "RW Angle: " << rightWheel->GetAngle();
+	qDebug() << "RW Angle: " << rightWheel->GetTransform().q.GetAngle();
+	qDebug() << "LW Angle: " << leftWheel->GetAngle();
+	qDebug() << "LW Angle: " << leftWheel->GetTransform().q.GetAngle();
+	qDebug() << "RRW Angle: " << rightRearWheel->GetAngle();
+	qDebug() << "RRW Angle: " << rightRearWheel->GetTransform().q.GetAngle();
+	qDebug() << "LRW Angle: " << leftRearWheel->GetAngle();
+	qDebug() << "LRW Angle: " << leftRearWheel->GetTransform().q.GetAngle();*/
+	switch(input)
+	{
+	case Accelerate:
+		mEngineSpeed = -HORSEPOWERS;
+		mSteeringAngle = 0.0f;
+		break;
+	case AccelerateSteerLeft:
+		mEngineSpeed = -HORSEPOWERS;
+		mSteeringAngle = -MAX_STEER_ANGLE;
+		break;
+	case AccelerateSteerRight:
+		mEngineSpeed = -HORSEPOWERS;
+		mSteeringAngle = MAX_STEER_ANGLE;
+		break;
+	case Break:
+		mEngineSpeed = HORSEPOWERS;
+		mSteeringAngle = 0.0f;
+		break;
+	case BreakSteerLeft:
+		mEngineSpeed = HORSEPOWERS;
+		mSteeringAngle = -MAX_STEER_ANGLE;
+		break;
+	case BreakSteerRight:
+		mEngineSpeed = HORSEPOWERS;
+		mSteeringAngle = MAX_STEER_ANGLE;
+		break;
+	case None:
+		mEngineSpeed = 0.0f;
+		mSteeringAngle = 0.0f;
+		break;
+	case SteerLeft:
+		mSteeringAngle = -MAX_STEER_ANGLE;
+		mEngineSpeed = 0.0f;
+		break;
+	case SteerRight:
+		mSteeringAngle = MAX_STEER_ANGLE;
+		mEngineSpeed = 0.0f;
+		break;
+	}
 }
+
+
+//This function applies a "friction" in a direction orthogonal to the mBody's axis.
+void Car::killOrthogonalVelocity(b2Body *targetBody){
+
+	//! Get the normal vector "in sideway axis" of each wheel in world coordinates
+	b2Vec2 currentRightNormal = targetBody->GetWorldVector(b2Vec2(1,0));
+	//! Get the vector of velocity in the normal's direction
+	b2Vec2 lateralVelocity =  b2Dot(currentRightNormal, targetBody->GetLinearVelocity()) * currentRightNormal;
+	//! Compute counter impulse to compensate lateral velocity in each time step
+	b2Vec2 impulse = targetBody->GetMass() * -lateralVelocity;
+
+	//! Allow drifting above a MAX_LATERAL_IMPULSE
+	if (impulse.Length() > MAX_LATERAL_IMPULSE)
+		impulse *= MAX_LATERAL_IMPULSE / impulse.Length();
+
+	//! Apply the linear impulse to each bodys center
+	targetBody->ApplyLinearImpulseToCenter(impulse,true);
+	//! Cancel the angular impulse by computing it through "Trägheitsmoment" * "Winkelgeschwindigkeit"
+	//! 0.1f through trial and error
+	targetBody->ApplyAngularImpulse(0.1f * targetBody->GetInertia() * -targetBody->GetAngularVelocity(), true);
+}
+
+void Car::computeDriving(){
+	//! Driving
+	leftWheel->ApplyForceToCenter(mEngineSpeed * leftWheel->GetWorldVector(b2Vec2(0,1)),true);
+	rightWheel->ApplyForceToCenter(mEngineSpeed * rightWheel->GetWorldVector(b2Vec2(0,1)),true);
+}
+
+void Car::computeSteering(){
+	//! Set motor speed of both revolute joints in relation to desired steering angle
+	mSpeed = mSteeringAngle - leftJoint->GetJointAngle();
+	leftJoint->SetMotorSpeed(mSpeed * STEER_SPEED);
+	mSpeed = mSteeringAngle - rightJoint->GetJointAngle();
+	rightJoint->SetMotorSpeed(mSpeed * STEER_SPEED);
+}
+
+b2Body* Car::GetLeftWheel(){
+	return leftWheel;
+}
+b2Body* Car::GetRightWheel(){
+	return rightWheel;
+}
+b2Body* Car::GetRightRearWheel(){
+	return rightRearWheel;
+}
+b2Body* Car::GetLeftRearWheel(){
+	return leftRearWheel;
+}
+
+
+
+

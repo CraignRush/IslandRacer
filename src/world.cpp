@@ -6,9 +6,9 @@ World::World(int width, int height)
     // Set dimensions
     mWidth = width;
     mHeight = height;
-    scale(mWidth/1920.f*3,mHeight/1080.f*3);
+	//scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
 
-    mLoopIntervalTime = 30;
+	mLoopIntervalTime = 30;
     mCurrentInputState = None;
 
     // Create Box2D world object
@@ -189,9 +189,17 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
 
 void World::gameLoop()
 {
-    mCar->computeForces(mCurrentInputState);
-    mWorld->Step(mLoopIntervalTime, 8, 3);
-    mCar->render();
+	mWorld->Step(1.0f/50.0f, 8, 3);
+
+	mCar->killOrthogonalVelocity(mCar->GetLeftWheel());
+	mCar->killOrthogonalVelocity(mCar->GetRightWheel());
+	mCar->killOrthogonalVelocity(mCar->GetLeftRearWheel());
+	mCar->killOrthogonalVelocity(mCar->GetRightRearWheel());
+	mCar->computeUserInput(mCurrentInputState);
+	mCar->computeDriving();
+	mCar->computeSteering();
+
+   mCar->render();;
     if(!(mTrack->collidingItems(mCar).isEmpty()))
         mTrack->checkpoint->CheckCheckpoint(mCar);
 }
