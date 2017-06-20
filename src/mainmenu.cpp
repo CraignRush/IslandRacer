@@ -19,7 +19,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->settingsBackground->setPixmap(mainBackgroundPic);
     ui->manualBackground->setPixmap(mainBackgroundPic);
     ui->creditsBackground->setPixmap(mainBackgroundPic);
-    QPixmap garageBackgroundPic(":/images/images/Garage.jpg");
+    QPixmap garageBackgroundPic(":/images/images/Garagehell.jpg");
     ui->garageBackground->setPixmap(garageBackgroundPic);
 
     // Set Icons
