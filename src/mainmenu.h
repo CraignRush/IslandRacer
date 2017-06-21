@@ -16,6 +16,10 @@ public:
     explicit mainMenu(QWidget *parent = 0);
     ~mainMenu();
 
+    QString level1highscorematrix[11][3] = { {0} };
+    QString level2highscorematrix[11][3] = { {0} };
+    QString level3highscorematrix[11][3] = { {0} };
+
 private slots:
 
     void on_Main2Level1_clicked();

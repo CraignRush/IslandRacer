@@ -57,7 +57,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="main">
      <widget class="QPushButton" name="Main2QuitGame">
@@ -795,7 +795,7 @@
      <widget class="QLabel" name="highscoreLevel1">
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>230</x>
         <y>210</y>
         <width>501</width>
         <height>121</height>
@@ -808,8 +808,8 @@
      <widget class="QLabel" name="highscoreLevel2">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>480</y>
+        <x>1230</x>
+        <y>210</y>
         <width>501</width>
         <height>121</height>
        </rect>
@@ -821,8 +821,8 @@
      <widget class="QLabel" name="highscoreLevel3">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>350</y>
+        <x>730</x>
+        <y>210</y>
         <width>501</width>
         <height>121</height>
        </rect>
@@ -850,12 +850,63 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QTableWidget" name="highscoretablelevel1">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>290</y>
+        <width>301</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="highscoretablelevel2">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>290</y>
+        <width>301</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="highscoretablelevel3">
+      <property name="geometry">
+       <rect>
+        <x>1230</x>
+        <y>290</y>
+        <width>301</width>
+        <height>331</height>
+       </rect>
+      </property>
+     </widget>
      <zorder>highscoreBackground</zorder>
      <zorder>Highscore2Main</zorder>
      <zorder>highscoreLevel1</zorder>
      <zorder>highscoreLevel2</zorder>
      <zorder>highscoreLevel3</zorder>
      <zorder>Logohighscore</zorder>
+     <zorder>highscoretablelevel1</zorder>
+     <zorder>highscoretablelevel2</zorder>
+     <zorder>highscoretablelevel3</zorder>
     </widget>
     <widget class="QWidget" name="settings">
      <widget class="QPushButton" name="Settings2Main">

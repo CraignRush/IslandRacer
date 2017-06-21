@@ -178,6 +178,92 @@ void mainMenu::on_Main2Garage_clicked()
 void mainMenu::on_Main2Highscore_clicked()
 {
     ui->stackedWidget->setCurrentIndex(5);
+
+    // define header of highscoretables
+    QStringList header;
+    header << "Platz";
+    header << "Name";
+    header << "Zeit";
+
+    // set layout of highscoretable for level 1
+    ui->highscoretablelevel1->setRowCount(10);
+    ui->highscoretablelevel1->setColumnCount(3);
+    ui->highscoretablelevel1->verticalHeader()->setVisible(false);
+    ui->highscoretablelevel1->horizontalHeader()->setVisible(true);
+
+    ui->highscoretablelevel1->setHorizontalHeaderLabels(header);
+
+
+   // level1highscorematrix[9][2]="1.324";
+   // level1highscorematrix[9][1]="hallo";
+   // level1highscorematrix[9][0]="1";
+
+
+    // fill the highscore for level 1 with data from highscorematrix for level 1
+    for (int i=0;i<10;i++)
+       {
+        if(level1highscorematrix[i][2]!=0)
+        {
+            QString Platz = level1highscorematrix[i][0];
+            QString Name = level1highscorematrix[i][1];
+            QString Zeit = level1highscorematrix[i][2];
+            ui->highscoretablelevel1->setItem(i, 0, new QTableWidgetItem(Platz));
+            ui->highscoretablelevel1->setItem(i, 1, new QTableWidgetItem(Name));
+            ui->highscoretablelevel1->setItem(i, 2, new QTableWidgetItem(Zeit));
+        }
+       }
+
+
+    // set layout of highscoretable for level 2
+    ui->highscoretablelevel2->setRowCount(10);
+    ui->highscoretablelevel2->setColumnCount(3);
+    ui->highscoretablelevel2->verticalHeader()->setVisible(false);
+    ui->highscoretablelevel2->horizontalHeader()->setVisible(true);
+
+    ui->highscoretablelevel2->setHorizontalHeaderLabels(header);
+    ui->highscoretablelevel2->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    // fill the highscore for level 2 with data from highscorematrix for level 2
+    for (int i=0;i<10;i++)
+       {
+        if(level2highscorematrix[i][2]!=0)
+        {
+            QString Platz = level2highscorematrix[i][0];
+            QString Name = level2highscorematrix[i][1];
+            QString Zeit = level2highscorematrix[i][2];
+            ui->highscoretablelevel2->setItem(i, 0, new QTableWidgetItem(Platz));
+            ui->highscoretablelevel2->setItem(i, 1, new QTableWidgetItem(Name));
+            ui->highscoretablelevel2->setItem(i, 2, new QTableWidgetItem(Zeit));
+        }
+       }
+
+
+    // set layout of highscoretable for level 3
+    ui->highscoretablelevel3->setRowCount(10);
+    ui->highscoretablelevel3->setColumnCount(3);
+    ui->highscoretablelevel3->verticalHeader()->setVisible(false);
+    ui->highscoretablelevel3->horizontalHeader()->setVisible(true);
+
+    ui->highscoretablelevel3->setHorizontalHeaderLabels(header);
+    ui->highscoretablelevel3->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+
+    // fill the highscore for level 3 with data from highscorematrix for level 3
+    for (int i=0;i<10;i++)
+       {
+        if(level3highscorematrix[i][2]!=0)
+        {
+            QString Platz = level3highscorematrix[i][0];
+            QString Name = level3highscorematrix[i][1];
+            QString Zeit = level3highscorematrix[i][2];
+            ui->highscoretablelevel3->setItem(i, 0, new QTableWidgetItem(Platz));
+            ui->highscoretablelevel3->setItem(i, 1, new QTableWidgetItem(Name));
+            ui->highscoretablelevel3->setItem(i, 2, new QTableWidgetItem(Zeit));
+        }
+       }
+
+
+
 }
 
 void mainMenu::on_Main2Settings_clicked()
@@ -336,3 +422,7 @@ void mainMenu::on_sliderHandling_valueChanged(int value)
     ui->sliderAcceleration->setMaximum(maximumValue - handlingValue - topspeedValue);
     ui->sliderTopspeed->setMaximum(maximumValue - handlingValue - accelerationValue);
 }
+
+
+// Highscore Configeration
+
