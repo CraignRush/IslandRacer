@@ -19,7 +19,7 @@ class World : public QGraphicsView
 private:
     int mWidth;                 // Width of world/scene
     int mHeight;                // Height of world/scene
-
+    int level;
     Track* mTrack;
     Car* mCar;
     enum InputState mCurrentInputState;
@@ -35,7 +35,7 @@ private:
     QGraphicsTextItem* mCounter;    // Display Start Counter
 
 public:
-    World(int width, int height);
+    World(int width, int height, int level);
     void keyPressEvent(QKeyEvent * keyEvent);
     void keyReleaseEvent(QKeyEvent * keyEvent);
 

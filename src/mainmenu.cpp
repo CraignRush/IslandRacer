@@ -306,7 +306,7 @@ void mainMenu::on_Level1_2Level2_clicked()
 void mainMenu::on_playLevel1_clicked()
 {
     //start Level 1
-    world = new World(800,800);
+    world = new World(800,800,1);
     world->show();
     //hide();
 }
@@ -331,6 +331,9 @@ void mainMenu::on_Level2_2Level3_clicked()
 void mainMenu::on_playLevel2_clicked()
 {
     //start Level 2
+    world = new World(800,800,2);
+    world->show();
+    //hide();
 }
 
 // Buttons from Level 3
@@ -353,6 +356,9 @@ void mainMenu::on_Level3_2Level1_clicked()
 void mainMenu::on_playLevel3_clicked()
 {
     //start Level 3
+    world = new World(800,800,3);
+    world->show();
+    //hide();
 }
 
 // Buttons from Garage

@@ -16,9 +16,9 @@ public:
     explicit mainMenu(QWidget *parent = 0);
     ~mainMenu();
 
-    QString level1highscorematrix[11][3] = { {0} };
-    QString level2highscorematrix[11][3] = { {0} };
-    QString level3highscorematrix[11][3] = { {0} };
+    QString level1highscorematrix[11][3];
+    QString level2highscorematrix[11][3];
+    QString level3highscorematrix[11][3];
 
 private slots:
 

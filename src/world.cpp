@@ -1,7 +1,7 @@
 #include "world.h"
 #include <QDebug>
 
-World::World(int width, int height)
+World::World(int width, int height, int level)
 {
     // Set dimensions
     mWidth = width;
@@ -15,7 +15,7 @@ World::World(int width, int height)
     mWorld = new b2World(b2Vec2(0.0, 0.0));
 
     // Create track
-    mTrack = new Track();
+    mTrack = new Track(level);
 
     // Set track as scene for this view
     setScene(mTrack);

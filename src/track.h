@@ -7,7 +7,7 @@
 class Track : public QGraphicsScene
 {
 public:
-    Track();
+    Track(int level);
     Checkpoint* checkpoint;
 };
 
