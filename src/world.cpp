@@ -15,7 +15,7 @@ World::World(int width, int height, int level)
     mWorld = new b2World(b2Vec2(0.0, 0.0));
 
     // Create track
-    mTrack = new Track(level);
+    mTrack = new Track(5760, 3240, QImage(":/images/images/Monzatextur.png"), QImage(":/images/images/Monzagrey.png"));
 
     // Set track as scene for this view
     setScene(mTrack);
@@ -26,7 +26,7 @@ World::World(int width, int height, int level)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // Create car
-    mCar = new Car(mWorld);
+    mCar = new Car(mWorld, mTrack);
 
     // Add the car to the track/scene
     mTrack->addItem(mCar);
@@ -191,17 +191,11 @@ void World::gameLoop()
 {
 	mWorld->Step(1.0f/50.0f, 8, 3);
 
-	mCar->killOrthogonalVelocity(mCar->GetLeftWheel());
-	mCar->killOrthogonalVelocity(mCar->GetRightWheel());
-	mCar->killOrthogonalVelocity(mCar->GetLeftRearWheel());
-	mCar->killOrthogonalVelocity(mCar->GetRightRearWheel());
 	mCar->computeUserInput(mCurrentInputState);
-	mCar->computeDriving();
-	mCar->computeSteering();
+    mCar->updatePosition();
+    mTrack->updateCheckpoints(mCar);
+    mCar->render();
 
-   mCar->render();;
-    if(!(mTrack->collidingItems(mCar).isEmpty()))
-        mTrack->checkpoint->CheckCheckpoint(mCar);
 }
 
 void World::startLoop()

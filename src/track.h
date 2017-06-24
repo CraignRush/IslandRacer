@@ -4,11 +4,31 @@
 #include <QGraphicsScene>
 #include "checkpoint.h"
 
+enum Underground
+{
+    Asphalt = 0, // (Monza), 4
+    Grass = 112, // (Monza), 114
+    Sand = 188, // (Monza), 185
+    Water = 249 // (Monza), 252
+};
+
 class Track : public QGraphicsScene
 {
+private:
+    int mWidth;
+    int mHeight;
+    QImage mBackground;
+    QImage mGrayImage;
+    Checkpoint* mCheckpoints;
+
 public:
+    Track();
     Track(int level);
-    Checkpoint* checkpoint;
+    Track(int width, int height, QImage background, QImage grayImage);
+    Underground getUnderground(int x, int y);
+    void updateCheckpoints(QGraphicsPixmapItem* item);
+    void loadTrack(int width, int height, QImage background, QImage grayImage);
+
 };
 
 #endif // TRACK_H

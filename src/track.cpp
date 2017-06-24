@@ -1,4 +1,12 @@
 #include "track.h"
+#include <QColor>
+#include <QDebug>
+
+Track::Track()
+{
+    mWidth = 0;
+    mHeight = 0;
+}
 
 Track::Track(int level)
 {
@@ -16,8 +24,55 @@ Track::Track(int level)
     {
     setBackgroundBrush(QBrush(QImage(":/images/images/YasMarinatextur.png")));
     }
-    checkpoint = new Checkpoint;
+    mCheckpoints = new Checkpoint;
 
-    for(int i=0; i<checkpoint->GetNumberOfCheckpoints(); i++)
-        this->addItem(checkpoint->GetCheckpoint(i));
+    for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
+        this->addItem(mCheckpoints->GetCheckpoint(i));
+}
+
+Track::Track(int width, int height, QImage background, QImage grayImage)
+{
+    loadTrack(width, height, background, grayImage);
+}
+
+Underground Track::getUnderground(int x, int y)
+{
+    QColor pixelColor = mGrayImage.pixelColor(x, y);
+    int gray = pixelColor.value();
+    switch(pixelColor.value())
+    {
+    case Asphalt: return Asphalt;
+    case Grass: return Grass;
+    case Sand: return Sand;
+    case Water: return Water;
+    }
+
+//    Underground underground;
+
+//    switch(mGrayImage.pixelxelelColor(x, y))
+//    {
+//    case :
+//    }
+
+    qDebug() << "Underground Color: " << gray;
+
+    return Asphalt;
+}
+
+void Track::updateCheckpoints(QGraphicsPixmapItem* item)
+{
+    if(!(collidingItems(item).isEmpty()))
+        mCheckpoints->CheckCheckpoint(item);
+
+}
+
+void Track::loadTrack(int width, int height, QImage background, QImage grayImage)
+{
+    mWidth = width;
+    mHeight = height;
+    mBackground = background;
+    mGrayImage = grayImage;
+
+    setSceneRect(0,0,mWidth, mHeight);  // set the scene size to image width/height
+    setBackgroundBrush(QBrush(mBackground));
 }
