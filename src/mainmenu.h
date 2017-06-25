@@ -85,6 +85,13 @@ private slots:
 private:
     Ui::mainMenu *ui;
     World* world;
+
+    int screenWidth;
+    int screenHeight;
+    int accelerationValue;
+    int handlingValue;
+    int topspeedValue;
+    int maximumValue;
 };
 
 #endif // MAINMENU_H
