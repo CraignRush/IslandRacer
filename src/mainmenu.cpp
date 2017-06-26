@@ -10,19 +10,43 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
 
     // Set Backgrounds
-    QPixmap mainBackgroundPic(":/images/images/palmtree1_1920_1080.jpg");
-    ui->mainBackground->setPixmap(mainBackgroundPic);
-    ui->level1Background->setPixmap(mainBackgroundPic);
-    ui->level2Background->setPixmap(mainBackgroundPic);
-    ui->level3Background->setPixmap(mainBackgroundPic);
-    ui->highscoreBackground->setPixmap(mainBackgroundPic);
-    ui->settingsBackground->setPixmap(mainBackgroundPic);
-    ui->manualBackground->setPixmap(mainBackgroundPic);
-    ui->creditsBackground->setPixmap(mainBackgroundPic);
-    QPixmap garageBackgroundPic(":/images/images/Garagehell.jpg");
-    ui->garageBackground->setPixmap(garageBackgroundPic);
+    QString backgroundImage( "background-image: url(:/images/images/palmtree1_1920_1080.jpg);" );
+    QString garageImage( "background-image: url(:/images/images/Garagehell.jpg);" );
+
+    ui->centralWidget->setStyleSheet(backgroundImage);
+    ui->garage->setStyleSheet(garageImage);
+
+    QPixmap logo(":/images/images/Logo.png");
+    ui->mainLogo->setPixmap(logo);
+    ui->mainLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->mainLogo->setStyleSheet("QLabel{background: transparent;}");
+    ui->level1Logo->setPixmap(logo);
+    ui->level1Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level1Logo->setStyleSheet("QLabel{background: transparent;}");
+    ui->level2Logo->setPixmap(logo);
+    ui->level2Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level2Logo->setStyleSheet("QLabel{background: transparent;}");
+    ui->level3Logo->setPixmap(logo);
+    ui->level3Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level3Logo->setStyleSheet("QLabel{background: transparent;}");
+    ui->garageLogo->setPixmap(logo);
+    ui->garageLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->garageLogo->setStyleSheet("QLabel{background: transparent;}");
+    ui->highscoreLogo->setPixmap(logo);
+    ui->highscoreLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->highscoreLogo->setStyleSheet("QLabel{background: transparent;}");
+    ui->settingsLogo->setPixmap(logo);
+    ui->settingsLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->settingsLogo->setStyleSheet("QLabel{background: transparent;}");
+    ui->manualLogo->setPixmap(logo);
+    ui->manualLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->manualLogo->setStyleSheet("QLabel{background: transparent;}");
+    ui->creditsLogo->setPixmap(logo);
+    ui->creditsLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->creditsLogo->setStyleSheet("QLabel{background: transparent;}");
 
     // Set Icons
+
     QIcon leftArrow(":/images/images/l-arrow-576725_1280.png");
     QIcon rightArrow(":/images/images/r-arrow-576725_1280.png");
     QIcon menu(":/images/images/menu.png");
@@ -34,115 +58,114 @@ mainMenu::mainMenu(QWidget *parent) :
     QIcon credits(":/images/images/credits.png");
     QIcon quit(":/images/images/quit.png");
 
-    // Buttons in Menu
-    ui->Main2Level1->setIcon(play);
-    ui->Main2Level1->setIconSize(QSize(200,100));
-    ui->Main2Garage->setIcon(garage);
-    ui->Main2Garage->setIconSize(QSize(200,100));
-    ui->Main2Highscore->setIcon(highscore);
-    ui->Main2Highscore->setIconSize(QSize(200,100));
-    ui->Main2Settings->setIcon(settings);
-    ui->Main2Settings->setIconSize(QSize(200,100));
-    ui->Main2Manual->setIcon(manual);
-    ui->Main2Manual->setIconSize(QSize(200,100));
-    ui->Main2Credits->setIcon(credits);
-    ui->Main2Credits->setIconSize(QSize(200,100));
-    ui->Main2QuitGame->setIcon(quit);
-    ui->Main2QuitGame->setIconSize(QSize(200,100));
+    // Items in Menu
+    ui->main2Level1->setIcon(play);
+    ui->main2Level1->setIconSize(QSize(0.9 * ui->main2Level1->width(),0.45 * ui->main2Level1->width()));
+    ui->main2Level1->setStyleSheet("QPushButton{background: transparent;}");
+    ui->main2Garage->setIcon(garage);
+    ui->main2Garage->setIconSize(QSize(0.9 * ui->main2Garage->width(),0.45 * ui->main2Garage->width()));
+    ui->main2Garage->setStyleSheet("QPushButton{background: transparent;}");
+    ui->main2Highscore->setIcon(highscore);
+    ui->main2Highscore->setIconSize(QSize(0.9 * ui->main2Highscore->width(),0.45 * ui->main2Highscore->width()));
+    ui->main2Highscore->setStyleSheet("QPushButton{background: transparent;}");
+    ui->main2Settings->setIcon(settings);
+    ui->main2Settings->setIconSize(QSize(0.9 * ui->main2Settings->width(),0.45 * ui->main2Settings->width()));
+    ui->main2Settings->setStyleSheet("QPushButton{background: transparent;}");
+    ui->main2Manual->setIcon(manual);
+    ui->main2Manual->setIconSize(QSize(0.9 * ui->main2Manual->width(),0.45 * ui->main2Manual->width()));
+    ui->main2Manual->setStyleSheet("QPushButton{background: transparent;}");
+    ui->main2Credits->setIcon(credits);
+    ui->main2Credits->setIconSize(QSize(0.9 * ui->main2Credits->width(),0.45 * ui->main2Credits->width()));
+    ui->main2Credits->setStyleSheet("QPushButton{background: transparent;}");
+    ui->main2QuitGame->setIcon(quit);
+    ui->main2QuitGame->setIconSize(QSize(0.9 * ui->main2QuitGame->width(),0.45 * ui->main2QuitGame->width()));
+    ui->main2QuitGame->setStyleSheet("QPushButton{background: transparent;}");
 
-    // Buttons in Level 1
-    ui->Level1_2Level2->setIcon(rightArrow);
-    ui->Level1_2Level2->setIconSize(QSize(100,80));
-    ui->Level1_2Level3->setIcon(leftArrow);
-    ui->Level1_2Level3->setIconSize(QSize(100,80));
-    ui->Level1_2Main->setIcon(menu);
-    ui->Level1_2Main->setIconSize(QSize(100,50));
-    ui->playLevel1->setIcon(play);
-    ui->playLevel1->setIconSize(QSize(200,100));
 
-    // Buttons in Level 2
-    ui->Level2_2Level3->setIcon(rightArrow);
-    ui->Level2_2Level3->setIconSize(QSize(100,80));
-    ui->Level2_2Level1->setIcon(leftArrow);
-    ui->Level2_2Level1->setIconSize(QSize(100,80));
-    ui->Level2_2Main->setIcon(menu);
-    ui->Level2_2Main->setIconSize(QSize(100,50));
-    ui->playLevel2->setIcon(play);
-    ui->playLevel2->setIconSize(QSize(200,100));
+    // Items in Level 1
+    ui->level1_2Level2->setIcon(rightArrow);
+    ui->level1_2Level2->setIconSize(QSize(100,80));
+    ui->level1_2Level2->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level1_2Level3->setIcon(leftArrow);
+    ui->level1_2Level3->setIconSize(QSize(100,80));
+    ui->level1_2Level3->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level1_2Main->setIcon(menu);
+    ui->level1_2Main->setIconSize(QSize(100,50));
+    ui->level1_2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level1_2Play->setIcon(play);
+    ui->level1_2Play->setIconSize(QSize(200,100));
+    ui->level1_2Play->setStyleSheet("QPushButton{background: transparent;}");
 
-    // Buttons in Level 3
-    ui->Level3_2Level1->setIcon(rightArrow);
-    ui->Level3_2Level1->setIconSize(QSize(100,80));
-    ui->Level3_2Level2->setIcon(leftArrow);
-    ui->Level3_2Level2->setIconSize(QSize(100,80));
-    ui->Level3_2Main->setIcon(menu);
-    ui->Level3_2Main->setIconSize(QSize(100,50));
-    ui->playLevel3->setIcon(play);
-    ui->playLevel3->setIconSize(QSize(200,100));
+    // Items in Level 2
+    ui->level2_2Level3->setIcon(rightArrow);
+    ui->level2_2Level3->setIconSize(QSize(100,80));
+    ui->level2_2Level1->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level2_2Level1->setIcon(leftArrow);
+    ui->level2_2Level1->setIconSize(QSize(100,80));
+    ui->level2_2Level3->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level2_2Main->setIcon(menu);
+    ui->level2_2Main->setIconSize(QSize(100,50));
+    ui->level2_2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level2_2Play->setIcon(play);
+    ui->level2_2Play->setIconSize(QSize(200,100));
+    ui->level2_2Play->setStyleSheet("QPushButton{background: transparent;}");
 
-    // remaining Buttons
-    ui->Garage2Main->setIcon(menu);
-    ui->Garage2Main->setIconSize(QSize(100,50));
-    ui->Highscore2Main->setIcon(menu);
-    ui->Highscore2Main->setIconSize(QSize(100,50));
-    ui->Settings2Main->setIcon(menu);
-    ui->Settings2Main->setIconSize(QSize(100,50));
-    ui->Manual2Main->setIcon(menu);
-    ui->Manual2Main->setIconSize(QSize(100,50));
-    ui->Credits2Main->setIcon(menu);
-    ui->Credits2Main->setIconSize(QSize(100,50));
+    // Items in Level 3
+    ui->level3_2Level1->setIcon(rightArrow);
+    ui->level3_2Level1->setIconSize(QSize(100,80));
+    ui->level3_2Level2->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level3_2Level2->setIcon(leftArrow);
+    ui->level3_2Level2->setIconSize(QSize(100,80));
+    ui->level3_2Level1->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level3_2Main->setIcon(menu);
+    ui->level3_2Main->setIconSize(QSize(100,50));
+    ui->level3_2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level3_2Play->setIcon(play);
+    ui->level3_2Play->setIconSize(QSize(200,100));
+    ui->level3_2Play->setStyleSheet("QPushButton{background: transparent;}");
 
-    // Transparent Background
-    QPalette p = palette();
-    QString transparentBackground( "background-color: rgba( 255, 255, 255, 0%);" );
-    ui->Main2Level1->setPalette(p);
-    ui->Main2Level1->setStyleSheet(transparentBackground);
-    ui->Main2Garage->setPalette(p);
-    ui->Main2Garage->setStyleSheet(transparentBackground);
-    ui->Main2Highscore->setPalette(p);
-    ui->Main2Highscore->setStyleSheet(transparentBackground);
-    ui->Main2Settings->setPalette(p);
-    ui->Main2Settings->setStyleSheet(transparentBackground);
-    ui->Main2Manual->setPalette(p);
-    ui->Main2Manual->setStyleSheet(transparentBackground);
-    ui->Main2Credits->setPalette(p);
-    ui->Main2Credits->setStyleSheet(transparentBackground);
-    ui->Main2QuitGame->setPalette(p);
-    ui->Main2QuitGame->setStyleSheet(transparentBackground);
-    ui->Level1_2Level2->setPalette(p);
-    ui->Level1_2Level2->setStyleSheet(transparentBackground);
-    ui->Level1_2Level3->setPalette(p);
-    ui->Level1_2Level3->setStyleSheet(transparentBackground);
-    ui->Level1_2Main->setPalette(p);
-    ui->Level1_2Main->setStyleSheet(transparentBackground);
-    ui->playLevel1->setPalette(p);
-    ui->playLevel1->setStyleSheet(transparentBackground);
-    ui->Level2_2Level1->setPalette(p);
-    ui->Level2_2Level1->setStyleSheet(transparentBackground);
-    ui->Level2_2Level3->setPalette(p);
-    ui->Level2_2Level3->setStyleSheet(transparentBackground);
-    ui->Level2_2Main->setPalette(p);
-    ui->Level2_2Main->setStyleSheet(transparentBackground);
-    ui->playLevel2->setPalette(p);
-    ui->playLevel2->setStyleSheet(transparentBackground);
-    ui->Level3_2Level2->setPalette(p);
-    ui->Level3_2Level2->setStyleSheet(transparentBackground);
-    ui->Level3_2Level1->setPalette(p);
-    ui->Level3_2Level1->setStyleSheet(transparentBackground);
-    ui->Level3_2Main->setPalette(p);
-    ui->Level3_2Main->setStyleSheet(transparentBackground);
-    ui->playLevel3->setPalette(p);
-    ui->playLevel3->setStyleSheet(transparentBackground);
-    ui->Garage2Main->setPalette(p);
-    ui->Garage2Main->setStyleSheet(transparentBackground);
-    ui->Highscore2Main->setPalette(p);
-    ui->Highscore2Main->setStyleSheet(transparentBackground);
-    ui->Settings2Main->setPalette(p);
-    ui->Settings2Main->setStyleSheet(transparentBackground);
-    ui->Manual2Main->setPalette(p);
-    ui->Manual2Main->setStyleSheet(transparentBackground);
-    ui->Credits2Main->setPalette(p);
-    ui->Credits2Main->setStyleSheet(transparentBackground);
+    // Items in garage
+    ui->garage2Main->setIcon(menu);
+    ui->garage2Main->setIconSize(QSize(100,50));
+    ui->garage2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->garageTopspeedSlider->setStyleSheet("QSlider{background: transparent;}");
+    ui->garageAccelerationSlider->setStyleSheet("QSlider{background: transparent;}");
+    ui->garageHandlingSlider->setStyleSheet("QSlider{background: transparent;}");
+    ui->garageTopspeedLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->garageAccelerationLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->garageHandlingLabel->setStyleSheet("QLabel{background: transparent;}");
+
+    // Items in highscore
+    ui->highscore2Main->setIcon(menu);
+    ui->highscore2Main->setIconSize(QSize(100,50));
+    ui->highscore2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->highscoreLevel1->setStyleSheet("QLabel{background: transparent;}");
+    ui->highscoreLevel2->setStyleSheet("QLabel{background: transparent;}");
+    ui->highscoreLevel3->setStyleSheet("QLabel{background: transparent;}");
+    ui->highscoretablelevel1->setStyleSheet("QTableWidget{background: transparent;}");
+    ui->highscoretablelevel2->setStyleSheet("QTableWidget{background: transparent;}");
+    ui->highscoretablelevel3->setStyleSheet("QTableWidget{background: transparent;}");
+
+    // Items in settings
+    ui->settings2Main->setIcon(menu);
+    ui->settings2Main->setIconSize(QSize(100,50));
+    ui->settings2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsSoundLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->settingsSoundOff->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsSoundOn->setStyleSheet("QPushButton{background: transparent;}");
+
+    // Items in manual
+    ui->manual2Main->setIcon(menu);
+    ui->manual2Main->setIconSize(QSize(100,50));
+    ui->manual2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->manualLabel->setStyleSheet("QLabel{background: transparent;}");
+
+    // Items in credits
+    ui->credits2Main->setIcon(menu);
+    ui->credits2Main->setIconSize(QSize(100,50));
+    ui->credits2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->creditsLabel->setStyleSheet("QLabel{background: transparent;}");
+
 }
 
 mainMenu::~mainMenu()
@@ -165,17 +188,17 @@ mainMenu::~mainMenu()
 
 // Buttons from the main menu
 
-void mainMenu::on_Main2Level1_clicked()
+void mainMenu::on_main2Level1_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void mainMenu::on_Main2Garage_clicked()
+void mainMenu::on_main2Garage_clicked()
 {
     ui->stackedWidget->setCurrentIndex(4);
 }
 
-void mainMenu::on_Main2Highscore_clicked()
+void mainMenu::on_main2Highscore_clicked()
 {
     ui->stackedWidget->setCurrentIndex(5);
 
@@ -266,44 +289,44 @@ void mainMenu::on_Main2Highscore_clicked()
 
 }
 
-void mainMenu::on_Main2Settings_clicked()
+void mainMenu::on_main2Settings_clicked()
 {
     ui->stackedWidget->setCurrentIndex(6);
 }
 
-void mainMenu::on_Main2Manual_clicked()
+void mainMenu::on_main2Manual_clicked()
 {
     ui->stackedWidget->setCurrentIndex(7);
 }
 
-void mainMenu::on_Main2Credits_clicked()
+void mainMenu::on_main2Credits_clicked()
 {
     ui->stackedWidget->setCurrentIndex(8);
 }
 
-void mainMenu::on_Main2QuitGame_clicked()
+void mainMenu::on_main2QuitGame_clicked()
 {
     QCoreApplication::quit();
 }
 
 // Buttons from Level 1
 
-void mainMenu::on_Level1_2Main_clicked()
+void mainMenu::on_level1_2Main_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void mainMenu::on_Level1_2Level3_clicked()
+void mainMenu::on_level1_2Level3_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
 }
 
-void mainMenu::on_Level1_2Level2_clicked()
+void mainMenu::on_level1_2Level2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
 
-void mainMenu::on_playLevel1_clicked()
+void mainMenu::on_level1_2Play_clicked()
 {
     //start Level 1
     world = new World(800,800,1);
@@ -313,22 +336,22 @@ void mainMenu::on_playLevel1_clicked()
 
 // Buttons from Level 2
 
-void mainMenu::on_Level2_2Main_clicked()
+void mainMenu::on_level2_2Main_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void mainMenu::on_Level2_2Level1_clicked()
+void mainMenu::on_level2_2Level1_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void mainMenu::on_Level2_2Level3_clicked()
+void mainMenu::on_level2_2Level3_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
 }
 
-void mainMenu::on_playLevel2_clicked()
+void mainMenu::on_level2_2Play_clicked()
 {
     //start Level 2
     world = new World(800,800,2);
@@ -338,22 +361,22 @@ void mainMenu::on_playLevel2_clicked()
 
 // Buttons from Level 3
 
-void mainMenu::on_Level3_2Main_clicked()
+void mainMenu::on_level3_2Main_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void mainMenu::on_Level3_2Level2_clicked()
+void mainMenu::on_level3_2Level2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
 }
 
-void mainMenu::on_Level3_2Level1_clicked()
+void mainMenu::on_level3_2Level1_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void mainMenu::on_playLevel3_clicked()
+void mainMenu::on_level3_2Play_clicked()
 {
     //start Level 3
     world = new World(800,800,3);
@@ -363,40 +386,41 @@ void mainMenu::on_playLevel3_clicked()
 
 // Buttons from Garage
 
-void mainMenu::on_Garage2Main_clicked()
+void mainMenu::on_garage2Main_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
 // Buttons from Highscore
 
-void mainMenu::on_Highscore2Main_clicked()
+void mainMenu::on_highscore2Main_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
 // Buttons from Settings
 
-void mainMenu::on_Settings2Main_clicked()
+void mainMenu::on_settings2Main_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
 // Buttons from Manual
 
-void mainMenu::on_Manual2Main_clicked()
+void mainMenu::on_manual2Main_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
 // Buttons from Credits
 
-void mainMenu::on_Credits2Main_clicked()
+void mainMenu::on_credits2Main_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
 // Buttons finished
+
 
 // Garage Configeration
 
@@ -405,30 +429,62 @@ int accelerationValue = 0;
 int topspeedValue = 0;
 int handlingValue = 0;
 
-void mainMenu::on_sliderAcceleration_valueChanged(int value)
+void mainMenu::on_garageAccelerationSlider_valueChanged(int value)
 {
     accelerationValue = value;
-    ui->acceleration->setText(QString::number(accelerationValue));
-    ui->sliderHandling->setMaximum(maximumValue - accelerationValue - topspeedValue);
-    ui->sliderTopspeed->setMaximum(maximumValue- accelerationValue - handlingValue);
+    ui->garageAccelerationLabel->setText(QString::number(accelerationValue));
+
 }
 
-void mainMenu::on_sliderTopspeed_valueChanged(int value)
+void mainMenu::on_garageAccelerationSlider_sliderReleased()
+{
+    int decider =  0;
+    int setvalue = 0;
+    decider = maximumValue - topspeedValue - accelerationValue - handlingValue;
+    setvalue = maximumValue - topspeedValue - handlingValue;
+
+    if(decider < 0){
+        ui->garageAccelerationSlider->setValue(setvalue);
+    }
+
+}
+
+void mainMenu::on_garageTopspeedSlider_valueChanged(int value)
 {
     topspeedValue = value;
-    ui->topSpeed->setText(QString::number(topspeedValue));
-    ui->sliderAcceleration->setMaximum(maximumValue - topspeedValue - handlingValue);
-    ui->sliderHandling->setMaximum(maximumValue - topspeedValue - accelerationValue);
+    ui->garageTopspeedLabel->setText(QString::number(topspeedValue));
 }
 
-void mainMenu::on_sliderHandling_valueChanged(int value)
+void mainMenu::on_garageTopspeedSlider_sliderReleased()
+{
+    int decider =  0;
+    int setvalue = 0;
+    decider = maximumValue - topspeedValue - accelerationValue - handlingValue;
+    setvalue = maximumValue - accelerationValue - handlingValue;
+
+    if(decider < 0){
+        ui->garageTopspeedSlider->setValue(setvalue);
+    }
+
+}
+
+void mainMenu::on_garageHandlingSlider_valueChanged(int value)
 {
     handlingValue = value;
-    ui->handling->setText(QString::number(handlingValue));
-    ui->sliderAcceleration->setMaximum(maximumValue - handlingValue - topspeedValue);
-    ui->sliderTopspeed->setMaximum(maximumValue - handlingValue - accelerationValue);
+    ui->garageHandlingLabel->setText(QString::number(handlingValue));
 }
 
+void mainMenu::on_garageHandlingSlider_sliderReleased()
+{
+    int decider =  0;
+    int setvalue = 0;
+    decider = maximumValue - topspeedValue - accelerationValue - handlingValue;
+    setvalue = maximumValue - accelerationValue - topspeedValue;
+
+    if(decider < 0){
+        ui->garageHandlingSlider->setValue(setvalue);
+    }
+
+}
 
 // Highscore Configeration
-
