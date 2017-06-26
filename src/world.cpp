@@ -167,13 +167,13 @@ void World::startLoop()
 	{
 		Opacity=1.0f;
 		mCounter->setPlainText(QString::number(mStartCounter/100));
-		mCounter->setPos(mapToScene((mWidth/2) - (mCounter->boundingRect().width()/2),(mHeight/2)  - (mCounter->boundingRect().height()/2)));
+		mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-20)/2,(mHeight-200)/2));
 	}
 	if(mStartCounter == 0)
 	{
 		Opacity=1.0f;
-		mCounter->setPlainText("GO!!");
-		mCounter->setPos(mapToScene((mWidth/2) - (mCounter->boundingRect().width()/2),(mHeight/2)  - (mCounter->boundingRect().height()/2)));
+		mCounter->setPlainText("GO!");
+		mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-60)/2,(mHeight-200)/2));
 		mTimer->start(1000.0/mFps);
 		mStartTimer->start(20);
 		//start the race time immediately after go
@@ -203,8 +203,8 @@ void World::updateTime(){
 	mLabel->setPlainText(mTime.toString("mm:ss:z"));
 	mLabel->setPos(mapToScene(mLabelPos));
 
-	qDebug() << mElapsed;
-	qDebug() << mTime;
+	/*qDebug() << mElapsed;
+	qDebug() << mTime;*/
 }
 
 
@@ -359,8 +359,8 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 	mLabel->setPlainText("mm:ss.zzz");
 	//Set starting position
 	mLabelPos.setX(mWidth - (mLabel->boundingRect().width() + 50));
-	mLabelPos.setY(mHeight - (mLabel->boundingRect().height() + 10));
-	mLabel->setPos(mapToScene(mLabelPos));
+	mLabelPos.setY(mHeight - (mLabel->boundingRect().height() + 20));
+	//mLabel->setPos(mapToScene(mLabelPos));
 	//Add it to track
 	mTrack->addItem(mLabel);
 

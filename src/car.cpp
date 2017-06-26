@@ -149,11 +149,11 @@ void Car::computeUserInput(InputState input)
 		break;
 	case BreakSteerLeft:
 		mEngineSpeed = HORSEPOWERS;
-		mSteeringAngle = -MAX_STEER_ANGLE;
+		mSteeringAngle = MAX_STEER_ANGLE;
 		break;
 	case BreakSteerRight:
 		mEngineSpeed = HORSEPOWERS;
-		mSteeringAngle = MAX_STEER_ANGLE;
+		mSteeringAngle = -MAX_STEER_ANGLE;
 		break;
 	case None:
 		mEngineSpeed = 0.0f;
