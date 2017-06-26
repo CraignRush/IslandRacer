@@ -71,11 +71,11 @@ Underground Track::getUnderground(int x, int y)
     return Asphalt;
 }
 
-void Track::updateCheckpoints(QGraphicsPixmapItem* item)
+int Track::updateCheckpoints(QGraphicsPixmapItem* item)
 {
     if(!(collidingItems(item).isEmpty()))
         mCheckpoints->CheckCheckpoint(item);
-
+	return mCheckpoints->GetLaps();
 }
 
 void Track::loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, QPoint* position_list, double* angle_list)

@@ -27,7 +27,7 @@ private:
 
 	b2World* mWorld;             // World object for physic engine
 
-	QTimer*mStartTimer;         // This timer counts the start sequence
+	QTimer* mStartTimer;         // This timer counts the start sequence
 	QTimer* mTimer;             // This timer repeatly calls the game loop method
 	int mFps;
 
@@ -35,15 +35,19 @@ private:
 	float Opacity;                  // Opacity for fade out effect of StartCounger
 	QGraphicsTextItem* mCounter;    // Display Start Counter
 
-	QGraphicsTextItem* mLabel;		//! contains the String with the elapsed time
-	QGraphicsTextItem* mRaceLabel;	//! contains the label in the scene
-	QPoint mLabelPos;				//! position of the label realtively to the window
+	QGraphicsTextItem* mTimeLabel;		//! contains the String with the elapsed time
+	QGraphicsTextItem* mLapLabel;	//! contains the label in the scene
+	QPoint mLapLabelPos;
+	QPoint mTimeLabelPos;			//! position of the label realtively to the window
 	QElapsedTimer mRaceTime;		//! computes the elapsed time since "GO!" in ms
 	int mElapsed = 0;
 	QTime mTime;					//! for translating ms dynamically into mm:ss.zzz
+	QString mTimeText;
+	QString mLapText;
+	int mLaps;
 	QElapsedTimer mPauseTime;		//! Computes the time of pause pressed
 
-	void updateTime();
+	void updateOverlay();
 
 public:
 	World(int width,int height);
