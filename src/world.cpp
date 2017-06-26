@@ -255,6 +255,11 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
 			delete mTimeLabel;
 			mTimeLabel = NULL;
         }
+        if(mLapLabel != NULL)
+        {
+            delete mLapLabel;
+            mLapLabel = NULL;
+        }
 		break;
 	case Qt::Key_Left:
 		// set new state depending on current state
