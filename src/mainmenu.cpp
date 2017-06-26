@@ -52,7 +52,8 @@ mainMenu::mainMenu(QWidget *parent) :
     QIcon quit(":/images/images/quit.png");
 
     // Set Fonts
-    QFont GillSansMT("Gill Sans MT", 20);
+	GillSansMT.setFamily("GillSansMT");
+	GillSansMT.setPointSize(20);
     GillSansMT.setBold(1);
 
     // Items for all

@@ -41,25 +41,6 @@ World::World(int width, int height)
 	// Center car in view
 	centerOn(mCar);
 
-	//initialize the font for time display
-	QFont font;
-	font.setBold(true);
-	font.setPointSize(15);
-	font.setFamily("Helvetica [Cronyx]");
-
-	//Initialize Label for ingame time display
-	mLabel = new QGraphicsTextItem();
-	mLabel->setVisible(false);
-	mLabel->setFont(font);
-	mLabel->setDefaultTextColor(QColor("red"));
-	mLabel->setPlainText("mm:ss.zzz");
-	//Set starting position
-	mLabelPos.setX(mWidth - mLabel->boundingRect().width());
-	mLabelPos.setY(mHeight - mLabel->boundingRect().height());
-	mLabel->setPos(mapToScene(mLabelPos));
-	//Add it to track
-	mTrack->addItem(mLabel);
-
 	// Show the scene
 	show();
 
@@ -97,11 +78,11 @@ World::World(int width, int height, int level)
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 
-    // Create car
-    mCar = new Car(mWorld, mTrack);
+	// Create car
+	mCar = new Car(mWorld, mTrack);
 
-    // necessary to init start position of the car
-    mCar->render();
+	// necessary to init start position of the car
+	mCar->render();
 
 	// Add the car to the track/scene
 	mTrack->addItem(mCar);
@@ -109,21 +90,10 @@ World::World(int width, int height, int level)
 	// Center car in view
 	centerOn(mCar);
 
-	// Init variables for start sequence
-	Opacity = 1.0f;
-	mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
-	mCounter = new QGraphicsTextItem;
-	mCounter->setScale(10);
-	mCounter->setPos(mWidth/2-70,mHeight/2-100);
-	mTrack->addItem(mCounter);
-
 	// Init and start timer for game loop and start loop
 	mTimer = new QTimer(this);
-	mStartTimer = new QTimer(this);
 	connect(mTimer, SIGNAL(timeout()), this, SLOT(gameLoop()));
-	connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
-	mCar->render(); // necessary to init start position of the car
-	mStartTimer->start(10);
+
 
 	//initialize the font for time display
 	QFont font;
@@ -146,34 +116,34 @@ World::World(int width, int height, int level)
 	// Show the scene
 	show();
 
-    // connect game loop to timer
-    mTimer = new QTimer(this);
-    connect(mTimer, SIGNAL(timeout()), this, SLOT(gameLoop()));
+	// connect game loop to timer
+	mTimer = new QTimer(this);
+	connect(mTimer, SIGNAL(timeout()), this, SLOT(gameLoop()));
 }
 */
 
 World::~World()
 {
-    delete mWorld;
-    mWorld = NULL;
+	delete mWorld;
+	mWorld = NULL;
 
-    delete mTrack;
-    mTrack = NULL;
+	delete mTrack;
+	mTrack = NULL;
 
-    delete mCar;
-    mCar = NULL;
+	delete mCar;
+	mCar = NULL;
 
-    if(mCounter != NULL)
-    {
-        delete mCounter;
-        mCounter = NULL;
-    }
+	if(mCounter != NULL)
+	{
+		delete mCounter;
+		mCounter = NULL;
+	}
 
-    delete mTimer;
-    mTimer = NULL;
+	delete mTimer;
+	mTimer = NULL;
 
-    delete mStartTimer;
-    mStartTimer = NULL;
+	delete mStartTimer;
+	mStartTimer = NULL;
 
 }
 
@@ -181,11 +151,11 @@ World::~World()
 
 void World::gameLoop()
 {
-    mWorld->Step(1.0f/mFps, 8, 3);
+	mWorld->Step(1.0f/mFps, 8, 3);
 
-    mCar->computeUserInput(mCurrentInputState);
-    mCar->updatePosition();
-    mTrack->updateCheckpoints(mCar);
+	mCar->computeUserInput(mCurrentInputState);
+	mCar->updatePosition();
+	mTrack->updateCheckpoints(mCar);
 	mCar->render();
 	updateTime();
 
@@ -203,7 +173,7 @@ void World::startLoop()
 		Opacity=1.0f;
 		mCounter->setPos(mWidth/2-90,mHeight/2-100);
 		mCounter->setPlainText("GO!!");
-		mTimer->start(mFps);
+		mTimer->start(1000.0/mFps);
 		mStartTimer->start(20);
 		//start the race time immediately after go
 		mTime.setHMS(0,0,0,0);
@@ -220,7 +190,7 @@ void World::startLoop()
 		mStartTimer->stop();
 		mTrack->removeItem(mCounter);
 		delete mCounter;
-		 mCounter = NULL;
+		mCounter = NULL;
 	}
 }
 
@@ -228,9 +198,12 @@ void World::startLoop()
 void World::updateTime(){
 
 	mLabel->setPos(mapToScene(mLabelPos));
-	mElapsed = mRaceTime.elapsed();
+	mElapsed = mRaceTime.restart();
 	mTime = mTime.addMSecs(mElapsed);
 	mLabel->setPlainText(mTime.toString("mm:ss:z"));
+
+	qDebug() << mElapsed;
+	qDebug() << mTime;
 }
 
 
@@ -367,20 +340,33 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
 
 void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle)
 {
-    mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpoint_list, angle_list);
-    mCar->startPosition(carPosition.x(), carPosition.y(), carAngle);
+	mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpoint_list, angle_list);
+	mCar->startPosition(carPosition.x(), carPosition.y(), carAngle);
 
-    // Init variables for start sequence
-    Opacity = 1.0f;
-    mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
-    mCounter = new QGraphicsTextItem;
-    mCounter->setScale(10);
-    mCounter->setPos(mWidth/2-70,mHeight/2-100);
-    mTrack->addItem(mCounter);
+	// Init variables for start sequence
+	Opacity = 1.0f;
+	mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
+	mCounter = new QGraphicsTextItem;
+	mCounter->setScale(10);
+	mCounter->setPos(mWidth/2,mHeight/2);
+	mTrack->addItem(mCounter);
 
-    // Init and start timer for game loop and start loop
-    mStartTimer = new QTimer(this);
-    connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
-    mCar->render(); // necessary to init start position of the car
-    mStartTimer->start(10);
+	//Initialize Label for ingame time display
+	mLabel = new QGraphicsTextItem();
+	//mLabel->setVisible(false);
+	mLabel->setFont(QFont("GillSansMT",14));
+	mLabel->setDefaultTextColor(QColor("red"));
+	mLabel->setPlainText("mm:ss.zzz");
+	//Set starting position
+	mLabelPos.setX(mWidth - (mLabel->boundingRect().width()- mWidth/10));
+	mLabelPos.setY(mHeight - (mLabel->boundingRect().height() - mHeight/10));
+	mLabel->setPos(mapToScene(mLabelPos));
+	//Add it to track
+	mTrack->addItem(mLabel);
+
+	// Init and start timer for game loop and start loop
+	mStartTimer = new QTimer(this);
+	connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
+	mCar->render(); // necessary to init start position of the car
+	mStartTimer->start(10);
 }

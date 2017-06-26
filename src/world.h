@@ -12,8 +12,6 @@
 #include "car.h"
 
 
-
-
 class World : public QGraphicsView
 {
 	Q_OBJECT
