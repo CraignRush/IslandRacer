@@ -3,89 +3,23 @@
 
 World::World(int width, int height)
 {
-    // --- Init class members ---
+	// --- Init class members ---
 
-    // Set dimensions
-    mWidth = width;
-    mHeight = height;
-    //scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
-
-    showFullScreen();
-
-    mFps = 50;
-    mCurrentInputState = None;
-
-    // Create Box2D world object (zero gravity)
-    mWorld = new b2World(b2Vec2(0.0f, 0.0f));
-
-    // Create track
-    mTrack = new Track();
-
-    // Set track as scene for this view
-    setScene(mTrack);
-
-    // Set size for view and disable scrollbars
-    setFixedSize(mWidth, mHeight);
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    // Create car
-    mCar = new Car(mWorld, mTrack);
-
-    // necessary to init start position of the car
-    mCar->render();
-
-    // Add the car to the track/scene
-    mTrack->addItem(mCar);
-
-    // Center car in view
-    centerOn(mCar);
-
-    // Show the scene
-    show();
-
-    // create timer for game loop
-    mTimer = new QTimer(this);
-
-    // connect game loop to timer
-    connect(mTimer, SIGNAL(timeout()), this, SLOT(gameLoop()));
-}
-
-/*
-World::World(int width, int height, int level)
-{
-<<<<<<< .merge_file_a14096
 	// Set dimensions
 	mWidth = width;
 	mHeight = height;
 	//scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
 
-	mLoopIntervalTime = 30;
+	showFullScreen();
+
+	mFps = 50;
 	mCurrentInputState = None;
 
-	// Create Box2D world object
-	mWorld = new b2World(b2Vec2(0.0, 0.0));
+	// Create Box2D world object (zero gravity)
+	mWorld = new b2World(b2Vec2(0.0f, 0.0f));
 
 	// Create track
-	mTrack = new Track(level);
-=======
-    // --- Init class members ---
-
-    // Set dimensions
-    mWidth = width;
-    mHeight = height;
-	//scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
-
-    mFps = 50;
-    mCurrentInputState = None;
-
-    // Create Box2D world object (zero gravity)
-    mWorld = new b2World(b2Vec2(0.0f, 0.0f));
-
-    // Create track
-    mTrack = new Track();
-    //mTrack = new Track(5760, 3240, QImage(":/images/images/Monzatextur.png"), QImage(":/images/images/Monzagrey.png"));
->>>>>>> .merge_file_a07452
+	mTrack = new Track();
 
 	// Set track as scene for this view
 	setScene(mTrack);
@@ -95,16 +29,11 @@ World::World(int width, int height, int level)
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-<<<<<<< .merge_file_a14096
 	// Create car
-	mCar = new Car(mWorld);
-=======
-    // Create car
-    mCar = new Car(mWorld, mTrack);
+	mCar = new Car(mWorld, mTrack);
 
-    // necessary to init start position of the car
-    mCar->render();
->>>>>>> .merge_file_a07452
+	// necessary to init start position of the car
+	mCar->render();
 
 	// Add the car to the track/scene
 	mTrack->addItem(mCar);
@@ -112,10 +41,77 @@ World::World(int width, int height, int level)
 	// Center car in view
 	centerOn(mCar);
 
+	//initialize the font for time display
+	QFont font;
+	font.setBold(true);
+	font.setPointSize(15);
+	font.setFamily("Helvetica [Cronyx]");
+
+	//Initialize Label for ingame time display
+	mLabel = new QGraphicsTextItem();
+	mLabel->setFont(font);
+	mLabel->setDefaultTextColor(QColor("red"));
+	mLabel->setPlainText("mm:ss.zzz");
+	//Set starting position
+	mLabelPos.setX(mWidth - mLabel->boundingRect().width());
+	mLabelPos.setY(mHeight - mLabel->boundingRect().height());
+	mLabel->setPos(mLabelPos);
+	//Add it to track
+	mTrack->addItem(mLabel);
+
 	// Show the scene
 	show();
 
-<<<<<<< .merge_file_a14096
+
+	// Show the scene
+	show();
+
+	// create timer for game loop
+	mTimer = new QTimer(this);
+
+	// connect game loop to timer
+	connect(mTimer, SIGNAL(timeout()), this, SLOT(gameLoop()));
+}
+
+/*
+World::World(int width, int height, int level)
+{
+	// Set dimensions
+	mWidth = width;
+	mHeight = height;
+	//scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
+
+	mFps = 50;
+	mCurrentInputState = None;
+
+	// Create Box2D world object
+	mWorld = new b2World(b2Vec2(0.0, 0.0));
+
+	// Create track
+	mTrack = new Track(level);
+	//mTrack = new Track(5760, 3240, QImage(":/images/images/Monzatextur.png"), QImage(":/images/images/Monzagrey.png"));
+
+	// Set track as scene for this view
+	setScene(mTrack);
+
+	// Set size for view and disable scrollbars
+	setFixedSize(mWidth, mHeight);
+	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+
+    // Create car
+    mCar = new Car(mWorld, mTrack);
+
+    // necessary to init start position of the car
+    mCar->render();
+
+	// Add the car to the track/scene
+	mTrack->addItem(mCar);
+
+	// Center car in view
+	centerOn(mCar);
+
 	// Init variables for start sequence
 	Opacity = 1.0f;
 	mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
@@ -149,7 +145,10 @@ World::World(int width, int height, int level)
 	mLabel->setPos(mLabelPos);
 	//Add it to track
 	mTrack->addItem(mLabel);
-=======
+
+	// Show the scene
+	show();
+
     // connect game loop to timer
     mTimer = new QTimer(this);
     connect(mTimer, SIGNAL(timeout()), this, SLOT(gameLoop()));
@@ -178,42 +177,25 @@ World::~World()
 
     delete mStartTimer;
     mStartTimer = NULL;
->>>>>>> .merge_file_a07452
+
 }
 
 
 
 void World::gameLoop()
 {
-<<<<<<< .merge_file_a14096
-	mWorld->Step(1.0f/50.0f, 8, 3);
-
-	mCar->killOrthogonalVelocity(mCar->GetLeftWheel());
-	mCar->killOrthogonalVelocity(mCar->GetRightWheel());
-	mCar->killOrthogonalVelocity(mCar->GetLeftRearWheel());
-	mCar->killOrthogonalVelocity(mCar->GetRightRearWheel());
-	mCar->computeUserInput(mCurrentInputState);
-	mCar->computeDriving();
-	mCar->computeSteering();
-
-	mCar->render();;
-	if(!(mTrack->collidingItems(mCar).isEmpty()))
-		mTrack->checkpoint->CheckCheckpoint(mCar);
-
-	updateTime();
-=======
     mWorld->Step(1.0f/mFps, 8, 3);
 
     mCar->computeUserInput(mCurrentInputState);
     mCar->updatePosition();
     mTrack->updateCheckpoints(mCar);
-    mCar->render();
->>>>>>> .merge_file_a07452
+	mCar->render();
+	updateTime();
+
 }
 
 void World::startLoop()
 {
-<<<<<<< .merge_file_a14096
 	if(mStartCounter%100==0 && mStartCounter > 0)
 	{
 		Opacity=1.0f;
@@ -224,7 +206,7 @@ void World::startLoop()
 		Opacity=1.0f;
 		mCounter->setPos(mWidth/2-90,mHeight/2-100);
 		mCounter->setPlainText("GO!!");
-		mTimer->start(mLoopIntervalTime);
+		mTimer->start(mFps);
 		mStartTimer->start(20);
 		//start the race time immediately after go
 		mRaceTime.start();
@@ -239,6 +221,7 @@ void World::startLoop()
 		mStartTimer->stop();
 		mTrack->removeItem(mCounter);
 		delete mCounter;
+		 mCounter = NULL;
 	}
 }
 
@@ -249,7 +232,6 @@ void World::updateTime(){
 	mElapsed = mRaceTime.elapsed();
 	mTime.setHMS(0,0,0,0);
 	mTime = mTime.addMSecs(mElapsed);
-
 	mLabel->setPlainText(mTime.toString("mm:ss:z"));
 }
 
@@ -383,32 +365,6 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
 		}
 		break;
 	}
-=======
-    if(mStartCounter%100==0 && mStartCounter > 0)
-    {
-        Opacity=1.0f;
-        mCounter->setPlainText(QString::number(mStartCounter/100));
-    }
-    if(mStartCounter == 0)
-    {
-        Opacity=1.0f;
-        mCounter->setPos(mWidth/2-90,mHeight/2-100);
-        mCounter->setPlainText("GO!!");
-        mTimer->start(1000.0/mFps);
-        mStartTimer->start(20);
-    }
-
-    mCounter->setOpacity(Opacity);
-    Opacity -= 0.01f;
-    mStartCounter--;
-
-    if(mStartCounter == -100)
-    {
-        mStartTimer->stop();
-        mTrack->removeItem(mCounter);
-        delete mCounter;
-        mCounter = NULL;
-    }
 }
 
 void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle)
@@ -429,5 +385,4 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
     connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
     mCar->render(); // necessary to init start position of the car
     mStartTimer->start(10);
->>>>>>> .merge_file_a07452
 }
