@@ -6,6 +6,7 @@
 Game::Game()
 {
     mWorld = new World(1920,1080);
+    mWorld->hide();
 }
 
 Game::Game(int screenWidth, int screenHeight, bool fullscreen)
@@ -13,6 +14,7 @@ Game::Game(int screenWidth, int screenHeight, bool fullscreen)
     mWorld = new World(screenWidth, screenHeight);
     if(fullscreen)
         mWorld->showFullScreen();
+    mWorld->hide();
 }
 
 Game::~Game()
@@ -121,10 +123,11 @@ void Game::loadCircuit(Circuit circuit)
         mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, position_list, angle_list, carPosition, carAngle);
 
         // show window on top
+        mWorld->show();
         mWorld->raise();
         mWorld->activateWindow();
 
-        free(position_list);
-        free(angle_list);
+        //free(position_list);
+        //free(angle_list);
     }
 }
