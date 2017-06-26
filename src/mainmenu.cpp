@@ -329,8 +329,8 @@ void mainMenu::on_level1_2Level2_clicked()
 void mainMenu::on_level1_2Play_clicked()
 {
     //start Level 1
-    world = new World(800,800,1);
-    world->show();
+    //world = new World(800,800,1);
+    //world->show();
     //hide();
 }
 
@@ -354,8 +354,8 @@ void mainMenu::on_level2_2Level3_clicked()
 void mainMenu::on_level2_2Play_clicked()
 {
     //start Level 2
-    world = new World(800,800,2);
-    world->show();
+    //world = new World(800,800,2);
+    //world->show();
     //hide();
 }
 
@@ -379,8 +379,8 @@ void mainMenu::on_level3_2Level1_clicked()
 void mainMenu::on_level3_2Play_clicked()
 {
     //start Level 3
-    world = new World(800,800,3);
-    world->show();
+    //world = new World(800,800,3);
+    //world->show();
     //hide();
 }
 

@@ -6,8 +6,8 @@
 
 Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
 {
-	setPixmap(QPixmap(":/images/images/car1.png"));
-	setScale(0.05);
+    setPixmap(QPixmap(":/images/images/car1.png").scaled(1.8f*PX_TO_M_RATIO, 5.0*PX_TO_M_RATIO));
+    //setScale(0.05);
 	ensureVisible(QRectF(), 300, 300);
 
 	//! define our Main Car Body
@@ -48,7 +48,7 @@ Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
 
 	//! define shapes of car main body and wheels
 	b2PolygonShape *boxDef = new b2PolygonShape();
-	boxDef->SetAsBox(1.5,2.5);
+    boxDef->SetAsBox(1.8f,5.0f);
 	mBody->CreateFixture(boxDef,1.0f);
 
 	//Left Wheel shape
@@ -183,16 +183,15 @@ void Car::computeUndergroundImpact()
         //mBody->SetAngularDamping(1.0f);
         break;
     case Grass:
-        mBody->SetLinearDamping(4.0f);
+        mBody->SetLinearDamping(3.0f);
         //mBody->SetAngularDamping(4.0f);
         break;
     case Sand:
-        mBody->SetLinearDamping(7.0f);
+        mBody->SetLinearDamping(5.0f);
         //mBody->SetAngularDamping(7.0f);
         break;
     case Water:
-        mBody->SetLinearDamping(10.0f);
-        //mBody->SetAngularDamping(10.0f);
+        mBody->SetTransform(b2Vec2(200,150),mBody->GetAngle());
         break;
     }
 }
@@ -210,6 +209,12 @@ void Car::updatePosition()
 
     computeDriving();
     computeSteering();
+}
+
+// x, y in pixels
+void Car::startPosition(int x, int y, double angle)
+{
+    mBody->SetTransform(b2Vec2((double)x / PX_TO_M_RATIO, (double)y / PX_TO_M_RATIO), angle);
 }
 
 

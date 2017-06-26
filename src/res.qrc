@@ -25,4 +25,9 @@
         <file>images/YasMarinagrey.png</file>
         <file>images/YasMarinatextur.png</file>
     </qresource>
+    <qresource prefix="/circuits">
+        <file>Monza.circuit</file>
+        <file>Hockenheimring.circuit</file>
+        <file>YasMarina.circuit</file>
+    </qresource>
 </RCC>

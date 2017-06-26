@@ -29,8 +29,8 @@ class Car : public QObject, public QGraphicsPixmapItem
 
 private:
 	//! Set the relation of display pixels and meters
-	const int PX_TO_M_RATIO = 10;
-	const float CAR_ROTATION_ANGLE = -90.0;
+    const int PX_TO_M_RATIO = 10;
+    const float CAR_ROTATION_ANGLE = -90.0;
 
 	//! Variable car properties
 	//! max steering lock angle (default at pi/3)
@@ -83,6 +83,7 @@ public:
     void computeUndergroundImpact();
 
     void updatePosition();
+    void startPosition(int x, int y, double angle);
 };
 
 #endif // CAR_H
