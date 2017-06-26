@@ -227,7 +227,7 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
 	switch(keyEvent->key())
 	{
 	case Qt::Key_Escape: // Just for debugging, to close game and get back to menu.
-        lower();
+        hide();
         mTimer->stop();
         mStartTimer->stop();
         if(mCounter != NULL)
