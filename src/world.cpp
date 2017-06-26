@@ -10,7 +10,11 @@ World::World(int width, int height)
 	mHeight = height;
 	//scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
 
-	showFullScreen();
+    showFullScreen();
+
+    mLabel = NULL;
+    mStartTimer = NULL;
+    mCounter = NULL;
 
 	mFps = 50;
 	mCurrentInputState = None;
@@ -124,14 +128,11 @@ World::World(int width, int height, int level)
 
 World::~World()
 {
-	delete mWorld;
-	mWorld = NULL;
+    delete mCar;
+    mCar = NULL;
 
-	delete mTrack;
-	mTrack = NULL;
-
-	delete mCar;
-	mCar = NULL;
+    delete mWorld;
+    mWorld = NULL;
 
 	if(mCounter != NULL)
 	{
@@ -139,11 +140,23 @@ World::~World()
 		mCounter = NULL;
 	}
 
-	delete mTimer;
-	mTimer = NULL;
+    delete mTimer;
+    mTimer = NULL;
 
-	delete mStartTimer;
-	mStartTimer = NULL;
+    if(mStartTimer != NULL)
+    {
+        delete mStartTimer;
+        mStartTimer = NULL;
+    }
+
+    if(mLabel != NULL)
+    {
+        delete mLabel;
+        mLabel = NULL;
+    }
+
+    delete mTrack;
+    mTrack = NULL;
 
 }
 
@@ -175,7 +188,7 @@ void World::startLoop()
 		mCounter->setPlainText("GO!");
 		mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-60)/2,(mHeight-200)/2));
 		mTimer->start(1000.0/mFps);
-		mStartTimer->start(20);
+        mStartTimer->start(15);
 		//start the race time immediately after go
 		mLabel->setVisible(true);
 		mTime.setHMS(0,0,0,0);
@@ -214,7 +227,24 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
 	switch(keyEvent->key())
 	{
 	case Qt::Key_Escape: // Just for debugging, to close game and get back to menu.
-		delete this;
+        lower();
+        mTimer->stop();
+        mStartTimer->stop();
+        if(mCounter != NULL)
+        {
+            delete mCounter;
+            mCounter = NULL;
+        }
+        if(mStartTimer != NULL)
+        {
+            delete mStartTimer;
+            mStartTimer = NULL;
+        }
+        if(mLabel != NULL)
+        {
+            delete mLabel;
+            mLabel = NULL;
+        }
 		break;
 	case Qt::Key_Left:
 		// set new state depending on current state
@@ -341,7 +371,7 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
 
 void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle)
 {
-	mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpoint_list, angle_list);
+    mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpoint_list, angle_list);
 	mCar->startPosition(carPosition.x(), carPosition.y(), carAngle);
 
 	// Init variables for start sequence

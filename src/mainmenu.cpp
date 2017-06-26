@@ -238,8 +238,8 @@ mainMenu::mainMenu(QWidget *parent) :
 
 mainMenu::~mainMenu()
 {
-    delete ui;
     delete game;
+    delete ui;
 }
 
 //  Buttons from the Main Menu UI

@@ -14,6 +14,8 @@ Track::~Track()
 {
     if(mCheckpoints != NULL)
     {
+        for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
+            this->removeItem(mCheckpoints->GetCheckpoint(i));
         delete mCheckpoints;
         mCheckpoints = NULL;
     }
@@ -90,7 +92,11 @@ void Track::loadTrack(int width, int height, QImage background, QImage grayImage
 
     // delete old checkpoints and load new ones
     if(mCheckpoints != NULL)
+    {
+        for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
+            this->removeItem(mCheckpoints->GetCheckpoint(i));
         delete mCheckpoints;
+    }
     mCheckpoints = new Checkpoint(checkpointCount, position_list, angle_list);
 
     for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
