@@ -72,7 +72,7 @@ void Checkpoint::CheckCheckpoint(QGraphicsPixmapItem* car)
             mCheckpointcounter++;
 
             if(i==mNumberOfCheckpoints-1) mCheckpointcounter=0;
-            if(i==0) mLapcounter++;
+			if(i==0) mLapcounter++;
 
             qDebug() << "Checkpoint: " << mCheckpointcounter;
             qDebug() << "Lap: " << mLapcounter;
@@ -83,4 +83,8 @@ void Checkpoint::CheckCheckpoint(QGraphicsPixmapItem* car)
 int Checkpoint::GetNumberOfCheckpoints()
 {
     return mNumberOfCheckpoints;
+}
+
+int Checkpoint::GetLaps(){
+	return mLapcounter;
 }

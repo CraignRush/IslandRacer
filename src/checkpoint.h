@@ -13,6 +13,7 @@ public:
     QGraphicsRectItem* GetCheckpoint(int index);
     void CheckCheckpoint(QGraphicsPixmapItem*);
     int GetNumberOfCheckpoints();
+	int GetLaps();
 
 private:
     int mCheckpointcounter;

@@ -12,7 +12,8 @@ World::World(int width, int height)
 
     showFullScreen();
 
-    mLabel = NULL;
+	mLapLabel = NULL;
+	mTimeLabel = NULL;
     mStartTimer = NULL;
     mCounter = NULL;
 
@@ -106,16 +107,16 @@ World::World(int width, int height, int level)
 	font.setFamily("Helvetica [Cronyx]");
 
 	//Initialize Label for ingame time display
-	mLabel = new QGraphicsTextItem();
-	mLabel->setFont(font);
-	mLabel->setDefaultTextColor(QColor("red"));
-	mLabel->setPlainText("mm:ss.zzz");
+	mTimeLabel = new QGraphicsTextItem();
+	mTimeLabel->setFont(font);
+	mTimeLabel->setDefaultTextColor(QColor("red"));
+	mTimeLabel->setPlainText("mm:ss.zzz");
 	//Set starting position
-	mLabelPos.setX(mWidth - mLabel->boundingRect().width());
-	mLabelPos.setY(mHeight - mLabel->boundingRect().height());
-	mLabel->setPos(mLabelPos);
+	mLabelPos.setX(mWidth - mTimeLabel->boundingRect().width());
+	mLabelPos.setY(mHeight - mTimeLabel->boundingRect().height());
+	mTimeLabel->setPos(mLabelPos);
 	//Add it to track
-	mTrack->addItem(mLabel);
+	mTrack->addItem(mTimeLabel);
 
 	// Show the scene
 	show();
@@ -149,11 +150,17 @@ World::~World()
         mStartTimer = NULL;
     }
 
-    if(mLabel != NULL)
+	if(mTimeLabel != NULL)
     {
-        delete mLabel;
-        mLabel = NULL;
+		delete mTimeLabel;
+		mTimeLabel = NULL;
     }
+
+	if(mLapLabel != NULL)
+	{
+		delete mLapLabel;
+		mLapLabel = NULL;
+	}
 
     delete mTrack;
     mTrack = NULL;
@@ -168,9 +175,9 @@ void World::gameLoop()
 
 	mCar->computeUserInput(mCurrentInputState);
 	mCar->updatePosition();
-	mTrack->updateCheckpoints(mCar);
+	mLaps = mTrack->updateCheckpoints(mCar);
 	mCar->render();
-	updateTime();
+	updateOverlay();
 
 }
 
@@ -190,9 +197,10 @@ void World::startLoop()
 		mTimer->start(1000.0/mFps);
         mStartTimer->start(15);
 		//start the race time immediately after go
-		mLabel->setVisible(true);
+		mTimeLabel->setVisible(true);
 		mTime.setHMS(0,0,0,0);
 		mRaceTime.start();
+		mLapLabel->setVisible(true);
 	}
 
 	mCounter->setOpacity(Opacity);
@@ -209,13 +217,15 @@ void World::startLoop()
 }
 
 
-void World::updateTime(){
+void World::updateOverlay(){
 
 	mElapsed = mRaceTime.restart();
 	mTime = mTime.addMSecs(mElapsed);
-	mLabel->setPlainText(mTime.toString("mm:ss:z"));
-	mLabel->setPos(mapToScene(mLabelPos));
+	mTimeLabel->setPlainText(mTimeText + mTime.toString("mm:ss.z"));
+	mTimeLabel->setPos(mapToScene(mTimeLabelPos));
 
+	mLapLabel->setPlainText(mLapText + QString::number(mLaps) + "/3"); //TODO Optimize the method to get the lap count
+	mLapLabel->setPos(mapToScene(mLapLabelPos));
 	/*qDebug() << mElapsed;
 	qDebug() << mTime;*/
 }
@@ -240,10 +250,10 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
             delete mStartTimer;
             mStartTimer = NULL;
         }
-        if(mLabel != NULL)
+		if(mTimeLabel != NULL)
         {
-            delete mLabel;
-            mLabel = NULL;
+			delete mTimeLabel;
+			mTimeLabel = NULL;
         }
 		break;
 	case Qt::Key_Left:
@@ -382,17 +392,30 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 	mTrack->addItem(mCounter);
 
 	//Initialize Label for ingame time display
-	mLabel = new QGraphicsTextItem();
-	mLabel->setVisible(false);
-	mLabel->setFont(QFont("GillSansMT",16));
-	mLabel->setDefaultTextColor(QColor("red"));
-	mLabel->setPlainText("mm:ss.zzz");
+	mTimeLabel = new QGraphicsTextItem();
+	mTimeLabel->setVisible(false);
+	mTimeLabel->setFont(QFont("GillSansMT",24,60)); // Font: family, PointSize, Weight(how bold)
+	mTimeLabel->setDefaultTextColor(QColor("red"));
+	mTimeText = "TIME: ";
+	mTimeLabel->setPlainText(mTimeText + "mm:ss.zzz");
 	//Set starting position
-	mLabelPos.setX(mWidth - (mLabel->boundingRect().width() + 50));
-	mLabelPos.setY(mHeight - (mLabel->boundingRect().height() + 20));
-	//mLabel->setPos(mapToScene(mLabelPos));
+	mTimeLabelPos.setX(mWidth - (mTimeLabel->boundingRect().width() + 50));
+	mTimeLabelPos.setY(mHeight - (mTimeLabel->boundingRect().height() + 20));
+	//mTimeLabel->setPos(mapToScene(mLabelPos));
 	//Add it to track
-	mTrack->addItem(mLabel);
+	mTrack->addItem(mTimeLabel);
+
+	//Initialize Label for ingame lap counter display
+	mLapLabel = new QGraphicsTextItem();
+	mLapLabel->setVisible(false);
+	mLapLabel->setFont(QFont("GillSansMT",24,60));
+	mLapLabel->setDefaultTextColor(QColor("red"));
+	mLapText = "LAPS: ";
+	mLapLabel->setPlainText(mLapText + "0/3");
+	//Set starting position
+	mLapLabelPos.setX(mWidth - (mLapLabel->boundingRect().width() + 100));
+	mLapLabelPos.setY(mHeight -(mLapLabel->boundingRect().height() + 80));
+	mTrack->addItem(mLapLabel);
 
 	// Init and start timer for game loop and start loop
 	mStartTimer = new QTimer(this);
