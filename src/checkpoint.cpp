@@ -1,34 +1,37 @@
 #include "checkpoint.h"
 #include <QDebug>
-
+#include <QBrush>
+#include <QColor>
+/*
 Checkpoint::Checkpoint()
 {
 
-    mCheckpoint = new QGraphicsRectItem[6];
+    mCheckpoints = new QGraphicsRectItem[6];
 
     for(int i= 0; i<6; i++)
     {
-        mCheckpoint[i].setRect(0,0,170,1);
-        mCheckpoint[i].setOpacity(1.0); // set to 1.0 for debug
+        mCheckpoints[i].setRect(0,0,170,5);
+        mCheckpoints[i].setBrush(QBrush(QColor(Qt::red)));
+        mCheckpoints[i].setOpacity(1.0); // set to 1.0 for debug
     }
 
-    mCheckpoint[0].setRotation(qRadiansToDegrees(1.04));
-    mCheckpoint[0].setPos(457,409);
+    mCheckpoints[0].setRotation(qRadiansToDegrees(1.04));
+    mCheckpoints[0].setPos(1371,1503);
 
-    mCheckpoint[1].setRotation(qRadiansToDegrees(1.04));
-    mCheckpoint[1].setPos(900,150);
+    mCheckpoints[1].setRotation(qRadiansToDegrees(1.04));
+    mCheckpoints[1].setPos(2703,755);
 
-    mCheckpoint[2].setRotation(qRadiansToDegrees(2.28));
-    mCheckpoint[2].setPos(1511,298);
+    mCheckpoints[2].setRotation(qRadiansToDegrees(2.28));
+    mCheckpoints[2].setPos(4533,894);
 
-    mCheckpoint[3].setRotation(qRadiansToDegrees(1.62));
-    mCheckpoint[3].setPos(1432,633);
+    mCheckpoints[3].setRotation(qRadiansToDegrees(1.62));
+    mCheckpoints[3].setPos(4746,2536);
 
-    mCheckpoint[4].setRotation(qRadiansToDegrees(1.44));
-    mCheckpoint[4].setPos(887,464);
+    mCheckpoints[4].setRotation(qRadiansToDegrees(1.44));
+    mCheckpoints[4].setPos(2661,1745);
 
-    mCheckpoint[5].setRotation(qRadiansToDegrees(-0.42));
-    mCheckpoint[5].setPos(172,756);
+    mCheckpoints[5].setRotation(qRadiansToDegrees(-0.42));
+    mCheckpoints[5].setPos(587,2576);
 
     mNumberOfCheckpoints = 6;
 
@@ -36,18 +39,35 @@ Checkpoint::Checkpoint()
     mLapcounter = 0;
 
 }
+*/
+Checkpoint::Checkpoint(int checkpointCount, QPoint* position_list, double* angle_list)
+{
+    mNumberOfCheckpoints = checkpointCount;
+    mCheckpoints = new QGraphicsRectItem[checkpointCount];
+
+    for(int i= 0; i<checkpointCount; i++)
+    {
+        mCheckpoints[i].setRect(0,0,170,5);
+        mCheckpoints[i].setBrush(QBrush(QColor(Qt::red)));
+        mCheckpoints[i].setOpacity(1.0); // set to 1.0 for debug
+        mCheckpoints[i].setRotation(qRadiansToDegrees(angle_list[i]));
+        mCheckpoints[i].setPos(position_list[i].x(), position_list[i].y());
+    }
+
+    mCheckpointcounter = 0;
+    mLapcounter = 0;
+}
 
 QGraphicsRectItem* Checkpoint::GetCheckpoint(int index)
 {
-    return &mCheckpoint[index];
+    return &mCheckpoints[index];
 }
-
 
 void Checkpoint::CheckCheckpoint(QGraphicsPixmapItem* car)
 {
     for(int i = 0; i<mNumberOfCheckpoints; i++)
     {
-        if(mCheckpoint[i].collidesWithItem(car) && mCheckpointcounter == i)
+        if(mCheckpoints[i].collidesWithItem(car) && mCheckpointcounter == i)
         {
             mCheckpointcounter++;
 

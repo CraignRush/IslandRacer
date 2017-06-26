@@ -54,7 +54,7 @@ World::World(int width, int height)
 /*
 World::World(int width, int height, int level)
 {
-<<<<<<< .merge_file_a14096
+<<<<<<< HEAD
 	// Set dimensions
 	mWidth = width;
 	mHeight = height;
@@ -85,7 +85,7 @@ World::World(int width, int height, int level)
     // Create track
     mTrack = new Track();
     //mTrack = new Track(5760, 3240, QImage(":/images/images/Monzatextur.png"), QImage(":/images/images/Monzagrey.png"));
->>>>>>> .merge_file_a07452
+>>>>>>> 9e2d54d42f78942403602bb37154c49197793fd0
 
 	// Set track as scene for this view
 	setScene(mTrack);
@@ -95,7 +95,7 @@ World::World(int width, int height, int level)
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-<<<<<<< .merge_file_a14096
+<<<<<<< HEAD
 	// Create car
 	mCar = new Car(mWorld);
 =======
@@ -104,7 +104,7 @@ World::World(int width, int height, int level)
 
     // necessary to init start position of the car
     mCar->render();
->>>>>>> .merge_file_a07452
+>>>>>>> 9e2d54d42f78942403602bb37154c49197793fd0
 
 	// Add the car to the track/scene
 	mTrack->addItem(mCar);
@@ -115,7 +115,7 @@ World::World(int width, int height, int level)
 	// Show the scene
 	show();
 
-<<<<<<< .merge_file_a14096
+<<<<<<< HEAD
 	// Init variables for start sequence
 	Opacity = 1.0f;
 	mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
@@ -178,14 +178,14 @@ World::~World()
 
     delete mStartTimer;
     mStartTimer = NULL;
->>>>>>> .merge_file_a07452
+>>>>>>> 9e2d54d42f78942403602bb37154c49197793fd0
 }
 
 
 
 void World::gameLoop()
 {
-<<<<<<< .merge_file_a14096
+<<<<<<< HEAD
 	mWorld->Step(1.0f/50.0f, 8, 3);
 
 	mCar->killOrthogonalVelocity(mCar->GetLeftWheel());
@@ -208,12 +208,12 @@ void World::gameLoop()
     mCar->updatePosition();
     mTrack->updateCheckpoints(mCar);
     mCar->render();
->>>>>>> .merge_file_a07452
+>>>>>>> 9e2d54d42f78942403602bb37154c49197793fd0
 }
 
 void World::startLoop()
 {
-<<<<<<< .merge_file_a14096
+<<<<<<< HEAD
 	if(mStartCounter%100==0 && mStartCounter > 0)
 	{
 		Opacity=1.0f;
@@ -429,5 +429,5 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
     connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
     mCar->render(); // necessary to init start position of the car
     mStartTimer->start(10);
->>>>>>> .merge_file_a07452
+>>>>>>> 9e2d54d42f78942403602bb37154c49197793fd0
 }

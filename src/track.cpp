@@ -1,5 +1,25 @@
 #include "track.h"
+#include <QColor>
+#include <QDebug>
 
+Track::Track()
+{
+    mWidth = 0;
+    mHeight = 0;
+
+    mCheckpoints = NULL;
+}
+
+Track::~Track()
+{
+    if(mCheckpoints != NULL)
+    {
+        delete mCheckpoints;
+        mCheckpoints = NULL;
+    }
+}
+
+/*
 Track::Track(int level)
 {
     // Create the scene
@@ -16,8 +36,63 @@ Track::Track(int level)
     {
     setBackgroundBrush(QBrush(QImage(":/images/images/YasMarinatextur.png")));
     }
-    checkpoint = new Checkpoint;
+    mCheckpoints = new Checkpoint;
 
-    for(int i=0; i<checkpoint->GetNumberOfCheckpoints(); i++)
-        this->addItem(checkpoint->GetCheckpoint(i));
+    for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
+        this->addItem(mCheckpoints->GetCheckpoint(i));
+}
+*/
+
+/*
+Track::Track(int width, int height, QImage background, QImage grayImage)
+{
+    // add checkpoints
+    for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
+        this->addItem(mCheckpoints->GetCheckpoint(i));
+
+    loadTrack(width, height, background, grayImage);
+}
+*/
+
+Underground Track::getUnderground(int x, int y)
+{
+    QColor pixelColor = mGrayImage.pixelColor(x, y);
+    //int gray = pixelColor.value();
+    switch(pixelColor.value())
+    {
+    case Asphalt: return Asphalt;
+    case Grass: return Grass;
+    case Sand: return Sand;
+    case Water: return Water;
+    }
+
+    return Asphalt;
+}
+
+void Track::updateCheckpoints(QGraphicsPixmapItem* item)
+{
+    if(!(collidingItems(item).isEmpty()))
+        mCheckpoints->CheckCheckpoint(item);
+
+}
+
+void Track::loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, QPoint* position_list, double* angle_list)
+{
+    // set variables
+    mWidth = width;
+    mHeight = height;
+    mBackground = background;
+    mGrayImage = grayImage;
+
+    // set the scene size to image width/height and set background image
+    setSceneRect(0,0,mWidth, mHeight);
+    setBackgroundBrush(QBrush(mBackground));
+
+    // delete old checkpoints and load new ones
+    if(mCheckpoints != NULL)
+        delete mCheckpoints;
+    mCheckpoints = new Checkpoint(checkpointCount, position_list, angle_list);
+
+    for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
+        this->addItem(mCheckpoints->GetCheckpoint(i));
 }

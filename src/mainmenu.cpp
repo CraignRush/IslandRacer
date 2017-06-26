@@ -21,6 +21,9 @@ mainMenu::mainMenu(QWidget *parent) :
     screenHeight = screenGeometry.height();
     screenWidth = screenGeometry.width();
 
+    // Init game object with screen width/height and fullscreen mode
+    game = new Game(screenWidth, screenHeight, true);
+
     // Set Backgrounds
     QString backgroundImage( "background-image: url(:/images/images/palmtree1_1920_1080.jpg);" );
     QString garageImage( "background-image: url(:/images/images/Garagehell.jpg);" );
@@ -235,6 +238,7 @@ mainMenu::mainMenu(QWidget *parent) :
 mainMenu::~mainMenu()
 {
     delete ui;
+    delete game;
 }
 
 //  Buttons from the Main Menu UI
@@ -393,9 +397,10 @@ void mainMenu::on_level1_2Level2_clicked()
 void mainMenu::on_level1_2Play_clicked()
 {
     //start Level 1
-    world = new World(screenWidth,screenHeight,1);
-    world->showFullScreen();
+    //world = new World(screenWidth,screenHeight,1);
+    //world->showFullScreen();
     //hide();
+    game->loadCircuit(Monza);
 }
 
 // Buttons from Level 2
@@ -418,9 +423,10 @@ void mainMenu::on_level2_2Level3_clicked()
 void mainMenu::on_level2_2Play_clicked()
 {
     //start Level 2
-    world = new World(screenWidth,screenHeight,2);
-    world->showFullScreen();
+    //world = new World(screenWidth,screenHeight,2);
+    //world->showFullScreen();
     //hide();
+    game->loadCircuit(Hockenheimring);
 }
 
 // Buttons from Level 3
@@ -443,9 +449,10 @@ void mainMenu::on_level3_2Level1_clicked()
 void mainMenu::on_level3_2Play_clicked()
 {
     //start Level 3
-    world = new World(screenWidth,screenHeight,3);
-    world->showFullScreen();
+    //world = new World(screenWidth,screenHeight,3);
+    //world->showFullScreen();
     //hide();
+    game->loadCircuit(YasMarina);
 }
 
 // Buttons from Garage
