@@ -167,18 +167,19 @@ void World::startLoop()
 	{
 		Opacity=1.0f;
 		mCounter->setPlainText(QString::number(mStartCounter/100));
+		mCounter->setPos(mapToScene((mWidth/2) - (mCounter->boundingRect().width()/2),(mHeight/2)  - (mCounter->boundingRect().height()/2)));
 	}
 	if(mStartCounter == 0)
 	{
 		Opacity=1.0f;
-		mCounter->setPos(mWidth/2-90,mHeight/2-100);
 		mCounter->setPlainText("GO!!");
+		mCounter->setPos(mapToScene((mWidth/2) - (mCounter->boundingRect().width()/2),(mHeight/2)  - (mCounter->boundingRect().height()/2)));
 		mTimer->start(1000.0/mFps);
 		mStartTimer->start(20);
 		//start the race time immediately after go
+		mLabel->setVisible(true);
 		mTime.setHMS(0,0,0,0);
 		mRaceTime.start();
-		mLabel->setVisible(true);
 	}
 
 	mCounter->setOpacity(Opacity);
@@ -197,10 +198,10 @@ void World::startLoop()
 
 void World::updateTime(){
 
-	mLabel->setPos(mapToScene(mLabelPos));
 	mElapsed = mRaceTime.restart();
 	mTime = mTime.addMSecs(mElapsed);
 	mLabel->setPlainText(mTime.toString("mm:ss:z"));
+	mLabel->setPos(mapToScene(mLabelPos));
 
 	qDebug() << mElapsed;
 	qDebug() << mTime;
@@ -348,18 +349,17 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 	mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
 	mCounter = new QGraphicsTextItem;
 	mCounter->setScale(10);
-	mCounter->setPos(mWidth/2,mHeight/2);
 	mTrack->addItem(mCounter);
 
 	//Initialize Label for ingame time display
 	mLabel = new QGraphicsTextItem();
-	//mLabel->setVisible(false);
-	mLabel->setFont(QFont("GillSansMT",14));
+	mLabel->setVisible(false);
+	mLabel->setFont(QFont("GillSansMT",16));
 	mLabel->setDefaultTextColor(QColor("red"));
 	mLabel->setPlainText("mm:ss.zzz");
 	//Set starting position
-	mLabelPos.setX(mWidth - (mLabel->boundingRect().width()- mWidth/10));
-	mLabelPos.setY(mHeight - (mLabel->boundingRect().height() - mHeight/10));
+	mLabelPos.setX(mWidth - (mLabel->boundingRect().width() + 50));
+	mLabelPos.setY(mHeight - (mLabel->boundingRect().height() + 10));
 	mLabel->setPos(mapToScene(mLabelPos));
 	//Add it to track
 	mTrack->addItem(mLabel);
