@@ -6,7 +6,8 @@
 
 Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
 {
-    setPixmap(QPixmap(":/images/images/car1.png").scaled(1.8f*PX_TO_M_RATIO, 5.0*PX_TO_M_RATIO));
+    // width and height/length flipped because the image is loaded into pixmap ratated with 90° (angle will be later coreected)
+    setPixmap(QPixmap(":/images/images/car1.png").scaled(CAR_LENGTH*PX_TO_M_RATIO, CAR_WIDTH*PX_TO_M_RATIO));
     //setScale(0.05);
 	ensureVisible(QRectF(), 300, 300);
 
@@ -48,12 +49,12 @@ Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
 
 	//! define shapes of car main body and wheels
 	b2PolygonShape *boxDef = new b2PolygonShape();
-    boxDef->SetAsBox(1.8f,5.0f);
+    boxDef->SetAsBox(CAR_WIDTH/2.0, CAR_LENGTH/2.0);
 	mBody->CreateFixture(boxDef,1.0f);
 
 	//Left Wheel shape
 	b2PolygonShape *leftWheelShapeDef = new b2PolygonShape();
-	leftWheelShapeDef->SetAsBox(0.2f,0.5f);
+    leftWheelShapeDef->SetAsBox(TYRE_WIDTH/2.0f, TYRE_LENGTH/2.0f);
     mLeftWheel->CreateFixture(leftWheelShapeDef,1.0f);
 
 	//Right Wheel shape
@@ -108,7 +109,7 @@ void Car::render()
 {
     //! Get position of main car body and scale 1m = 10 px
 	b2Vec2 pos = mBody->GetPosition();
-	setPos(pos.x * PX_TO_M_RATIO, pos.y * PX_TO_M_RATIO);
+    setPos((pos.x - (CAR_WIDTH / 2.0f)) * PX_TO_M_RATIO, (pos.y - (CAR_LENGTH / 2.0f)) * PX_TO_M_RATIO);
 	setRotation(mBody->GetAngle() * 360.0 / (2.0 * 3.141592) + CAR_ROTATION_ANGLE);
 	ensureVisible(QRectF(), 300, 300);
 }
@@ -214,7 +215,7 @@ void Car::updatePosition()
 // x, y in pixels
 void Car::startPosition(int x, int y, double angle)
 {
-    mBody->SetTransform(b2Vec2((double)x / PX_TO_M_RATIO, (double)y / PX_TO_M_RATIO), angle);
+    mBody->SetTransform(b2Vec2(((double)x / PX_TO_M_RATIO) + (CAR_WIDTH/2.0f), ((double)y / PX_TO_M_RATIO) + (CAR_LENGTH/2.0f)), angle);
 }
 
 

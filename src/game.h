@@ -17,6 +17,7 @@ private:
 
 public:
     Game();
+    Game(int screenWidth, int screenHeight, bool fullscreen);
     ~Game();
     void loadCircuit(enum Circuit circuit);
 

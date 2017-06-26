@@ -29,21 +29,27 @@ class Car : public QObject, public QGraphicsPixmapItem
 
 private:
 	//! Set the relation of display pixels and meters
-    const int PX_TO_M_RATIO = 10;
+    const int PX_TO_M_RATIO = 20;
     const float CAR_ROTATION_ANGLE = -90.0;
 
 	//! Variable car properties
 	//! max steering lock angle (default at pi/3)
 	const float MAX_STEER_ANGLE = (float)M_PI/3.0f;
-	const float STEER_SPEED = 5.0f;
-	const float HORSEPOWERS = 240.0f;
-	const float MAX_LATERAL_IMPULSE = 1.7f; //! for drifting :D
-	const b2Vec2 CAR_STARTING_POS = b2Vec2(30,30);
+    const float STEER_SPEED = 5.0f;         //5.0f;
+    const float HORSEPOWERS = 100.0f;       //240.0f;
+    const float MAX_LATERAL_IMPULSE = 0.0f; //1.7f; //! for drifting :D
+    const b2Vec2 CAR_STARTING_POS = b2Vec2(0.0f,0.0f);
 
-    const b2Vec2 mLeftRearWheelPosition  = b2Vec2(-1.5f,1.9f);
-    const b2Vec2 mRightRearWheelPosition = b2Vec2(1.5f,1.9f);
-    const b2Vec2 mLeftFrontWheelPosition = b2Vec2(-1.5f,-1.9f);
-    const b2Vec2 mRightFrontWheelPosition = b2Vec2(1.5f,-1.9f);
+    // car constants
+    const float CAR_LENGTH = 4.4f;
+    const float CAR_WIDTH = 2.0f;
+    const float TYRE_LENGTH = 0.66f;
+    const float TYRE_WIDTH = 0.245f;
+
+    const b2Vec2 mLeftRearWheelPosition  = b2Vec2(-(CAR_WIDTH/2.0f),-((CAR_LENGTH/2.0f) - (TYRE_LENGTH/2.0f) - 0.15f));
+    const b2Vec2 mRightRearWheelPosition = b2Vec2((CAR_WIDTH/2.0f),((CAR_LENGTH/2.0f) - (TYRE_LENGTH/2.0f) - 0.15f));
+    const b2Vec2 mLeftFrontWheelPosition = b2Vec2(-(CAR_WIDTH/2.0f),-((CAR_LENGTH/2.0f) - (TYRE_LENGTH/2.0f) - 0.15f));
+    const b2Vec2 mRightFrontWheelPosition = b2Vec2((CAR_WIDTH/2.0f),-((CAR_LENGTH/2.0f) - (TYRE_LENGTH/2.0f) - 0.15f));
 
 	//! Define the User Input States
     enum InputState mInput;

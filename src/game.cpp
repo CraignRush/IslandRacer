@@ -8,6 +8,13 @@ Game::Game()
     mWorld = new World(1920,1080);
 }
 
+Game::Game(int screenWidth, int screenHeight, bool fullscreen)
+{
+    mWorld = new World(screenWidth, screenHeight);
+    if(fullscreen)
+        mWorld->showFullScreen();
+}
+
 Game::~Game()
 {
     delete mWorld;
@@ -112,6 +119,10 @@ void Game::loadCircuit(Circuit circuit)
 
         // load circuit with parameter
         mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, position_list, angle_list, carPosition, carAngle);
+
+        // show window on top
+        mWorld->raise();
+        mWorld->activateWindow();
 
         free(position_list);
         free(angle_list);

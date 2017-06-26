@@ -2,7 +2,8 @@
 #define MAINMENU_H
 
 #include <QMainWindow>
-#include "world.h"
+//#include "world.h"
+#include "game.h"
 
 namespace Ui {
 class mainMenu;
@@ -84,7 +85,8 @@ private slots:
 
 private:
     Ui::mainMenu *ui;
-    World* world;
+    //World* world;
+    Game* game;
 
     int screenWidth;
     int screenHeight;
