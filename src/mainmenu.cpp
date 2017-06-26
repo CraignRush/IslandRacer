@@ -56,6 +56,10 @@ mainMenu::mainMenu(QWidget *parent) :
 	GillSansMT.setPointSize(20);
     GillSansMT.setBold(1);
 
+    QFont GillSansMTTitle;
+    GillSansMTTitle = GillSansMT;
+    GillSansMTTitle.setPointSize(30);
+
     // Items for all
     ui->centralWidget->setStyleSheet(backgroundImage);
 
@@ -163,6 +167,10 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->garage2Main->setIcon(menu);
     ui->garage2Main->setIconSize(QSize(100,50));
     ui->garage2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->garageTitle->setStyleSheet("QLabel{background: transparent;}");
+    ui->garageTitle->setText("Garage");
+    ui->garageTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->garageTitle->setFont(GillSansMTTitle);
     ui->garageTopspeedSlider->setStyleSheet("QSlider{background: transparent;}");
     ui->garageAccelerationSlider->setStyleSheet("QSlider{background: transparent;}");
     ui->garageHandlingSlider->setStyleSheet("QSlider{background: transparent;}");
@@ -178,10 +186,10 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->garageHandlingLabel->setText("Your handling value: " + QString::number(handlingValue));
     ui->garageHandlingLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->garageHandlingLabel->setFont(GillSansMT);
-    ui->garageTitelLabel->setStyleSheet("QLabel{background: transparent;}");
-    ui->garageTitelLabel->setText("You have 10 points left to distribute");
-    ui->garageTitelLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    ui->garageTitelLabel->setFont(GillSansMT);
+    ui->garageLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->garageLabel->setText("You have 10 points left to distribute");
+    ui->garageLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->garageLabel->setFont(GillSansMT);
 
     // Items in highscore
     ui->highscoreLogo->setPixmap(logo);
@@ -190,15 +198,22 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->highscore2Main->setIcon(menu);
     ui->highscore2Main->setIconSize(QSize(100,50));
     ui->highscore2Main->setStyleSheet("QPushButton{background: transparent;}");
-    ui->highscoreLevel1->setStyleSheet("QLabel{background: transparent;}");
+    ui->highscoreTitle->setStyleSheet("QLabel{background: transparent;}");
+    ui->highscoreTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->highscoreTitle->setFont(GillSansMTTitle);
+    ui->highscoreTitle->setText("Highscore:");
+    ui->highscoreLevel1->setStyleSheet("QLabel{background: transparent; color: white}");
     ui->highscoreLevel1->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->highscoreLevel1->setFont(GillSansMT);
-    ui->highscoreLevel2->setStyleSheet("QLabel{background: transparent;}");
+    ui->highscoreLevel1->setText("Sunny Speedway");
+    ui->highscoreLevel2->setStyleSheet("QLabel{background: transparent; color: white}");
     ui->highscoreLevel2->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->highscoreLevel2->setFont(GillSansMT);
-    ui->highscoreLevel3->setStyleSheet("QLabel{background: transparent;}");
+    ui->highscoreLevel2->setText("Chancy Circuit");
+    ui->highscoreLevel3->setStyleSheet("QLabel{background: transparent; color: white}");
     ui->highscoreLevel3->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->highscoreLevel3->setFont(GillSansMT);
+    ui->highscoreLevel3->setText("Deadly Desert");
     ui->highscoretablelevel1->setStyleSheet("QTableWidget{background: transparent;}");
     ui->highscoretablelevel2->setStyleSheet("QTableWidget{background: transparent;}");
     ui->highscoretablelevel3->setStyleSheet("QTableWidget{background: transparent;}");
@@ -221,8 +236,14 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->manual2Main->setIcon(menu);
     ui->manual2Main->setIconSize(QSize(100,50));
     ui->manual2Main->setStyleSheet("QPushButton{background: transparent;}");
-    ui->manualLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->manualTitle->setStyleSheet("QLabel{background: transparent;}");
+    ui->manualTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->manualTitle->setFont(GillSansMTTitle);
+    ui->manualTitle->setText("Manual:");
+    ui->manualLabel->setStyleSheet("QLabel{background: transparent; color: white}");
     ui->manualLabel->setFont(GillSansMT);
+    ui->manualLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->manualLabel->setText("You can steer the car with the arrow keys.\n\nYou can adjust your car in the garage.\nThe better your times on the tracks are, the more points you can distribute.");
 
     // Items in credits
     ui->creditsLogo->setPixmap(logo);
@@ -231,8 +252,14 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->credits2Main->setIcon(menu);
     ui->credits2Main->setIconSize(QSize(100,50));
     ui->credits2Main->setStyleSheet("QPushButton{background: transparent;}");
-    ui->creditsLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->creditsTitle->setStyleSheet("QLabel{background: transparent;}");
+    ui->creditsTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->creditsTitle->setFont(GillSansMTTitle);
+    ui->creditsTitle->setText("Credits:");
+    ui->creditsLabel->setStyleSheet("QLabel{background: transparent; color: white}");
     ui->creditsLabel->setFont(GillSansMT);
+    ui->creditsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+
 
 }
 
@@ -273,7 +300,7 @@ void mainMenu::on_main2Highscore_clicked()
 
     // define header of highscoretables
     QStringList header;
-    header << "Platz";
+    header << "#";
     header << "Name";
     header << "Zeit";
 
@@ -284,7 +311,9 @@ void mainMenu::on_main2Highscore_clicked()
     ui->highscoretablelevel1->horizontalHeader()->setVisible(true);
 
     ui->highscoretablelevel1->setHorizontalHeaderLabels(header);
-
+    ui->highscoretablelevel1->setColumnWidth(0,30);
+    ui->highscoretablelevel1->setColumnWidth(1,0.5 * (ui->highscoreLevel1->width() - 30));
+    ui->highscoretablelevel1->setColumnWidth(2,0.5 * (ui->highscoreLevel1->width() - 30));
 
    // level1highscorematrix[9][2]="1.324";
    // level1highscorematrix[9][1]="hallo";
@@ -294,17 +323,22 @@ void mainMenu::on_main2Highscore_clicked()
     // fill the highscore for level 1 with data from highscorematrix for level 1
     for (int i=0;i<10;i++)
        {
-        if(level1highscorematrix[i][2]!=0)
+        //if(level1highscorematrix[i][2]!=0)
         {
             QString Platz = level1highscorematrix[i][0];
             QString Name = level1highscorematrix[i][1];
             QString Zeit = level1highscorematrix[i][2];
-            ui->highscoretablelevel1->setItem(i, 0, new QTableWidgetItem(Platz));
-            ui->highscoretablelevel1->setItem(i, 1, new QTableWidgetItem(Name));
-            ui->highscoretablelevel1->setItem(i, 2, new QTableWidgetItem(Zeit));
+            ui->highscoretablelevel1->setItem(i, 0, new QTableWidgetItem());
+            //ui->highscoretablelevel1->item(i,0)->setText(Platz);
+            ui->highscoretablelevel1->item(i,0)->setBackground(Qt::white);
+            ui->highscoretablelevel1->setItem(i, 1, new QTableWidgetItem());
+            //ui->highscoretablelevel1->item(i,1)->setText(Name);
+            ui->highscoretablelevel1->item(i,1)->setBackground(Qt::white);
+            ui->highscoretablelevel1->setItem(i, 2, new QTableWidgetItem());
+            //ui->highscoretablelevel1->item(i,2)->setText(Zeit);
+            ui->highscoretablelevel1->item(i,2)->setBackground(Qt::white);
         }
        }
-
 
     // set layout of highscoretable for level 2
     ui->highscoretablelevel2->setRowCount(10);
@@ -314,18 +348,27 @@ void mainMenu::on_main2Highscore_clicked()
 
     ui->highscoretablelevel2->setHorizontalHeaderLabels(header);
     ui->highscoretablelevel2->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->highscoretablelevel2->setColumnWidth(0,30);
+    ui->highscoretablelevel2->setColumnWidth(1,0.5 * (ui->highscoreLevel2->width() - 30));
+    ui->highscoretablelevel2->setColumnWidth(2,0.5 * (ui->highscoreLevel2->width() - 30));
 
     // fill the highscore for level 2 with data from highscorematrix for level 2
     for (int i=0;i<10;i++)
        {
-        if(level2highscorematrix[i][2]!=0)
+        //if(level2highscorematrix[i][2]!=0)
         {
             QString Platz = level2highscorematrix[i][0];
             QString Name = level2highscorematrix[i][1];
             QString Zeit = level2highscorematrix[i][2];
-            ui->highscoretablelevel2->setItem(i, 0, new QTableWidgetItem(Platz));
-            ui->highscoretablelevel2->setItem(i, 1, new QTableWidgetItem(Name));
-            ui->highscoretablelevel2->setItem(i, 2, new QTableWidgetItem(Zeit));
+            ui->highscoretablelevel2->setItem(i, 0, new QTableWidgetItem());
+            //ui->highscoretablelevel2->item(i,0)->setText(Platz);
+            ui->highscoretablelevel2->item(i,0)->setBackground(Qt::white);
+            ui->highscoretablelevel2->setItem(i, 1, new QTableWidgetItem());
+            //ui->highscoretablelevel2->item(i,1)->setText(Name);
+            ui->highscoretablelevel2->item(i,1)->setBackground(Qt::white);
+            ui->highscoretablelevel2->setItem(i, 2, new QTableWidgetItem());
+            //ui->highscoretablelevel2->item(i,2)->setText(Zeit);
+            ui->highscoretablelevel2->item(i,2)->setBackground(Qt::white);
         }
        }
 
@@ -338,19 +381,28 @@ void mainMenu::on_main2Highscore_clicked()
 
     ui->highscoretablelevel3->setHorizontalHeaderLabels(header);
     ui->highscoretablelevel3->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->highscoretablelevel3->setColumnWidth(0,30);
+    ui->highscoretablelevel3->setColumnWidth(1,0.5 * (ui->highscoreLevel3->width() - 30));
+    ui->highscoretablelevel3->setColumnWidth(2,0.5 * (ui->highscoreLevel3->width() - 30));
 
 
     // fill the highscore for level 3 with data from highscorematrix for level 3
     for (int i=0;i<10;i++)
        {
-        if(level3highscorematrix[i][2]!=0)
+        //if(level3highscorematrix[i][2]!=0)
         {
             QString Platz = level3highscorematrix[i][0];
             QString Name = level3highscorematrix[i][1];
             QString Zeit = level3highscorematrix[i][2];
-            ui->highscoretablelevel3->setItem(i, 0, new QTableWidgetItem(Platz));
-            ui->highscoretablelevel3->setItem(i, 1, new QTableWidgetItem(Name));
-            ui->highscoretablelevel3->setItem(i, 2, new QTableWidgetItem(Zeit));
+            ui->highscoretablelevel3->setItem(i, 0, new QTableWidgetItem());
+            //ui->highscoretablelevel3->item(i,0)->setText(Platz);
+            ui->highscoretablelevel3->item(i,0)->setBackground(Qt::white);
+            ui->highscoretablelevel3->setItem(i, 1, new QTableWidgetItem());
+            //ui->highscoretablelevel3->item(i,1)->setText(Name);
+            ui->highscoretablelevel3->item(i,1)->setBackground(Qt::white);
+            ui->highscoretablelevel3->setItem(i, 2, new QTableWidgetItem());
+            //ui->highscoretablelevel3->item(i,2)->setText(Zeit);
+            ui->highscoretablelevel3->item(i,2)->setBackground(Qt::white);
         }
        }
 
@@ -506,10 +558,10 @@ void mainMenu::on_garageAccelerationSlider_valueChanged(int value)
     ui->garageAccelerationLabel->setText("Your acceleration value: " + QString::number(accelerationValue));
 
     if(decider < 0){
-        ui->garageTitelLabel->setText("You have 0 points left to distribute");
+        ui->garageLabel->setText("You have 0 points left to distribute");
     }
     else{
-        ui->garageTitelLabel->setText("You have " + QString::number(decider) + " points left to distribute");
+        ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
     }
 }
 
@@ -534,10 +586,10 @@ void mainMenu::on_garageTopspeedSlider_valueChanged(int value)
     ui->garageTopspeedLabel->setText("Your topspeed value: " + QString::number(topspeedValue));
 
     if(decider < 0){
-        ui->garageTitelLabel->setText("You have 0 points left to distribute");
+        ui->garageLabel->setText("You have 0 points left to distribute");
     }
     else{
-        ui->garageTitelLabel->setText("You have " + QString::number(decider) + " points left to distribute");
+        ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
     }}
 
 void mainMenu::on_garageTopspeedSlider_sliderReleased()
@@ -561,10 +613,10 @@ void mainMenu::on_garageHandlingSlider_valueChanged(int value)
     ui->garageHandlingLabel->setText("Your handling value: " + QString::number(handlingValue));
 
     if(decider < 0){
-        ui->garageTitelLabel->setText("You have 0 points left to distribute");
+        ui->garageLabel->setText("You have 0 points left to distribute");
     }
     else{
-        ui->garageTitelLabel->setText("You have " + QString::number(decider) + " points left to distribute");
+        ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
     }
 }
 
