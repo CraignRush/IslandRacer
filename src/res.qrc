@@ -19,11 +19,11 @@
         <file>images/Garagehell.jpg</file>
         <file>images/Testisland.png</file>
         <file>images/Monzatextur.png</file>
-        <file>images/Monzagrey.png</file>
-        <file>images/Hockenheimgrey.png</file>
         <file>images/Hockenheimtextur.png</file>
-        <file>images/YasMarinagrey.png</file>
         <file>images/YasMarinatextur.png</file>
+        <file>images/Hockenheimgrey.png</file>
+        <file>images/Monzagrey.png</file>
+        <file>images/YasMarinagrey.png</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>
