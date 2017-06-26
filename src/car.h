@@ -43,7 +43,7 @@ private:
     // car constants
     const float CAR_LENGTH = 4.4f;
     const float CAR_WIDTH = 2.0f;
-    const float TYRE_LENGTH = 0.66f;
+	const float TYRE_LENGTH = 0.5f;
     const float TYRE_WIDTH = 0.245f;
 
     const b2Vec2 mLeftRearWheelPosition  = b2Vec2(-(CAR_WIDTH/2.0f),-((CAR_LENGTH/2.0f) - (TYRE_LENGTH/2.0f) - 0.15f));
