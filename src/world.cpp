@@ -49,19 +49,16 @@ World::World(int width, int height)
 
 	//Initialize Label for ingame time display
 	mLabel = new QGraphicsTextItem();
+	mLabel->setVisible(false);
 	mLabel->setFont(font);
 	mLabel->setDefaultTextColor(QColor("red"));
 	mLabel->setPlainText("mm:ss.zzz");
 	//Set starting position
 	mLabelPos.setX(mWidth - mLabel->boundingRect().width());
 	mLabelPos.setY(mHeight - mLabel->boundingRect().height());
-	mLabel->setPos(mLabelPos);
+	mLabel->setPos(mapToScene(mLabelPos));
 	//Add it to track
 	mTrack->addItem(mLabel);
-
-	// Show the scene
-	show();
-
 
 	// Show the scene
 	show();
@@ -209,7 +206,9 @@ void World::startLoop()
 		mTimer->start(mFps);
 		mStartTimer->start(20);
 		//start the race time immediately after go
+		mTime.setHMS(0,0,0,0);
 		mRaceTime.start();
+		mLabel->setVisible(true);
 	}
 
 	mCounter->setOpacity(Opacity);
@@ -230,7 +229,6 @@ void World::updateTime(){
 
 	mLabel->setPos(mapToScene(mLabelPos));
 	mElapsed = mRaceTime.elapsed();
-	mTime.setHMS(0,0,0,0);
 	mTime = mTime.addMSecs(mElapsed);
 	mLabel->setPlainText(mTime.toString("mm:ss:z"));
 }

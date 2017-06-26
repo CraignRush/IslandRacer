@@ -6,7 +6,7 @@
 
 Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
 {
-    // width and height/length flipped because the image is loaded into pixmap ratated with 90° (angle will be later coreected)
+	// width and height/length flipped because the image is loaded into pixmap rotated with 90° (angle will be later coreected)
     setPixmap(QPixmap(":/images/images/car1.png").scaled(CAR_LENGTH*PX_TO_M_RATIO, CAR_WIDTH*PX_TO_M_RATIO));
     //setScale(0.05);
 	ensureVisible(QRectF(), 300, 300);

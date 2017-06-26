@@ -48,7 +48,7 @@ private:
 	void updateTime();
 
 public:
-	World(int,int);
+	World(int width,int height);
 	//World(int width, int height, int level);
     ~World();
     void keyPressEvent(QKeyEvent * keyEvent);
