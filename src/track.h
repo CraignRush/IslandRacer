@@ -28,6 +28,7 @@ public:
     //Track(int width, int height, QImage background, QImage grayImage);
     Underground getUnderground(int x, int y);
     void updateCheckpoints(QGraphicsPixmapItem* item);
+    QPointF getLastCheckpointPosition();
     void loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, QPoint* position_list, double* angle_list);
 
 };

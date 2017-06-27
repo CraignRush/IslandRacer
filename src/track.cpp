@@ -76,6 +76,11 @@ void Track::updateCheckpoints(QGraphicsPixmapItem* item)
 
 }
 
+QPointF Track::getLastCheckpointPosition()
+{
+    return mCheckpoints->getLastCheckpointPosition();
+}
+
 void Track::loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, QPoint* position_list, double* angle_list)
 {
     // set variables

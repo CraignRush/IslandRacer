@@ -12,7 +12,7 @@ World::World(int width, int height)
 
 	showFullScreen();
 
-	mFps = 50;
+    mFps = 25;
 	mCurrentInputState = None;
 
 	// Create Box2D world object (zero gravity)
@@ -158,7 +158,6 @@ void World::gameLoop()
 	mTrack->updateCheckpoints(mCar);
 	mCar->render();
 	updateTime();
-
 }
 
 void World::startLoop()
@@ -342,7 +341,8 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
 void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle)
 {
 	mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpoint_list, angle_list);
-	mCar->startPosition(carPosition.x(), carPosition.y(), carAngle);
+    //mCar->setPosition(carPosition.x(), carPosition.y(), carAngle);
+    centerOn(mCar);
 
 	// Init variables for start sequence
 	Opacity = 1.0f;

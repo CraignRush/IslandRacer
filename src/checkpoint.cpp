@@ -71,8 +71,10 @@ void Checkpoint::CheckCheckpoint(QGraphicsPixmapItem* car)
         {
             mCheckpointcounter++;
 
-            if(i==mNumberOfCheckpoints-1) mCheckpointcounter=0;
-            if(i==0) mLapcounter++;
+            if(i==mNumberOfCheckpoints-1)
+                mCheckpointcounter=0;
+            if(i==0)
+                mLapcounter++;
 
             qDebug() << "Checkpoint: " << mCheckpointcounter;
             qDebug() << "Lap: " << mLapcounter;
@@ -83,4 +85,23 @@ void Checkpoint::CheckCheckpoint(QGraphicsPixmapItem* car)
 int Checkpoint::GetNumberOfCheckpoints()
 {
     return mNumberOfCheckpoints;
+}
+
+QPointF Checkpoint::getLastCheckpointPosition()
+{
+    if(mCheckpointcounter == 0)
+    {
+        if(mLapcounter == 0)
+        {
+            return mCheckpoints[0].pos();
+        }
+        else
+        {
+            return mCheckpoints[mNumberOfCheckpoints-1].pos();
+        }
+    }
+    else
+    {
+        return mCheckpoints[mCheckpointcounter-1].pos();
+    }
 }

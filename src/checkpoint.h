@@ -7,18 +7,20 @@
 
 class Checkpoint : QGraphicsRectItem
 {
+private:
+    int mCheckpointcounter;
+    int mNumberOfCheckpoints;
+    int mLapcounter;
+    QGraphicsRectItem* mCheckpoints;
+
 public:
     //Checkpoint();
     Checkpoint(int checkpointCount, QPoint* position_list, double* angle_list);
     QGraphicsRectItem* GetCheckpoint(int index);
     void CheckCheckpoint(QGraphicsPixmapItem*);
     int GetNumberOfCheckpoints();
+    QPointF getLastCheckpointPosition();
 
-private:
-    int mCheckpointcounter;
-    int mNumberOfCheckpoints;
-    int mLapcounter;
-    QGraphicsRectItem* mCheckpoints;
 };
 
 #endif // CHECKPOINT_H
