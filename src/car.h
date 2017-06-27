@@ -36,15 +36,15 @@ private:
 	//! max steering lock angle (default at pi/3)
 	const float MAX_STEER_ANGLE = (float)M_PI/3.0f;
     const float STEER_SPEED = 3.0f;         //5.0f;
-    const float HORSEPOWERS = 1800.0f;       //240.0f;
-    const float MAX_LATERAL_IMPULSE = 1.7f; //1.7f; //! for drifting :D
-    const float MAX_TORQUE = 240.0f;
-    const b2Vec2 CAR_STARTING_POS = b2Vec2(0.0f,0.0f);
+    const float HORSEPOWERS = 5000.0f;       //240.0f;
+    const float MAX_LATERAL_IMPULSE = 7.0f; //1.7f; //! for drifting :D
+    const float MAX_TORQUE = 100.0f;
+    //const b2Vec2 CAR_STARTING_POS = b2Vec2(0.0f,0.0f);
 
 
     // car constants
     const float CAR_LENGTH = 4.4f;
-    const float CAR_WIDTH = 2.0f;
+    const float CAR_WIDTH = 2.0f; //! Total Car Weight
     const float CAR_WEIGHT = 650.0f;
     const float TYRE_LENGTH = 0.5f;
     const float TYRE_WIDTH = 0.245f;
@@ -61,6 +61,8 @@ private:
 	float mEngineSpeed =0.0f;
 	float mSteeringAngle = 0.0f;
 	float mSpeed;
+
+    b2Vec2 mCarPosition;
 
 	//! b2World Objects
     b2World *mWorld;
