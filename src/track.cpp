@@ -58,7 +58,10 @@ Track::Track(int width, int height, QImage background, QImage grayImage)
 
 Underground Track::getUnderground(int x, int y)
 {
-    QColor pixelColor = mGrayImage.pixelColor(x, y);
+    QRgb pixelRgb = mGrayImage.pixel(x, y);
+    QColor pixelColor(pixelRgb);
+
+    //QColor pixelColor = mGrayImage.pixelColor(x, y);
     //int gray = pixelColor.value();
     switch(pixelColor.value())
     {
