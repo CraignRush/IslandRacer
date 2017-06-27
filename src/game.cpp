@@ -123,7 +123,7 @@ void Game::loadCircuit(Circuit circuit)
         mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, position_list, angle_list, carPosition, carAngle);
 
         // show window on top
-        mWorld->show();
+        mWorld->showFullScreen();
         mWorld->raise();
         mWorld->activateWindow();
 
