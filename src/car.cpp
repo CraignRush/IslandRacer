@@ -259,7 +259,7 @@ void Car::setPosition(int x, int y, double angle)
     bodyDef->linearDamping = 1;
     bodyDef->angularDamping = 7;
     bodyDef->position = mCarPosition;
-    bodyDef->angle = angle;
+   // bodyDef->angle = angle;
 
     //! Add Body to the world
     mBody = mWorld->CreateBody(bodyDef);
@@ -269,13 +269,13 @@ void Car::setPosition(int x, int y, double angle)
     leftWheelDef->type = b2_dynamicBody;
     leftWheelDef->position = mCarPosition;
     leftWheelDef->position +=mLeftFrontWheelPosition;
-    leftWheelDef->angle = angle;
+	//leftWheelDef->angle = angle;
 
     b2BodyDef *rightWheelDef = new b2BodyDef();
     rightWheelDef->type = b2_dynamicBody;
     rightWheelDef->position = mCarPosition;
     rightWheelDef->position += mRightFrontWheelPosition;
-    rightWheelDef->angle = angle;
+	//rightWheelDef->angle = angle;
 
     b2BodyDef *leftRearWheelDef = new b2BodyDef();
     leftRearWheelDef->type = b2_dynamicBody;
@@ -352,6 +352,8 @@ void Car::setPosition(int x, int y, double angle)
     //! Add rear wheel joint to the world
     mLeftRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(leftRearJointDef);
     mRightRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(rightRearJointDef);
+
+	mBody->SetTransform(mCarPosition,angle);
 
     // delete tmp vars
     delete bodyDef;

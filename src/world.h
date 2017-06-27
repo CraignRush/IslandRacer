@@ -44,10 +44,10 @@ private:
 	QTime mTime;					//! for translating ms dynamically into mm:ss.zzz
 	QString mTimeText;
 	QString mLapText;
-	int mLaps;
+	int mLaps = 1;
 	QElapsedTimer mPauseTime;		//! Computes the time of pause pressed
-
 	void updateOverlay();
+	QString mLapTime[3];
 
 public:
 	World(int width,int height);
@@ -60,6 +60,7 @@ public:
 public slots:
 	void gameLoop();
 	void startLoop();
+	void saveLapTime();
 };
 
 #endif // WORLD_H

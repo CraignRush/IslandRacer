@@ -175,7 +175,7 @@ void World::gameLoop()
 
 	mCar->computeUserInput(mCurrentInputState);
 	mCar->updatePosition();
-	mLaps = mTrack->updateCheckpoints(mCar);
+	mTrack->updateCheckpoints(mCar);
 	mCar->render();
 
 	updateOverlay();
@@ -219,15 +219,31 @@ void World::startLoop()
 
 void World::updateOverlay(){
 
-	mElapsed = mRaceTime.restart();
+	mElapsed = mRaceTime.elapsed();
+	mTime.setHMS(0,0,0,0);
 	mTime = mTime.addMSecs(mElapsed);
-	mTimeLabel->setPlainText(mTimeText + mTime.toString("mm:ss.z"));
+	mTimeLabel->setHtml(QString("<div style='background:rgba(255, 255, 255, 7%);'>") +mTimeText + mTime.toString("mm:ss.z") + QString("</div>"));
 	mTimeLabel->setPos(mapToScene(mTimeLabelPos));
 
-	mLapLabel->setPlainText(mLapText + QString::number(mLaps) + "/3"); //TODO Optimize the method to get the lap count
+	mLapLabel->setHtml(QString("<div style='background:rgba(255, 255, 255, 7%);'>") + mLapText + QString::number(mLaps) + "/3" + QString("</div>"));
+	//mLapLabel->setPlainText(mLapText + QString::number(mLaps) + "/3"); //TODO Optimize the method to get the lap count
 	mLapLabel->setPos(mapToScene(mLapLabelPos));
 	/*qDebug() << mElapsed;
 	qDebug() << mTime;*/
+}
+
+void World::saveLapTime(){
+	mLapTime[mLaps - 1] = mTime.toString("mm:ss.z");
+	if(mLaps < 3){
+	mLaps++;
+	} else {
+		// check for highscore
+		// if new highscore init Name Dialogue
+		// exit_game
+	}
+	mElapsed = 0;
+	mRaceTime.restart();
+
 }
 
 
@@ -387,7 +403,7 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
 void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle)
 {
 	mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpoint_list, angle_list);
-    //mCar->setPosition(carPosition.x(), carPosition.y(), carAngle);
+	mCar->setPosition(carPosition.x(), carPosition.y(), carAngle);
     centerOn(mCar);
 
 	// Init variables for start sequence
@@ -407,7 +423,6 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 	//Set starting position
 	mTimeLabelPos.setX(mWidth - (mTimeLabel->boundingRect().width() + 50));
 	mTimeLabelPos.setY(mHeight - (mTimeLabel->boundingRect().height() + 20));
-	//mTimeLabel->setPos(mapToScene(mLabelPos));
 	//Add it to track
 	mTrack->addItem(mTimeLabel);
 
@@ -422,6 +437,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 	mLapLabelPos.setX(mWidth - (mLapLabel->boundingRect().width() + 100));
 	mLapLabelPos.setY(mHeight -(mLapLabel->boundingRect().height() + 80));
 	mTrack->addItem(mLapLabel);
+	connect(mTrack,SIGNAL(LapChanged()),this,SLOT(saveLapTime()));
 
 	// Init and start timer for game loop and start loop
 	mStartTimer = new QTimer(this);
