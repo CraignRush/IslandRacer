@@ -105,3 +105,8 @@ QPointF Checkpoint::getLastCheckpointPosition()
         return mCheckpoints[mCheckpointcounter-1].pos();
     }
 }
+
+int Checkpoint::GetLaps()
+{
+	return mLapcounter;
+}

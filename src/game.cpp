@@ -89,8 +89,8 @@ void Game::loadCircuit(Circuit circuit)
             }
             if(list.value(0) == "CHECKPOINTS")
             {
-                position_list = (QPoint*) malloc(checkpointCount * sizeof(QPoint));
-                angle_list = (double*) malloc(checkpointCount * sizeof(double));
+                position_list = (QPoint*) malloc(checkpointCount * 2 * sizeof(QPoint));
+                angle_list = (double*) malloc(checkpointCount * 2 * sizeof(double));
 
                 list2 = list.value(1).split(QRegExp("(\\;)"));
                 for(int a = 0; a < list2.length(); a++)
@@ -127,7 +127,10 @@ void Game::loadCircuit(Circuit circuit)
         mWorld->raise();
         mWorld->activateWindow();
 
-        //free(position_list);
-        //free(angle_list);
+        if(position_list != NULL)
+            free(position_list);
+
+        if(angle_list != NULL)
+            free(angle_list);
     }
 }

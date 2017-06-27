@@ -20,7 +20,7 @@ public:
     void CheckCheckpoint(QGraphicsPixmapItem*);
     int GetNumberOfCheckpoints();
     QPointF getLastCheckpointPosition();
-
+	int GetLaps();
 };
 
 #endif // CHECKPOINT_H
