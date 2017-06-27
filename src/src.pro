@@ -55,3 +55,7 @@ RESOURCES += \
 
 FORMS += \
     mainmenu.ui
+
+# set icon for mac and windows
+ICON = Icon.icns
+RC_ICONS = Icon.ico

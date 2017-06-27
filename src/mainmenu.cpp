@@ -68,25 +68,25 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->mainLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->mainLogo->setStyleSheet("QLabel{background: transparent;}");
     ui->main2Level1->setIcon(play);
-    ui->main2Level1->setIconSize(QSize(0.9 * ui->main2Level1->width(),0.45 * ui->main2Level1->width()));
+    ui->main2Level1->setIconSize(QSize(0.9 * ui->main2Level1->width(),0.4 * ui->main2Level1->width()));
     ui->main2Level1->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2Garage->setIcon(garage);
-    ui->main2Garage->setIconSize(QSize(0.9 * ui->main2Garage->width(),0.45 * ui->main2Garage->width()));
+    ui->main2Garage->setIconSize(QSize(0.9 * ui->main2Garage->width(),0.4 * ui->main2Garage->width()));
     ui->main2Garage->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2Highscore->setIcon(highscore);
-    ui->main2Highscore->setIconSize(QSize(0.9 * ui->main2Highscore->width(),0.45 * ui->main2Highscore->width()));
+    ui->main2Highscore->setIconSize(QSize(0.9 * ui->main2Highscore->width(),0.4 * ui->main2Highscore->width()));
     ui->main2Highscore->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2Settings->setIcon(settings);
-    ui->main2Settings->setIconSize(QSize(0.9 * ui->main2Settings->width(),0.45 * ui->main2Settings->width()));
+    ui->main2Settings->setIconSize(QSize(0.9 * ui->main2Settings->width(),0.4 * ui->main2Settings->width()));
     ui->main2Settings->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2Manual->setIcon(manual);
-    ui->main2Manual->setIconSize(QSize(0.9 * ui->main2Manual->width(),0.45 * ui->main2Manual->width()));
+    ui->main2Manual->setIconSize(QSize(0.9 * ui->main2Manual->width(),0.4 * ui->main2Manual->width()));
     ui->main2Manual->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2Credits->setIcon(credits);
-    ui->main2Credits->setIconSize(QSize(0.9 * ui->main2Credits->width(),0.45 * ui->main2Credits->width()));
+    ui->main2Credits->setIconSize(QSize(0.9 * ui->main2Credits->width(),0.4 * ui->main2Credits->width()));
     ui->main2Credits->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2QuitGame->setIcon(quit);
-    ui->main2QuitGame->setIconSize(QSize(0.9 * ui->main2QuitGame->width(),0.45 * ui->main2QuitGame->width()));
+    ui->main2QuitGame->setIconSize(QSize(0.9 * ui->main2QuitGame->width(),0.4 * ui->main2QuitGame->width()));
     ui->main2QuitGame->setStyleSheet("QPushButton{background: transparent;}");
 
 
