@@ -74,11 +74,15 @@ Underground Track::getUnderground(int x, int y)
     return Asphalt;
 }
 
-int Track::updateCheckpoints(QGraphicsPixmapItem* item)
+void Track::updateCheckpoints(QGraphicsPixmapItem* item)
 {
     if(!(collidingItems(item).isEmpty()))
         mCheckpoints->CheckCheckpoint(item);
-	return mCheckpoints->GetLaps();
+	int checkpointLaps = mCheckpoints->GetLaps();
+	if(mLapNumber != checkpointLaps && checkpointLaps > 0){
+		emit LapChanged();
+		mLapNumber++;
+	}
 }
 
 QPointF Track::getLastCheckpointPosition()

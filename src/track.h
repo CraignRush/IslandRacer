@@ -2,6 +2,7 @@
 #define TRACK_H
 
 #include <QGraphicsScene>
+#include <QObject>
 #include "checkpoint.h"
 
 enum Underground
@@ -12,14 +13,17 @@ enum Underground
     Water = 249 // (Monza), 252
 };
 
-class Track : public QGraphicsScene
+class Track :public QGraphicsScene
 {
+	Q_OBJECT
 private:
     int mWidth;
     int mHeight;
     QImage mBackground;
     QImage mGrayImage;
     Checkpoint* mCheckpoints;
+
+	int mLapNumber = 0;
 
 public:
     Track();
@@ -28,8 +32,10 @@ public:
     //Track(int width, int height, QImage background, QImage grayImage);
     Underground getUnderground(int x, int y);
     QPointF getLastCheckpointPosition();
-    int updateCheckpoints(QGraphicsPixmapItem* item);
+	void updateCheckpoints(QGraphicsPixmapItem* item);
     void loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, QPoint* position_list, double* angle_list);
+signals:
+	void LapChanged();
 };
 
 #endif // TRACK_H
