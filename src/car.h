@@ -62,7 +62,7 @@ private:
 	float mSteeringAngle = 0.0f;
 	float mSpeed;
 
-    b2Vec2 mCarPosition;
+    b2Vec2 mCarPosition = b2Vec2(110.0f, 50.0f);
 
 	//! b2World Objects
     b2World *mWorld;

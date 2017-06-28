@@ -387,7 +387,7 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
 void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle)
 {
 	mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpoint_list, angle_list);
-    //mCar->setPosition(carPosition.x(), carPosition.y(), carAngle);
+    mCar->setPosition(carPosition.x(), carPosition.y(), carAngle);
     centerOn(mCar);
 
 	// Init variables for start sequence
