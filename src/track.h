@@ -7,10 +7,10 @@
 
 enum Underground
 {
-    Asphalt = 0, // (Monza), 4
-    Grass = 112, // (Monza), 114
-    Sand = 188, // (Monza), 185
-    Water = 249 // (Monza), 252
+    Asphalt = 0,
+    Grass = 114,
+    Sand = 188,
+    Water = 252
 };
 
 class Track :public QGraphicsScene

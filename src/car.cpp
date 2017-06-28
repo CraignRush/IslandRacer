@@ -44,7 +44,7 @@ Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
 
 	//! define shapes of car main body and wheels
 	b2PolygonShape *boxDef = new b2PolygonShape();
-	boxDef->SetAsBox(CAR_WIDTH/2.0, CAR_LENGTH/2.0);
+    boxDef->SetAsBox(CAR_WIDTH/2.0f, CAR_LENGTH/2.0f);
     mBody->CreateFixture(boxDef,(CAR_WEIGHT - 4*TYRE_WEIGHT) / (CAR_WIDTH*CAR_LENGTH));
 
 	//Left Wheel shape
@@ -118,7 +118,7 @@ Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
 
 void Car::render()
 {
-	//! Get position of main car body and scale 1m = 10 px
+    //! Get position of main car body and scale 1m = 20 px
 	b2Vec2 pos = mBody->GetPosition();
 	setPos((pos.x - (CAR_WIDTH / 2.0f)) * PX_TO_M_RATIO, (pos.y - (CAR_LENGTH / 2.0f)) * PX_TO_M_RATIO);
 	setRotation(mBody->GetAngle() * 360.0 / (2.0 * 3.141592) + CAR_ROTATION_ANGLE);
@@ -249,7 +249,7 @@ void Car::setPosition(int x, int y, double angle)
     bodyDef->linearDamping = 1;
     bodyDef->angularDamping = 7;
     bodyDef->position = mCarPosition;
-   // bodyDef->angle = angle;
+    bodyDef->angle = angle;
 
     //! Add Body to the world
     mBody = mWorld->CreateBody(bodyDef);
