@@ -7,6 +7,9 @@ Game::Game()
 {
     mWorld = new World(1920,1080);
     mWorld->hide();
+	mPlayer = new Player;
+	//connect end race signal to player class
+	connect(mWorld,SIGNAL(RaceFinished(QString[])),mPlayer,SLOT(endRaceDialog(QString[])));
 }
 
 Game::Game(int screenWidth, int screenHeight, bool fullscreen)

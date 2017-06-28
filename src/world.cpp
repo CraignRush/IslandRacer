@@ -11,6 +11,7 @@ World::World(int width, int height)
 	//scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
 
     showFullScreen();
+	setWindowModality(Qt::ApplicationModal);
 
 	mLapLabel = NULL;
 	mTimeLabel = NULL;
@@ -234,12 +235,11 @@ void World::updateOverlay(){
 
 void World::saveLapTime(){
 	mLapTime[mLaps - 1] = mTime.toString("mm:ss.z");
-	if(mLaps < 3){
+	if(mLaps == -1){ //default mLaps < 3, for debugging
 	mLaps++;
 	} else {
-		// check for highscore
-		// if new highscore init Name Dialogue
-		// exit_game
+		StopGame();
+		emit RaceFinished(&mLapTime[3]);
 	}
 	mElapsed = 0;
 	mRaceTime.restart();
@@ -444,4 +444,13 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 	connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
 	mCar->render(); // necessary to init start position of the car
 	mStartTimer->start(10);
+}
+
+void World::StopGame(){
+	mStartTimer->stop();
+}
+
+void World::ResumeGame(){
+	mStartTimer->start();
+	mRaceTime.restart();
 }

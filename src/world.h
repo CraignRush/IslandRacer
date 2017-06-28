@@ -10,6 +10,7 @@
 #include <QKeyEvent>
 #include "track.h"
 #include "car.h"
+#include "player.h"
 
 
 class World : public QGraphicsView
@@ -56,11 +57,16 @@ public:
     void keyPressEvent(QKeyEvent * keyEvent);
     void keyReleaseEvent(QKeyEvent * keyEvent);
     void loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle);
+	void StopGame();
+	void ResumeGame();
 
 public slots:
 	void gameLoop();
 	void startLoop();
 	void saveLapTime();
+
+signals:
+	void RaceFinished(QString mLapTime[]);
 };
 
 #endif // WORLD_H

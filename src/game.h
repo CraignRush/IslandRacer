@@ -1,7 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "QObject"
 #include "world.h"
+#include "player.h"
 
 enum Circuit
 {
@@ -10,10 +12,12 @@ enum Circuit
     YasMarina
 };
 
-class Game
+class Game: public QObject
 {
+	Q_OBJECT
 private:
     World* mWorld;
+	Player* mPlayer;
 
 public:
     Game();
