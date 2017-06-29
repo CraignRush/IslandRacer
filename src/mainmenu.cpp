@@ -1,8 +1,6 @@
 #include "mainmenu.h"
 #include "ui_mainmenu.h"
 #include "qscreen.h"
-#include <QMediaPlayer>
-#include <QMediaPlaylist>
 
 mainMenu::mainMenu(QWidget *parent) :
     QMainWindow(parent),
@@ -37,8 +35,8 @@ mainMenu::mainMenu(QWidget *parent) :
 
     QMediaPlayer *backgroundmusic = new QMediaPlayer();
     backgroundmusic->setPlaylist(playlist);
-    backgroundmusic->play();
     backgroundmusic->setVolume(80);
+    backgroundmusic->play();
 
     // Set Pixmaps
     QPixmap logo(":/images/images/Logo.png");
@@ -293,21 +291,32 @@ mainMenu::~mainMenu()
  *          7 - Manual
  *          8 - Credits
 */
+//  Sound for buttons
+void mainMenu::playbuttonsound()
+{
+QMediaPlayer *buttonsound = new QMediaPlayer();
+buttonsound->setMedia(QUrl("qrc:/sounds/sounds/buttonsound.wav"));
+buttonsound->setVolume(100);
+buttonsound->play();
+}
 
 // Buttons from the main menu
 
 void mainMenu::on_main2Level1_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(1);
 }
 
 void mainMenu::on_main2Garage_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(4);
 }
 
 void mainMenu::on_main2Highscore_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(5);
 
     // define header of highscoretables
@@ -424,21 +433,25 @@ void mainMenu::on_main2Highscore_clicked()
 
 void mainMenu::on_main2Settings_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(6);
 }
 
 void mainMenu::on_main2Manual_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(7);
 }
 
 void mainMenu::on_main2Credits_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(8);
 }
 
 void mainMenu::on_main2QuitGame_clicked()
 {
+    playbuttonsound();
     QCoreApplication::quit();
 }
 
@@ -446,21 +459,25 @@ void mainMenu::on_main2QuitGame_clicked()
 
 void mainMenu::on_level1_2Main_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
 }
 
 void mainMenu::on_level1_2Level3_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(3);
 }
 
 void mainMenu::on_level1_2Level2_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(2);
 }
 
 void mainMenu::on_level1_2Play_clicked()
 {
+    playbuttonsound();
     //start Level 1
     //world = new World(screenWidth,screenHeight,1);
     //world->showFullScreen();
@@ -472,21 +489,25 @@ void mainMenu::on_level1_2Play_clicked()
 
 void mainMenu::on_level2_2Main_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
 }
 
 void mainMenu::on_level2_2Level1_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(1);
 }
 
 void mainMenu::on_level2_2Level3_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(3);
 }
 
 void mainMenu::on_level2_2Play_clicked()
 {
+    playbuttonsound();
     //start Level 2
     //world = new World(screenWidth,screenHeight,2);
     //world->showFullScreen();
@@ -498,21 +519,25 @@ void mainMenu::on_level2_2Play_clicked()
 
 void mainMenu::on_level3_2Main_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
 }
 
 void mainMenu::on_level3_2Level2_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(2);
 }
 
 void mainMenu::on_level3_2Level1_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(1);
 }
 
 void mainMenu::on_level3_2Play_clicked()
 {
+    playbuttonsound();
     //start Level 3
     //world = new World(screenWidth,screenHeight,3);
     //world->showFullScreen();
@@ -524,6 +549,7 @@ void mainMenu::on_level3_2Play_clicked()
 
 void mainMenu::on_garage2Main_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -531,6 +557,7 @@ void mainMenu::on_garage2Main_clicked()
 
 void mainMenu::on_highscore2Main_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -538,6 +565,7 @@ void mainMenu::on_highscore2Main_clicked()
 
 void mainMenu::on_settings2Main_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -545,6 +573,7 @@ void mainMenu::on_settings2Main_clicked()
 
 void mainMenu::on_manual2Main_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -552,6 +581,7 @@ void mainMenu::on_manual2Main_clicked()
 
 void mainMenu::on_credits2Main_clicked()
 {
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
 }
 

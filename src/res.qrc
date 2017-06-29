@@ -32,5 +32,6 @@
     </qresource>
     <qresource prefix="/sounds">
         <file>sounds/backgroundmusic.wav</file>
+        <file>sounds/buttonsound.wav</file>
     </qresource>
 </RCC>

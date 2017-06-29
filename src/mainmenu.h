@@ -4,6 +4,8 @@
 #include <QMainWindow>
 //#include "world.h"
 #include "game.h"
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 namespace Ui {
 class mainMenu;
@@ -84,6 +86,8 @@ private slots:
 	void on_garageHandlingSlider_valueChanged(int value);
 
 	void on_garageHandlingSlider_sliderReleased();
+
+    void playbuttonsound();
 
 private:
 	Ui::mainMenu *ui;
