@@ -8,6 +8,7 @@ World::World(int width, int height)
 	// Set dimensions
 	mWidth = width;
 	mHeight = height;
+    setWindowTitle(tr("IslandRacer"));
 	//scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
 
     showFullScreen();
@@ -17,7 +18,7 @@ World::World(int width, int height)
     mStartTimer = NULL;
     mCounter = NULL;
 
-    mFps = 25;
+    mFps = 50;
 	mCurrentInputState = None;
 
 	// Create Box2D world object (zero gravity)

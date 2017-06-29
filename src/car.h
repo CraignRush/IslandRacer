@@ -36,7 +36,7 @@ private:
 	//! max steering lock angle (default at pi/3)
 	const float MAX_STEER_ANGLE = (float)M_PI/3.0f;
     const float STEER_SPEED = 3.0f;         //5.0f;
-    const float HORSEPOWERS = 5000.0f;       //240.0f;
+    const float HORSEPOWERS = 8000.0f;       //240.0f;
     const float MAX_LATERAL_IMPULSE = 7.0f; //1.7f; //! for drifting :D
     const float MAX_TORQUE = 100.0f;
     //const b2Vec2 CAR_STARTING_POS = b2Vec2(0.0f,0.0f);

@@ -122,7 +122,7 @@ void Car::render()
 	b2Vec2 pos = mBody->GetPosition();
 	setPos((pos.x - (CAR_WIDTH / 2.0f)) * PX_TO_M_RATIO, (pos.y - (CAR_LENGTH / 2.0f)) * PX_TO_M_RATIO);
 	setRotation(mBody->GetAngle() * 360.0 / (2.0 * 3.141592) + CAR_ROTATION_ANGLE);
-    ensureVisible(QRectF(), 500, 400);
+    ensureVisible(QRectF(), 800, 400);
 }
 
 
