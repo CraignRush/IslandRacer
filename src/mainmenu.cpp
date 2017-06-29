@@ -1,6 +1,8 @@
 #include "mainmenu.h"
 #include "ui_mainmenu.h"
 #include "qscreen.h"
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 mainMenu::mainMenu(QWidget *parent) :
     QMainWindow(parent),
@@ -27,6 +29,16 @@ mainMenu::mainMenu(QWidget *parent) :
     // Set Backgrounds
     QString backgroundImage( "background-image: url(:/images/images/palmtree1_1920_1080.jpg);" );
     QString garageImage( "background-image: url(:/images/images/Garagehell.jpg);" );
+
+    // Set Backgroundsound
+    QMediaPlaylist *playlist = new QMediaPlaylist();
+    playlist->addMedia(QUrl("qrc:/sounds/sounds/backgroundmusic.wav"));
+    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+
+    QMediaPlayer *backgroundmusic = new QMediaPlayer();
+    backgroundmusic->setPlaylist(playlist);
+    backgroundmusic->play();
+    backgroundmusic->setVolume(80);
 
     // Set Pixmaps
     QPixmap logo(":/images/images/Logo.png");

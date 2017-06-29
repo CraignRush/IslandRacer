@@ -59,3 +59,6 @@ FORMS += \
 # set icon for mac and windows
 ICON = Icon.icns
 RC_ICONS = Icon.ico
+
+# set multimedia for sounds
+QT += multimedia

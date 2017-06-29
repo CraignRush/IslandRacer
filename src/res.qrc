@@ -30,4 +30,7 @@
         <file>Hockenheimring.circuit</file>
         <file>YasMarina.circuit</file>
     </qresource>
+    <qresource prefix="/sounds">
+        <file>sounds/backgroundmusic.wav</file>
+    </qresource>
 </RCC>
