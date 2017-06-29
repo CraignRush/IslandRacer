@@ -14,6 +14,7 @@ mainMenu::mainMenu(QWidget *parent) :
     accelerationValue = 0;
     handlingValue = 0;
     topspeedValue = 0;
+    active=1;
 
     // Get Screensize
     QScreen *screen = QGuiApplication::primaryScreen();
@@ -28,15 +29,20 @@ mainMenu::mainMenu(QWidget *parent) :
     QString backgroundImage( "background-image: url(:/images/images/palmtree1_1920_1080.jpg);" );
     QString garageImage( "background-image: url(:/images/images/Garagehell.jpg);" );
 
-    // Set Backgroundsound
-    QMediaPlaylist *playlist = new QMediaPlaylist();
+    // Set und start playing Backgroundmusic
+    playlist = new QMediaPlaylist();
     playlist->addMedia(QUrl("qrc:/sounds/sounds/backgroundmusic.wav"));
     playlist->setPlaybackMode(QMediaPlaylist::Loop);
 
-    QMediaPlayer *backgroundmusic = new QMediaPlayer();
+    backgroundmusic = new QMediaPlayer();
     backgroundmusic->setPlaylist(playlist);
     backgroundmusic->setVolume(80);
     backgroundmusic->play();
+
+    // Set Buttonsound
+    buttonsound = new QMediaPlayer();
+    buttonsound->setMedia(QUrl("qrc:/sounds/sounds/buttonsound.wav"));
+    buttonsound->setVolume(100);
 
     // Set Pixmaps
     QPixmap logo(":/images/images/Logo.png");
@@ -269,8 +275,6 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->creditsLabel->setStyleSheet("QLabel{background: transparent; color: white}");
     ui->creditsLabel->setFont(GillSansMT);
     ui->creditsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
-
 }
 
 mainMenu::~mainMenu()
@@ -291,17 +295,30 @@ mainMenu::~mainMenu()
  *          7 - Manual
  *          8 - Credits
 */
+
+// Setbackgroundsound
+void mainMenu::setbackgroundsound()
+{
+    if(active==1)
+    {
+        backgroundmusic->play();
+    }
+    else
+        if(active==0)
+        {
+            backgroundmusic->stop();
+        }
+}
+
+
 //  Sound for buttons
 void mainMenu::playbuttonsound()
 {
-QMediaPlayer *buttonsound = new QMediaPlayer();
-buttonsound->setMedia(QUrl("qrc:/sounds/sounds/buttonsound.wav"));
-buttonsound->setVolume(100);
-buttonsound->play();
+    if(active==1)
+      buttonsound->play();
 }
 
 // Buttons from the main menu
-
 void mainMenu::on_main2Level1_clicked()
 {
     playbuttonsound();
@@ -674,4 +691,18 @@ void mainMenu::on_garageHandlingSlider_sliderReleased()
     }
 }
 
-// Highscore Configeration
+// Sound Configeration
+
+void mainMenu::on_settingsSoundOn_clicked()
+{
+    active=1;
+    playbuttonsound();
+    setbackgroundsound();
+}
+
+void mainMenu::on_settingsSoundOff_clicked()
+{
+    playbuttonsound();
+    active=0;
+    setbackgroundsound();
+}

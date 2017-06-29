@@ -25,6 +25,7 @@ public:
 
 	QFont GillSansMT;
 
+
 private slots:
 
 	void on_main2Credits_clicked();
@@ -87,7 +88,13 @@ private slots:
 
 	void on_garageHandlingSlider_sliderReleased();
 
+    void setbackgroundsound();
+
     void playbuttonsound();
+
+    void on_settingsSoundOn_clicked();
+
+    void on_settingsSoundOff_clicked();
 
 private:
 	Ui::mainMenu *ui;
@@ -100,6 +107,11 @@ private:
 	int handlingValue;
 	int topspeedValue;
 	int maximumValue;
+    int active;
+
+    QMediaPlayer *backgroundmusic;
+    QMediaPlaylist *playlist;
+    QMediaPlayer *buttonsound;
 
 };
 
