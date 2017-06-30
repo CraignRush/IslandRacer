@@ -75,11 +75,11 @@ void Player::updateFile()
 		list.removeLast();
 		file.close();
 
-		if(file.open(QIODevice::ReadWrite | QIODevice::Truncate |QIODevice::Text )){
+		if(file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text )){
 			for(int i = 0; i < 10; i++)	in << list.at(i) << "\n";
 		}
+		file.close();
 	}
-	file.close();
 }
 
 void Player::endRaceDialog(QString lapTimeArray[], QString totalTime)

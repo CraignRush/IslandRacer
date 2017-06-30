@@ -19,7 +19,7 @@ enum Circuit
 	YasMarina
 };
 
-class Player: public QFile
+class Player: public QObject
 {
 	Q_OBJECT
 private:
@@ -32,8 +32,6 @@ public:
     Player();
 	void updateFile();
 	void SetCircuit(Circuit circuit);
-protected:
-	friend void QIODevice::setOpenMode(OpenMode openMode);
 public slots:
 	void endRaceDialog(QString lapTimeArray[], QString totalTime);
 	void savePlayerName(QString name);
