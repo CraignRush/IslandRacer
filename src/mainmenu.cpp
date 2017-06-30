@@ -1,6 +1,8 @@
 #include "mainmenu.h"
 #include "ui_mainmenu.h"
 #include "qscreen.h"
+#include <QPixmap>
+#include <QPalette>
 
 mainMenu::mainMenu(QWidget *parent) :
     QMainWindow(parent),
@@ -24,12 +26,6 @@ mainMenu::mainMenu(QWidget *parent) :
 
     // Init game object with screen width/height and fullscreen mode
     game = new Game(screenWidth, screenHeight, true);
-
-    // Set Backgrounds
-    QString backgroundImage( "background-image: url(:/images/images/palmtree1_1920_1080.jpg);" );
-    QString garageImage( "background-image: url(:/images/images/Garagehell.jpg);" );
-    QString backgroundImageBig( "background-image: url(:/images/images/palmtree1_3840_2160.jpg);" );
-    QString garageImageBig( "background-image: url(:/images/images/GaragehellGross.jpg);" );
 
     // Set und start playing Backgroundmusic
     playlist = new QMediaPlaylist();
@@ -84,12 +80,20 @@ mainMenu::mainMenu(QWidget *parent) :
     GillSansMTTitle.setPointSize(30);
 
     // Items for all
-    if(screenWidth<=1980){
-        ui->centralWidget->setStyleSheet(backgroundImage);
-    }else{
-        ui->centralWidget->setStyleSheet(backgroundImageBig);
-    }
 
+	QPixmap bkgnd(":/images/images/palmtree1_3840_2160.jpg");
+	 bkgnd = bkgnd.scaled(QSize(screenWidth,screenHeight), Qt::IgnoreAspectRatio);
+	 QPalette palette;
+	 palette.setBrush(QPalette::Background, bkgnd);
+	 this->setPalette(palette);
+	 this->setAutoFillBackground(true);
+
+	 QPixmap bkgnd2(":/images/images/GaragehellGross.jpg");
+	  bkgnd2 = bkgnd2.scaled(QSize(screenWidth,screenHeight), Qt::IgnoreAspectRatio);
+	  QPalette palette2;
+	  palette2.setBrush(QPalette::Background, bkgnd2);
+	  ui->garage->setPalette(palette2);
+	  ui->garage->setAutoFillBackground(true);
 
     // Items in Menu
     ui->mainLogo->setPixmap(logo);
@@ -188,12 +192,8 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level3Trackpic->setPixmap(yasmarina);
 
     // Items in garage
-    if(screenWidth<=1980){
-        ui->garage->setStyleSheet(garageImage);
-    }else{
-        ui->garage->setStyleSheet(garageImageBig);
-    }
-    ui->garageLogo->setPixmap(logo);
+
+	ui->garageLogo->setPixmap(logo);
     ui->garageLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->garageLogo->setStyleSheet("QLabel{background: transparent;}");
     ui->garage2Main->setIcon(menu);
