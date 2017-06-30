@@ -28,6 +28,8 @@ mainMenu::mainMenu(QWidget *parent) :
     // Set Backgrounds
     QString backgroundImage( "background-image: url(:/images/images/palmtree1_1920_1080.jpg);" );
     QString garageImage( "background-image: url(:/images/images/Garagehell.jpg);" );
+    QString backgroundImageBig( "background-image: url(:/images/images/palmtree1_3840_2160.jpg);" );
+    QString garageImageBig( "background-image: url(:/images/images/GaragehellGross.jpg);" );
 
     // Set und start playing Backgroundmusic
     playlist = new QMediaPlaylist();
@@ -67,6 +69,11 @@ mainMenu::mainMenu(QWidget *parent) :
     QIcon credits(":/images/images/credits.png");
     QIcon quit(":/images/images/quit.png");
 
+    // Set Icon Sizes
+    QSize bigButton(QSize(0.9 * ui->main2Level1->width(),0.4 * ui->main2Level1->width()));
+    QSize smallButton(100,50);
+    QSize arrowButton(100,80);
+
     // Set Fonts
 	GillSansMT.setFamily("GillSansMT");
 	GillSansMT.setPointSize(20);
@@ -77,32 +84,37 @@ mainMenu::mainMenu(QWidget *parent) :
     GillSansMTTitle.setPointSize(30);
 
     // Items for all
-    ui->centralWidget->setStyleSheet(backgroundImage);
+    if(screenWidth<=1980){
+        ui->centralWidget->setStyleSheet(backgroundImage);
+    }else{
+        ui->centralWidget->setStyleSheet(backgroundImageBig);
+    }
+
 
     // Items in Menu
     ui->mainLogo->setPixmap(logo);
     ui->mainLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->mainLogo->setStyleSheet("QLabel{background: transparent;}");
     ui->main2Level1->setIcon(play);
-    ui->main2Level1->setIconSize(QSize(0.9 * ui->main2Level1->width(),0.4 * ui->main2Level1->width()));
+    ui->main2Level1->setIconSize(bigButton);
     ui->main2Level1->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2Garage->setIcon(garage);
-    ui->main2Garage->setIconSize(QSize(0.9 * ui->main2Garage->width(),0.4 * ui->main2Garage->width()));
+    ui->main2Garage->setIconSize(bigButton);
     ui->main2Garage->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2Highscore->setIcon(highscore);
-    ui->main2Highscore->setIconSize(QSize(0.9 * ui->main2Highscore->width(),0.4 * ui->main2Highscore->width()));
+    ui->main2Highscore->setIconSize(bigButton);
     ui->main2Highscore->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2Settings->setIcon(settings);
-    ui->main2Settings->setIconSize(QSize(0.9 * ui->main2Settings->width(),0.4 * ui->main2Settings->width()));
+    ui->main2Settings->setIconSize(bigButton);
     ui->main2Settings->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2Manual->setIcon(manual);
-    ui->main2Manual->setIconSize(QSize(0.9 * ui->main2Manual->width(),0.4 * ui->main2Manual->width()));
+    ui->main2Manual->setIconSize(bigButton);
     ui->main2Manual->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2Credits->setIcon(credits);
-    ui->main2Credits->setIconSize(QSize(0.9 * ui->main2Credits->width(),0.4 * ui->main2Credits->width()));
+    ui->main2Credits->setIconSize(bigButton);
     ui->main2Credits->setStyleSheet("QPushButton{background: transparent;}");
     ui->main2QuitGame->setIcon(quit);
-    ui->main2QuitGame->setIconSize(QSize(0.9 * ui->main2QuitGame->width(),0.4 * ui->main2QuitGame->width()));
+    ui->main2QuitGame->setIconSize(bigButton);
     ui->main2QuitGame->setStyleSheet("QPushButton{background: transparent;}");
 
 
@@ -111,16 +123,16 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level1Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->level1Logo->setStyleSheet("QLabel{background: transparent;}");
     ui->level1_2Level2->setIcon(rightArrow);
-    ui->level1_2Level2->setIconSize(QSize(100,80));
+    ui->level1_2Level2->setIconSize(arrowButton);
     ui->level1_2Level2->setStyleSheet("QPushButton{background: transparent;}");
     ui->level1_2Level3->setIcon(leftArrow);
-    ui->level1_2Level3->setIconSize(QSize(100,80));
+    ui->level1_2Level3->setIconSize(arrowButton);
     ui->level1_2Level3->setStyleSheet("QPushButton{background: transparent;}");
     ui->level1_2Main->setIcon(menu);
-    ui->level1_2Main->setIconSize(QSize(100,50));
+    ui->level1_2Main->setIconSize(smallButton);
     ui->level1_2Main->setStyleSheet("QPushButton{background: transparent;}");
     ui->level1_2Play->setIcon(play);
-    ui->level1_2Play->setIconSize(QSize(200,100));
+    ui->level1_2Play->setIconSize(bigButton);
     ui->level1_2Play->setStyleSheet("QPushButton{background: transparent;}");
     ui->level1Trackname->setStyleSheet("QLabel{background: transparent;}");
     ui->level1Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -134,16 +146,16 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level2Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->level2Logo->setStyleSheet("QLabel{background: transparent;}");
     ui->level2_2Level3->setIcon(rightArrow);
-    ui->level2_2Level3->setIconSize(QSize(100,80));
+    ui->level2_2Level3->setIconSize(arrowButton);
     ui->level2_2Level1->setStyleSheet("QPushButton{background: transparent;}");
     ui->level2_2Level1->setIcon(leftArrow);
-    ui->level2_2Level1->setIconSize(QSize(100,80));
+    ui->level2_2Level1->setIconSize(arrowButton);
     ui->level2_2Level3->setStyleSheet("QPushButton{background: transparent;}");
     ui->level2_2Main->setIcon(menu);
-    ui->level2_2Main->setIconSize(QSize(100,50));
+    ui->level2_2Main->setIconSize(smallButton);
     ui->level2_2Main->setStyleSheet("QPushButton{background: transparent;}");
     ui->level2_2Play->setIcon(play);
-    ui->level2_2Play->setIconSize(QSize(200,100));
+    ui->level2_2Play->setIconSize(bigButton);
     ui->level2_2Play->setStyleSheet("QPushButton{background: transparent;}");
     ui->level2Trackname->setStyleSheet("QLabel{background: transparent;}");
     ui->level2Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -157,16 +169,16 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level3Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->level3Logo->setStyleSheet("QLabel{background: transparent;}");
     ui->level3_2Level1->setIcon(rightArrow);
-    ui->level3_2Level1->setIconSize(QSize(100,80));
+    ui->level3_2Level1->setIconSize(arrowButton);
     ui->level3_2Level2->setStyleSheet("QPushButton{background: transparent;}");
     ui->level3_2Level2->setIcon(leftArrow);
-    ui->level3_2Level2->setIconSize(QSize(100,80));
+    ui->level3_2Level2->setIconSize(arrowButton);
     ui->level3_2Level1->setStyleSheet("QPushButton{background: transparent;}");
     ui->level3_2Main->setIcon(menu);
-    ui->level3_2Main->setIconSize(QSize(100,50));
+    ui->level3_2Main->setIconSize(smallButton);
     ui->level3_2Main->setStyleSheet("QPushButton{background: transparent;}");
     ui->level3_2Play->setIcon(play);
-    ui->level3_2Play->setIconSize(QSize(200,100));
+    ui->level3_2Play->setIconSize(bigButton);
     ui->level3_2Play->setStyleSheet("QPushButton{background: transparent;}");
     ui->level3Trackname->setStyleSheet("QLabel{background: transparent;}");
     ui->level3Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -176,12 +188,16 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level3Trackpic->setPixmap(yasmarina);
 
     // Items in garage
-    ui->garage->setStyleSheet(garageImage);
+    if(screenWidth<=1980){
+        ui->garage->setStyleSheet(garageImage);
+    }else{
+        ui->garage->setStyleSheet(garageImageBig);
+    }
     ui->garageLogo->setPixmap(logo);
     ui->garageLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->garageLogo->setStyleSheet("QLabel{background: transparent;}");
     ui->garage2Main->setIcon(menu);
-    ui->garage2Main->setIconSize(QSize(100,50));
+    ui->garage2Main->setIconSize(smallButton);
     ui->garage2Main->setStyleSheet("QPushButton{background: transparent;}");
     ui->garageTitle->setStyleSheet("QLabel{background: transparent;}");
     ui->garageTitle->setText("Garage");
@@ -203,7 +219,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->garageHandlingLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->garageHandlingLabel->setFont(GillSansMT);
     ui->garageLabel->setStyleSheet("QLabel{background: transparent;}");
-    ui->garageLabel->setText("You have 10 points left to distribute");
+    ui->garageLabel->setText("You have " + QString::number(maximumValue) + " points left to distribute");
     ui->garageLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->garageLabel->setFont(GillSansMT);
 
@@ -212,7 +228,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->highscoreLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->highscoreLogo->setStyleSheet("QLabel{background: transparent;}");
     ui->highscore2Main->setIcon(menu);
-    ui->highscore2Main->setIconSize(QSize(100,50));
+    ui->highscore2Main->setIconSize(smallButton);
     ui->highscore2Main->setStyleSheet("QPushButton{background: transparent;}");
     ui->highscoreTitle->setStyleSheet("QLabel{background: transparent;}");
     ui->highscoreTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -239,18 +255,43 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->settingsLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->settingsLogo->setStyleSheet("QLabel{background: transparent;}");
     ui->settings2Main->setIcon(menu);
-    ui->settings2Main->setIconSize(QSize(100,50));
+    ui->settings2Main->setIconSize(smallButton);
     ui->settings2Main->setStyleSheet("QPushButton{background: transparent;}");
-    ui->settingsSoundLabel->setStyleSheet("QLabel{background: transparent;}");
-    ui->settingsSoundOff->setStyleSheet("QPushButton{background: transparent;}");
-    ui->settingsSoundOn->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsBackgroundSoundLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->settingsBackgroundSoundLabel->setFont(GillSansMT);
+    ui->settingsBackgroundSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->settingsBackgroundSoundLabel->setText("Background Sound:");
+    ui->settingsBackgroundSoundOn->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsBackgroundSoundOff->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsBackgroundSoundSlider->setStyleSheet("QSlider{background: transparent;}");
+    ui->settingsBackgroundSoundSlider->setValue(100);
+    ui->settingsButtonSoundLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->settingsButtonSoundLabel->setFont(GillSansMT);
+    ui->settingsButtonSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->settingsButtonSoundLabel->setText("Button Sound:");
+    ui->settingsButtonSoundOn->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsButtonSoundOff->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsButtonSoundSlider->setStyleSheet("QSlider{background: transparent;}");
+    ui->settingsButtonSoundSlider->setValue(80);
+    ui->settingsRaceSoundLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->settingsRaceSoundLabel->setFont(GillSansMT);
+    ui->settingsRaceSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->settingsRaceSoundLabel->setText("Race Sound:");
+    ui->settingsRaceSoundOn->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsRaceSoundOff->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsRaceSoundSlider->setStyleSheet("QSlider{background: transparent;}");
+    ui->settingsHighscoreResetLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->settingsHighscoreResetLabel->setFont(GillSansMT);
+    ui->settingsHighscoreResetLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->settingsHighscoreResetLabel->setText("Highscore Reset:");
+    ui->settingsHighscoreResetButton->setStyleSheet("QPushButton{background: transparent;}");
 
     // Items in manual
     ui->manualLogo->setPixmap(logo);
     ui->manualLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->manualLogo->setStyleSheet("QLabel{background: transparent;}");
     ui->manual2Main->setIcon(menu);
-    ui->manual2Main->setIconSize(QSize(100,50));
+    ui->manual2Main->setIconSize(smallButton);
     ui->manual2Main->setStyleSheet("QPushButton{background: transparent;}");
     ui->manualTitle->setStyleSheet("QLabel{background: transparent;}");
     ui->manualTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -266,7 +307,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->creditsLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->creditsLogo->setStyleSheet("QLabel{background: transparent;}");
     ui->credits2Main->setIcon(menu);
-    ui->credits2Main->setIconSize(QSize(100,50));
+    ui->credits2Main->setIconSize(smallButton);
     ui->credits2Main->setStyleSheet("QPushButton{background: transparent;}");
     ui->creditsTitle->setStyleSheet("QLabel{background: transparent;}");
     ui->creditsTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -692,17 +733,66 @@ void mainMenu::on_garageHandlingSlider_sliderReleased()
 }
 
 // Sound Configeration
-
-void mainMenu::on_settingsSoundOn_clicked()
+void mainMenu::on_settingsBackgroundSoundOn_clicked()
 {
-    active=1;
     playbuttonsound();
+    active = 1;
     setbackgroundsound();
 }
 
-void mainMenu::on_settingsSoundOff_clicked()
+void mainMenu::on_settingsBackgroundSoundOff_clicked()
 {
     playbuttonsound();
     active=0;
     setbackgroundsound();
+}
+
+void mainMenu::on_settingsBackgroundSoundSlider_valueChanged(int value)
+{
+    if(active == 0){
+        active = 1;
+        setbackgroundsound();
+    }
+    backgroundmusic->setVolume(value);
+}
+void mainMenu::on_settingsButtonSoundOn_clicked()
+{
+    playbuttonsound();
+    buttonsound->setVolume(ui->settingsButtonSoundSlider->value());
+}
+
+void mainMenu::on_settingsButtonSoundOff_clicked()
+{
+    playbuttonsound();
+    buttonsound->setVolume(0);
+}
+
+void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
+{
+    buttonsound->setVolume(value);
+}
+
+void mainMenu::on_settingsRaceSoundOn_clicked()
+{
+    playbuttonsound();
+}
+
+void mainMenu::on_settingsRaceSoundOff_clicked()
+{
+    playbuttonsound();
+    //raceSound aus
+    ui->settingsRaceSoundSlider->setValue(0);
+}
+
+void mainMenu::on_settingsRaceSoundSlider_valueChanged(int value)
+{
+    //racesound lauter/leiser
+}
+
+// Highscore Configuration
+
+void mainMenu::on_settingsHighscoreResetButton_clicked()
+{
+    playbuttonsound();
+    //resetHighscore
 }

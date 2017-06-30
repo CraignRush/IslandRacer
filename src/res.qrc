@@ -24,6 +24,8 @@
         <file>images/Hockenheimgrey.png</file>
         <file>images/Monzagrey.png</file>
         <file>images/YasMarinagrey.png</file>
+        <file>images/GaragehellGross.jpg</file>
+        <file>images/palmtree1_3840_2160.jpg</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>

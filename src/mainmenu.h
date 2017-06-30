@@ -92,9 +92,26 @@ private slots:
 
     void playbuttonsound();
 
-    void on_settingsSoundOn_clicked();
+    void on_settingsBackgroundSoundOn_clicked();
 
-    void on_settingsSoundOff_clicked();
+    void on_settingsBackgroundSoundOff_clicked();
+
+    void on_settingsBackgroundSoundSlider_valueChanged(int value);
+
+    void on_settingsButtonSoundOn_clicked();
+
+    void on_settingsButtonSoundOff_clicked();
+
+    void on_settingsButtonSoundSlider_valueChanged(int value);
+
+    void on_settingsRaceSoundOn_clicked();
+
+    void on_settingsRaceSoundOff_clicked();
+
+    void on_settingsRaceSoundSlider_valueChanged(int value);
+
+    void on_settingsHighscoreResetButton_clicked();
+
 
 private:
 	Ui::mainMenu *ui;
