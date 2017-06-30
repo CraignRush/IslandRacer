@@ -15,7 +15,15 @@ SOURCES += main.cpp \
     track.cpp \
     player.cpp \
     checkpoint.cpp \
-    mainmenu.cpp
+    mainmenu.cpp \
+    car.cpp \
+    checkpoint.cpp \
+    game.cpp \
+    main.cpp \
+    mainmenu.cpp \
+    player.cpp \
+    track.cpp \
+    world.cpp
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -48,7 +56,14 @@ HEADERS += \
     track.h \
     player.h \
     checkpoint.h \
-    mainmenu.h
+    mainmenu.h \
+    car.h \
+    checkpoint.h \
+    game.h \
+    mainmenu.h \
+    player.h \
+    track.h \
+    world.h
 
 RESOURCES += \
     res.qrc
@@ -59,3 +74,10 @@ FORMS += \
 # set icon for mac and windows
 ICON = Icon.icns
 RC_ICONS = Icon.ico
+
+DESTDIR = $$PWD
+
+DISTFILES += \
+    highscores/Hockenheimring.score \
+    highscores/Monza.score \
+    highscores/YasMarina.score

@@ -7,11 +7,11 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    mainMenu menu;
-    menu.showFullScreen();
+	mainMenu menu;
+	menu.showMaximized();
 
-    //Game game;
-    //game.loadCircuit(Monza);
+//	Game game;
+//	game.loadCircuit(Monza);
 
     return a.exec();
 }

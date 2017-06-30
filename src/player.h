@@ -3,19 +3,40 @@
 
 #include <QString>
 #include <QObject>
+#include <QFile>
+#include <QFont>
+#include <QStringList>
+#include <QTextStream>
 #include <QInputDialog>
+#include <QTemporaryFile>
+#include <QIODevice>
 
-class Player: public QObject
+
+enum Circuit
+{
+	Monza = 1,
+	Hockenheimring,
+	YasMarina
+};
+
+class Player: public QFile
 {
 	Q_OBJECT
 private:
 	QString mPlayerName;
 	QString mPlayerTimes[3];
+	QString mTotalTime;
+	QInputDialog mInputDialog;
+	Circuit mCircuit;
 public:
     Player();
+	void updateFile();
+	void SetCircuit(Circuit circuit);
+protected:
+	friend void QIODevice::setOpenMode(OpenMode openMode);
 public slots:
-	void endRaceDialog(QString lapTimeArray[]);
-
+	void endRaceDialog(QString lapTimeArray[], QString totalTime);
+	void savePlayerName(QString name);
 };
 
 #endif // PLAYER_H

@@ -66,7 +66,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="main">
        <layout class="QGridLayout" name="gridLayout">
@@ -1271,6 +1271,13 @@
           </property>
          </spacer>
         </item>
+        <item row="2" column="3">
+         <widget class="QLabel" name="highscoreLevel2">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
         <item row="3" column="0">
          <spacer name="verticalSpacer_12">
           <property name="orientation">
@@ -1284,27 +1291,8 @@
           </property>
          </spacer>
         </item>
-        <item row="7" column="0">
-         <spacer name="verticalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="highscore2Main">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
+        <item row="2" column="1">
+         <widget class="QLabel" name="highscoreLevel1">
           <property name="text">
            <string/>
           </property>
@@ -1323,65 +1311,28 @@
           </property>
          </spacer>
         </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="highscoreLevel1">
+        <item row="1" column="0">
+         <widget class="QPushButton" name="highscore2Main">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string/>
           </property>
          </widget>
         </item>
-        <item row="2" column="3">
-         <widget class="QLabel" name="highscoreLevel2">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="6">
-         <spacer name="horizontalSpacer_31">
+        <item row="7" column="0">
+         <spacer name="verticalSpacer_2">
           <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
+           <enum>Qt::Vertical</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>100</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="2" column="5">
-         <widget class="QLabel" name="highscoreLevel3">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <spacer name="horizontalSpacer_35">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="1" column="1" colspan="2">
-         <spacer name="horizontalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
+            <width>20</width>
+            <height>40</height>
            </size>
           </property>
          </spacer>
@@ -1411,8 +1362,8 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
-         <spacer name="verticalSpacer_9">
+        <item row="6" column="0">
+         <spacer name="verticalSpacer_11">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -1424,8 +1375,57 @@
           </property>
          </spacer>
         </item>
-        <item row="6" column="0">
-         <spacer name="verticalSpacer_11">
+        <item row="1" column="1" colspan="2">
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="6">
+         <spacer name="horizontalSpacer_31">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>100</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="4" column="2">
+         <spacer name="horizontalSpacer_35">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="5">
+         <widget class="QLabel" name="highscoreLevel3">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <spacer name="verticalSpacer_9">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -1463,42 +1463,155 @@
           </property>
          </spacer>
         </item>
-        <item row="3" column="1" rowspan="3">
-         <widget class="QTableWidget" name="highscoretablelevel1">
+        <item row="3" column="3" rowspan="3">
+         <widget class="QTableWidget" name="highscoretablelevel2">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="autoFillBackground">
-           <bool>false</bool>
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
           </property>
           <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
+           <enum>Qt::ScrollBarAsNeeded</enum>
           </property>
           <property name="horizontalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOff</enum>
           </property>
           <property name="sizeAdjustPolicy">
-           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
           </property>
-         </widget>
-        </item>
-        <item row="3" column="3" rowspan="3">
-         <widget class="QTableWidget" name="highscoretablelevel2">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+          <property name="rowCount">
+           <number>10</number>
           </property>
-          <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
-          </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
-          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <column>
+           <property name="text">
+            <string>Player</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Time</string>
+           </property>
+          </column>
+          <item row="0" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="0" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="1" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="1" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="2" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="2" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="3" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="3" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="4" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="4" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="5" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="5" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="6" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="6" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="7" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="7" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="8" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="8" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="9" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="9" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item row="3" column="5" rowspan="3">
@@ -1509,11 +1622,177 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <pointsize>9</pointsize>
+           </font>
+          </property>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
+           <enum>Qt::ScrollBarAsNeeded</enum>
           </property>
           <property name="horizontalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
+          </property>
+          <property name="tabKeyNavigation">
+           <bool>false</bool>
+          </property>
+          <property name="showDropIndicator" stdset="0">
+           <bool>false</bool>
+          </property>
+          <property name="dragDropOverwriteMode">
+           <bool>false</bool>
+          </property>
+          <property name="showGrid">
+           <bool>true</bool>
+          </property>
+          <property name="rowCount">
+           <number>10</number>
+          </property>
+          <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderCascadingSectionResizes">
+           <bool>false</bool>
+          </attribute>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <column>
+           <property name="text">
+            <string>Player</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Time</string>
+           </property>
+          </column>
+          <item row="0" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="0" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="1" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="1" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="2" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="2" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="3" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="3" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="4" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="4" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="5" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="5" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="6" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="6" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="7" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="7" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="8" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="8" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="9" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="9" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QLabel" name="highscoreTitle">
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -1530,11 +1809,272 @@
           </property>
          </spacer>
         </item>
-        <item row="1" column="3">
-         <widget class="QLabel" name="highscoreTitle">
-          <property name="text">
-           <string/>
+        <item row="3" column="1" rowspan="3">
+         <widget class="QTableWidget" name="highscoretablelevel1">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
+          </property>
+          <property name="rowCount">
+           <number>10</number>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderHighlightSections">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderStretchLastSection">
+           <bool>false</bool>
+          </attribute>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <column>
+           <property name="text">
+            <string>Player</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Time</string>
+           </property>
+          </column>
+          <item row="0" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsEnabled</set>
+           </property>
+          </item>
+          <item row="0" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+          </item>
+          <item row="1" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+          </item>
+          <item row="1" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+          </item>
+          <item row="2" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="2" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+          </item>
+          <item row="3" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+          </item>
+          <item row="3" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="4" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+          </item>
+          <item row="4" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+          </item>
+          <item row="5" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+          </item>
+          <item row="5" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+          </item>
+          <item row="6" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+          </item>
+          <item row="6" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="background">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </property>
+          </item>
+          <item row="7" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="7" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="8" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="8" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="9" column="0">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item row="9" column="1">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>
