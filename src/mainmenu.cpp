@@ -19,9 +19,9 @@ mainMenu::mainMenu(QWidget *parent) :
 	handlingValue = 0;
 	topspeedValue = 0;
 	active=1;
-    backgroundSoundValue = 50;
-    buttonSoundValue = 100;
-    raceSoundValue = 50;
+	backgroundSoundValue = 50;
+	buttonSoundValue = 100;
+	raceSoundValue = 50;
 
 
 	// Get Screensize
@@ -41,24 +41,24 @@ mainMenu::mainMenu(QWidget *parent) :
 
 	backgroundmusic = new QMediaPlayer();
 	backgroundmusic->setPlaylist(playlist);
-    backgroundmusic->setVolume(backgroundSoundValue);
+	backgroundmusic->setVolume(backgroundSoundValue);
 	backgroundmusic->play();
 
 	// Set Buttonsound
 	buttonsound = new QMediaPlayer();
 	buttonsound->setMedia(QUrl("qrc:/sounds/sounds/buttonsound.wav"));
-    buttonsound->setVolume(buttonSoundValue);
+	buttonsound->setVolume(buttonSoundValue);
 
 	// Set Pixmaps
 	QPixmap logo(":/images/images/Logo.png");
-    QPixmap hockenheim(":/images/images/Hockenheimtextur.png");
-    QPixmap monza(":/images/images/Monzatextur.png") ;
-    QPixmap yasmarina(":/images/images/YasMarinatextur.png");
+	QPixmap hockenheim(":/images/images/Hockenheimtextur.png");
+	QPixmap monza(":/images/images/Monzatextur.png") ;
+	QPixmap yasmarina(":/images/images/YasMarinatextur.png");
 
-    logo = logo.scaledToHeight(0.2 * screenHeight);
-    hockenheim = hockenheim.scaledToHeight(0.5 * screenHeight);
-    monza = monza.scaledToHeight(0.5 * screenHeight);
-    yasmarina = yasmarina.scaledToHeight(0.5 * screenHeight);
+	logo = logo.scaledToHeight(0.2 * screenHeight);
+	hockenheim = hockenheim.scaledToHeight(0.5 * screenHeight);
+	monza = monza.scaledToHeight(0.5 * screenHeight);
+	yasmarina = yasmarina.scaledToHeight(0.5 * screenHeight);
 
 	// Set Icons
 	QIcon leftArrow(":/images/images/l-arrow-576725_1280.png");
@@ -71,24 +71,24 @@ mainMenu::mainMenu(QWidget *parent) :
 	QIcon manual(":/images/images/manual.png");
 	QIcon credits(":/images/images/credits.png");
 	QIcon quit(":/images/images/quit.png");
-    QIcon reset(":/images/images/reset.png");
-    QIcon soundOn(":/images/images/soundOn.png");
-    QIcon soundOff(":/images/images/soundOff.png");
+	QIcon reset(":/images/images/reset.png");
+	QIcon soundOn(":/images/images/soundOn.png");
+	QIcon soundOff(":/images/images/soundOff.png");
 
 	// Set Icon Sizes
-    QSize bigButton(0.2 * screenHeight,0.1 * screenHeight);
-    QSize smallButton(0.15 * screenHeight, 0.075 * screenHeight);
-    QSize arrowButton(0.125 * screenHeight, 0.1 * screenHeight);
+	QSize bigButton(0.2 * screenHeight,0.1 * screenHeight);
+	QSize smallButton(0.15 * screenHeight, 0.075 * screenHeight);
+	QSize arrowButton(0.125 * screenHeight, 0.1 * screenHeight);
 
-    // Set Spacer Sizes for centering (same size as smallButton)
-    ui->level1HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
-    ui->level2HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
-    ui->level3HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
-    ui->garageHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
-    ui->highscoreHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
-    ui->settingsHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
-    ui->manualHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
-    ui->creditsHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+	// Set Spacer Sizes for centering (same size as smallButton)
+	ui->level1HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+	ui->level2HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+	ui->level3HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+	ui->garageHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+	ui->highscoreHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+	ui->settingsHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+	ui->manualHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+	ui->creditsHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
 
 	// Set Fonts
 	GillSansMT.setFamily("GillSansMT");
@@ -148,10 +148,10 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->level1Logo->setStyleSheet("QLabel{background: transparent;}");
 	ui->level1_2Level2->setIcon(rightArrow);
 	ui->level1_2Level2->setIconSize(arrowButton);
-    ui->level1_2Level2->setStyleSheet("QPushButton{background: transparent;}");
+	ui->level1_2Level2->setStyleSheet("QPushButton{background: transparent;}");
 	ui->level1_2Level3->setIcon(leftArrow);
 	ui->level1_2Level3->setIconSize(arrowButton);
-    ui->level1_2Level3->setStyleSheet("QPushButton{background: transparent;}");
+	ui->level1_2Level3->setStyleSheet("QPushButton{background: transparent;}");
 	ui->level1_2Main->setIcon(menu);
 	ui->level1_2Main->setIconSize(smallButton);
 	ui->level1_2Main->setStyleSheet("QPushButton{background: transparent;}");
@@ -160,7 +160,7 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->level1_2Play->setStyleSheet("QPushButton{background: transparent;}");
 	ui->level1Trackname->setStyleSheet("QLabel{background: transparent;}");
 	ui->level1Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    ui->level1Trackname->setFont(GillSansMTTitle);
+	ui->level1Trackname->setFont(GillSansMTTitle);
 	ui->level1Trackname->setText("Sunny Speedway");
 	ui->level1Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
 	ui->level1Trackpic->setPixmap(monza);
@@ -183,7 +183,7 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->level2_2Play->setStyleSheet("QPushButton{background: transparent;}");
 	ui->level2Trackname->setStyleSheet("QLabel{background: transparent;}");
 	ui->level2Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    ui->level2Trackname->setFont(GillSansMTTitle);
+	ui->level2Trackname->setFont(GillSansMTTitle);
 	ui->level2Trackname->setText("Chancy Circuit");
 	ui->level2Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
 	ui->level2Trackpic->setPixmap(hockenheim);
@@ -200,13 +200,13 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->level3_2Level1->setStyleSheet("QPushButton{background: transparent;}");
 	ui->level3_2Main->setIcon(menu);
 	ui->level3_2Main->setIconSize(smallButton);
-    ui->level3_2Main->setStyleSheet("QPushButton{background: transparent;}");
+	ui->level3_2Main->setStyleSheet("QPushButton{background: transparent;}");
 	ui->level3_2Play->setIcon(play);
 	ui->level3_2Play->setIconSize(bigButton);
 	ui->level3_2Play->setStyleSheet("QPushButton{background: transparent;}");
 	ui->level3Trackname->setStyleSheet("QLabel{background: transparent;}");
 	ui->level3Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    ui->level3Trackname->setFont(GillSansMTTitle);
+	ui->level3Trackname->setFont(GillSansMTTitle);
 	ui->level3Trackname->setText("Deadly Desert");
 	ui->level3Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
 	ui->level3Trackpic->setPixmap(yasmarina);
@@ -276,50 +276,50 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->settingsLogo->setStyleSheet("QLabel{background: transparent;}");
 	ui->settings2Main->setIcon(menu);
 	ui->settings2Main->setIconSize(smallButton);
-    ui->settings2Main->setStyleSheet("QPushButton{background: transparent; color: white}");
-    ui->settingsBackgroundSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
+	ui->settings2Main->setStyleSheet("QPushButton{background: transparent; color: white}");
+	ui->settingsBackgroundSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->settingsBackgroundSoundLabel->setFont(GillSansMT);
 	ui->settingsBackgroundSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsBackgroundSoundLabel->setText("Background Sound:");
-    ui->settingsBackgroundSoundOn->setStyleSheet("QPushButton{background: transparent; color: white}");
-    ui->settingsBackgroundSoundOn->setIcon(soundOn);
-    ui->settingsBackgroundSoundOn->setIconSize(arrowButton);
-    ui->settingsBackgroundSoundOff->setStyleSheet("QPushButton{background: transparent; color: white}");
-    ui->settingsBackgroundSoundOff->setIcon(soundOff);
-    ui->settingsBackgroundSoundOff->setIconSize(arrowButton);
-    ui->settingsBackgroundSoundSlider->setStyleSheet("QSlider{background: transparent;}");
-    ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
-    ui->settingsButtonSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
+	ui->settingsBackgroundSoundOn->setStyleSheet("QPushButton{background: transparent; color: white}");
+	ui->settingsBackgroundSoundOn->setIcon(soundOn);
+	ui->settingsBackgroundSoundOn->setIconSize(arrowButton);
+	ui->settingsBackgroundSoundOff->setStyleSheet("QPushButton{background: transparent; color: white}");
+	ui->settingsBackgroundSoundOff->setIcon(soundOff);
+	ui->settingsBackgroundSoundOff->setIconSize(arrowButton);
+	ui->settingsBackgroundSoundSlider->setStyleSheet("QSlider{background: transparent;}");
+	ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
+	ui->settingsButtonSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->settingsButtonSoundLabel->setFont(GillSansMT);
 	ui->settingsButtonSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsButtonSoundLabel->setText("Button Sound:");
-    ui->settingsButtonSoundOn->setStyleSheet("QPushButton{background: transparent; color: white}");
-    ui->settingsButtonSoundOn->setIcon(soundOn);
-    ui->settingsButtonSoundOn->setIconSize(arrowButton);
-    ui->settingsButtonSoundOff->setStyleSheet("QPushButton{background: transparent; color: white}");
-    ui->settingsButtonSoundOff->setIcon(soundOff);
-    ui->settingsButtonSoundOff->setIconSize(arrowButton);
+	ui->settingsButtonSoundOn->setStyleSheet("QPushButton{background: transparent; color: white}");
+	ui->settingsButtonSoundOn->setIcon(soundOn);
+	ui->settingsButtonSoundOn->setIconSize(arrowButton);
+	ui->settingsButtonSoundOff->setStyleSheet("QPushButton{background: transparent; color: white}");
+	ui->settingsButtonSoundOff->setIcon(soundOff);
+	ui->settingsButtonSoundOff->setIconSize(arrowButton);
 	ui->settingsButtonSoundSlider->setStyleSheet("QSlider{background: transparent;}");
-    ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
-    ui->settingsRaceSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
+	ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
+	ui->settingsRaceSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->settingsRaceSoundLabel->setFont(GillSansMT);
 	ui->settingsRaceSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsRaceSoundLabel->setText("Race Sound:");
-    ui->settingsRaceSoundOn->setStyleSheet("QPushButton{background: transparent; color: white}");
-    ui->settingsRaceSoundOn->setIcon(soundOn);
-    ui->settingsRaceSoundOn->setIconSize(arrowButton);
-    ui->settingsRaceSoundOff->setStyleSheet("QPushButton{background: transparent; color: white}");
-    ui->settingsRaceSoundOff->setIcon(soundOff);
-    ui->settingsRaceSoundOff->setIconSize(arrowButton);
-    ui->settingsRaceSoundSlider->setStyleSheet("QSlider{background: transparent;}");
-    ui->settingsRaceSoundSlider->setValue(raceSoundValue);
-    ui->settingsHighscoreResetLabel->setStyleSheet("QLabel{background: transparent; color: white}");
+	ui->settingsRaceSoundOn->setStyleSheet("QPushButton{background: transparent; color: white}");
+	ui->settingsRaceSoundOn->setIcon(soundOn);
+	ui->settingsRaceSoundOn->setIconSize(arrowButton);
+	ui->settingsRaceSoundOff->setStyleSheet("QPushButton{background: transparent; color: white}");
+	ui->settingsRaceSoundOff->setIcon(soundOff);
+	ui->settingsRaceSoundOff->setIconSize(arrowButton);
+	ui->settingsRaceSoundSlider->setStyleSheet("QSlider{background: transparent;}");
+	ui->settingsRaceSoundSlider->setValue(raceSoundValue);
+	ui->settingsHighscoreResetLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->settingsHighscoreResetLabel->setFont(GillSansMT);
 	ui->settingsHighscoreResetLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsHighscoreResetLabel->setText("Highscore Reset:");
-    ui->settingsHighscoreResetButton->setStyleSheet("QPushButton{background: transparent; color: white}");
-    ui->settingsHighscoreResetButton->setIcon(reset);
-    ui->settingsHighscoreResetButton->setIconSize(bigButton);
+	ui->settingsHighscoreResetButton->setStyleSheet("QPushButton{background: transparent; color: white}");
+	ui->settingsHighscoreResetButton->setIcon(reset);
+	ui->settingsHighscoreResetButton->setIconSize(bigButton);
 
 	// Items in manual
 	ui->manualLogo->setPixmap(logo);
@@ -335,14 +335,14 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->manualLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->manualLabel->setFont(GillSansMT);
 	ui->manualLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    ui->manualLabel->setText("MOVING THE CAR:\n\n"
+	ui->manualLabel->setText("MOVING THE CAR:\n\n"
 							 "UP = Accelerate\n"
 							 "DOWN = Brake\n"
 							 "LEFT/RIGHT = Steer\n"
 							 "ESC = Back to main menu\n\n"
 							 "You can adjust the attributes of the car in the garage.\n"
-                             "The better your times on the tracks are, the more points you can distribute.\n"
-                             "There is no possibility to take a shortcut - we know where you drive!\n");
+							 "The better your times on the tracks are, the more points you can distribute.\n"
+							 "There is no possibility to take a shortcut - we know where you drive!\n");
 
 	// Items in credits
 	ui->creditsLogo->setPixmap(logo);
@@ -358,16 +358,16 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->creditsLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->creditsLabel->setFont(GillSansMT);
 	ui->creditsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    ui->creditsLabel->setText("DESIGNED AND PROGRAMMED BY:\n"
-                             "Adrian Schiechel\n"
-                             "Andreas Finkenzeller\n"
-                             "Carina Vogl\n"
-                             "Michael Maas\n"
-                             "Johann Brenner\n\n"
-                             "FOR:\n"
-                             "Grundkurs C++, TUM\n\n"
-                             "IN:\n"
-                             "Summer Semester 2017\n\n");
+	ui->creditsLabel->setText("DESIGNED AND PROGRAMMED BY:\n"
+							  "Adrian Schiechel\n"
+							  "Andreas Finkenzeller\n"
+							  "Carina Vogl\n"
+							  "Michael Maas\n"
+							  "Johann Brenner\n\n"
+							  "FOR:\n"
+							  "Grundkurs C++, TUM\n\n"
+							  "IN:\n"
+							  "Summer Semester 2017\n\n");
 }
 
 mainMenu::~mainMenu()
@@ -407,8 +407,8 @@ void mainMenu::setbackgroundsound()
 //  Sound for buttons
 void mainMenu::playbuttonsound()
 {
-    //if(active==1)
-		buttonsound->play();
+	//if(active==1)
+	buttonsound->play();
 }
 
 // Buttons from the main menu
@@ -532,13 +532,13 @@ void mainMenu::on_main2Manual_clicked()
 
 void mainMenu::on_main2Credits_clicked()
 {
-			playbuttonsound();
+	playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(8);
 }
 
 void mainMenu::on_main2QuitGame_clicked()
 {
-			playbuttonsound();
+	playbuttonsound();
 	QCoreApplication::quit();
 }
 
@@ -546,25 +546,25 @@ void mainMenu::on_main2QuitGame_clicked()
 
 void mainMenu::on_level1_2Main_clicked()
 {
-			playbuttonsound();
+	playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(0);
 }
 
 void mainMenu::on_level1_2Level3_clicked()
 {
-			playbuttonsound();
+	playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(3);
 }
 
 void mainMenu::on_level1_2Level2_clicked()
 {
-			playbuttonsound();
+	playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(2);
 }
 
 void mainMenu::on_level1_2Play_clicked()
 {
-			playbuttonsound();
+	playbuttonsound();
 	//start Level 1
 	//world = new World(screenWidth,screenHeight,1);
 	//world->showFullScreen();
@@ -588,7 +588,7 @@ void mainMenu::on_level2_2Level1_clicked()
 
 void mainMenu::on_level2_2Level3_clicked()
 {
-			playbuttonsound();
+	playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(3);
 }
 
@@ -606,13 +606,13 @@ void mainMenu::on_level2_2Play_clicked()
 
 void mainMenu::on_level3_2Main_clicked()
 {
-			playbuttonsound();
+	playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(0);
 }
 
 void mainMenu::on_level3_2Level2_clicked()
 {
-			playbuttonsound();
+	playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(2);
 }
 
@@ -766,9 +766,9 @@ void mainMenu::on_settingsBackgroundSoundOn_clicked()
 {
 	playbuttonsound();
 	active = 1;
-    setbackgroundsound();
-    backgroundmusic->setVolume(backgroundSoundValue);
-    ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
+	setbackgroundsound();
+	backgroundmusic->setVolume(backgroundSoundValue);
+	ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
 }
 
 void mainMenu::on_settingsBackgroundSoundOff_clicked()
@@ -776,55 +776,55 @@ void mainMenu::on_settingsBackgroundSoundOff_clicked()
 	playbuttonsound();
 	active=0;
 	setbackgroundsound();
-    backgroundSoundValue = ui->settingsBackgroundSoundSlider->value();
-    ui->settingsBackgroundSoundSlider->setValue(0);
+	backgroundSoundValue = ui->settingsBackgroundSoundSlider->value();
+	ui->settingsBackgroundSoundSlider->setValue(0);
 }
 
 void mainMenu::on_settingsBackgroundSoundSlider_valueChanged(int value)
 {
-    if(active == 0){
+	if(active == 0){
 		active = 1;
 		setbackgroundsound();
 	}
-    backgroundmusic->setVolume(value);
+	backgroundmusic->setVolume(value);
 }
 void mainMenu::on_settingsButtonSoundOn_clicked()
 {
 	playbuttonsound();
-    buttonsound->setVolume(buttonSoundValue);
-    ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
+	buttonsound->setVolume(buttonSoundValue);
+	ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
 }
 
 void mainMenu::on_settingsButtonSoundOff_clicked()
 {
 	playbuttonsound();
 	buttonsound->setVolume(0);
-    buttonSoundValue = ui->settingsButtonSoundSlider->value();
-    ui->settingsButtonSoundSlider->setValue(0);
+	buttonSoundValue = ui->settingsButtonSoundSlider->value();
+	ui->settingsButtonSoundSlider->setValue(0);
 }
 
 void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
 {
-    buttonsound->setVolume(value);
+	buttonsound->setVolume(value);
 }
 
 void mainMenu::on_settingsRaceSoundOn_clicked()
 {
 	playbuttonsound();
-    ui->settingsRaceSoundSlider->setValue(raceSoundValue);
+	ui->settingsRaceSoundSlider->setValue(raceSoundValue);
 }
 
 void mainMenu::on_settingsRaceSoundOff_clicked()
 {
 	playbuttonsound();
 	//raceSound aus
-    raceSoundValue = ui->settingsRaceSoundSlider->value();
+	raceSoundValue = ui->settingsRaceSoundSlider->value();
 	ui->settingsRaceSoundSlider->setValue(0);
 }
 
 void mainMenu::on_settingsRaceSoundSlider_valueChanged(int value)
 {
-    //racesound lauter/leiser
+	//racesound lauter/leiser
 }
 
 // Highscore Configuration
@@ -833,4 +833,29 @@ void mainMenu::on_settingsHighscoreResetButton_clicked()
 {
 	playbuttonsound();
 	//resetHighscore
+
+	QString filename;
+	filename = "highscores/Monza.score";
+	QFile outputFile(filename);
+	if (outputFile.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+		QTextStream in(&outputFile);
+		for(int i = 0; i < 10; i++)	in << "-,-\n";
+		outputFile.close();
+	}
+
+	filename = "highscores/Hockenheimring.score";
+	QFile outputFile2(filename);
+	if (outputFile2.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+		QTextStream in2(&outputFile2);
+		for(int i = 0; i < 10; i++)	in2 << "-,-\n";
+		outputFile2.close();
+	}
+
+filename = "highscores/YasMarina.score";
+QFile outputFile3(filename);
+if (outputFile3.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+	QTextStream in3(&outputFile3);
+	for(int i = 0; i < 10; i++)	in3 << "-,-\n";
+	outputFile3.close();
+}
 }

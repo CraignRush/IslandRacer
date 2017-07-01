@@ -66,8 +66,9 @@ void Player::updateFile()
 				time2.setHMS(0,0,0);
 				time2 = QTime::fromString(tmpList.at(1),"mm:ss.zzz");
 
-				if(tmpList.at(1) == "0") break;
 				if(time < time2) break;
+				if(tmpList.at(1) == "-") break;
+
 				lineOfInsertion++;
 			}
 		}
@@ -84,7 +85,6 @@ void Player::updateFile()
 
 void Player::endRaceDialog(QString lapTimeArray[], QString totalTime)
 {
-	bool ok;
 	mInputDialog.showNormal();
 	memcpy(mPlayerTimes,lapTimeArray,sizeof(mPlayerTimes));
 	mTotalTime = totalTime;
