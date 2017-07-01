@@ -6,6 +6,12 @@
 #include "game.h"
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
+#include <QTextStream>
+#include <QFile>
+#include <QStringList>
+#include "ui_mainmenu.h"
+#include <qscreen.h>
+#include <QString>
 
 namespace Ui {
 class mainMenu;
@@ -14,14 +20,16 @@ class mainMenu;
 class mainMenu : public QMainWindow
 {
 	Q_OBJECT
+private:
+	QString mName;
+	QString mZeit;
+	QString mLevel1HighscoreMatrix[2][10];
+	QString mLevel2HighscoreMatrix[2][10];
+	QString mLevel3HighscoreMatrix[2][10];
 
 public:
 	explicit mainMenu(QWidget *parent = 0);
 	~mainMenu();
-
-	QString level1highscorematrix[11][3];
-	QString level2highscorematrix[11][3];
-	QString level3highscorematrix[11][3];
 
 	QFont GillSansMT;
 

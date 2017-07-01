@@ -12,9 +12,11 @@ World::World(int width, int height)
 	//scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
 
     showFullScreen();
+	//setWindowModality(Qt::ApplicationModal);
 
 	mLapLabel = NULL;
-	mTimeLabel = NULL;
+	mLapTimeLabel = NULL;
+	mTotalTimeLabel = NULL;
     mStartTimer = NULL;
     mCounter = NULL;
 
@@ -151,10 +153,17 @@ World::~World()
         mStartTimer = NULL;
     }
 
-	if(mTimeLabel != NULL)
+
+	if(mTotalTimeLabel != NULL)
+	{
+		delete mTotalTimeLabel;
+		mTotalTimeLabel = NULL;
+	}
+
+	if(mLapTimeLabel != NULL)
     {
-		delete mTimeLabel;
-		mTimeLabel = NULL;
+		delete mLapTimeLabel;
+		mLapTimeLabel = NULL;
     }
 
 	if(mLapLabel != NULL)
@@ -198,9 +207,12 @@ void World::startLoop()
 		mTimer->start(1000.0/mFps);
         mStartTimer->start(15);
 		//start the race time immediately after go
-		mTimeLabel->setVisible(true);
+		mLapTimeLabel->setVisible(true);
 		mTime.setHMS(0,0,0,0);
-		mRaceTime.start();
+		mLapTime.start();
+		mTotalTimeLabel->setVisible(true);
+		mTime2.setHMS(0,0,0,0);
+		mTotalTime.start();
 		mLapLabel->setVisible(true);
 	}
 
@@ -220,12 +232,21 @@ void World::startLoop()
 
 void World::updateOverlay(){
 
-	mElapsed = mRaceTime.elapsed();
+		//Adjust the lap time label position and text
+	mElapsed = mLapTime.elapsed();
 	mTime.setHMS(0,0,0,0);
 	mTime = mTime.addMSecs(mElapsed);
-	mTimeLabel->setHtml(QString("<div style='background:rgba(255, 255, 255, 7%);'>") +mTimeText + mTime.toString("mm:ss.z") + QString("</div>"));
-	mTimeLabel->setPos(mapToScene(mTimeLabelPos));
+	mLapTimeLabel->setHtml(QString("<div style='background:rgba(255, 255, 255, 7%);'>") + mLapTimeText + mTime.toString("mm:ss.z") + QString("</div>"));
+	mLapTimeLabel->setPos(mapToScene(mLapTimeLabelPos));
 
+	//Adjust the total time label position and text
+	mElapsed = mTotalTime.elapsed();
+	mTime2.setHMS(0,0,0,0);
+	mTime2 = mTime2.addMSecs(mElapsed);
+	mTotalTimeLabel->setHtml(QString("<div style='background:rgba(255, 255, 255, 7%);'>") + mTotalTimeText + mTime2.toString("mm:ss.z") + QString("</div>"));
+	mTotalTimeLabel->setPos(mapToScene(mTotalTimeLabelPos));
+
+	//Adjust the lap label position and text
 	mLapLabel->setHtml(QString("<div style='background:rgba(255, 255, 255, 7%);'>") + mLapText + QString::number(mLaps) + "/3" + QString("</div>"));
 	//mLapLabel->setPlainText(mLapText + QString::number(mLaps) + "/3"); //TODO Optimize the method to get the lap count
 	mLapLabel->setPos(mapToScene(mLapLabelPos));
@@ -234,17 +255,16 @@ void World::updateOverlay(){
 }
 
 void World::saveLapTime(){
-	mLapTime[mLaps - 1] = mTime.toString("mm:ss.z");
-	if(mLaps < 3){
+	if(mLaps < 3){ //default mLaps < 3, for debugging
 	mLaps++;
 	} else {
-		// check for highscore
-		// if new highscore init Name Dialogue
-		// exit_game
+		StopGame();
+		mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.zzz");
+		mTotalTimeEnd = mTime2.toString("mm:ss.zzz");
+		emit RaceFinished(&mLapTimeEnd[3], mTotalTimeEnd);
 	}
 	mElapsed = 0;
-	mRaceTime.restart();
-
+	mLapTime.restart();
 }
 
 
@@ -267,11 +287,16 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
             delete mStartTimer;
             mStartTimer = NULL;
         }
-		if(mTimeLabel != NULL)
+		if(mLapTimeLabel != NULL)
         {
-			delete mTimeLabel;
-			mTimeLabel = NULL;
+			delete mLapTimeLabel;
+			mLapTimeLabel = NULL;
         }
+		if(mTotalTimeLabel != NULL)
+		{
+			delete mTotalTimeLabel;
+			mTotalTimeLabel = NULL;
+		}
         if(mLapLabel != NULL)
         {
             delete mLapLabel;
@@ -414,18 +439,31 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 	mCounter->setScale(10);
 	mTrack->addItem(mCounter);
 
-	//Initialize Label for ingame time display
-	mTimeLabel = new QGraphicsTextItem();
-	mTimeLabel->setVisible(false);
-	mTimeLabel->setFont(QFont("GillSansMT",24,60)); // Font: family, PointSize, Weight(how bold)
-	mTimeLabel->setDefaultTextColor(QColor("red"));
-	mTimeText = "TIME: ";
-	mTimeLabel->setPlainText(mTimeText + "mm:ss.zzz");
+	//Initialize Label for ingame lap time display
+	mLapTimeLabel = new QGraphicsTextItem();
+	mLapTimeLabel->setVisible(false);
+	mLapTimeLabel->setFont(QFont("GillSansMT",24,60)); // Font: family, PointSize, Weight(how bold)
+	mLapTimeLabel->setDefaultTextColor(QColor("red"));
+	mLapTimeText = "LAP TIME: ";
+	mLapTimeLabel->setPlainText(mLapTimeText + "mm:ss.zzz");
 	//Set starting position
-	mTimeLabelPos.setX(mWidth - (mTimeLabel->boundingRect().width() + 50));
-	mTimeLabelPos.setY(mHeight - (mTimeLabel->boundingRect().height() + 20));
+	mLapTimeLabelPos.setX(mWidth - (mLapTimeLabel->boundingRect().width() + 50));
+	mLapTimeLabelPos.setY(mHeight - (mLapTimeLabel->boundingRect().height() + 80));
 	//Add it to track
-	mTrack->addItem(mTimeLabel);
+	mTrack->addItem(mLapTimeLabel);
+
+	//Initialize Label for ingame total time display
+	mTotalTimeLabel = new QGraphicsTextItem();
+	mTotalTimeLabel->setVisible(false);
+	mTotalTimeLabel->setFont(QFont("GillSansMT",24,60)); // Font: family, PointSize, Weight(how bold)
+	mTotalTimeLabel->setDefaultTextColor(QColor("red"));
+	mTotalTimeText = "TOTAL TIME: ";
+	mTotalTimeLabel->setPlainText(mTotalTimeText + "mm:ss.zzz");
+	//Set starting position
+	mTotalTimeLabelPos.setX(mWidth - (mTotalTimeLabel->boundingRect().width() + 20));
+	mTotalTimeLabelPos.setY(mHeight - (mTotalTimeLabel->boundingRect().height() + 20));
+	//Add it to track
+	mTrack->addItem(mTotalTimeLabel);
 
 	//Initialize Label for ingame lap counter display
 	mLapLabel = new QGraphicsTextItem();
@@ -435,8 +473,8 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 	mLapText = "LAPS: ";
 	mLapLabel->setPlainText(mLapText + "0/3");
 	//Set starting position
-	mLapLabelPos.setX(mWidth - (mLapLabel->boundingRect().width() + 100));
-	mLapLabelPos.setY(mHeight -(mLapLabel->boundingRect().height() + 80));
+	mLapLabelPos.setX(mWidth - (mLapLabel->boundingRect().width() + 150));
+	mLapLabelPos.setY(mHeight -(mLapLabel->boundingRect().height() + 140));
 	mTrack->addItem(mLapLabel);
 	connect(mTrack,SIGNAL(LapChanged()),this,SLOT(saveLapTime()));
 
@@ -446,3 +484,20 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 	mCar->render(); // necessary to init start position of the car
 	mStartTimer->start(10);
 }
+
+void World::StopGame(){
+	mTimer->stop();
+}
+
+void World::ResumeGame(){
+	mTimer->start();
+	mLapTime.restart();
+	mTotalTime.restart();
+}
+
+void World::GameExit()
+{
+
+}
+
+

@@ -1,4 +1,5 @@
 QT += core gui
+QT += multimedia
 
 CONFIG += c++11 \
        += resources_big
@@ -15,7 +16,9 @@ SOURCES += main.cpp \
     track.cpp \
     player.cpp \
     checkpoint.cpp \
-    mainmenu.cpp
+    mainmenu.cpp \
+    main.cpp \
+
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -48,7 +51,14 @@ HEADERS += \
     track.h \
     player.h \
     checkpoint.h \
-    mainmenu.h
+    mainmenu.h \
+    car.h \
+    checkpoint.h \
+    game.h \
+    mainmenu.h \
+    player.h \
+    track.h \
+    world.h
 
 RESOURCES += \
     res.qrc
@@ -60,5 +70,11 @@ FORMS += \
 ICON = Icon.icns
 RC_ICONS = Icon.ico
 
-# set multimedia for sounds
-QT += multimedia
+
+DESTDIR = $$PWD
+
+DISTFILES += \
+    highscores/Hockenheimring.score \
+    highscores/Monza.score \
+    highscores/YasMarina.score
+

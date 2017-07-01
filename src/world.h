@@ -10,6 +10,7 @@
 #include <QKeyEvent>
 #include "track.h"
 #include "car.h"
+#include "player.h"
 
 
 class World : public QGraphicsView
@@ -35,32 +36,44 @@ private:
 	float Opacity;                  // Opacity for fade out effect of StartCounger
 	QGraphicsTextItem* mCounter;    // Display Start Counter
 
-	QGraphicsTextItem* mTimeLabel;		//! contains the String with the elapsed time
+	QGraphicsTextItem* mLapTimeLabel;		//! contains the String with the elapsed time
 	QGraphicsTextItem* mLapLabel;	//! contains the label in the scene
+	QGraphicsTextItem* mTotalTimeLabel;
 	QPoint mLapLabelPos;
-	QPoint mTimeLabelPos;			//! position of the label realtively to the window
-	QElapsedTimer mRaceTime;		//! computes the elapsed time since "GO!" in ms
+	QPoint mTotalTimeLabelPos;
+	QPoint mLapTimeLabelPos;			//! position of the label realtively to the window
+	QElapsedTimer mLapTime;		//! computes the elapsed time since "GO!" in ms
+	QElapsedTimer mTotalTime;
+	QElapsedTimer mPauseTime;		//! Computes the time of pause pressed
 	int mElapsed = 0;
 	QTime mTime;					//! for translating ms dynamically into mm:ss.zzz
-	QString mTimeText;
+	QTime mTime2;
+	QString mLapTimeText;
+	QString mTotalTimeText;
 	QString mLapText;
 	int mLaps = 1;
-	QElapsedTimer mPauseTime;		//! Computes the time of pause pressed
-	void updateOverlay();
-	QString mLapTime[3];
 
+	void updateOverlay();
+	QString mLapTimeEnd[3];
+	QString mTotalTimeEnd;
 public:
 	World(int width,int height);
 	//World(int width, int height, int level);
-    ~World();
-    void keyPressEvent(QKeyEvent * keyEvent);
-    void keyReleaseEvent(QKeyEvent * keyEvent);
-    void loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle);
+	~World();
+	void keyPressEvent(QKeyEvent * keyEvent);
+	void keyReleaseEvent(QKeyEvent * keyEvent);
+	void loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle);
+	void StopGame();
+	void ResumeGame();
+	static void GameExit();
 
 public slots:
 	void gameLoop();
 	void startLoop();
 	void saveLapTime();
+
+signals:
+	void RaceFinished(QString mLapTime[],QString mTotalTimeEnd);
 };
 
 #endif // WORLD_H
