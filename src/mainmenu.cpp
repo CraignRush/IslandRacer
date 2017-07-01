@@ -19,6 +19,10 @@ mainMenu::mainMenu(QWidget *parent) :
 	handlingValue = 0;
 	topspeedValue = 0;
 	active=1;
+    backgroundSoundValue = 50;
+    buttonSoundValue = 100;
+    raceSoundValue = 50;
+
 
 	// Get Screensize
 	QScreen *screen = QGuiApplication::primaryScreen();
@@ -37,13 +41,13 @@ mainMenu::mainMenu(QWidget *parent) :
 
 	backgroundmusic = new QMediaPlayer();
 	backgroundmusic->setPlaylist(playlist);
-	backgroundmusic->setVolume(50);
+    backgroundmusic->setVolume(backgroundSoundValue);
 	backgroundmusic->play();
 
 	// Set Buttonsound
 	buttonsound = new QMediaPlayer();
 	buttonsound->setMedia(QUrl("qrc:/sounds/sounds/buttonsound.wav"));
-	buttonsound->setVolume(100);
+    buttonsound->setVolume(buttonSoundValue);
 
 	// Set Pixmaps
 	QPixmap logo(":/images/images/Logo.png");
@@ -284,7 +288,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->settingsBackgroundSoundOff->setIcon(soundOff);
     ui->settingsBackgroundSoundOff->setIconSize(arrowButton);
     ui->settingsBackgroundSoundSlider->setStyleSheet("QSlider{background: transparent;}");
-    ui->settingsBackgroundSoundSlider->setValue(80);
+    ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
 	ui->settingsButtonSoundLabel->setStyleSheet("QLabel{background: transparent;}");
 	ui->settingsButtonSoundLabel->setFont(GillSansMT);
 	ui->settingsButtonSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -296,7 +300,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->settingsButtonSoundOff->setIcon(soundOff);
     ui->settingsButtonSoundOff->setIconSize(arrowButton);
 	ui->settingsButtonSoundSlider->setStyleSheet("QSlider{background: transparent;}");
-    ui->settingsButtonSoundSlider->setValue(100);
+    ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
 	ui->settingsRaceSoundLabel->setStyleSheet("QLabel{background: transparent;}");
 	ui->settingsRaceSoundLabel->setFont(GillSansMT);
 	ui->settingsRaceSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -308,6 +312,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->settingsRaceSoundOff->setIcon(soundOff);
     ui->settingsRaceSoundOff->setIconSize(arrowButton);
     ui->settingsRaceSoundSlider->setStyleSheet("QSlider{background: transparent;}");
+    ui->settingsRaceSoundSlider->setValue(raceSoundValue);
 	ui->settingsHighscoreResetLabel->setStyleSheet("QLabel{background: transparent;}");
 	ui->settingsHighscoreResetLabel->setFont(GillSansMT);
 	ui->settingsHighscoreResetLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -752,7 +757,8 @@ void mainMenu::on_settingsBackgroundSoundOn_clicked()
 	playbuttonsound();
 	active = 1;
     setbackgroundsound();
-    ui->settingsBackgroundSoundSlider->setValue(99);
+    backgroundmusic->setVolume(backgroundSoundValue);
+    ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
 }
 
 void mainMenu::on_settingsBackgroundSoundOff_clicked()
@@ -760,52 +766,55 @@ void mainMenu::on_settingsBackgroundSoundOff_clicked()
 	playbuttonsound();
 	active=0;
 	setbackgroundsound();
+    backgroundSoundValue = ui->settingsBackgroundSoundSlider->value();
     ui->settingsBackgroundSoundSlider->setValue(0);
 }
 
 void mainMenu::on_settingsBackgroundSoundSlider_valueChanged(int value)
 {
-	if(active == 0){
+    if(active == 0){
 		active = 1;
 		setbackgroundsound();
 	}
-	backgroundmusic->setVolume(value);
+    backgroundmusic->setVolume(value);
 }
 void mainMenu::on_settingsButtonSoundOn_clicked()
 {
 	playbuttonsound();
-	buttonsound->setVolume(ui->settingsButtonSoundSlider->value());
-    ui->settingsButtonSoundSlider->setValue(99);
+    buttonsound->setVolume(buttonSoundValue);
+    ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
 }
 
 void mainMenu::on_settingsButtonSoundOff_clicked()
 {
 	playbuttonsound();
 	buttonsound->setVolume(0);
+    buttonSoundValue = ui->settingsButtonSoundSlider->value();
     ui->settingsButtonSoundSlider->setValue(0);
 }
 
 void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
 {
-	buttonsound->setVolume(value);
+    buttonsound->setVolume(value);
 }
 
 void mainMenu::on_settingsRaceSoundOn_clicked()
 {
 	playbuttonsound();
-    ui->settingsRaceSoundSlider->setValue(99);
+    ui->settingsRaceSoundSlider->setValue(raceSoundValue);
 }
 
 void mainMenu::on_settingsRaceSoundOff_clicked()
 {
 	playbuttonsound();
 	//raceSound aus
+    raceSoundValue = ui->settingsRaceSoundSlider->value();
 	ui->settingsRaceSoundSlider->setValue(0);
 }
 
 void mainMenu::on_settingsRaceSoundSlider_valueChanged(int value)
 {
-	//racesound lauter/leiser
+    //racesound lauter/leiser
 }
 
 // Highscore Configuration

@@ -2183,6 +2183,9 @@
         </item>
         <item row="5" column="4">
          <widget class="QSlider" name="settingsRaceSoundSlider">
+          <property name="maximum">
+           <number>100</number>
+          </property>
           <property name="pageStep">
            <number>0</number>
           </property>
@@ -2193,6 +2196,9 @@
         </item>
         <item row="3" column="4">
          <widget class="QSlider" name="settingsBackgroundSoundSlider">
+          <property name="maximum">
+           <number>100</number>
+          </property>
           <property name="pageStep">
            <number>0</number>
           </property>
@@ -2210,7 +2216,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>off</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -2223,7 +2229,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>off</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -2388,7 +2394,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>off</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -2407,6 +2413,9 @@
         </item>
         <item row="4" column="4">
          <widget class="QSlider" name="settingsButtonSoundSlider">
+          <property name="maximum">
+           <number>100</number>
+          </property>
           <property name="pageStep">
            <number>0</number>
           </property>
@@ -2437,7 +2446,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>on</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -2463,7 +2472,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>on</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -2476,7 +2485,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>on</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -2489,7 +2498,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>reset</string>
+           <string/>
           </property>
          </widget>
         </item>

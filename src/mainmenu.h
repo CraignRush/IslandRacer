@@ -133,6 +133,9 @@ private:
 	int topspeedValue;
 	int maximumValue;
     int active;
+    int backgroundSoundValue;
+    int buttonSoundValue;
+    int raceSoundValue;
 
     QMediaPlayer *backgroundmusic;
     QMediaPlaylist *playlist;
