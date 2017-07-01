@@ -19,6 +19,7 @@ World::World(int width, int height)
 	mTotalTimeLabel = NULL;
     mStartTimer = NULL;
     mCounter = NULL;
+    mSpeedDisplay = NULL;
 
     mFps = 50;
 	mCurrentInputState = None;
@@ -171,6 +172,11 @@ World::~World()
 		delete mLapLabel;
 		mLapLabel = NULL;
 	}
+    if(mSpeedDisplay != NULL)
+    {
+        delete mSpeedDisplay;
+        mSpeedDisplay = NULL;
+    }
 
     delete mTrack;
     mTrack = NULL;
@@ -194,16 +200,16 @@ void World::gameLoop()
 void World::startLoop()
 {
 	if(mStartCounter%100==0 && mStartCounter > 0)
-	{
-		Opacity=1.0f;
-		mCounter->setPlainText(QString::number(mStartCounter/100));
-		mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-20)/2,(mHeight-200)/2));
+    {
+        Opacity=1.0f;
+        mCounter->setPlainText(QString::number(mStartCounter/100));
+        mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-280)/2,(mHeight-500)/2));
 	}
 	if(mStartCounter == 0)
 	{
-		Opacity=1.0f;
+        Opacity=1.0f;
 		mCounter->setPlainText("GO!");
-		mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-60)/2,(mHeight-200)/2));
+        mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-450)/2,(mHeight-500)/2));
 		mTimer->start(1000.0/mFps);
         mStartTimer->start(15);
 		//start the race time immediately after go
@@ -214,10 +220,11 @@ void World::startLoop()
 		mTime2.setHMS(0,0,0,0);
 		mTotalTime.start();
 		mLapLabel->setVisible(true);
-	}
+        mSpeedDisplay->setVisible(true);
+    }
 
 	mCounter->setOpacity(Opacity);
-	Opacity -= 0.01f;
+    Opacity -= 0.01f;
 	mStartCounter--;
 
 	if(mStartCounter == -100)
@@ -252,6 +259,12 @@ void World::updateOverlay(){
 	mLapLabel->setPos(mapToScene(mLapLabelPos));
 	/*qDebug() << mElapsed;
 	qDebug() << mTime;*/
+
+    //Display current speed
+    double mSpeed = sqrt(qPow((mCar->x()-mPrevPos.x()),2)+qPow((mCar->y()-mPrevPos.y()),2))/20.f/mFps*1000*3.6*5;
+    mSpeedDisplay->setHtml(QString("<div style='background:rgba(255, 255, 255, 7%);'>") + "Speed: " + QString::number(mSpeed, 'f', 1) + " km/h" + QString("</div>"));
+    mSpeedDisplay->setPos(mapToScene(mSpeedDisplayPos));
+    mPrevPos = mCar->pos();
 }
 
 void World::saveLapTime(){
@@ -301,6 +314,11 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
         {
             delete mLapLabel;
             mLapLabel = NULL;
+        }
+        if(mSpeedDisplay != NULL)
+        {
+            delete mSpeedDisplay;
+            mSpeedDisplay = NULL;
         }
 		break;
 	case Qt::Key_Left:
@@ -435,9 +453,20 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 	// Init variables for start sequence
 	Opacity = 1.0f;
 	mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
-	mCounter = new QGraphicsTextItem;
-	mCounter->setScale(10);
-	mTrack->addItem(mCounter);
+    mCounter = new QGraphicsTextItem;
+    mCounter->setScale(20);
+    mCounter->setDefaultTextColor(QColor(140,10,0));
+    mTrack->addItem(mCounter);
+
+    //Initialize Label for speedometer
+    mSpeedDisplay = new QGraphicsTextItem();
+    mSpeedDisplay->setVisible(false);
+    mSpeedDisplay->setDefaultTextColor(QColor("red"));
+    mSpeedDisplay->setScale(7);
+    mSpeedDisplayPos.setX(10);
+    mSpeedDisplayPos.setY(mHeight - (mSpeedDisplay->boundingRect().height() + 125));
+    mTrack->addItem(mSpeedDisplay);
+    mPrevPos = mCar->pos();
 
 	//Initialize Label for ingame lap time display
 	mLapTimeLabel = new QGraphicsTextItem();

@@ -36,6 +36,10 @@ private:
 	float Opacity;                  // Opacity for fade out effect of StartCounger
 	QGraphicsTextItem* mCounter;    // Display Start Counter
 
+    QGraphicsTextItem* mSpeedDisplay;   //Display current Speed
+    QPoint mSpeedDisplayPos;
+    QPointF mPrevPos;
+
 	QGraphicsTextItem* mLapTimeLabel;		//! contains the String with the elapsed time
 	QGraphicsTextItem* mLapLabel;	//! contains the label in the scene
 	QGraphicsTextItem* mTotalTimeLabel;
