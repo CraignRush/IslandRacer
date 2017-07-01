@@ -66,7 +66,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="main">
        <property name="sizePolicy">
@@ -2210,7 +2210,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>off</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -2223,7 +2223,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Off</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -2388,7 +2388,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>off</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -2437,7 +2437,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>on</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -2454,19 +2454,6 @@
           </property>
          </spacer>
         </item>
-        <item row="4" column="2">
-         <widget class="QPushButton" name="settingsButtonSoundOn">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>on</string>
-          </property>
-         </widget>
-        </item>
         <item row="5" column="2">
          <widget class="QPushButton" name="settingsRaceSoundOn">
           <property name="sizePolicy">
@@ -2476,7 +2463,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>on</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -2489,7 +2476,20 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>reset</string>
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QPushButton" name="settingsButtonSoundOn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>

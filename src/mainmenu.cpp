@@ -67,6 +67,9 @@ mainMenu::mainMenu(QWidget *parent) :
 	QIcon manual(":/images/images/manual.png");
 	QIcon credits(":/images/images/credits.png");
 	QIcon quit(":/images/images/quit.png");
+    QIcon reset(":/images/images/reset.png");
+    QIcon soundOn(":/images/images/soundOn.png");
+    QIcon soundOff(":/images/images/soundOff.png");
 
 	// Set Icon Sizes
     QSize bigButton(0.2 * screenHeight,0.1 * screenHeight);
@@ -275,15 +278,23 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->settingsBackgroundSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsBackgroundSoundLabel->setText("Background Sound:");
 	ui->settingsBackgroundSoundOn->setStyleSheet("QPushButton{background: transparent;}");
-	ui->settingsBackgroundSoundOff->setStyleSheet("QPushButton{background: transparent;}");
-	ui->settingsBackgroundSoundSlider->setStyleSheet("QSlider{background: transparent;}");
+    ui->settingsBackgroundSoundOn->setIcon(soundOn);
+    ui->settingsBackgroundSoundOn->setIconSize(arrowButton);
+    ui->settingsBackgroundSoundOff->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsBackgroundSoundOff->setIcon(soundOff);
+    ui->settingsBackgroundSoundOff->setIconSize(arrowButton);
+    ui->settingsBackgroundSoundSlider->setStyleSheet("QSlider{background: transparent;}");
     ui->settingsBackgroundSoundSlider->setValue(80);
 	ui->settingsButtonSoundLabel->setStyleSheet("QLabel{background: transparent;}");
 	ui->settingsButtonSoundLabel->setFont(GillSansMT);
 	ui->settingsButtonSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsButtonSoundLabel->setText("Button Sound:");
 	ui->settingsButtonSoundOn->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsButtonSoundOn->setIcon(soundOn);
+    ui->settingsButtonSoundOn->setIconSize(arrowButton);
 	ui->settingsButtonSoundOff->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsButtonSoundOff->setIcon(soundOff);
+    ui->settingsButtonSoundOff->setIconSize(arrowButton);
 	ui->settingsButtonSoundSlider->setStyleSheet("QSlider{background: transparent;}");
     ui->settingsButtonSoundSlider->setValue(100);
 	ui->settingsRaceSoundLabel->setStyleSheet("QLabel{background: transparent;}");
@@ -291,13 +302,19 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->settingsRaceSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsRaceSoundLabel->setText("Race Sound:");
 	ui->settingsRaceSoundOn->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsRaceSoundOn->setIcon(soundOn);
+    ui->settingsRaceSoundOn->setIconSize(arrowButton);
 	ui->settingsRaceSoundOff->setStyleSheet("QPushButton{background: transparent;}");
-	ui->settingsRaceSoundSlider->setStyleSheet("QSlider{background: transparent;}");
+    ui->settingsRaceSoundOff->setIcon(soundOff);
+    ui->settingsRaceSoundOff->setIconSize(arrowButton);
+    ui->settingsRaceSoundSlider->setStyleSheet("QSlider{background: transparent;}");
 	ui->settingsHighscoreResetLabel->setStyleSheet("QLabel{background: transparent;}");
 	ui->settingsHighscoreResetLabel->setFont(GillSansMT);
 	ui->settingsHighscoreResetLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsHighscoreResetLabel->setText("Highscore Reset:");
 	ui->settingsHighscoreResetButton->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsHighscoreResetButton->setIcon(reset);
+    ui->settingsHighscoreResetButton->setIconSize(bigButton);
 
 	// Items in manual
 	ui->manualLogo->setPixmap(logo);
@@ -320,7 +337,7 @@ mainMenu::mainMenu(QWidget *parent) :
 							 "ESC = Back to main menu\n\n"
 							 "You can adjust the attributes of the car in the garage.\n"
                              "The better your times on the tracks are, the more points you can distribute.\n"
-                             "There is no reason to take a shortcut - we know where you drive!\n");
+                             "There is no possibility to take a shortcut - we know where you drive!\n");
 
 	// Items in credits
 	ui->creditsLogo->setPixmap(logo);
