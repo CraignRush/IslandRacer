@@ -276,48 +276,48 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->settingsLogo->setStyleSheet("QLabel{background: transparent;}");
 	ui->settings2Main->setIcon(menu);
 	ui->settings2Main->setIconSize(smallButton);
-	ui->settings2Main->setStyleSheet("QPushButton{background: transparent;}");
-	ui->settingsBackgroundSoundLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->settings2Main->setStyleSheet("QPushButton{background: transparent; color: white}");
+    ui->settingsBackgroundSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->settingsBackgroundSoundLabel->setFont(GillSansMT);
 	ui->settingsBackgroundSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsBackgroundSoundLabel->setText("Background Sound:");
-	ui->settingsBackgroundSoundOn->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsBackgroundSoundOn->setStyleSheet("QPushButton{background: transparent; color: white}");
     ui->settingsBackgroundSoundOn->setIcon(soundOn);
     ui->settingsBackgroundSoundOn->setIconSize(arrowButton);
-    ui->settingsBackgroundSoundOff->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsBackgroundSoundOff->setStyleSheet("QPushButton{background: transparent; color: white}");
     ui->settingsBackgroundSoundOff->setIcon(soundOff);
     ui->settingsBackgroundSoundOff->setIconSize(arrowButton);
     ui->settingsBackgroundSoundSlider->setStyleSheet("QSlider{background: transparent;}");
     ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
-	ui->settingsButtonSoundLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->settingsButtonSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->settingsButtonSoundLabel->setFont(GillSansMT);
 	ui->settingsButtonSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsButtonSoundLabel->setText("Button Sound:");
-	ui->settingsButtonSoundOn->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsButtonSoundOn->setStyleSheet("QPushButton{background: transparent; color: white}");
     ui->settingsButtonSoundOn->setIcon(soundOn);
     ui->settingsButtonSoundOn->setIconSize(arrowButton);
-	ui->settingsButtonSoundOff->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsButtonSoundOff->setStyleSheet("QPushButton{background: transparent; color: white}");
     ui->settingsButtonSoundOff->setIcon(soundOff);
     ui->settingsButtonSoundOff->setIconSize(arrowButton);
 	ui->settingsButtonSoundSlider->setStyleSheet("QSlider{background: transparent;}");
     ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
-	ui->settingsRaceSoundLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->settingsRaceSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->settingsRaceSoundLabel->setFont(GillSansMT);
 	ui->settingsRaceSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsRaceSoundLabel->setText("Race Sound:");
-	ui->settingsRaceSoundOn->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsRaceSoundOn->setStyleSheet("QPushButton{background: transparent; color: white}");
     ui->settingsRaceSoundOn->setIcon(soundOn);
     ui->settingsRaceSoundOn->setIconSize(arrowButton);
-	ui->settingsRaceSoundOff->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsRaceSoundOff->setStyleSheet("QPushButton{background: transparent; color: white}");
     ui->settingsRaceSoundOff->setIcon(soundOff);
     ui->settingsRaceSoundOff->setIconSize(arrowButton);
     ui->settingsRaceSoundSlider->setStyleSheet("QSlider{background: transparent;}");
     ui->settingsRaceSoundSlider->setValue(raceSoundValue);
-	ui->settingsHighscoreResetLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->settingsHighscoreResetLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->settingsHighscoreResetLabel->setFont(GillSansMT);
 	ui->settingsHighscoreResetLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsHighscoreResetLabel->setText("Highscore Reset:");
-	ui->settingsHighscoreResetButton->setStyleSheet("QPushButton{background: transparent;}");
+    ui->settingsHighscoreResetButton->setStyleSheet("QPushButton{background: transparent; color: white}");
     ui->settingsHighscoreResetButton->setIcon(reset);
     ui->settingsHighscoreResetButton->setIconSize(bigButton);
 
@@ -358,6 +358,16 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->creditsLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->creditsLabel->setFont(GillSansMT);
 	ui->creditsLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->creditsLabel->setText("DESIGNED AND PROGRAMMED BY:\n"
+                             "Adrian Schiechel\n"
+                             "Andreas Finkenzeller\n"
+                             "Carina Vogl\n"
+                             "Michael Maas\n"
+                             "Johann Brenner\n\n"
+                             "FOR:\n"
+                             "Grundkurs C++, TUM\n\n"
+                             "IN:\n"
+                             "Summer Semester 2017\n\n");
 }
 
 mainMenu::~mainMenu()
