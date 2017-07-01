@@ -17,7 +17,6 @@ SOURCES += main.cpp \
     player.cpp \
     checkpoint.cpp \
     mainmenu.cpp \
-    main.cpp \
 
 
 # The following define makes your compiler emit warnings if you use
@@ -51,14 +50,7 @@ HEADERS += \
     track.h \
     player.h \
     checkpoint.h \
-    mainmenu.h \
-    car.h \
-    checkpoint.h \
-    game.h \
-    mainmenu.h \
-    player.h \
-    track.h \
-    world.h
+    mainmenu.h
 
 RESOURCES += \
     res.qrc
