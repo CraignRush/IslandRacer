@@ -734,7 +734,8 @@ void mainMenu::on_settingsBackgroundSoundOn_clicked()
 {
 	playbuttonsound();
 	active = 1;
-	setbackgroundsound();
+    setbackgroundsound();
+    ui->settingsBackgroundSoundSlider->setValue(99);
 }
 
 void mainMenu::on_settingsBackgroundSoundOff_clicked()
@@ -742,6 +743,7 @@ void mainMenu::on_settingsBackgroundSoundOff_clicked()
 	playbuttonsound();
 	active=0;
 	setbackgroundsound();
+    ui->settingsBackgroundSoundSlider->setValue(0);
 }
 
 void mainMenu::on_settingsBackgroundSoundSlider_valueChanged(int value)
@@ -756,12 +758,14 @@ void mainMenu::on_settingsButtonSoundOn_clicked()
 {
 	playbuttonsound();
 	buttonsound->setVolume(ui->settingsButtonSoundSlider->value());
+    ui->settingsButtonSoundSlider->setValue(99);
 }
 
 void mainMenu::on_settingsButtonSoundOff_clicked()
 {
 	playbuttonsound();
 	buttonsound->setVolume(0);
+    ui->settingsButtonSoundSlider->setValue(0);
 }
 
 void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
@@ -772,6 +776,7 @@ void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
 void mainMenu::on_settingsRaceSoundOn_clicked()
 {
 	playbuttonsound();
+    ui->settingsRaceSoundSlider->setValue(99);
 }
 
 void mainMenu::on_settingsRaceSoundOff_clicked()
