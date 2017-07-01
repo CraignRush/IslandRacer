@@ -31,14 +31,14 @@ mainMenu::mainMenu(QWidget *parent) :
     QString garageImage( "background-image: url(:/images/images/Garagehell.jpg);" );
 
     // Set Backgroundsound
-    QMediaPlaylist *playlist = new QMediaPlaylist();
-    playlist->addMedia(QUrl("qrc:/sounds/sounds/backgroundmusic.wav"));
-    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+//    QMediaPlaylist *playlist = new QMediaPlaylist();
+//    playlist->addMedia(QUrl("qrc:/sounds/sounds/backgroundmusic.wav"));
+//    playlist->setPlaybackMode(QMediaPlaylist::Loop);
 
-    QMediaPlayer *backgroundmusic = new QMediaPlayer();
-    backgroundmusic->setPlaylist(playlist);
-    backgroundmusic->play();
-    backgroundmusic->setVolume(80);
+//    QMediaPlayer *backgroundmusic = new QMediaPlayer();
+//    backgroundmusic->setPlaylist(playlist);
+//    backgroundmusic->play();
+//    backgroundmusic->setVolume(30);
 
     // Set Pixmaps
     QPixmap logo(":/images/images/Logo.png");

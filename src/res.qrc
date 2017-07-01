@@ -32,5 +32,8 @@
     </qresource>
     <qresource prefix="/sounds">
         <file>sounds/backgroundmusic.wav</file>
+        <file>sounds/car_accelerating.wav</file>
+        <file>sounds/car_accelerating_loop.mp3</file>
+        <file>sounds/car_accelerating_loop.wav</file>
     </qresource>
 </RCC>

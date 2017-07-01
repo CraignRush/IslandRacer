@@ -7,7 +7,11 @@
 #include <Box2D/Box2D.h>
 #include <QTimer>
 #include <QObject>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#include <QThread>
 #include "track.h"
+#include "sound.h"
 
 
 enum InputState
@@ -35,9 +39,9 @@ private:
 	//! Variable car properties
 	//! max steering lock angle (default at pi/3)
 	const float MAX_STEER_ANGLE = (float)M_PI/3.0f;
-    const float STEER_SPEED = 3.0f;         //5.0f;
+    const float STEER_SPEED = 1.5f;         //5.0f;
     const float HORSEPOWERS = 8000.0f;       //240.0f;
-    const float MAX_LATERAL_IMPULSE = 7.0f; //1.7f; //! for drifting :D
+    const float MAX_LATERAL_IMPULSE = 0.0f; //1.7f; //! for drifting :D
     const float MAX_TORQUE = 100.0f;
     //const b2Vec2 CAR_STARTING_POS = b2Vec2(0.0f,0.0f);
 
@@ -78,11 +82,18 @@ private:
     b2PrismaticJoint *mRightRearJoint;
     b2PrismaticJoint *mLeftRearJoint;
 
+    QThread* mSoundThread;
+    Sound* mSound;
     Track* mTrack;
+
+signals:
+    void playCarSound();
+    void stopCarSound();
 
 public:
 	//! Fill the world with car object constructor
     Car(b2World* world, Track* track);
+    ~Car();
 	//! Show the car on screen
 	void render();
 	//! Let wheels only roll "forward"

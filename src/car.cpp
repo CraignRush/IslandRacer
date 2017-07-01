@@ -2,6 +2,10 @@
 #include "world.h"
 #include <cmath>
 #include <QDebug>
+#include "sound.h"
+#include <QThread>
+#include <QMetaObject>
+#include <QSoundEffect>
 
 
 Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
@@ -99,6 +103,14 @@ Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
     mLeftRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(leftRearJointDef);
     mRightRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(rightRearJointDef);
 
+    // Setup sound
+    mSoundThread = new QThread();
+    mSound = new Sound();
+    mSound->moveToThread(mSoundThread);
+    connect(this, SIGNAL(playCarSound()), mSound, SLOT(playCarSound()));
+    connect(this, SIGNAL(stopCarSound()), mSound, SLOT(stopCarSound()));
+    mSoundThread->start();
+
     // delete tmp vars
     delete bodyDef;
     delete leftWheelDef;
@@ -116,13 +128,18 @@ Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
     delete rightRearJointDef;
 }
 
+Car::~Car()
+{
+    delete mSound;
+    delete mSoundThread;
+}
+
 void Car::render()
 {
     //! Get position of main car body and scale 1m = 20 px
 	b2Vec2 pos = mBody->GetPosition();
 	setPos((pos.x - (CAR_WIDTH / 2.0f)) * PX_TO_M_RATIO, (pos.y - (CAR_LENGTH / 2.0f)) * PX_TO_M_RATIO);
 	setRotation(mBody->GetAngle() * 360.0 / (2.0 * 3.141592) + CAR_ROTATION_ANGLE);
-    ensureVisible(QRectF(), 800, 400);
 }
 
 
@@ -339,7 +356,8 @@ void Car::setPosition(int x, int y, double angle)
     mLeftRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(leftRearJointDef);
     mRightRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(rightRearJointDef);
 
-	mBody->SetTransform(mCarPosition,angle);
+    // render new car position
+    render();
 
     // delete tmp vars
     delete bodyDef;
@@ -357,7 +375,6 @@ void Car::setPosition(int x, int y, double angle)
     delete leftRearJointDef;
     delete rightRearJointDef;
 }
-
 
 //This function applies a "friction" in a direction orthogonal to the mBody's axis.
 void Car::killOrthogonalVelocity(b2Body *targetBody){
