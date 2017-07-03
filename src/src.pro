@@ -35,7 +35,7 @@ INCLUDEPATH += $$PWD/../Box2D
 LIBS += -L$$PWD/../Box2D
 CONFIG( debug, debug|release ) {
     # debug
-    LIBS += -lBox2D
+    LIBS += -lBox2Dd
 } else {
     # release
     LIBS += -lBox2D

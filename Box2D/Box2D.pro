@@ -1,9 +1,9 @@
 TEMPLATE = lib
-CONFIG = staticlib debug qml_debug
+CONFIG = staticlib
 
 CONFIG( debug, debug|release ) {
     # debug
-    TARGET = Box2D
+    TARGET = Box2Dd
 } else {
     # release
     TARGET = Box2D

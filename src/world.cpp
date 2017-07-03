@@ -1,5 +1,9 @@
 #include "world.h"
 #include <QDebug>
+#include <chrono>
+
+using namespace std;
+using namespace std::chrono;
 
 World::World(int width, int height)
 {
@@ -187,6 +191,9 @@ World::~World()
 
 void World::gameLoop()
 {
+	//high_resolution_clock::time_point t1 = high_resolution_clock::now();
+	QElapsedTimer timer;
+	timer.start();
 	mWorld->Step(1.0f/mFps, 8, 3);
 
 	mCar->computeUserInput(mCurrentInputState);
@@ -195,6 +202,11 @@ void World::gameLoop()
 	mCar->render();
 
 	updateOverlay();
+//	high_resolution_clock::time_point t2 = high_resolution_clock::now();
+//	auto duration = duration_cast<microseconds>(t2-t1).count();
+//	qDebug() << duration;
+
+	qDebug() << "The slow operation took" << timer.elapsed() << "nanoseconds";
 }
 
 void World::startLoop()
