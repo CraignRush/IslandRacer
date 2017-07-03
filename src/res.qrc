@@ -7,7 +7,6 @@
         <file>images/l-arrow-576725_1280.png</file>
         <file>images/manual.png</file>
         <file>images/menu.png</file>
-        <file>images/palmtree1_1920_1080.jpg</file>
         <file>images/play.png</file>
         <file>images/quit.png</file>
         <file>images/r-arrow-576725_1280.png</file>
@@ -16,7 +15,6 @@
         <file>images/Island1gray.png</file>
         <file>images/Logo.png</file>
         <file>images/Garage.jpg</file>
-        <file>images/Garagehell.jpg</file>
         <file>images/Testisland.png</file>
         <file>images/Monzatextur.png</file>
         <file>images/Hockenheimtextur.png</file>
@@ -24,6 +22,11 @@
         <file>images/Hockenheimgrey.png</file>
         <file>images/Monzagrey.png</file>
         <file>images/YasMarinagrey.png</file>
+        <file>images/GaragehellGross.jpg</file>
+        <file>images/palmtree1_3840_2160.jpg</file>
+        <file>images/reset.png</file>
+        <file>images/soundOff.png</file>
+        <file>images/soundOn.png</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>
@@ -35,5 +38,7 @@
         <file>sounds/car_accelerating.wav</file>
         <file>sounds/car_accelerating_loop.mp3</file>
         <file>sounds/car_accelerating_loop.wav</file>
+        <file>sounds/buttonsound.wav</file>
+        <file>sounds/intense-bg-music.wav</file>
     </qresource>
 </RCC>

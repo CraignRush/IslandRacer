@@ -14,25 +14,32 @@ class Viewport : public QGraphicsView
     Q_OBJECT
 
 private:
-    //QGraphicsTextItem* mTimeLabel;	// contains the String with the elapsed time
-    //QGraphicsTextItem* mLapLabel;	// contains the label in the scene
-    QLabel* mTimeLabel;	// contains the String with the elapsed time
-    QLabel* mLapLabel;	// contains the label in the scene
-    QPoint mLapLabelPos;
-    QPoint mTimeLabelPos;			// position of the label realtively to the window
-    QElapsedTimer mRaceTime;		// computes the elapsed time since "GO!" in ms
+    QLabel* mSpeedDisplay;              // Display current Speed
+    QLabel* mLapTimeLabel;              // contains the String with the elapsed time per lap
+    QLabel* mTotalTimeLabel;            // contains the String with the total elapsed time
+    QLabel* mLapLabel;                  // contains the label in the scene
+    QElapsedTimer mLapTimeElapsed;     	// computes the elapsed time since "GO!" in ms
+    QElapsedTimer mTotalTimeElapsed;
+    QElapsedTimer mPauseTimeElapsed;	// Computes the time of pause pressed
     int mElapsed = 0;
-    QTime mTime;					// for translating ms dynamically into mm:ss.zzz
-    QString mTimeText;
+    QTime mTime;        				// for translating ms dynamically into mm:ss.zzz
+    QTime mTime2;
+    QString mLapTimeText;
     QString mLapText;
     int mLaps = 1;
-    QElapsedTimer mPauseTime;		// Computes the time of pause pressed
     QString mLapTime[3];
+    QString mLapTimeEnd[3];
+
+    QString mTotalTimeText;
+    QString mTotalTimeEnd;
 
 public:
     Viewport(int width, int height, Track* track);
     ~Viewport();
     void startGame();
+    //void StopGame();
+    void ResumeGame();
+    //static void GameExit();
     void updateOverlay();
 
 public slots:

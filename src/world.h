@@ -13,7 +13,7 @@
 #include "track.h"
 #include "car.h"
 #include "viewport.h"
-
+#include "player.h"
 
 class World : public QMainWindow
 {
@@ -49,7 +49,6 @@ private:
     const int mFps = 25;        // Frames per second (framerate for game loop)
 
     QTimer* mStartTimer;            // This timer counts the start sequence
-    //QGraphicsTextItem* mCounter;    // Display Start Counter
     QLabel* mCounter;
     int mStartCounter;              // remaining start sequence Time in 10msec steps
     float mOpacity;                 // Opacity for fade out effect of StartCounter
@@ -60,10 +59,17 @@ public:
     void loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle);
     void keyPressEvent(QKeyEvent *keyEvent);
     void keyReleaseEvent(QKeyEvent *keyEvent);
+    void ResumeGame();
+    void StopGame();
+    static void GameExit();
 
 public slots:
 	void gameLoop();
-    void startLoop();
+	void startLoop();
+
+signals:
+    void RaceFinished(QString mLapTime[],QString mTotalTimeEnd);
+
 };
 
 #endif // WORLD_H

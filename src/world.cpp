@@ -40,15 +40,18 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     //mBlurEffect = new QGraphicsBlurEffect();
 
     // Create horizontal border line between the two viewports
-    QFrame* line = new QFrame();
+    QWidget* line = new QWidget();
+
     //line->setFrameShape(QFrame::VLine);
-    line->setFixedWidth(10);
+    line->setFixedWidth(2);
+    line->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     //line->setFrameShadow(QFrame::Sunken);
     // set black background of line
-    QPalette pal = palette();
-    pal.setColor(QPalette::Background, Qt::black);
-    line->setAutoFillBackground(true);
-    line->setPalette(pal);
+    //QPalette pal = palette();
+    //pal.setColor(QPalette::Background, Qt::black);
+    //line->setAutoFillBackground(true);
+    //line->setPalette(pal);
+    line->setStyleSheet(QString("background-color: black;"));
 
     // Prevent manually scrolling with arrow keys
     mViewPlayer1->setFocusPolicy(Qt::NoFocus);
@@ -227,7 +230,7 @@ void World::startLoop()
     mOpacity -= 0.05f;
     mStartCounter -= 5;
 
-	if(mStartCounter == -100)
+    if(mStartCounter == -100)
 	{
 		mStartTimer->stop();
 
@@ -296,6 +299,13 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
             delete mStartTimer;
             mStartTimer = NULL;
         }
+
+//        if(mSpeedDisplay != NULL)
+//        {
+//            delete mSpeedDisplay;
+//            mSpeedDisplay = NULL;
+//        }
+
 //        if(mTimeLabel != NULL)
 //        {
 //            delete mTimeLabel;
@@ -544,3 +554,22 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
         break;
     }
 }
+
+void World::StopGame()
+{
+	mTimer->stop();
+}
+
+void World::ResumeGame()
+{
+	mTimer->start();
+    mViewPlayer1->ResumeGame();
+    mViewPlayer2->ResumeGame();
+}
+
+void World::GameExit()
+{
+
+}
+
+

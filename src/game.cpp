@@ -7,6 +7,9 @@ Game::Game()
 {
     mWorld = new World(1920,1080);
     mWorld->hide();
+	mPlayer = new Player;
+	//connect end race signal to player class
+	connect(mWorld,SIGNAL(RaceFinished(QString[],QString)),mPlayer,SLOT(endRaceDialog(QString[],QString)));
 }
 
 Game::Game(int screenWidth, int screenHeight, bool fullscreen)
@@ -15,6 +18,9 @@ Game::Game(int screenWidth, int screenHeight, bool fullscreen)
     if(fullscreen)
         mWorld->showFullScreen();
     mWorld->hide();
+	mPlayer = new Player;
+	//connect end race signal to player class
+	connect(mWorld,SIGNAL(RaceFinished(QString[],QString)),mPlayer,SLOT(endRaceDialog(QString[],QString)));
 }
 
 Game::~Game()
@@ -31,12 +37,15 @@ void Game::loadCircuit(Circuit circuit)
     {
     case Monza:
         filename = ":/circuits/Monza.circuit";
+		mPlayer->SetCircuit(Monza);
         break;
     case Hockenheimring:
         filename = ":/circuits/Hockenheimring.circuit";
+		mPlayer->SetCircuit(Hockenheimring);
         break;
     case YasMarina:
         filename = ":/circuits/YasMarina.circuit";
+		mPlayer->SetCircuit(YasMarina);
         break;
     }
 
@@ -132,5 +141,5 @@ void Game::loadCircuit(Circuit circuit)
 
         if(angle_list != NULL)
             free(angle_list);
-    }
+	}
 }

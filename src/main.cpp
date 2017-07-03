@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
     mainMenu menu;
     menu.showFullScreen();
 
-    //Game game;
-    //game.loadCircuit(Monza);
+//    Game game;
+//    game.loadCircuit(Monza);
 
     return a.exec();
 }

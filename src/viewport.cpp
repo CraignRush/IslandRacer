@@ -4,10 +4,6 @@ Viewport::Viewport(int width, int height, Track* track)
 {
     //scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
 
-    // Init variables
-    mLapLabel = NULL;
-    mTimeLabel = NULL;
-
     // Set track as scene for this view
     setScene(track);
 
@@ -17,53 +13,57 @@ Viewport::Viewport(int width, int height, Track* track)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     //Initialize Label for ingame time display
-    //mTimeLabel = new QGraphicsTextItem();
-    mTimeLabel = new QLabel();
-    mTimeLabel->setVisible(false);
-    mTimeLabel->setFont(QFont("GillSansMT",24,60)); // Font: family, PointSize, Weight(how bold)
-    //mTimeLabel->setDefaultTextColor(QColor("red"));
-    mTimeLabel->setStyleSheet("color: red");
-    mTimeText = "TIME: ";
-    //mTimeLabel->setPlainText(mTimeText + "mm:ss.zzz");
-    mTimeLabel->setText(mTimeText + "mm:ss.zzz");
-    //Set starting position
-    //mTimeLabelPos.setX(width - (mTimeLabel->geometry().width() + 50));
-    //mTimeLabelPos.setY(height - (mTimeLabel->geometry().height() + 20));
-    //mTimeLabelPos.setX(width - (mTimeLabel->boundingRect().width() + 50));
-    //mTimeLabelPos.setY(height - (mTimeLabel->boundingRect().height() + 20));
-    //Add it to track
-    //track->addItem(mTimeLabel);
-    mTimeLabel->setFixedSize(QSize(250,50));
-    mTimeLabel->setGeometry(width - mTimeLabel->size().width() - 50, height - mTimeLabel->size().height() - 20, mTimeLabel->size().width(), mTimeLabel->size().height());
-    mTimeLabel->setParent(this);
+    mLapTimeText = "LAP TIME: ";
+    mLapTimeLabel = new QLabel();
+    mLapTimeLabel->setVisible(false);
+    mLapTimeLabel->setFont(QFont("GillSansMT",24,60)); // Font: family, PointSize, Weight(how bold)
+    mLapTimeLabel->setStyleSheet("color: red");
+    mLapTimeLabel->setText(mLapTimeText + "mm:ss.zzz");
+    mLapTimeLabel->setFixedSize(QSize(400,50));
+    mLapTimeLabel->setGeometry(width - mLapTimeLabel->size().width() - 50, height - mLapTimeLabel->size().height() - 80, mLapTimeLabel->size().width(), mLapTimeLabel->size().height());
+    mLapTimeLabel->setParent(this);
+
+    //Initialize Label for ingame total time display
+    mTotalTimeText = "TOTAL TIME: ";
+    mTotalTimeLabel = new QLabel();
+    mTotalTimeLabel->setVisible(false);
+    mTotalTimeLabel->setFont(QFont("GillSansMT",24,60)); // Font: family, PointSize, Weight(how bold)
+    mTotalTimeLabel->setStyleSheet("color: red");
+    mTotalTimeLabel->setText(mTotalTimeText + "mm:ss.zzz");
+    mTotalTimeLabel->setFixedSize(QSize(400,50));
+    mTotalTimeLabel->setGeometry(width - mTotalTimeLabel->size().width() - 50, height - mTotalTimeLabel->size().height() - 20, mTotalTimeLabel->size().width(), mTotalTimeLabel->size().height());
+    mTotalTimeLabel->setParent(this);
 
     //Initialize Label for ingame lap counter display
-    //mLapLabel = new QGraphicsTextItem();
+    mLapText = "LAPS: ";
     mLapLabel = new QLabel();
     mLapLabel->setVisible(false);
     mLapLabel->setFont(QFont("GillSansMT",24,60));
-    //mLapLabel->setDefaultTextColor(QColor("red"));
     mLapLabel->setStyleSheet("color: red");
-    mLapText = "LAPS: ";
-    //mLapLabel->setPlainText(mLapText + "0/3");
     mLapLabel->setText(mLapText + "0/3");
-    //Set starting position
-    //mLapLabelPos.setX(width - (mLapLabel->geometry().width() + 100));
-    //mLapLabelPos.setY(height - (mLapLabel->geometry().height() + 80));
-    //track->addItem(mLapLabel);
     mLapLabel->setFixedSize(QSize(250,50));
-    mLapLabel->setGeometry(width - mLapLabel->size().width() - 50, height - mLapLabel->size().height() - 80, mLapLabel->size().width(), mLapLabel->size().height());
+    mLapLabel->setGeometry(width - mLapLabel->size().width() - 200, height - mLapLabel->size().height() - 150, mLapLabel->size().width(), mLapLabel->size().height());
     mLapLabel->setParent(this);
+
+    //Initialize Label for speedometer
+    mSpeedDisplay = new QLabel();
+    mSpeedDisplay->setVisible(false);
+    mSpeedDisplay->setStyleSheet("color: red");
+    //mSpeedDisplay->setScale(7);
+    mSpeedDisplay->setFixedSize(QSize(100,100));
+    mSpeedDisplay->setGeometry(10, height - mLapLabel->size().height() - 125, mLapLabel->size().width(), mLapLabel->size().height());
+    mSpeedDisplay->setParent(this);
+    //mPrevPos = mCar->pos();
 
     connect(track,SIGNAL(LapChanged()),this,SLOT(saveLapTime()));
 }
 
 Viewport::~Viewport()
 {
-    if(mTimeLabel != NULL)
+    if(mLapTimeLabel != NULL)
     {
-        delete mTimeLabel;
-        mTimeLabel = NULL;
+        delete mLapTimeLabel;
+        mLapTimeLabel = NULL;
     }
 
     if(mLapLabel != NULL)
@@ -71,46 +71,93 @@ Viewport::~Viewport()
         delete mLapLabel;
         mLapLabel = NULL;
     }
+
+    if(mTotalTimeLabel != NULL)
+    {
+        delete mTotalTimeLabel;
+        mTotalTimeLabel = NULL;
+    }
+
+    if(mLapTimeLabel != NULL)
+    {
+        delete mLapTimeLabel;
+        mLapTimeLabel = NULL;
+    }
+
+    if(mLapLabel != NULL)
+    {
+        delete mLapLabel;
+        mLapLabel = NULL;
+    }
+    if(mSpeedDisplay != NULL)
+    {
+        delete mSpeedDisplay;
+        mSpeedDisplay = NULL;
+    }
 }
 
 void Viewport::startGame()
 {
-    //start the race time immediately after go
-    mTimeLabel->setVisible(true);
+    // Display lap time
+    mLapTimeLabel->setVisible(true);
     mTime.setHMS(0,0,0,0);
-    mRaceTime.start();
+    mLapTimeElapsed.start();
+
+    // Display total time
+    mTotalTimeLabel->setVisible(true);
+    mTime2.setHMS(0,0,0,0);
+    mTotalTimeElapsed.start();
+
+    // Display laps
     mLapLabel->setVisible(true);
+
+    // Display speedometer
+    mSpeedDisplay->setVisible(true);
 }
 
 void Viewport::updateOverlay()
 {
-    mElapsed = mRaceTime.elapsed();
+    // Update lap time label
+    mElapsed = mLapTimeElapsed.elapsed();
     mTime.setHMS(0,0,0,0);
     mTime = mTime.addMSecs(mElapsed);
-    //mTimeLabel->setHtml(QString("<div style='background:rgba(255, 255, 255, 7%);'>") +mTimeText + mTime.toString("mm:ss.z") + QString("</div>"));
-    mTimeLabel->setText(mTimeText + mTime.toString("mm:ss.z"));
-    //mTimeLabel->setStyleSheet("color: rgba(255, 255, 255, 7%)");
-    //mTimeLabel->setPos(mapToScene(mTimeLabelPos));
+    mLapTimeLabel->setText(mLapTimeText + mTime.toString("mm:ss.z"));
 
-    //mLapLabel->setHtml(QString("<div style='background:rgba(255, 255, 255, 7%);'>") + mLapText + QString::number(mLaps) + "/3" + QString("</div>"));
+    //Adjust the total time label position and text
+    mElapsed = mTotalTimeElapsed.elapsed();
+    mTime2.setHMS(0,0,0,0);
+    mTime2 = mTime2.addMSecs(mElapsed);
+    mTotalTimeLabel->setText(mTotalTimeText + mTime2.toString("mm:ss.z"));
+
+    // Update laps label
     mLapLabel->setText(mLapText + QString::number(mLaps) + "/3");
-    //mLapLabel->setStyleSheet("color: rgba(255, 255, 255, 7%)");
-    //mLapLabel->setPlainText(mLapText + QString::number(mLaps) + "/3"); //TODO Optimize the method to get the lap count
-    //mLapLabel->setPos(mapToScene(mLapLabelPos));
-    /*qDebug() << mElapsed;
-    qDebug() << mTime;*/
+
+    //Display current speed
+    //double mSpeed = sqrt(qPow((mCar->x()-mPrevPos.x()),2)+qPow((mCar->y()-mPrevPos.y()),2))/20.f/mFps*1000*3.6*5;
+    //mSpeedDisplay->setText("Speed: " + QString::number(mSpeed, 'f', 1) + " km/h");
+    //mPrevPos = mCar->pos();
 }
 
 void Viewport::saveLapTime()
 {
-    mLapTime[mLaps - 1] = mTime.toString("mm:ss.z");
-    if(mLaps < 3){
-    mLaps++;
-    } else {
-        // check for highscore
-        // if new highscore init Name Dialogue
-        // exit_game
+    //mLapTime[mLaps - 1] = mTime.toString("mm:ss.z");
+    if(mLaps < 3)
+    {
+        mLaps++;
+    }
+    else
+    {
+        //StopGame();
+        mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.zzz");
+        mTotalTimeEnd = mTime2.toString("mm:ss.zzz");
+        //emit RaceFinished(&mLapTimeEnd[3], mTotalTimeEnd);
     }
     mElapsed = 0;
-    mRaceTime.restart();
+    mLapTimeElapsed.restart();
 }
+
+void Viewport::ResumeGame(){
+    mLapTimeElapsed.restart();
+    mTotalTimeElapsed.restart();
+}
+
