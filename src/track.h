@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include <QObject>
 #include "checkpoint.h"
+#include "worldposition.h"
 
 enum Underground
 {
@@ -33,7 +34,7 @@ public:
     Underground getUnderground(int x, int y);
     QPointF getLastCheckpointPosition();
 	void updateCheckpoints(QGraphicsPixmapItem* item);
-    void loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, QPoint* position_list, double* angle_list);
+    void loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions);
 signals:
 	void LapChanged();
 };

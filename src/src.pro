@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     checkpoint.cpp \
     mainmenu.cpp \
     sound.cpp \
-    viewport.cpp
+    viewport.cpp \
+    worldposition.cpp
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -55,7 +56,8 @@ HEADERS += \
     checkpoint.h \
     mainmenu.h \
     sound.h \
-    viewport.h
+    viewport.h \
+    worldposition.h
 
 RESOURCES += \
     res.qrc

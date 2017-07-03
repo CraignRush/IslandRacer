@@ -4,6 +4,7 @@
 
 #include <QGraphicsRectItem>
 #include <QtMath>
+#include "worldposition.h"
 
 class Checkpoint : QGraphicsRectItem
 {
@@ -15,7 +16,7 @@ private:
 
 public:
     //Checkpoint();
-    Checkpoint(int checkpointCount, QPoint* position_list, double* angle_list);
+    Checkpoint(int checkpointCount, WorldPosition* checkpointPositions);
     QGraphicsRectItem* GetCheckpoint(int index);
     void CheckCheckpoint(QGraphicsPixmapItem*);
     int GetNumberOfCheckpoints();

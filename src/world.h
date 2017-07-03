@@ -14,6 +14,7 @@
 #include "car.h"
 #include "viewport.h"
 #include "player.h"
+#include "worldposition.h"
 
 class World : public QMainWindow
 {
@@ -23,11 +24,14 @@ private:
 	int mWidth;                 // Width of world/scene
 	int mHeight;                // Height of world/scene
 
+    bool mIsMultiplayer;
+
     QStackedLayout* mMainLayout;             // Main layout for game window
     QHBoxLayout* mViewportLayout;            // Layout for player viewport side by side
     QHBoxLayout* mCounterLayout;             // Layout for starting countdown
     QWidget* mMainWidget;                    // Main Widget which holds all others and is applied as central widget to main window
     QWidget* mViewportWidget;                // Holds the two viewports
+    QWidget* mVerticalSeperatorLine;         // Seperates the two viewports in multiplayer mode
     QWidget* mCounterWidget;                 // Holds label for starting count down
     QWidget* mPauseMenuWidget;
     QGraphicsOpacityEffect* mOpacityEffect;  // Graphics effect to fade out starting count down
@@ -56,7 +60,7 @@ private:
 public:
 	World(int width,int height);
     ~World();
-    void loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle);
+    void loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer);
     void keyPressEvent(QKeyEvent *keyEvent);
     void keyReleaseEvent(QKeyEvent *keyEvent);
     void ResumeGame();

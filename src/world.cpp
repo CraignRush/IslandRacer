@@ -21,9 +21,12 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     mTrack->addItem(mCar1);
     mTrack->addItem(mCar2);
 
-    // Create views for the player
-    mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack);
-    mViewPlayer2 = new Viewport(mWidth/2, mHeight, mTrack);
+    // Init viewports
+    mViewPlayer1 = NULL;
+    mViewPlayer2 = NULL;
+
+    // Disable multiplayer by default
+    mIsMultiplayer = false;
 
     // Init input state
     mCurrentInputStatePlayer1 = None;
@@ -35,42 +38,30 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     mCounterLayout = new QHBoxLayout(this);
     mMainWidget = new QWidget();
     mViewportWidget = new QWidget();
+    mVerticalSeperatorLine = new QWidget();
     mCounterWidget = new QWidget();
     mOpacityEffect = new QGraphicsOpacityEffect();
     //mBlurEffect = new QGraphicsBlurEffect();
 
     // Create horizontal border line between the two viewports
-    QWidget* line = new QWidget();
-
     //line->setFrameShape(QFrame::VLine);
-    line->setFixedWidth(2);
-    line->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    mVerticalSeperatorLine->setFixedWidth(2);
+    mVerticalSeperatorLine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     //line->setFrameShadow(QFrame::Sunken);
     // set black background of line
     //QPalette pal = palette();
     //pal.setColor(QPalette::Background, Qt::black);
     //line->setAutoFillBackground(true);
     //line->setPalette(pal);
-    line->setStyleSheet(QString("background-color: black;"));
+    mVerticalSeperatorLine->setStyleSheet(QString("background-color: black;"));
 
-    // Prevent manually scrolling with arrow keys
-    mViewPlayer1->setFocusPolicy(Qt::NoFocus);
-    mViewPlayer1->setCacheMode(QGraphicsView::CacheNone);
-    mViewPlayer2->setFocusPolicy(Qt::NoFocus);
-    mViewPlayer2->setCacheMode(QGraphicsView::CacheNone);
-
+    // BLur effect for pause menu
     //mBlurEffect->setBlurRadius(10.0f);
     //mBlurEffect->setEnabled(true);
     //mBlurEffect->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
-
-    mViewportLayout->setContentsMargins(0,0,0,0);
-    mViewportLayout->addWidget(mViewPlayer2, 0, Qt::AlignLeft);
-    mViewportLayout->addWidget(line, 0, Qt::AlignCenter);
-    mViewportLayout->addWidget(mViewPlayer1, 0, Qt::AlignRight);
-
     //mViewportWidget->setGraphicsEffect(mBlurEffect);
-    mViewportWidget->setLayout(mViewportLayout);
 
+    // Set up starting countdown
     mOpacityEffect->setOpacity(1.0);
     mCounter = new QLabel();
     QFont font;
@@ -84,6 +75,9 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     mCounterLayout->addWidget(mCounter, 0, Qt::AlignCenter);
 
     mCounterWidget->setLayout(mCounterLayout);
+
+    mViewportLayout->setContentsMargins(0,0,0,0);
+    mViewportWidget->setLayout(mViewportLayout);
 
     mMainLayout->setStackingMode(QStackedLayout::StackAll);
     mMainLayout->addWidget(mViewportWidget);
@@ -144,11 +138,17 @@ World::~World()
         mOpacityEffect = NULL;
     }
 
-    delete mViewPlayer1;
-    mViewPlayer1 = NULL;
+    if(mViewPlayer1 != NULL)
+    {
+        delete mViewPlayer1;
+        mViewPlayer1 = NULL;
+    }
 
-    delete mViewPlayer2;
-    mViewPlayer2 = NULL;
+    if(mViewPlayer2 != NULL)
+    {
+        delete mViewPlayer2;
+        mViewPlayer2 = NULL;
+    }
 
     delete mViewportWidget;
     mViewportWidget = NULL;
@@ -179,21 +179,25 @@ void World::gameLoop()
     mCar1->updatePosition();
     mViewPlayer1->ensureVisible(mCar1, 300, 400);
 
-
-    mCar2->computeUserInput(mCurrentInputStatePlayer2);
-    mCar2->updatePosition();
-    mViewPlayer2->ensureVisible(mCar2, 300, 400);
-
     // Check for checkpoint collision
     mTrack->updateCheckpoints(mCar1);
-    mTrack->updateCheckpoints(mCar2);
 
     // Render cars on new position
     mCar1->render();
-    mCar2->render();
 
+    // Update time/lap overlay
     mViewPlayer1->updateOverlay();
-    mViewPlayer2->updateOverlay();
+
+    // Repeat steps for second car if multiplayer is enabled
+    if(mIsMultiplayer)
+    {
+        mCar2->computeUserInput(mCurrentInputStatePlayer2);
+        mCar2->updatePosition();
+        mViewPlayer2->ensureVisible(mCar2, 300, 400);
+        mTrack->updateCheckpoints(mCar2);
+        mCar2->render();
+        mViewPlayer2->updateOverlay();
+    }
 }
 
 void World::startLoop()
@@ -217,7 +221,8 @@ void World::startLoop()
 
         //start the race time immediately after go
         mViewPlayer1->startGame();
-        mViewPlayer2->startGame();
+        if(mIsMultiplayer)
+            mViewPlayer2->startGame();
 
         // start game loop and engine sound
         mTimer->start(1000.0/mFps);
@@ -249,28 +254,84 @@ void World::startLoop()
 	}
 }
 
-void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, QPoint* checkpoint_list, double* angle_list, QPoint carPosition, double carAngle)
+void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer)
 {
+    mIsMultiplayer = isMultiplayer;
+
     // prepare scene
-	mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpoint_list, angle_list);
+    mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpointPositions);
 
-    // set cars to starting position
-    mCar1->setPosition(carPosition.x(), carPosition.y(), carAngle);
-    mCar2->setPosition(carPosition.x(), carPosition.y(), carAngle);
+    // Remove viewports from layout
+    if(mViewportLayout->findChild<QWidget*>("mViewPlayer1"))
+        mViewportLayout->removeWidget(mViewPlayer1);
+    if(mViewportLayout->findChild<QWidget*>("mViewPlayer2"))
+        mViewportLayout->removeWidget(mViewPlayer2);
 
-    // center cars in view
-    mViewPlayer1->centerOn(mCar1);
-    mViewPlayer2->centerOn(mCar2);
+    // Delete existing viewports
+    if(mViewPlayer1 != NULL)
+    {
+        delete mViewPlayer1;
+        mViewPlayer1 = NULL;
+    }
+    if(mViewPlayer1 != NULL)
+    {
+        delete mViewPlayer1;
+        mViewPlayer1 = NULL;
+    }
 
-	// Init variables for start sequence
+    if(mIsMultiplayer)
+    {
+        // Add second car to scene
+        mTrack->addItem(mCar2);
+
+        // set cars to starting position
+        mCar1->setPosition(carPositions[0].x(), carPositions[0].y(), carPositions[0].angle());
+        mCar2->setPosition(carPositions[0].x(), carPositions[0].y(), carPositions[0].angle());
+
+        // Create new Viewports for Player
+        mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack);
+        mViewPlayer2 = new Viewport(mWidth/2, mHeight, mTrack);
+
+        // center cars in view
+        mViewPlayer1->centerOn(mCar1);
+        mViewPlayer2->centerOn(mCar2);
+
+        // Prevent manually scrolling with arrow keys
+        mViewPlayer1->setFocusPolicy(Qt::NoFocus);
+        mViewPlayer1->setCacheMode(QGraphicsView::CacheNone);
+        mViewPlayer2->setFocusPolicy(Qt::NoFocus);
+        mViewPlayer2->setCacheMode(QGraphicsView::CacheNone);
+
+        mViewportLayout->addWidget(mViewPlayer2);
+        mViewportLayout->addWidget(mVerticalSeperatorLine);
+        mViewportLayout->addWidget(mViewPlayer1);
+    //    mViewportLayout->addWidget(mViewPlayer2, 0, Qt::AlignLeft);
+    //    mViewportLayout->addWidget(line, 0, Qt::AlignCenter);
+    //    mViewportLayout->addWidget(mViewPlayer1, 0, Qt::AlignRight);
+    }
+    else
+    {
+        mTrack->removeItem(mCar2);
+
+        // set car to starting position
+        mCar1->setPosition(carPositions[0].x(), carPositions[0].y(), carPositions[0].angle());
+
+        // Create new Viewports for Player
+        mViewPlayer1 = new Viewport(mWidth, mHeight, mTrack);
+
+        // center cars in view
+        mViewPlayer1->centerOn(mCar1);
+
+        // Prevent manually scrolling with arrow keys
+        mViewPlayer1->setFocusPolicy(Qt::NoFocus);
+        mViewPlayer1->setCacheMode(QGraphicsView::CacheNone);
+
+        mViewportLayout->addWidget(mViewPlayer1);
+    }
+
+    // Init variables for start countdown
     mOpacity = 1.0f;
 	mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
-    //mCounter = new QGraphicsTextItem;
-    //mCounter->setScale(10);
-    //mTrack->addItem(mCounter);
-
-    // Init lap counter and time
-    //mViewPlayer1->initLapCounter;
 
 	// Init and start timer for game loop and start loop
 	mStartTimer = new QTimer(this);
@@ -564,7 +625,8 @@ void World::ResumeGame()
 {
 	mTimer->start();
     mViewPlayer1->ResumeGame();
-    mViewPlayer2->ResumeGame();
+    if(mIsMultiplayer)
+        mViewPlayer2->ResumeGame();
 }
 
 void World::GameExit()

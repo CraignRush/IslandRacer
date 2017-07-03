@@ -3,7 +3,7 @@
 #include <QBrush>
 #include <QColor>
 
-Checkpoint::Checkpoint(int checkpointCount, QPoint* position_list, double* angle_list)
+Checkpoint::Checkpoint(int checkpointCount, WorldPosition* checkpointPositions)
 {
     mNumberOfCheckpoints = checkpointCount;
     mCheckpoints = new QGraphicsRectItem[checkpointCount];
@@ -13,8 +13,8 @@ Checkpoint::Checkpoint(int checkpointCount, QPoint* position_list, double* angle
         mCheckpoints[i].setRect(0,0,600,5);
         mCheckpoints[i].setBrush(QBrush(QColor(Qt::red)));
         mCheckpoints[i].setOpacity(1.0); // set to 1.0 for debug
-        mCheckpoints[i].setRotation(qRadiansToDegrees(angle_list[i]));
-        mCheckpoints[i].setPos(position_list[i].x(), position_list[i].y());
+        mCheckpoints[i].setRotation(qRadiansToDegrees(checkpointPositions[i].angle()));
+        mCheckpoints[i].setPos(checkpointPositions[i].x(), checkpointPositions[i].y());
     }
 
     mCheckpointcounter = 1;

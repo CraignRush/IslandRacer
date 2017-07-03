@@ -90,7 +90,7 @@ QPointF Track::getLastCheckpointPosition()
     return mCheckpoints->getLastCheckpointPosition();
 }
 
-void Track::loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, QPoint* position_list, double* angle_list)
+void Track::loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions)
 {
     // set variables
     mWidth = width;
@@ -109,7 +109,7 @@ void Track::loadTrack(int width, int height, QImage background, QImage grayImage
             this->removeItem(mCheckpoints->GetCheckpoint(i));
         delete mCheckpoints;
     }
-    mCheckpoints = new Checkpoint(checkpointCount, position_list, angle_list);
+    mCheckpoints = new Checkpoint(checkpointCount, checkpointPositions);
 
     for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
         this->addItem(mCheckpoints->GetCheckpoint(i));

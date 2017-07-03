@@ -61,10 +61,8 @@ void Game::loadCircuit(Circuit circuit)
         QString background_path;
         QString gray_path;
         int checkpointCount = 0;
-        QPoint* position_list;
-        double* angle_list;
-        QPoint carPosition(0.0, 0.0);
-        double carAngle;
+        WorldPosition* checkpointPositions;
+        WorldPosition carPosition;
 
         while (!in.atEnd())
         {
@@ -98,15 +96,13 @@ void Game::loadCircuit(Circuit circuit)
             }
             if(list.value(0) == "CHECKPOINTS")
             {
-                position_list = (QPoint*) malloc(checkpointCount * 2 * sizeof(QPoint));
-                angle_list = (double*) malloc(checkpointCount * 2 * sizeof(double));
+                checkpointPositions = (WorldPosition*) malloc(checkpointCount * 2 * sizeof(WorldPosition));
 
                 list2 = list.value(1).split(QRegExp("(\\;)"));
                 for(int a = 0; a < list2.length(); a++)
                 {
                     list3 = list2.value(a).split(QRegExp("(\\,)"));
-                    position_list[a] = QPoint(list3.value(0).toInt(), list3.value(1).toInt());
-                    angle_list[a] = list3.value(2).toDouble();
+                    checkpointPositions[a] = WorldPosition(list3.value(0).toInt(), list3.value(1).toInt(), list3.value(2).toDouble());
                 }
                 continue;
             }
@@ -122,24 +118,21 @@ void Game::loadCircuit(Circuit circuit)
             }
             if(list.value(0) == "CAR_ANGLE")
             {
-                carAngle = list.value(1).toDouble();
+                carPosition.setAngle(list.value(1).toDouble());
                 continue;
             }
         }
         inputFile.close();
 
         // load circuit with parameter
-        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, position_list, angle_list, carPosition, carAngle);
+        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, 1, &carPosition, true);
 
         // show window on top
         mWorld->showFullScreen();
         mWorld->raise();
         mWorld->activateWindow();
 
-        if(position_list != NULL)
-            free(position_list);
-
-        if(angle_list != NULL)
-            free(angle_list);
+        if(checkpointPositions != NULL)
+            free(checkpointPositions);
 	}
 }
