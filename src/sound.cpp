@@ -92,6 +92,7 @@ void Sound::setCarSoundVolume(int volume)
 
 void Sound::playButtonSound()
 {
+    mButtonClickSound->setVolume(1.0f);
     mButtonClickSound->play();
 }
 
