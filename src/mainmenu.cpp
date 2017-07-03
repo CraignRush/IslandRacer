@@ -110,7 +110,19 @@ mainMenu::mainMenu(QWidget *parent) :
 	// Init game object with screen width/height and fullscreen mode
 	game = new Game(screenWidth, screenHeight, true);
 
-	// Set und start playing Backgroundmusic
+    // Set up sound
+    connect(this, SIGNAL(playBackgroundMusic()), Sound::getSoundInstance(this), SLOT(playBackgroundMusic()));
+    connect(this, SIGNAL(stopBackgroundMusic()), Sound::getSoundInstance(this), SLOT(stopBackgroundMusic()));
+    connect(this, SIGNAL(playButtonSound()), Sound::getSoundInstance(this), SLOT(playButtonSound()));
+    connect(this, SIGNAL(playCarSound()), Sound::getSoundInstance(this), SLOT(stopCarSound()));
+    connect(this, SIGNAL(stopCarSound()), Sound::getSoundInstance(this), SLOT(stopCarSound()));
+
+    connect(this, SIGNAL(setBackgroundMusicVolume(int)), Sound::getSoundInstance(this), SLOT(setBackgroundMusicVolume(int)));
+    connect(this, SIGNAL(setCarSoundVolume(int)), Sound::getSoundInstance(this), SLOT(setCarSoundVolume(int)));
+    connect(this, SIGNAL(setButtonSoundVolume(int)), Sound::getSoundInstance(this), SLOT(setButtonSoundVolume(int)));
+
+    emit playBackgroundMusic();
+// Set und start playing Backgroundmusic
 //	playlist = new QMediaPlaylist();
 	//playlist->addMedia(QUrl("qrc:/sounds/sounds/backgroundmusic.wav"));
 //	playlist->addMedia(QUrl("qrc:/sounds/sounds/intense-bg-music.wav")); //source: https://www.royaltyfreemusicforfree.com/free-background-music/intense-background-music
@@ -472,10 +484,12 @@ void mainMenu::setbackgroundsound()
     if(backgroundSoundActive==1)
 	{
 //		backgroundmusic->play();
+        emit playBackgroundMusic();
 	}
     else
     {
 //        backgroundmusic->stop();
+        emit stopBackgroundMusic();
     }
 }
 
@@ -483,14 +497,15 @@ void mainMenu::setbackgroundsound()
 //  Sound for buttons
 void mainMenu::playbuttonsound()
 {
-//    if(buttonSoundActive==1)
-//    {
-//        buttonsound->play();
-//    }
-//    else
-//    {
-//        buttonsound->stop();
-//    }
+    if(buttonSoundActive==1)
+    {
+        //buttonsound->play();
+        emit playButtonSound();
+    }
+    else
+    {
+        //buttonsound->stop();
+    }
 }
 
 //! Sound for race

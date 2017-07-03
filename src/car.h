@@ -11,7 +11,6 @@
 #include <QMediaPlaylist>
 #include <QThread>
 #include "track.h"
-#include "sound.h"
 
 
 enum InputState
@@ -82,8 +81,6 @@ private:
     b2PrismaticJoint *mRightRearJoint;
     b2PrismaticJoint *mLeftRearJoint;
 
-    QThread* mSoundThread;
-    Sound* mSound;
     Track* mTrack;
 
 signals:

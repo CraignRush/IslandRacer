@@ -2,14 +2,30 @@
 #define SOUND_H
 
 #include <QSoundEffect>
+#include <QMediaPlayer>
+#include <QThread>
+
 
 class Sound : public QObject
 {
     Q_OBJECT
 
+private:
+    static Sound* mSoundInstance;
+
+    Sound(QObject* parent);
+    QThread* mSoundThread;
+    QSoundEffect* mCarAcceleratingSound;
+    QSoundEffect* mButtonClickSound;
+    QSoundEffect* mBackgroundMusic;
+    //QMediaPlayer* mBackgroundMusic;
+
 public:
-    Sound();
+    static Sound* getSoundInstance(QObject* parent);
     ~Sound();
+
+signals:
+    void finished();
 
 public slots:
     void playBackgroundMusic();
@@ -18,9 +34,8 @@ public slots:
     void playCarSound();
     void stopCarSound();
     void setCarSoundVolume(int volume);
-
-private:
-    QSoundEffect* mCarAcceleratingEffect;
+    void playButtonSound();
+    void setButtonSoundVolume(int volume);
 };
 
 #endif // SOUND_H

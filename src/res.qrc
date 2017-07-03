@@ -40,5 +40,7 @@
         <file>sounds/car_accelerating_loop.wav</file>
         <file>sounds/buttonsound.wav</file>
         <file>sounds/intense-bg-music.wav</file>
+        <file>sounds/background_andi.mp3</file>
+        <file>sounds/background_andi.wav</file>
     </qresource>
 </RCC>

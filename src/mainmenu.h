@@ -12,6 +12,7 @@
 #include "ui_mainmenu.h"
 #include <qscreen.h>
 #include <QString>
+#include "sound.h"
 
 namespace Ui {
 class mainMenu;
@@ -33,6 +34,15 @@ public:
 
 	QFont GillSansMT;
 
+signals:
+    void playBackgroundMusic();
+    void stopBackgroundMusic();
+    void setBackgroundMusicVolume(int volume);
+    void playCarSound();
+    void stopCarSound();
+    void setCarSoundVolume(int volume);
+    void playButtonSound();
+    void setButtonSoundVolume(int volume);
 
 private slots:
 

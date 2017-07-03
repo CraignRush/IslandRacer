@@ -1,11 +1,9 @@
 #include "car.h"
 #include "world.h"
+#include "sound.h"
 #include <cmath>
 #include <QDebug>
-#include "sound.h"
-#include <QThread>
 #include <QMetaObject>
-#include <QSoundEffect>
 
 
 Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
@@ -103,13 +101,9 @@ Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
     mLeftRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(leftRearJointDef);
     mRightRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(rightRearJointDef);
 
-    // Setup sound
-    mSoundThread = new QThread();
-    mSound = new Sound();
-    mSound->moveToThread(mSoundThread);
-    connect(this, SIGNAL(playCarSound()), mSound, SLOT(playCarSound()));
-    connect(this, SIGNAL(stopCarSound()), mSound, SLOT(stopCarSound()));
-    mSoundThread->start();
+    // connect with sound class
+    connect(this, SIGNAL(playCarSound()), Sound::getSoundInstance(this), SLOT(playCarSound()));
+    connect(this, SIGNAL(stopCarSound()), Sound::getSoundInstance(this), SLOT(stopCarSound()));
 
     // delete tmp vars
     delete bodyDef;
@@ -130,8 +124,7 @@ Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
 
 Car::~Car()
 {
-    delete mSound;
-    delete mSoundThread;
+
 }
 
 void Car::render()
