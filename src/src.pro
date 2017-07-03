@@ -75,5 +75,7 @@ DESTDIR = $$PWD
 DISTFILES += \
     highscores/Hockenheimring.score \
     highscores/Monza.score \
-    highscores/YasMarina.score
+    highscores/YasMarina.score \
+    settings/garage.set \
+    settings/sound.set
 

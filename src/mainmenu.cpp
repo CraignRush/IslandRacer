@@ -16,14 +16,89 @@ mainMenu::mainMenu(QWidget *parent) :
 
 	// Initial Values
 	ui->stackedWidget->setCurrentIndex(0);
+
+    QString filename;
+
+    filename = "settings/garage.set";
+    QFile inputFile4(filename);
+    if (inputFile4.open(QIODevice::ReadOnly))
+    {
+        QTextStream in4(&inputFile4);
+        QString line;
+        QStringList list;
+
+        while(!in4.atEnd())
+        {
+            line = in4.readLine();
+            list = line.split(QRegExp("\\="));
+
+            if(list.value(0) == "topspeedValue")
+            {
+                topspeedValue = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "accelerationValue")
+            {
+                accelerationValue = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "handlingValue")
+            {
+                handlingValue = list.value(1).toInt();
+                continue;
+            }
+        }
+        inputFile4.close();
+    }
+
+    filename = "settings/sound.set";
+    QFile inputFile5(filename);
+    if (inputFile5.open(QIODevice::ReadOnly))
+    {
+        QTextStream in5(&inputFile5);
+        QString line;
+        QStringList list;
+
+        while(!in5.atEnd())
+        {
+            line = in5.readLine();
+            list = line.split(QRegExp("\\="));
+
+            if(list.value(0) == "backgroundSoundValue")
+            {
+                backgroundSoundValue = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "backgroundSoundActive")
+            {
+                backgroundSoundActive = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "buttonSoundValue")
+            {
+                buttonSoundValue = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "buttonSoundActive")
+            {
+                buttonSoundActive = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "raceSoundValue")
+            {
+                raceSoundValue = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "raceSoundActive")
+            {
+                raceSoundActive = list.value(1).toInt();
+                continue;
+            }
+        }
+        inputFile5.close();
+    }
+
 	maximumValue = 10;
-	accelerationValue = 0;
-	handlingValue = 0;
-	topspeedValue = 0;
-	active=1;
-	backgroundSoundValue = 50;
-	buttonSoundValue = 100;
-	raceSoundValue = 50;
 
 
 	// Get Screensize
@@ -45,6 +120,7 @@ mainMenu::mainMenu(QWidget *parent) :
 //	backgroundmusic->setPlaylist(playlist);
 //	backgroundmusic->setVolume(backgroundSoundValue);
 //	backgroundmusic->play();
+//    setbackgroundsound();
 
 	// Set Buttonsound
 //    buttonsound = new QMediaPlayer();
@@ -226,9 +302,12 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->garageTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->garageTitle->setFont(GillSansMTTitle);
 	ui->garageTopspeedSlider->setStyleSheet("QSlider{background: transparent;}");
+    ui->garageTopspeedSlider->setValue(topspeedValue);
 	ui->garageAccelerationSlider->setStyleSheet("QSlider{background: transparent;}");
-	ui->garageHandlingSlider->setStyleSheet("QSlider{background: transparent;}");
-	ui->garageTopspeedLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->garageAccelerationSlider->setValue(accelerationValue);
+    ui->garageHandlingSlider->setStyleSheet("QSlider{background: transparent;}");
+    ui->garageHandlingSlider->setValue(handlingValue);
+    ui->garageTopspeedLabel->setStyleSheet("QLabel{background: transparent;}");
 	ui->garageTopspeedLabel->setText("Your topspeed value: " + QString::number(topspeedValue));
 	ui->garageTopspeedLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->garageTopspeedLabel->setFont(GillSansMT);
@@ -241,7 +320,6 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->garageHandlingLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->garageHandlingLabel->setFont(GillSansMT);
 	ui->garageLabel->setStyleSheet("QLabel{background: transparent;}");
-	ui->garageLabel->setText("You have " + QString::number(maximumValue) + " points left to distribute");
 	ui->garageLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->garageLabel->setFont(GillSansMT);
 
@@ -290,8 +368,7 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->settingsBackgroundSoundOff->setIcon(soundOff);
 	ui->settingsBackgroundSoundOff->setIconSize(arrowButton);
 	ui->settingsBackgroundSoundSlider->setStyleSheet("QSlider{background: transparent;}");
-	ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
-	ui->settingsButtonSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
+    ui->settingsButtonSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->settingsButtonSoundLabel->setFont(GillSansMT);
 	ui->settingsButtonSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsButtonSoundLabel->setText("Button Sound:");
@@ -302,8 +379,7 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->settingsButtonSoundOff->setIcon(soundOff);
 	ui->settingsButtonSoundOff->setIconSize(arrowButton);
 	ui->settingsButtonSoundSlider->setStyleSheet("QSlider{background: transparent;}");
-	ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
-	ui->settingsRaceSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
+    ui->settingsRaceSoundLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->settingsRaceSoundLabel->setFont(GillSansMT);
 	ui->settingsRaceSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsRaceSoundLabel->setText("Race Sound:");
@@ -314,7 +390,6 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->settingsRaceSoundOff->setIcon(soundOff);
 	ui->settingsRaceSoundOff->setIconSize(arrowButton);
 	ui->settingsRaceSoundSlider->setStyleSheet("QSlider{background: transparent;}");
-	ui->settingsRaceSoundSlider->setValue(raceSoundValue);
 	ui->settingsHighscoreResetLabel->setStyleSheet("QLabel{background: transparent; color: white}");
 	ui->settingsHighscoreResetLabel->setFont(GillSansMT);
 	ui->settingsHighscoreResetLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -394,24 +469,32 @@ mainMenu::~mainMenu()
 // Setbackgroundsound
 void mainMenu::setbackgroundsound()
 {
-	if(active==1)
+    if(backgroundSoundActive==1)
 	{
 //		backgroundmusic->play();
 	}
-	else
-		if(active==0)
-		{
-//			backgroundmusic->stop();
-		}
+    else
+    {
+//        backgroundmusic->stop();
+    }
 }
 
 
 //  Sound for buttons
 void mainMenu::playbuttonsound()
 {
-	//if(active==1)
-//	buttonsound->play();
+//    if(buttonSoundActive==1)
+//    {
+//        buttonsound->play();
+//    }
+//    else
+//    {
+//        buttonsound->stop();
+//    }
 }
+
+//! Sound for race
+
 
 // Buttons from the main menu
 void mainMenu::on_main2Level1_clicked()
@@ -422,8 +505,10 @@ void mainMenu::on_main2Level1_clicked()
 
 void mainMenu::on_main2Garage_clicked()
 {
-	playbuttonsound();
+    playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(4);
+    int decider = maximumValue - accelerationValue - topspeedValue - handlingValue;
+    ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
 }
 
 void mainMenu::on_main2Highscore_clicked()
@@ -523,6 +608,18 @@ void mainMenu::on_main2Settings_clicked()
 {
 	playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(6);
+    if(backgroundSoundActive == 1)
+    {
+        ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
+    }
+    if(buttonSoundActive == 1)
+    {
+        ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
+    }
+    if(raceSoundActive == 1)
+    {
+        ui->settingsRaceSoundSlider->setValue(raceSoundValue);
+    }
 
 }
 
@@ -640,6 +737,18 @@ void mainMenu::on_garage2Main_clicked()
 {
 	playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(0);
+
+    QString out("topspeedValue=" + QString::number(topspeedValue) + "\n"
+                "accelerationValue=" + QString::number(accelerationValue) + "\n"
+                "handlingValue=" + QString::number(handlingValue) + "\n");
+    QString filename;
+    filename = "settings/garage.set";
+    QFile outputFile(filename);
+    if (outputFile.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+        QTextStream in(&outputFile);
+        in << out;
+        outputFile.close();
+    }
 }
 
 // Buttons from Highscore
@@ -656,6 +765,22 @@ void mainMenu::on_settings2Main_clicked()
 {
 	playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(0);
+
+    QString out("backgroundSoundValue=" + QString::number(backgroundSoundValue) + "\n"
+                "backgroundSoundActive=" + QString::number(backgroundSoundActive) + "\n"
+                "buttonSoundValue=" + QString::number(buttonSoundValue) + "\n"
+                "buttonSoundActive=" + QString::number(buttonSoundActive) + "\n"
+                "raceSoundValue=" + QString::number(raceSoundValue) + "\n"
+                "raceSoundActive=" + QString::number(raceSoundActive) + "\n");
+
+    QString filename;
+    filename = "settings/sound.set";
+    QFile outputFile2(filename);
+    if (outputFile2.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+        QTextStream in2(&outputFile2);
+        in2 << out;
+        outputFile2.close();
+    }
 }
 
 // Buttons from Manual
@@ -674,11 +799,8 @@ void mainMenu::on_credits2Main_clicked()
 	ui->stackedWidget->setCurrentIndex(0);
 }
 
-// Buttons finished
-
 
 // Garage Configeration
-
 
 void mainMenu::on_garageAccelerationSlider_valueChanged(int value)
 {
@@ -767,7 +889,7 @@ void mainMenu::on_garageHandlingSlider_sliderReleased()
 void mainMenu::on_settingsBackgroundSoundOn_clicked()
 {
 	playbuttonsound();
-	active = 1;
+    backgroundSoundActive = 1;
 	setbackgroundsound();
 //	backgroundmusic->setVolume(backgroundSoundValue);
 	ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
@@ -775,58 +897,72 @@ void mainMenu::on_settingsBackgroundSoundOn_clicked()
 
 void mainMenu::on_settingsBackgroundSoundOff_clicked()
 {
+    int saver;
 	playbuttonsound();
-	active=0;
 	setbackgroundsound();
-	backgroundSoundValue = ui->settingsBackgroundSoundSlider->value();
-	ui->settingsBackgroundSoundSlider->setValue(0);
+    saver = ui->settingsBackgroundSoundSlider->value();
+    ui->settingsBackgroundSoundSlider->setValue(0);
+    backgroundSoundValue = saver;
+    backgroundSoundActive = 0;
 }
 
 void mainMenu::on_settingsBackgroundSoundSlider_valueChanged(int value)
 {
-	if(active == 0){
-		active = 1;
+    if(backgroundSoundActive == 0){
+        backgroundSoundActive = 1;
 		setbackgroundsound();
 	}
-//	backgroundmusic->setVolume(value);
+    //backgroundSoundValue = value;
+    //backgroundmusic->setVolume(backgroundSoundValue);
 }
 void mainMenu::on_settingsButtonSoundOn_clicked()
 {
 	playbuttonsound();
+//    buttonSoundActive = 1;
 //	buttonsound->setVolume(buttonSoundValue);
 	ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
 }
 
 void mainMenu::on_settingsButtonSoundOff_clicked()
 {
+    int saver;
 	playbuttonsound();
-//	buttonsound->setVolume(0);
-	buttonSoundValue = ui->settingsButtonSoundSlider->value();
+    saver = ui->settingsButtonSoundSlider->value();
 	ui->settingsButtonSoundSlider->setValue(0);
+    buttonSoundValue = saver;
+    buttonSoundActive = 0;
 }
 
 void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
 {
-//	buttonsound->setVolume(value);
+    if(buttonSoundActive == 0){
+        buttonSoundActive = 1;
+    }
+    buttonSoundValue = value;
+    //buttonsound->setVolume(buttonSoundValue);
 }
 
 void mainMenu::on_settingsRaceSoundOn_clicked()
 {
 	playbuttonsound();
+    raceSoundActive = 1;
 	ui->settingsRaceSoundSlider->setValue(raceSoundValue);
 }
 
 void mainMenu::on_settingsRaceSoundOff_clicked()
 {
+    int saver;
 	playbuttonsound();
-	//raceSound aus
-	raceSoundValue = ui->settingsRaceSoundSlider->value();
+    saver = ui->settingsRaceSoundSlider->value();
 	ui->settingsRaceSoundSlider->setValue(0);
+    raceSoundValue = saver;
+    raceSoundActive = 0;
 }
 
 void mainMenu::on_settingsRaceSoundSlider_valueChanged(int value)
 {
 	//racesound lauter/leiser
+    raceSoundValue = value;
 }
 
 // Highscore Configuration
