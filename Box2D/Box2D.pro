@@ -1,11 +1,13 @@
 TEMPLATE = lib
-CONFIG = staticlib
+
 
 CONFIG( debug, debug|release ) {
     # debug
+CONFIG = staticlib debug qml_debug
     TARGET = Box2Dd
 } else {
     # release
+CONFIG = staticlib
     TARGET = Box2D
 }
 

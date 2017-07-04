@@ -4,8 +4,8 @@ QT += multimedia
 CONFIG += c++11 \
        += resources_big
 
-QMAKE_CFLAGS += /RTC1 /GC
-QMAKE_CXXFLAGS += /RTC1 /GC
+#QMAKE_CFLAGS += /RTC1 /GC
+#QMAKE_CXXFLAGS += /RTC1 /GC
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = src
