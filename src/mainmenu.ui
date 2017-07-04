@@ -66,7 +66,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="main">
        <property name="sizePolicy">
@@ -1443,7 +1443,7 @@
         <item row="3" column="3" rowspan="3">
          <widget class="QTableWidget" name="highscoretablelevel2">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+           <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -1638,7 +1638,7 @@
         <item row="3" column="1" rowspan="3">
          <widget class="QTableWidget" name="highscoretablelevel1">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+           <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -1921,7 +1921,7 @@
         <item row="3" column="5" rowspan="3">
          <widget class="QTableWidget" name="highscoretablelevel3">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+           <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>

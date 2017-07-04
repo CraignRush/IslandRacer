@@ -176,8 +176,8 @@ World::~World()
 void World::gameLoop()
 {
 	//high_resolution_clock::time_point t1 = high_resolution_clock::now();
-	QElapsedTimer timer;
-	timer.start();
+//	QElapsedTimer timer;
+//	timer.start();
 
     // Compute new positions in physical world
     mWorld->Step(1.0f/mFps, 8, 3);
@@ -211,7 +211,7 @@ void World::gameLoop()
 //	auto duration = duration_cast<microseconds>(t2-t1).count();
 //	qDebug() << duration;
 
-	qDebug() << "The slow operation took" << timer.elapsed() << "nanoseconds";
+//	qDebug() << "The slow operation took" << timer.elapsed() << "nanoseconds";
 }
 
 void World::startLoop()

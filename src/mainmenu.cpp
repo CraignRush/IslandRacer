@@ -559,12 +559,15 @@ void mainMenu::on_main2Highscore_clicked()
 			mZeit = mLevel1HighscoreMatrix[1][i];
 			ui->highscoretablelevel1->item(i,0)->setText(mName);
 			ui->highscoretablelevel1->item(i,1)->setText(mZeit);
+			ui->highscoretablelevel1->item(i,0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+			ui->highscoretablelevel1->item(i,1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 			ui->highscoretablelevel1->item(i,0)->setBackgroundColor(QColor(255,255,255,90));
 			ui->highscoretablelevel1->item(i,1)->setBackgroundColor(QColor(255,255,255,90));
 		}
 		inputFile.close();
 	}
-
+	ui->highscoretablelevel1->setMaximumHeight(ui->highscoretablelevel1->height());
+	ui->highscoretablelevel1->setMaximumWidth(ui->highscoretablelevel1->width());
 
 	filename = "highscores/Hockenheimring.score";
 	QFile inputFile2(filename);
@@ -586,11 +589,15 @@ void mainMenu::on_main2Highscore_clicked()
 			mZeit = mLevel2HighscoreMatrix[1][i];
 			ui->highscoretablelevel2->item(i,0)->setText(mName);
 			ui->highscoretablelevel2->item(i,1)->setText(mZeit);
+			ui->highscoretablelevel2->item(i,0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+			ui->highscoretablelevel2->item(i,1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 			ui->highscoretablelevel2->item(i,0)->setBackgroundColor(QColor(255,255,255,90));
 			ui->highscoretablelevel2->item(i,1)->setBackgroundColor(QColor(255,255,255,90));
 		}
 		inputFile2.close();
 	}
+	ui->highscoretablelevel2->setMaximumHeight(ui->highscoretablelevel2->height());
+	ui->highscoretablelevel2->setMaximumWidth(ui->highscoretablelevel2->width());
 
 	filename = "highscores/YasMarina.score";
 	QFile inputFile3(filename);
@@ -612,11 +619,15 @@ void mainMenu::on_main2Highscore_clicked()
 			mZeit = mLevel3HighscoreMatrix[1][i];
 			ui->highscoretablelevel3->item(i,0)->setText(mName);
 			ui->highscoretablelevel3->item(i,1)->setText(mZeit);
+			ui->highscoretablelevel3->item(i,0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+			ui->highscoretablelevel3->item(i,1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 			ui->highscoretablelevel3->item(i,0)->setBackgroundColor(QColor(255,255,255,90));
 			ui->highscoretablelevel3->item(i,1)->setBackgroundColor(QColor(255,255,255,90));
 		}
 		inputFile3.close();
 	}
+	ui->highscoretablelevel3->setMaximumHeight(ui->highscoretablelevel3->height());
+	ui->highscoretablelevel3->setMaximumWidth(ui->highscoretablelevel3->width());
 }
 
 void mainMenu::on_main2Settings_clicked()
