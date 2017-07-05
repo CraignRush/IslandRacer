@@ -62,6 +62,7 @@ void Game::loadCircuit(Circuit circuit)
         QString gray_path;
         int checkpointCount = 0;
         WorldPosition* checkpointPositions;
+        WorldPosition* carResetPositions;
         WorldPosition carPosition;
 
         while (!in.atEnd())
@@ -106,6 +107,18 @@ void Game::loadCircuit(Circuit circuit)
                 }
                 continue;
             }
+            if(list.value(0) == "RESET_POSITIONS")
+            {
+                carResetPositions = (WorldPosition*) malloc(checkpointCount * 2 * sizeof(WorldPosition));
+
+                list2 = list.value(1).split(QRegExp("(\\;)"));
+                for(int a = 0; a < list2.length(); a++)
+                {
+                    list3 = list2.value(a).split(QRegExp("(\\,)"));
+                    carResetPositions[a] = WorldPosition(list3.value(0).toInt(), list3.value(1).toInt(), list3.value(2).toDouble());
+                }
+                continue;
+            }
             if(list.value(0) == "CAR_X")
             {
                 carPosition.setX(list.value(1).toInt());
@@ -125,7 +138,7 @@ void Game::loadCircuit(Circuit circuit)
         inputFile.close();
 
         // load circuit with parameter
-        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, 1, &carPosition, false);
+        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, &carPosition, false);
 
         // show window on top
         mWorld->showFullScreen();
@@ -133,6 +146,14 @@ void Game::loadCircuit(Circuit circuit)
         mWorld->activateWindow();
 
         if(checkpointPositions != NULL)
+        {
             free(checkpointPositions);
+            checkpointPositions = NULL;
+        }
+        if(checkpointPositions != NULL)
+        {
+            free(checkpointPositions);
+            checkpointPositions = NULL;
+        }
 	}
 }

@@ -268,12 +268,12 @@ void World::startLoop()
 	}
 }
 
-void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer)
+void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer)
 {
     mIsMultiplayer = isMultiplayer;
 
     // prepare scene
-    mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpointPositions);
+    mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpointPositions, carResetPositions);
 
     // Remove viewports from layout
     if(mViewportLayout->findChild<QWidget*>("mViewPlayer1"))

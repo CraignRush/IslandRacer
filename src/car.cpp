@@ -4,6 +4,7 @@
 #include <cmath>
 #include <QDebug>
 #include <QMetaObject>
+#include "worldposition.h"
 
 
 Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
@@ -216,8 +217,8 @@ void Car::computeUndergroundImpact()
         //mBody->SetAngularDamping(10.0f);
 		break;
 	case Water:
-        QPointF pos = mTrack->getLastCheckpointPosition();
-        setPosition(pos.x(), pos.y(), mBody->GetAngle());
+        WorldPosition pos = mTrack->getLastCheckpointPosition();
+        setPosition(pos.x(), pos.y(), pos.angle());
         break;
 	}
 }

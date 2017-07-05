@@ -32,9 +32,9 @@ public:
     //Track(int level);
     //Track(int width, int height, QImage background, QImage grayImage);
     Underground getUnderground(int x, int y);
-    QPointF getLastCheckpointPosition();
+    WorldPosition getLastCheckpointPosition();
 	void updateCheckpoints(QGraphicsPixmapItem* item);
-    void loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions);
+    void loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions);
 signals:
 	void LapChanged();
 };

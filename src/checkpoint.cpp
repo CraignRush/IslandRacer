@@ -3,7 +3,7 @@
 #include <QBrush>
 #include <QColor>
 
-Checkpoint::Checkpoint(int checkpointCount, WorldPosition* checkpointPositions)
+Checkpoint::Checkpoint(int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions)
 {
     mNumberOfCheckpoints = checkpointCount;
     mCheckpoints = new QGraphicsRectItem[checkpointCount];
@@ -17,6 +17,7 @@ Checkpoint::Checkpoint(int checkpointCount, WorldPosition* checkpointPositions)
         mCheckpoints[i].setPos(checkpointPositions[i].x(), checkpointPositions[i].y());
     }
 
+    mCarResetPositions = carResetPositions;
     mCheckpointcounter = 1;
     mLapcounter = 0;
 }
@@ -50,15 +51,15 @@ int Checkpoint::GetNumberOfCheckpoints()
     return mNumberOfCheckpoints;
 }
 
-QPointF Checkpoint::getLastCheckpointPosition()
+WorldPosition Checkpoint::getLastCheckpointPosition()
 {
     if(mCheckpointcounter == 0)
     {
-        return mCheckpoints[mNumberOfCheckpoints-1].pos();
+        return mCarResetPositions[mNumberOfCheckpoints-1];
     }
     else
     {
-        return mCheckpoints[mCheckpointcounter-1].pos();
+        return mCarResetPositions[mCheckpointcounter-1];
     }
 }
 

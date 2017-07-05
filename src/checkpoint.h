@@ -13,14 +13,15 @@ private:
     int mNumberOfCheckpoints;
     int mLapcounter;
     QGraphicsRectItem* mCheckpoints;
+    WorldPosition* mCarResetPositions;
 
 public:
     //Checkpoint();
-    Checkpoint(int checkpointCount, WorldPosition* checkpointPositions);
+    Checkpoint(int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions);
     QGraphicsRectItem* GetCheckpoint(int index);
     void CheckCheckpoint(QGraphicsPixmapItem*);
     int GetNumberOfCheckpoints();
-    QPointF getLastCheckpointPosition();
+    WorldPosition getLastCheckpointPosition();
 	int GetLaps();
 };
 

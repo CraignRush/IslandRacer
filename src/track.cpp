@@ -85,12 +85,12 @@ void Track::updateCheckpoints(QGraphicsPixmapItem* item)
 	}
 }
 
-QPointF Track::getLastCheckpointPosition()
+WorldPosition Track::getLastCheckpointPosition()
 {
     return mCheckpoints->getLastCheckpointPosition();
 }
 
-void Track::loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions)
+void Track::loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions)
 {
     // set variables
     mWidth = width;
@@ -109,7 +109,7 @@ void Track::loadTrack(int width, int height, QImage background, QImage grayImage
             this->removeItem(mCheckpoints->GetCheckpoint(i));
         delete mCheckpoints;
     }
-    mCheckpoints = new Checkpoint(checkpointCount, checkpointPositions);
+    mCheckpoints = new Checkpoint(checkpointCount, checkpointPositions, carResetPositions);
 
     for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
         this->addItem(mCheckpoints->GetCheckpoint(i));
