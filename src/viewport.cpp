@@ -20,7 +20,7 @@ Viewport::Viewport(int width, int height, Track* track)
     mLapTimeLabel->setStyleSheet("color: red");
     mLapTimeLabel->setText(mLapTimeText + "mm:ss.zzz");
     mLapTimeLabel->setFixedSize(QSize(400,50));
-    mLapTimeLabel->setGeometry(width - mLapTimeLabel->size().width() - 50, height - mLapTimeLabel->size().height() - 80, mLapTimeLabel->size().width(), mLapTimeLabel->size().height());
+	mLapTimeLabel->setGeometry(width - mLapTimeLabel->size().width() - 80, height - mLapTimeLabel->size().height() - 80, mLapTimeLabel->size().width(), mLapTimeLabel->size().height());
     mLapTimeLabel->setParent(this);
 
     //Initialize Label for ingame total time display
@@ -30,8 +30,8 @@ Viewport::Viewport(int width, int height, Track* track)
     mTotalTimeLabel->setFont(QFont("GillSansMT",24,60)); // Font: family, PointSize, Weight(how bold)
     mTotalTimeLabel->setStyleSheet("color: red");
     mTotalTimeLabel->setText(mTotalTimeText + "mm:ss.zzz");
-    mTotalTimeLabel->setFixedSize(QSize(400,50));
-    mTotalTimeLabel->setGeometry(width - mTotalTimeLabel->size().width() - 50, height - mTotalTimeLabel->size().height() - 20, mTotalTimeLabel->size().width(), mTotalTimeLabel->size().height());
+	mTotalTimeLabel->setFixedSize(QSize(450,50));
+	mTotalTimeLabel->setGeometry(width - mTotalTimeLabel->size().width() - 30, height - mTotalTimeLabel->size().height() - 20, mTotalTimeLabel->size().width(), mTotalTimeLabel->size().height());
     mTotalTimeLabel->setParent(this);
 
     //Initialize Label for ingame lap counter display
@@ -42,7 +42,7 @@ Viewport::Viewport(int width, int height, Track* track)
     mLapLabel->setStyleSheet("color: red");
     mLapLabel->setText(mLapText + "0/3");
     mLapLabel->setFixedSize(QSize(250,50));
-    mLapLabel->setGeometry(width - mLapLabel->size().width() - 200, height - mLapLabel->size().height() - 150, mLapLabel->size().width(), mLapLabel->size().height());
+	mLapLabel->setGeometry(width - mLapLabel->size().width() - 230, height - mLapLabel->size().height() - 150, mLapLabel->size().width(), mLapLabel->size().height());
     mLapLabel->setParent(this);
 
     //Initialize Label for speedometer
