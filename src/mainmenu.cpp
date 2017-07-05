@@ -110,17 +110,22 @@ mainMenu::mainMenu(QWidget *parent) :
 	// Init game object with screen width/height and fullscreen mode
 	game = new Game(screenWidth, screenHeight, true);
 
-    // Set up sound
+    // --- Set up sound ---
+    // connect all signals to their corresponding slots
     connect(this, SIGNAL(playBackgroundMusic()), Sound::getSoundInstance(this), SLOT(playBackgroundMusic()));
     connect(this, SIGNAL(stopBackgroundMusic()), Sound::getSoundInstance(this), SLOT(stopBackgroundMusic()));
     connect(this, SIGNAL(playButtonSound()), Sound::getSoundInstance(this), SLOT(playButtonSound()));
-    connect(this, SIGNAL(playCarSound()), Sound::getSoundInstance(this), SLOT(stopCarSound()));
+    connect(this, SIGNAL(playCarSound()), Sound::getSoundInstance(this), SLOT(playCarSound()));
     connect(this, SIGNAL(stopCarSound()), Sound::getSoundInstance(this), SLOT(stopCarSound()));
 
     connect(this, SIGNAL(setBackgroundMusicVolume(int)), Sound::getSoundInstance(this), SLOT(setBackgroundMusicVolume(int)));
     connect(this, SIGNAL(setCarSoundVolume(int)), Sound::getSoundInstance(this), SLOT(setCarSoundVolume(int)));
     connect(this, SIGNAL(setButtonSoundVolume(int)), Sound::getSoundInstance(this), SLOT(setButtonSoundVolume(int)));
 
+    // set up sound volume from stored values and start background music
+    on_settingsButtonSoundSlider_valueChanged(buttonSoundValue);
+    on_settingsRaceSoundSlider_valueChanged(raceSoundValue);
+    on_settingsBackgroundSoundSlider_valueChanged(backgroundSoundValue);
     emit playBackgroundMusic();
 // Set und start playing Backgroundmusic
 //	playlist = new QMediaPlaylist();
@@ -905,7 +910,9 @@ void mainMenu::on_settingsBackgroundSoundOn_clicked()
 {
 	playbuttonsound();
     backgroundSoundActive = 1;
-	setbackgroundsound();
+    //setbackgroundsound();
+    emit setBackgroundMusicVolume(backgroundSoundValue);
+    //emit playBackgroundMusic();
 //	backgroundmusic->setVolume(backgroundSoundValue);
 	ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
 }
@@ -914,27 +921,31 @@ void mainMenu::on_settingsBackgroundSoundOff_clicked()
 {
     int saver;
 	playbuttonsound();
-	setbackgroundsound();
+    //setbackgroundsound();
     saver = ui->settingsBackgroundSoundSlider->value();
     ui->settingsBackgroundSoundSlider->setValue(0);
     backgroundSoundValue = saver;
     backgroundSoundActive = 0;
+    emit setBackgroundMusicVolume(0);
+    //emit stopBackgroundMusic();
 }
 
 void mainMenu::on_settingsBackgroundSoundSlider_valueChanged(int value)
 {
     if(backgroundSoundActive == 0){
         backgroundSoundActive = 1;
-		setbackgroundsound();
+        //setbackgroundsound();
 	}
-    //backgroundSoundValue = value;
+    backgroundSoundValue = value;
+    emit setBackgroundMusicVolume(backgroundSoundValue);
     //backgroundmusic->setVolume(backgroundSoundValue);
 }
 void mainMenu::on_settingsButtonSoundOn_clicked()
 {
 	playbuttonsound();
-//    buttonSoundActive = 1;
-//	buttonsound->setVolume(buttonSoundValue);
+    buttonSoundActive = 1;
+    emit setButtonSoundVolume(buttonSoundValue);
+    //buttonsound->setVolume(buttonSoundValue);
 	ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
 }
 
@@ -944,6 +955,7 @@ void mainMenu::on_settingsButtonSoundOff_clicked()
 	playbuttonsound();
     saver = ui->settingsButtonSoundSlider->value();
 	ui->settingsButtonSoundSlider->setValue(0);
+    emit setButtonSoundVolume(0);
     buttonSoundValue = saver;
     buttonSoundActive = 0;
 }
@@ -954,6 +966,7 @@ void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
         buttonSoundActive = 1;
     }
     buttonSoundValue = value;
+    emit setButtonSoundVolume(buttonSoundValue);
     //buttonsound->setVolume(buttonSoundValue);
 }
 
@@ -962,6 +975,7 @@ void mainMenu::on_settingsRaceSoundOn_clicked()
 	playbuttonsound();
     raceSoundActive = 1;
 	ui->settingsRaceSoundSlider->setValue(raceSoundValue);
+    emit setCarSoundVolume(raceSoundValue);
 }
 
 void mainMenu::on_settingsRaceSoundOff_clicked()
@@ -970,6 +984,7 @@ void mainMenu::on_settingsRaceSoundOff_clicked()
 	playbuttonsound();
     saver = ui->settingsRaceSoundSlider->value();
 	ui->settingsRaceSoundSlider->setValue(0);
+    emit setCarSoundVolume(0);
     raceSoundValue = saver;
     raceSoundActive = 0;
 }
@@ -977,7 +992,11 @@ void mainMenu::on_settingsRaceSoundOff_clicked()
 void mainMenu::on_settingsRaceSoundSlider_valueChanged(int value)
 {
 	//racesound lauter/leiser
+    if(raceSoundActive == 0){
+        raceSoundActive = 1;
+    }
     raceSoundValue = value;
+    emit setCarSoundVolume(raceSoundValue);
 }
 
 // Highscore Configuration

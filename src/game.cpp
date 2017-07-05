@@ -125,7 +125,7 @@ void Game::loadCircuit(Circuit circuit)
         inputFile.close();
 
         // load circuit with parameter
-        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, 1, &carPosition, true);
+        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, 1, &carPosition, false);
 
         // show window on top
         mWorld->showFullScreen();

@@ -70,9 +70,9 @@ void Sound::stopBackgroundMusic()
     mBackgroundMusic->stop();
 }
 
-void Sound::setBackgroundMusicVolume(int volume)
+void Sound::setBackgroundMusicVolume(int volume)    // volume range: 0..100
 {
-    mBackgroundMusic->setVolume(volume);
+    mBackgroundMusic->setVolume(volume/100.0f);        // volume range 0.0f ... 1.0f
 }
 
 void Sound::playCarSound()
@@ -87,16 +87,16 @@ void Sound::stopCarSound()
 
 void Sound::setCarSoundVolume(int volume)
 {
-    mCarAcceleratingSound->setVolume(volume);
+    mCarAcceleratingSound->setVolume(volume/100.0f);
 }
 
 void Sound::playButtonSound()
 {
-    mButtonClickSound->setVolume(1.0f);
+    //mButtonClickSound->setVolume(1.0f);
     mButtonClickSound->play();
 }
 
 void Sound::setButtonSoundVolume(int volume)
 {
-    mButtonClickSound->setVolume(volume);
+    mButtonClickSound->setVolume(volume/100.0f);
 }

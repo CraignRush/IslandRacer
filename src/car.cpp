@@ -16,7 +16,7 @@ Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
 	b2BodyDef *bodyDef = new b2BodyDef();
 	bodyDef->type = b2_dynamicBody;
     bodyDef->linearDamping = 1.0f;
-    bodyDef->angularDamping = 7.0f;
+    bodyDef->angularDamping = 50.0f;//7.0f;
     bodyDef->position = mCarPosition;
 
 	//! Add Body to the world
@@ -205,15 +205,15 @@ void Car::computeUndergroundImpact()
 	{
 	case Asphalt:
 		mBody->SetLinearDamping(1.0f);
-        mBody->SetAngularDamping(7.0f);
+        //mBody->SetAngularDamping(7.0f);
 		break;
 	case Grass:
         mBody->SetLinearDamping(1.8f);
-        mBody->SetAngularDamping(8.5f);
+        //mBody->SetAngularDamping(8.5f);
 		break;
 	case Sand:
         mBody->SetLinearDamping(2.5f);
-        mBody->SetAngularDamping(10.0f);
+        //mBody->SetAngularDamping(10.0f);
 		break;
 	case Water:
         QPointF pos = mTrack->getLastCheckpointPosition();
