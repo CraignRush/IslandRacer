@@ -197,7 +197,7 @@ void World::gameLoop()
     mCar1->render();
 
     // Update time/lap overlay
-    mViewPlayer1->updateOverlay();
+    mViewPlayer1->updateOverlay(mCar1->pos(),mFps);
 
     // Repeat steps for second car if multiplayer is enabled
     if(mIsMultiplayer)
@@ -207,7 +207,7 @@ void World::gameLoop()
         mViewPlayer2->ensureVisible(mCar2, 300, 400);
         mTrack->updateCheckpoints(mCar2);
         mCar2->render();
-        mViewPlayer2->updateOverlay();
+        mViewPlayer2->updateOverlay(mCar2->pos(),mFps);
     }
 
 //	high_resolution_clock::time_point t2 = high_resolution_clock::now();

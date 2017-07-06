@@ -33,6 +33,8 @@ private:
     QString mTotalTimeText;
     QString mTotalTimeEnd;
 
+    QPointF mPrevPos;
+
 public:
     Viewport(int width, int height, Track* track);
     ~Viewport();
@@ -40,7 +42,7 @@ public:
     //void StopGame();
     void ResumeGame();
     //static void GameExit();
-    void updateOverlay();
+    void updateOverlay(QPointF carpos, int fps);
 
 public slots:
     void saveLapTime();

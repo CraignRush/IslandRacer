@@ -17,9 +17,9 @@ Viewport::Viewport(int width, int height, Track* track)
     mLapTimeLabel = new QLabel();
     mLapTimeLabel->setVisible(false);
     mLapTimeLabel->setFont(QFont("GillSansMT",24,60)); // Font: family, PointSize, Weight(how bold)
-    mLapTimeLabel->setStyleSheet("color: red");
+    mLapTimeLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
     mLapTimeLabel->setText(mLapTimeText + "mm:ss.zzz");
-    mLapTimeLabel->setFixedSize(QSize(400,50));
+    mLapTimeLabel->setFixedSize(QSize(300,50));
 	mLapTimeLabel->setGeometry(width - mLapTimeLabel->size().width() - 80, height - mLapTimeLabel->size().height() - 80, mLapTimeLabel->size().width(), mLapTimeLabel->size().height());
     mLapTimeLabel->setParent(this);
 
@@ -28,9 +28,9 @@ Viewport::Viewport(int width, int height, Track* track)
     mTotalTimeLabel = new QLabel();
     mTotalTimeLabel->setVisible(false);
     mTotalTimeLabel->setFont(QFont("GillSansMT",24,60)); // Font: family, PointSize, Weight(how bold)
-    mTotalTimeLabel->setStyleSheet("color: red");
+    mTotalTimeLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
     mTotalTimeLabel->setText(mTotalTimeText + "mm:ss.zzz");
-	mTotalTimeLabel->setFixedSize(QSize(450,50));
+    mTotalTimeLabel->setFixedSize(QSize(350,50));
 	mTotalTimeLabel->setGeometry(width - mTotalTimeLabel->size().width() - 30, height - mTotalTimeLabel->size().height() - 20, mTotalTimeLabel->size().width(), mTotalTimeLabel->size().height());
     mTotalTimeLabel->setParent(this);
 
@@ -39,21 +39,21 @@ Viewport::Viewport(int width, int height, Track* track)
     mLapLabel = new QLabel();
     mLapLabel->setVisible(false);
     mLapLabel->setFont(QFont("GillSansMT",24,60));
-    mLapLabel->setStyleSheet("color: red");
+    mLapLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
     mLapLabel->setText(mLapText + "0/3");
-    mLapLabel->setFixedSize(QSize(250,50));
-	mLapLabel->setGeometry(width - mLapLabel->size().width() - 230, height - mLapLabel->size().height() - 150, mLapLabel->size().width(), mLapLabel->size().height());
+    mLapLabel->setFixedSize(QSize(150,50));
+    mLapLabel->setGeometry(width - mLapLabel->size().width() - 230, height - mLapLabel->size().height() - 140, mLapLabel->size().width(), mLapLabel->size().height());
     mLapLabel->setParent(this);
 
     //Initialize Label for speedometer
     mSpeedDisplay = new QLabel();
     mSpeedDisplay->setVisible(false);
-    mSpeedDisplay->setStyleSheet("color: red");
-    //mSpeedDisplay->setScale(7);
-    mSpeedDisplay->setFixedSize(QSize(100,100));
-    mSpeedDisplay->setGeometry(10, height - mLapLabel->size().height() - 125, mLapLabel->size().width(), mLapLabel->size().height());
+    mSpeedDisplay->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
+    mSpeedDisplay->setFont(QFont("GillSansMT",60,60));
+    mSpeedDisplay->setFixedSize(QSize(390,110));
+    mSpeedDisplay->setGeometry(35, height - mSpeedDisplay->size().height() - 35, mSpeedDisplay->size().width(), mSpeedDisplay->size().height());
     mSpeedDisplay->setParent(this);
-    //mPrevPos = mCar->pos();
+    mPrevPos = QPointF(0,0);
 
     connect(track,SIGNAL(LapChanged()),this,SLOT(saveLapTime()));
 }
@@ -115,7 +115,7 @@ void Viewport::startGame()
     mSpeedDisplay->setVisible(true);
 }
 
-void Viewport::updateOverlay()
+void Viewport::updateOverlay(QPointF carpos, int fps)
 {
     // Update lap time label
     mElapsed = mLapTimeElapsed.elapsed();
@@ -133,9 +133,10 @@ void Viewport::updateOverlay()
     mLapLabel->setText(mLapText + QString::number(mLaps) + "/3");
 
     //Display current speed
-    //double mSpeed = sqrt(qPow((mCar->x()-mPrevPos.x()),2)+qPow((mCar->y()-mPrevPos.y()),2))/20.f/mFps*1000*3.6*5;
-    //mSpeedDisplay->setText("Speed: " + QString::number(mSpeed, 'f', 1) + " km/h");
-    //mPrevPos = mCar->pos();
+    double mSpeed = sqrt(qPow((carpos.x()-mPrevPos.x()),2)+qPow((carpos.y()-mPrevPos.y()),2))/20.f*fps*3.6*2.5;
+    mSpeedDisplay->setText(QString::number(mSpeed, 'f', 1) + "km/h");
+    mPrevPos = carpos;
+
 }
 
 void Viewport::saveLapTime()

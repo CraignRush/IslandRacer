@@ -12,7 +12,7 @@ Checkpoint::Checkpoint(int checkpointCount, WorldPosition* checkpointPositions, 
     {
         mCheckpoints[i].setRect(0,0,600,5);
         mCheckpoints[i].setBrush(QBrush(QColor(Qt::red)));
-        mCheckpoints[i].setOpacity(0.0); // set to 1.0 for debug
+        mCheckpoints[i].setOpacity(1.0); // set to 1.0 for debug
         mCheckpoints[i].setRotation(qRadiansToDegrees(checkpointPositions[i].angle()));
         mCheckpoints[i].setPos(checkpointPositions[i].x(), checkpointPositions[i].y());
     }
