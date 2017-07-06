@@ -64,12 +64,12 @@ public:
     void keyPressEvent(QKeyEvent *keyEvent);
     void keyReleaseEvent(QKeyEvent *keyEvent);
     void ResumeGame();
-    void StopGame();
     static void GameExit();
 
 public slots:
 	void gameLoop();
 	void startLoop();
+	void StopGame();
 
 signals:
     void RaceFinished(QString mLapTime[],QString mTotalTimeEnd);
