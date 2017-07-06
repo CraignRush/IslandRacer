@@ -45,6 +45,7 @@ public:
 
 signals:
 	 void StopGame();
+	void RaceFinished(QString mLapTime[],QString mTotalTimeEnd);
 public slots:
     void saveLapTime();
 

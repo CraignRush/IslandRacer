@@ -32,6 +32,8 @@ public:
     Player();
 	void updateFile();
 	void SetCircuit(Circuit circuit);
+signals:
+	void playerInputFinished();
 public slots:
 	void endRaceDialog(QString lapTimeArray[], QString totalTime);
 	void savePlayerName(QString name);

@@ -64,16 +64,13 @@ public:
     void keyPressEvent(QKeyEvent *keyEvent);
     void keyReleaseEvent(QKeyEvent *keyEvent);
     void ResumeGame();
-    static void GameExit();
+	Viewport *getViewPlayer(int number);
 
 public slots:
 	void gameLoop();
 	void startLoop();
 	void StopGame();
-
-signals:
-    void RaceFinished(QString mLapTime[],QString mTotalTimeEnd);
-
+	void ExitGame();
 };
 
 #endif // WORLD_H
