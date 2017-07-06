@@ -27,6 +27,9 @@ Game::~Game()
 {
     delete mWorld;
     mWorld = NULL;
+
+    delete mPlayer;
+    mPlayer = NULL;
 }
 
 void Game::loadCircuit(Circuit circuit)
@@ -150,10 +153,10 @@ void Game::loadCircuit(Circuit circuit)
             free(checkpointPositions);
             checkpointPositions = NULL;
         }
-        if(checkpointPositions != NULL)
+        if(carResetPositions != NULL)
         {
-            free(checkpointPositions);
-            checkpointPositions = NULL;
+            free(carResetPositions);
+            carResetPositions = NULL;
         }
 	}
 }

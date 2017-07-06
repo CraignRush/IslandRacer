@@ -22,8 +22,8 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     mCar2 = new Car(mWorld, mTrack);
 
     // Add the cars to the track/scene
-    mTrack->addItem(mCar1);
-    mTrack->addItem(mCar2);
+    //mTrack->addItem(mCar1);
+    //mTrack->addItem(mCar2);
 
     // Init viewports
     mViewPlayer1 = NULL;
@@ -103,11 +103,11 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
 World::~World()
 {
     // Delete objects from heap and set pointers to NULL
-    delete mCar1;
+    /*delete mCar1;
     mCar1 = NULL;
 
     delete mCar2;
-    mCar2 = NULL;
+    mCar2 = NULL;*/
 
     delete mWorld;
     mWorld = NULL;
@@ -118,11 +118,17 @@ World::~World()
     delete mTrack;
     mTrack = NULL;
 
-    if(mCounter != NULL)
-    {
+    //if(mOpacityEffect != NULL)
+   // {
+        delete mOpacityEffect;
+        mOpacityEffect = NULL;
+   // }
+
+    //if(mCounter != NULL)
+    //{
         delete mCounter;
         mCounter = NULL;
-    }
+    //}
 
     if(mStartTimer != NULL)
     {
@@ -130,17 +136,14 @@ World::~World()
         mStartTimer = NULL;
     }
 
-    if(mCounterWidget != NULL)
-    {
+    delete mCounterLayout;
+    mCounterLayout = NULL;
+
+    //if(mCounterWidget != NULL)
+   // {
         delete mCounterWidget;
         mCounterWidget = NULL;
-    }
-
-    if(mOpacityEffect != NULL)
-    {
-        delete mOpacityEffect;
-        mOpacityEffect = NULL;
-    }
+   // }
 
     if(mViewPlayer1 != NULL)
     {
@@ -154,14 +157,14 @@ World::~World()
         mViewPlayer2 = NULL;
     }
 
-    delete mViewportWidget;
-    mViewportWidget = NULL;
+    delete mVerticalSeperatorLine;
+    mVerticalSeperatorLine = NULL;
 
     delete mViewportLayout;
     mViewportLayout = NULL;
 
-    delete mCounterLayout;
-    mCounterLayout = NULL;
+    delete mViewportWidget;
+    mViewportWidget = NULL;
 
     //delete mBlurEffect;
     //mBlurEffect = NULL;
@@ -253,15 +256,15 @@ void World::startLoop()
 	{
 		mStartTimer->stop();
 
-        mMainLayout->removeWidget(mCounterWidget);
-        delete mCounterWidget;
+        mOpacityEffect->setOpacity(0.0);
+        /*delete mCounterWidget;
         mCounterWidget = NULL;
 
         delete mOpacityEffect;
         mOpacityEffect = NULL;
 
         delete mCounter;
-        mCounter = NULL;
+        mCounter = NULL;*/
         //mTrack->removeItem(mCounter);
         //delete mCounter;
         //mCounter = NULL;
@@ -287,15 +290,16 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         delete mViewPlayer1;
         mViewPlayer1 = NULL;
     }
-    if(mViewPlayer1 != NULL)
+    if(mViewPlayer2 != NULL)
     {
-        delete mViewPlayer1;
-        mViewPlayer1 = NULL;
+        delete mViewPlayer2;
+        mViewPlayer2 = NULL;
     }
 
     if(mIsMultiplayer)
     {
         // Add second car to scene
+        mTrack->addItem(mCar1);
         mTrack->addItem(mCar2);
 
         // set cars to starting position
@@ -325,7 +329,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
     }
     else
     {
-        mTrack->removeItem(mCar2);
+        mTrack->addItem(mCar1);
 
         // set car to starting position
         mCar1->setPosition(carPositions[0].x(), carPositions[0].y(), carPositions[0].angle());
@@ -346,6 +350,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
     // Init variables for start countdown
     mOpacity = 1.0f;
 	mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
+    mCounter->setText(QString(""));
 
 	// Init and start timer for game loop and start loop
 	mStartTimer = new QTimer(this);
@@ -359,21 +364,26 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
     switch(keyEvent->key())
     {
     case Qt::Key_Escape: // Just for debugging, to close game and get back to menu.
-//        hide();
+        hide();
         //mBlurEffect->setEnabled(false);
 
         mTimer->stop();
-        if(mCounter != NULL)
+        mTrack->removeItem(mCar1);
+        if(mIsMultiplayer)
+            mTrack->removeItem(mCar2);
+        /*if(mCounter != NULL)
         {
             delete mCounter;
             mCounter = NULL;
-        }
+        }*/
         if(mStartTimer != NULL)
         {
             mStartTimer->stop();
             delete mStartTimer;
             mStartTimer = NULL;
         }
+
+        emit mCar1->stopCarSound();
 
 //        if(mSpeedDisplay != NULL)
 //        {
