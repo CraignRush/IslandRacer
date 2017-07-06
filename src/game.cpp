@@ -32,6 +32,11 @@ Game::~Game()
     mPlayer = NULL;
 }
 
+void Game::setMultiplayer(bool mp)
+{
+    mMultiplayer = mp;
+}
+
 void Game::loadCircuit(Circuit circuit)
 {
     QString filename;
@@ -141,7 +146,7 @@ void Game::loadCircuit(Circuit circuit)
         inputFile.close();
 
         // load circuit with parameter
-        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, &carPosition, false);
+        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, &carPosition, mMultiplayer);
 
         // show window on top
         mWorld->showFullScreen();
@@ -160,3 +165,4 @@ void Game::loadCircuit(Circuit circuit)
         }
 	}
 }
+

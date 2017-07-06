@@ -18,11 +18,16 @@ class Game: public QObject
 private:
     World* mWorld;
 	Player* mPlayer;
+    bool mMultiplayer;
+
 public:
     Game();
     Game(int screenWidth, int screenHeight, bool fullscreen);
     ~Game();
     void loadCircuit(enum Circuit circuit);
+
+public slots:
+    void setMultiplayer(bool mp);
 };
 
 #endif // GAME_H

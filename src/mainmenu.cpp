@@ -110,6 +110,9 @@ mainMenu::mainMenu(QWidget *parent) :
 	// Init game object with screen width/height and fullscreen mode
 	game = new Game(screenWidth, screenHeight, true);
 
+    // connect the multiplayer option
+    connect(this, SIGNAL(setMultiplayer(bool)), game, SLOT(setMultiplayer(bool)));
+
     // --- Set up sound ---
     // connect all signals to their corresponding slots
     connect(this, SIGNAL(playBackgroundMusic()), Sound::getSoundInstance(this), SLOT(playBackgroundMusic()));
@@ -126,7 +129,9 @@ mainMenu::mainMenu(QWidget *parent) :
     on_settingsButtonSoundSlider_valueChanged(buttonSoundValue);
     on_settingsRaceSoundSlider_valueChanged(raceSoundValue);
     on_settingsBackgroundSoundSlider_valueChanged(backgroundSoundValue);
+
     emit playBackgroundMusic();
+
 // Set und start playing Backgroundmusic
 //	playlist = new QMediaPlaylist();
 	//playlist->addMedia(QUrl("qrc:/sounds/sounds/backgroundmusic.wav"));
@@ -151,9 +156,9 @@ mainMenu::mainMenu(QWidget *parent) :
 	QPixmap yasmarina(":/images/images/YasMarinatextur.png");
 
 	logo = logo.scaledToHeight(0.2 * screenHeight);
-	hockenheim = hockenheim.scaledToHeight(0.5 * screenHeight);
-	monza = monza.scaledToHeight(0.5 * screenHeight);
-	yasmarina = yasmarina.scaledToHeight(0.5 * screenHeight);
+    hockenheim = hockenheim.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
+    monza = monza.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
+    yasmarina = yasmarina.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
 
 	// Set Icons
 	QIcon leftArrow(":/images/images/l-arrow-576725_1280.png");
@@ -176,14 +181,16 @@ mainMenu::mainMenu(QWidget *parent) :
 	QSize arrowButton(0.125 * screenHeight, 0.1 * screenHeight);
 
 	// Set Spacer Sizes for centering (same size as smallButton)
-	ui->level1HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
-	ui->level2HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
-	ui->level3HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
 	ui->garageHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
 	ui->highscoreHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
 	ui->settingsHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
 	ui->manualHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
 	ui->creditsHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+    ui->playTypeSelectHorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+    ui->level1HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+    ui->level2HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+    ui->level3HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+    ui->level4HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
 
 	// Set Fonts
 	GillSansMT.setFamily("GillSansMT");
@@ -236,78 +243,7 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->main2QuitGame->setIconSize(bigButton);
 	ui->main2QuitGame->setStyleSheet("QPushButton{background: transparent;}");
 
-
-	// Items in Level 1
-	ui->level1Logo->setPixmap(logo);
-	ui->level1Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-	ui->level1Logo->setStyleSheet("QLabel{background: transparent;}");
-	ui->level1_2Level2->setIcon(rightArrow);
-	ui->level1_2Level2->setIconSize(arrowButton);
-	ui->level1_2Level2->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level1_2Level3->setIcon(leftArrow);
-	ui->level1_2Level3->setIconSize(arrowButton);
-	ui->level1_2Level3->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level1_2Main->setIcon(menu);
-	ui->level1_2Main->setIconSize(smallButton);
-	ui->level1_2Main->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level1_2Play->setIcon(play);
-	ui->level1_2Play->setIconSize(bigButton);
-	ui->level1_2Play->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level1Trackname->setStyleSheet("QLabel{background: transparent;}");
-	ui->level1Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-	ui->level1Trackname->setFont(GillSansMTTitle);
-	ui->level1Trackname->setText("Sunny Speedway");
-	ui->level1Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
-	ui->level1Trackpic->setPixmap(monza);
-
-	// Items in Level 2
-	ui->level2Logo->setPixmap(logo);
-	ui->level2Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-	ui->level2Logo->setStyleSheet("QLabel{background: transparent;}");
-	ui->level2_2Level3->setIcon(rightArrow);
-	ui->level2_2Level3->setIconSize(arrowButton);
-	ui->level2_2Level1->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level2_2Level1->setIcon(leftArrow);
-	ui->level2_2Level1->setIconSize(arrowButton);
-	ui->level2_2Level3->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level2_2Main->setIcon(menu);
-	ui->level2_2Main->setIconSize(smallButton);
-	ui->level2_2Main->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level2_2Play->setIcon(play);
-	ui->level2_2Play->setIconSize(bigButton);
-	ui->level2_2Play->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level2Trackname->setStyleSheet("QLabel{background: transparent;}");
-	ui->level2Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-	ui->level2Trackname->setFont(GillSansMTTitle);
-	ui->level2Trackname->setText("Chancy Circuit");
-	ui->level2Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
-	ui->level2Trackpic->setPixmap(hockenheim);
-
-	// Items in Level 3
-	ui->level3Logo->setPixmap(logo);
-	ui->level3Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-	ui->level3Logo->setStyleSheet("QLabel{background: transparent;}");
-	ui->level3_2Level1->setIcon(rightArrow);
-	ui->level3_2Level1->setIconSize(arrowButton);
-	ui->level3_2Level2->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level3_2Level2->setIcon(leftArrow);
-	ui->level3_2Level2->setIconSize(arrowButton);
-	ui->level3_2Level1->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level3_2Main->setIcon(menu);
-	ui->level3_2Main->setIconSize(smallButton);
-	ui->level3_2Main->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level3_2Play->setIcon(play);
-	ui->level3_2Play->setIconSize(bigButton);
-	ui->level3_2Play->setStyleSheet("QPushButton{background: transparent;}");
-	ui->level3Trackname->setStyleSheet("QLabel{background: transparent;}");
-	ui->level3Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-	ui->level3Trackname->setFont(GillSansMTTitle);
-	ui->level3Trackname->setText("Deadly Desert");
-	ui->level3Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
-	ui->level3Trackpic->setPixmap(yasmarina);
-
 	// Items in garage
-
 	ui->garageLogo->setPixmap(logo);
 	ui->garageLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->garageLogo->setStyleSheet("QLabel{background: transparent;}");
@@ -462,6 +398,119 @@ mainMenu::mainMenu(QWidget *parent) :
 							  "Grundkurs C++, TUM\n\n"
 							  "IN:\n"
 							  "Summer Semester 2017\n\n");
+
+    // Items in playTypeSelect
+    ui->playTypeSelectLogo->setPixmap(logo);
+    ui->playTypeSelectLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->playTypeSelectLogo->setStyleSheet("QLabel{background: transparent;}");
+    ui->playTypeSelect2Main->setIcon(menu);
+    ui->playTypeSelect2Main->setIconSize(smallButton);
+    ui->playTypeSelect2Main->setStyleSheet("QPushButton{background: transparent;}");
+    //ui->playTypeSelect2SinglePlayer->setIcon(menu);
+    ui->playTypeSelect2SinglePlayer->setFont(GillSansMT);
+    ui->playTypeSelect2SinglePlayer->setIconSize(smallButton);
+    ui->playTypeSelect2SinglePlayer->setStyleSheet("QPushButton{background: transparent;}");
+    //ui->playTypeSelect2Multiplayer->setIcon(menu);
+    ui->playTypeSelect2Multiplayer->setIconSize(smallButton);
+    ui->playTypeSelect2Multiplayer->setFont(GillSansMT);
+    ui->playTypeSelect2Multiplayer->setStyleSheet("QPushButton{background: transparent;}");
+    ui->playTypeSelectTitle->setStyleSheet("QLabel{background: transparent;}");
+    ui->playTypeSelectTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->playTypeSelectTitle->setFont(GillSansMTTitle);
+    ui->playTypeSelectTitle->setText("Choose your playtype:");
+
+
+    // Items in Level 1
+    ui->level1Logo->setPixmap(logo);
+    ui->level1Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level1Logo->setStyleSheet("QLabel{background: transparent;}");
+    ui->level1_2Right->setIcon(rightArrow);
+    ui->level1_2Right->setIconSize(arrowButton);
+    ui->level1_2Right->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level1_2Left->setIcon(leftArrow);
+    ui->level1_2Left->setIconSize(arrowButton);
+    ui->level1_2Left->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level1_2Main->setIcon(menu);
+    ui->level1_2Main->setIconSize(smallButton);
+    ui->level1_2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level1_2Play->setIcon(play);
+    ui->level1_2Play->setIconSize(bigButton);
+    ui->level1_2Play->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level1Trackname->setStyleSheet("QLabel{background: transparent;}");
+    ui->level1Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level1Trackname->setFont(GillSansMTTitle);
+    ui->level1Trackname->setText("Sunny Speedway");
+    ui->level1Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
+    ui->level1Trackpic->setPixmap(monza);
+
+    // Items in Level 2
+    ui->level2Logo->setPixmap(logo);
+    ui->level2Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level2Logo->setStyleSheet("QLabel{background: transparent;}");
+    ui->level2_2Right->setIcon(rightArrow);
+    ui->level2_2Right->setIconSize(arrowButton);
+    ui->level2_2Right->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level2_2Left->setIcon(leftArrow);
+    ui->level2_2Left->setIconSize(arrowButton);
+    ui->level2_2Left->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level2_2Main->setIcon(menu);
+    ui->level2_2Main->setIconSize(smallButton);
+    ui->level2_2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level2_2Play->setIcon(play);
+    ui->level2_2Play->setIconSize(bigButton);
+    ui->level2_2Play->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level2Trackname->setStyleSheet("QLabel{background: transparent;}");
+    ui->level2Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level2Trackname->setFont(GillSansMTTitle);
+    ui->level2Trackname->setText("Chancy Circuit");
+    ui->level2Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
+    ui->level2Trackpic->setPixmap(hockenheim);
+
+    // Items in Level 3
+    ui->level3Logo->setPixmap(logo);
+    ui->level3Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level3Logo->setStyleSheet("QLabel{background: transparent;}");
+    ui->level3_2Right->setIcon(rightArrow);
+    ui->level3_2Right->setIconSize(arrowButton);
+    ui->level3_2Right->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level3_2Left->setIcon(leftArrow);
+    ui->level3_2Left->setIconSize(arrowButton);
+    ui->level3_2Left->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level3_2Main->setIcon(menu);
+    ui->level3_2Main->setIconSize(smallButton);
+    ui->level3_2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level3_2Play->setIcon(play);
+    ui->level3_2Play->setIconSize(bigButton);
+    ui->level3_2Play->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level3Trackname->setStyleSheet("QLabel{background: transparent;}");
+    ui->level3Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level3Trackname->setFont(GillSansMTTitle);
+    ui->level3Trackname->setText("Deadly Desert");
+    ui->level3Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
+    ui->level3Trackpic->setPixmap(yasmarina);
+
+    // Items in Level 4
+    ui->level4Logo->setPixmap(logo);
+    ui->level4Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level4Logo->setStyleSheet("QLabel{background: transparent;}");
+    ui->level4_2Right->setIcon(rightArrow);
+    ui->level4_2Right->setIconSize(arrowButton);
+    ui->level4_2Right->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level4_2Left->setIcon(leftArrow);
+    ui->level4_2Left->setIconSize(arrowButton);
+    ui->level4_2Left->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level4_2Main->setIcon(menu);
+    ui->level4_2Main->setIconSize(smallButton);
+    ui->level4_2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level4_2Play->setIcon(play);
+    ui->level4_2Play->setIconSize(bigButton);
+    ui->level4_2Play->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level4Trackname->setStyleSheet("QLabel{background: transparent;}");
+    ui->level4Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level4Trackname->setFont(GillSansMTTitle);
+    ui->level4Trackname->setText("Irgendwas");
+    ui->level4Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
+    //ui->level4Trackpic->setPixmap(yasmarina);
 }
 
 mainMenu::~mainMenu()
@@ -469,19 +518,6 @@ mainMenu::~mainMenu()
 	delete game;
 	delete ui;
 }
-
-//  Buttons from the Main Menu UI
-
-/*  pages:  0 - Main Menu
- *          1 - Level 1
- *          2 - Level 2
- *          3 - Level 3
- *          4 - Garage
- *          5 - Highscore
- *          6 - Settings
- *          7 - Manual
- *          8 - Credits
-*/
 
 // Setbackgroundsound
 void mainMenu::setbackgroundsound()
@@ -513,20 +549,32 @@ void mainMenu::playbuttonsound()
     }
 }
 
-//! Sound for race
+//  Buttons from the Main Menu UI
 
+/*  pages:  0 - Main Menu
+ *          1 - Garage
+ *          2 - Highscore
+ *          3 - Settings
+ *          4 - Manual
+ *          5 - Credits
+ *          6 - PlayType Select
+ *          7 - Level 1
+ *          8 - Level 2
+ *          9 - Level 3
+ *
+*/
 
 // Buttons from the main menu
 void mainMenu::on_main2Level1_clicked()
 {
 	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(6);
 }
 
 void mainMenu::on_main2Garage_clicked()
 {
     playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(4);
+    ui->stackedWidget->setCurrentIndex(1);
     int decider = maximumValue - accelerationValue - topspeedValue - handlingValue;
     ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
 }
@@ -534,7 +582,7 @@ void mainMenu::on_main2Garage_clicked()
 void mainMenu::on_main2Highscore_clicked()
 {
 	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(5);
+    ui->stackedWidget->setCurrentIndex(2);
 
 	ui->highscoretablelevel1->setFont(QFont("GillSansMT",15,17));
 	ui->highscoretablelevel2->setFont(QFont("GillSansMT",15,17));
@@ -549,9 +597,7 @@ void mainMenu::on_main2Highscore_clicked()
 	if (inputFile.open(QIODevice::ReadOnly))
 	{
 		QTextStream in(&inputFile);
-		line;
-		list;
-		int i = 0;
+        int i = 0;
 		while(!in.atEnd()){
 			line = in.readLine();
 			list = line.split(QRegExp("\\,"));
@@ -579,9 +625,7 @@ void mainMenu::on_main2Highscore_clicked()
 	if (inputFile2.open(QIODevice::ReadOnly))
 	{
 		QTextStream in2(&inputFile2);
-		line;
-		list;
-		int i = 0;
+        int i = 0;
 		while(!in2.atEnd()){
 			line = in2.readLine();
 			list = line.split(QRegExp("\\,"));
@@ -609,9 +653,7 @@ void mainMenu::on_main2Highscore_clicked()
 	if (inputFile3.open(QIODevice::ReadOnly))
 	{
 		QTextStream in3(&inputFile3);
-		line;
-		list;
-		int i = 0;
+        int i = 0;
 		while(!in3.atEnd()){
 			line = in3.readLine();
 			list = line.split(QRegExp("\\,"));
@@ -638,7 +680,7 @@ void mainMenu::on_main2Highscore_clicked()
 void mainMenu::on_main2Settings_clicked()
 {
 	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(6);
+    ui->stackedWidget->setCurrentIndex(3);
     if(backgroundSoundActive == 1)
     {
         ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
@@ -657,13 +699,13 @@ void mainMenu::on_main2Settings_clicked()
 void mainMenu::on_main2Manual_clicked()
 {
 	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(7);
+    ui->stackedWidget->setCurrentIndex(4);
 }
 
 void mainMenu::on_main2Credits_clicked()
 {
 	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(8);
+    ui->stackedWidget->setCurrentIndex(5);
 }
 
 void mainMenu::on_main2QuitGame_clicked()
@@ -672,24 +714,333 @@ void mainMenu::on_main2QuitGame_clicked()
 	QCoreApplication::quit();
 }
 
+// Buttons and Sliders from Garage
+
+void mainMenu::on_garage2Main_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(0);
+
+    QString out("topspeedValue=" + QString::number(topspeedValue) + "\n"
+                "accelerationValue=" + QString::number(accelerationValue) + "\n"
+                "handlingValue=" + QString::number(handlingValue) + "\n");
+    QString filename;
+    filename = "settings/garage.set";
+    QFile outputFile(filename);
+    if (outputFile.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+        QTextStream in(&outputFile);
+        in << out;
+        outputFile.close();
+    }
+}
+
+void mainMenu::on_garageAccelerationSlider_valueChanged(int value)
+{
+    accelerationValue = value;
+
+    int decider = maximumValue - accelerationValue - topspeedValue - handlingValue;
+
+    ui->garageAccelerationLabel->setText("Your acceleration value: " + QString::number(accelerationValue));
+
+    if(decider < 0){
+        ui->garageLabel->setText("You have 0 points left to distribute");
+    }
+    else{
+        ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
+    }
+}
+
+void mainMenu::on_garageAccelerationSlider_sliderReleased()
+{
+    int decider =  0;
+    int setvalue = 0;
+    decider = maximumValue - topspeedValue - accelerationValue - handlingValue;
+    setvalue = maximumValue - topspeedValue - handlingValue;
+
+    if(decider < 0){
+        ui->garageAccelerationSlider->setValue(setvalue);
+    }
+}
+
+void mainMenu::on_garageTopspeedSlider_valueChanged(int value)
+{
+    topspeedValue = value;
+
+    int decider = maximumValue - accelerationValue - topspeedValue - handlingValue;
+
+    ui->garageTopspeedLabel->setText("Your topspeed value: " + QString::number(topspeedValue));
+
+    if(decider < 0){
+        ui->garageLabel->setText("You have 0 points left to distribute");
+    }
+    else{
+        ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
+    }}
+
+void mainMenu::on_garageTopspeedSlider_sliderReleased()
+{
+    int decider =  0;
+    int setvalue = 0;
+    decider = maximumValue - topspeedValue - accelerationValue - handlingValue;
+    setvalue = maximumValue - accelerationValue - handlingValue;
+
+    if(decider < 0){
+        ui->garageTopspeedSlider->setValue(setvalue);
+    }
+}
+
+void mainMenu::on_garageHandlingSlider_valueChanged(int value)
+{
+    handlingValue = value;
+
+    int decider = maximumValue - accelerationValue - topspeedValue - handlingValue;
+
+    ui->garageHandlingLabel->setText("Your handling value: " + QString::number(handlingValue));
+
+    if(decider < 0){
+        ui->garageLabel->setText("You have 0 points left to distribute");
+    }
+    else{
+        ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
+    }
+}
+
+void mainMenu::on_garageHandlingSlider_sliderReleased()
+{
+    int decider =  0;
+    int setvalue = 0;
+    decider = maximumValue - topspeedValue - accelerationValue - handlingValue;
+    setvalue = maximumValue - accelerationValue - topspeedValue;
+
+    if(decider < 0){
+        ui->garageHandlingSlider->setValue(setvalue);
+    }
+}
+
+// Garage end
+
+// Buttons from Highscore
+
+void mainMenu::on_highscore2Main_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+/* Settings Configeration
+ *
+ * Buttons from Settings
+ *
+ * Sound Configeration and Highscore Reset directly behind
+ *
+*/
+
+void mainMenu::on_settings2Main_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(0);
+
+    QString out("backgroundSoundValue=" + QString::number(backgroundSoundValue) + "\n"
+                "backgroundSoundActive=" + QString::number(backgroundSoundActive) + "\n"
+                "buttonSoundValue=" + QString::number(buttonSoundValue) + "\n"
+                "buttonSoundActive=" + QString::number(buttonSoundActive) + "\n"
+                "raceSoundValue=" + QString::number(raceSoundValue) + "\n"
+                "raceSoundActive=" + QString::number(raceSoundActive) + "\n");
+
+    QString filename;
+    filename = "settings/sound.set";
+    QFile outputFile2(filename);
+    if (outputFile2.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+        QTextStream in2(&outputFile2);
+        in2 << out;
+        outputFile2.close();
+    }
+}
+
+// Sound Configeration
+
+void mainMenu::on_settingsBackgroundSoundOn_clicked()
+{
+    playbuttonsound();
+    backgroundSoundActive = 1;
+    //setbackgroundsound();
+    emit setBackgroundMusicVolume(backgroundSoundValue);
+    //emit playBackgroundMusic();
+//	backgroundmusic->setVolume(backgroundSoundValue);
+    ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
+}
+
+void mainMenu::on_settingsBackgroundSoundOff_clicked()
+{
+    int saver;
+    playbuttonsound();
+    //setbackgroundsound();
+    saver = ui->settingsBackgroundSoundSlider->value();
+    ui->settingsBackgroundSoundSlider->setValue(0);
+    backgroundSoundValue = saver;
+    backgroundSoundActive = 0;
+    emit setBackgroundMusicVolume(0);
+    //emit stopBackgroundMusic();
+}
+
+void mainMenu::on_settingsBackgroundSoundSlider_valueChanged(int value)
+{
+    if(backgroundSoundActive == 0){
+        backgroundSoundActive = 1;
+        //setbackgroundsound();
+    }
+    backgroundSoundValue = value;
+    emit setBackgroundMusicVolume(backgroundSoundValue);
+    //backgroundmusic->setVolume(backgroundSoundValue);
+}
+void mainMenu::on_settingsButtonSoundOn_clicked()
+{
+    playbuttonsound();
+    buttonSoundActive = 1;
+    emit setButtonSoundVolume(buttonSoundValue);
+    //buttonsound->setVolume(buttonSoundValue);
+    ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
+}
+
+void mainMenu::on_settingsButtonSoundOff_clicked()
+{
+    int saver;
+    playbuttonsound();
+    saver = ui->settingsButtonSoundSlider->value();
+    ui->settingsButtonSoundSlider->setValue(0);
+    emit setButtonSoundVolume(0);
+    buttonSoundValue = saver;
+    buttonSoundActive = 0;
+}
+
+void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
+{
+    if(buttonSoundActive == 0){
+        buttonSoundActive = 1;
+    }
+    buttonSoundValue = value;
+    emit setButtonSoundVolume(buttonSoundValue);
+    //buttonsound->setVolume(buttonSoundValue);
+}
+
+void mainMenu::on_settingsRaceSoundOn_clicked()
+{
+    playbuttonsound();
+    raceSoundActive = 1;
+    ui->settingsRaceSoundSlider->setValue(raceSoundValue);
+    emit setCarSoundVolume(raceSoundValue);
+}
+
+void mainMenu::on_settingsRaceSoundOff_clicked()
+{
+    int saver;
+    playbuttonsound();
+    saver = ui->settingsRaceSoundSlider->value();
+    ui->settingsRaceSoundSlider->setValue(0);
+    emit setCarSoundVolume(0);
+    raceSoundValue = saver;
+    raceSoundActive = 0;
+}
+
+void mainMenu::on_settingsRaceSoundSlider_valueChanged(int value)
+{
+    //racesound lauter/leiser
+    if(raceSoundActive == 0){
+        raceSoundActive = 1;
+    }
+    raceSoundValue = value;
+    emit setCarSoundVolume(raceSoundValue);
+}
+
+// Highscore Reset
+
+void mainMenu::on_settingsHighscoreResetButton_clicked()
+{
+    playbuttonsound();
+    //resetHighscore
+
+    QString filename;
+    filename = "highscores/Monza.score";
+    QFile outputFile(filename);
+    if (outputFile.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+        QTextStream in(&outputFile);
+        for(int i = 0; i < 10; i++)	in << "-,-\n";
+        outputFile.close();
+    }
+
+    filename = "highscores/Hockenheimring.score";
+    QFile outputFile2(filename);
+    if (outputFile2.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+        QTextStream in2(&outputFile2);
+        for(int i = 0; i < 10; i++)	in2 << "-,-\n";
+        outputFile2.close();
+    }
+
+    filename = "highscores/YasMarina.score";
+    QFile outputFile3(filename);
+    if (outputFile3.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+        QTextStream in3(&outputFile3);
+        for(int i = 0; i < 10; i++)	in3 << "-,-\n";
+        outputFile3.close();
+    }
+}
+
+// Buttons from Manual
+
+void mainMenu::on_manual2Main_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+// Buttons from Credits
+
+void mainMenu::on_credits2Main_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+// Buttons from playTypeSelect
+
+void mainMenu::on_playTypeSelect2SinglePlayer_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(7);
+    emit setMultiplayer(false);
+}
+
+void mainMenu::on_playTypeSelect2Multiplayer_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(7);
+    emit setMultiplayer(true);
+}
+
+void mainMenu::on_playTypeSelect2Main_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
 // Buttons from Level 1
+
+void mainMenu::on_level1_2Left_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count() - 1); // Left is last Level
+}
+
+void mainMenu::on_level1_2Right_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
+}
 
 void mainMenu::on_level1_2Main_clicked()
 {
 	playbuttonsound();
 	ui->stackedWidget->setCurrentIndex(0);
-}
-
-void mainMenu::on_level1_2Level3_clicked()
-{
-	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(3);
-}
-
-void mainMenu::on_level1_2Level2_clicked()
-{
-	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(2);
 }
 
 void mainMenu::on_level1_2Play_clicked()
@@ -710,16 +1061,16 @@ void mainMenu::on_level2_2Main_clicked()
 	ui->stackedWidget->setCurrentIndex(0);
 }
 
-void mainMenu::on_level2_2Level1_clicked()
+void mainMenu::on_level2_2Left_clicked()
 {
-	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(1);
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
 }
 
-void mainMenu::on_level2_2Level3_clicked()
+void mainMenu::on_level2_2Right_clicked()
 {
-	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(3);
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
 }
 
 void mainMenu::on_level2_2Play_clicked()
@@ -740,16 +1091,16 @@ void mainMenu::on_level3_2Main_clicked()
 	ui->stackedWidget->setCurrentIndex(0);
 }
 
-void mainMenu::on_level3_2Level2_clicked()
+void mainMenu::on_level3_2Left_clicked()
 {
-	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(2);
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
 }
 
-void mainMenu::on_level3_2Level1_clicked()
+void mainMenu::on_level3_2Right_clicked()
 {
-	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(1);
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
 }
 
 void mainMenu::on_level3_2Play_clicked()
@@ -762,283 +1113,26 @@ void mainMenu::on_level3_2Play_clicked()
 	game->loadCircuit(YasMarina);
 }
 
-// Buttons from Garage
-
-void mainMenu::on_garage2Main_clicked()
+void mainMenu::on_level4_2Main_clicked()
 {
-	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(0);
-
-    QString out("topspeedValue=" + QString::number(topspeedValue) + "\n"
-                "accelerationValue=" + QString::number(accelerationValue) + "\n"
-                "handlingValue=" + QString::number(handlingValue) + "\n");
-    QString filename;
-    filename = "settings/garage.set";
-    QFile outputFile(filename);
-    if (outputFile.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
-        QTextStream in(&outputFile);
-        in << out;
-        outputFile.close();
-    }
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
-// Buttons from Highscore
-
-void mainMenu::on_highscore2Main_clicked()
+void mainMenu::on_level4_2Left_clicked()
 {
-	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(0);
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
 }
 
-// Buttons from Settings
-
-void mainMenu::on_settings2Main_clicked()
+void mainMenu::on_level4_2Right_clicked()
 {
-	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(0);
-
-    QString out("backgroundSoundValue=" + QString::number(backgroundSoundValue) + "\n"
-                "backgroundSoundActive=" + QString::number(backgroundSoundActive) + "\n"
-                "buttonSoundValue=" + QString::number(buttonSoundValue) + "\n"
-                "buttonSoundActive=" + QString::number(buttonSoundActive) + "\n"
-                "raceSoundValue=" + QString::number(raceSoundValue) + "\n"
-                "raceSoundActive=" + QString::number(raceSoundActive) + "\n");
-
-    QString filename;
-    filename = "settings/sound.set";
-    QFile outputFile2(filename);
-    if (outputFile2.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
-        QTextStream in2(&outputFile2);
-        in2 << out;
-        outputFile2.close();
-    }
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(7);    // Page 7 is Level 1
 }
 
-// Buttons from Manual
-
-void mainMenu::on_manual2Main_clicked()
+void mainMenu::on_level4_2Play_clicked()
 {
-	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(0);
-}
-
-// Buttons from Credits
-
-void mainMenu::on_credits2Main_clicked()
-{
-	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(0);
-}
-
-
-// Garage Configeration
-
-void mainMenu::on_garageAccelerationSlider_valueChanged(int value)
-{
-	accelerationValue = value;
-
-	int decider = maximumValue - accelerationValue - topspeedValue - handlingValue;
-
-	ui->garageAccelerationLabel->setText("Your acceleration value: " + QString::number(accelerationValue));
-
-	if(decider < 0){
-		ui->garageLabel->setText("You have 0 points left to distribute");
-	}
-	else{
-		ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
-	}
-}
-
-void mainMenu::on_garageAccelerationSlider_sliderReleased()
-{
-	int decider =  0;
-	int setvalue = 0;
-	decider = maximumValue - topspeedValue - accelerationValue - handlingValue;
-	setvalue = maximumValue - topspeedValue - handlingValue;
-
-	if(decider < 0){
-		ui->garageAccelerationSlider->setValue(setvalue);
-	}
-}
-
-void mainMenu::on_garageTopspeedSlider_valueChanged(int value)
-{
-	topspeedValue = value;
-
-	int decider = maximumValue - accelerationValue - topspeedValue - handlingValue;
-
-	ui->garageTopspeedLabel->setText("Your topspeed value: " + QString::number(topspeedValue));
-
-	if(decider < 0){
-		ui->garageLabel->setText("You have 0 points left to distribute");
-	}
-	else{
-		ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
-	}}
-
-void mainMenu::on_garageTopspeedSlider_sliderReleased()
-{
-	int decider =  0;
-	int setvalue = 0;
-	decider = maximumValue - topspeedValue - accelerationValue - handlingValue;
-	setvalue = maximumValue - accelerationValue - handlingValue;
-
-	if(decider < 0){
-		ui->garageTopspeedSlider->setValue(setvalue);
-	}
-}
-
-void mainMenu::on_garageHandlingSlider_valueChanged(int value)
-{
-	handlingValue = value;
-
-	int decider = maximumValue - accelerationValue - topspeedValue - handlingValue;
-
-	ui->garageHandlingLabel->setText("Your handling value: " + QString::number(handlingValue));
-
-	if(decider < 0){
-		ui->garageLabel->setText("You have 0 points left to distribute");
-	}
-	else{
-		ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
-	}
-}
-
-void mainMenu::on_garageHandlingSlider_sliderReleased()
-{
-	int decider =  0;
-	int setvalue = 0;
-	decider = maximumValue - topspeedValue - accelerationValue - handlingValue;
-	setvalue = maximumValue - accelerationValue - topspeedValue;
-
-	if(decider < 0){
-		ui->garageHandlingSlider->setValue(setvalue);
-	}
-}
-
-// Sound Configeration
-void mainMenu::on_settingsBackgroundSoundOn_clicked()
-{
-	playbuttonsound();
-    backgroundSoundActive = 1;
-    //setbackgroundsound();
-    emit setBackgroundMusicVolume(backgroundSoundValue);
-    //emit playBackgroundMusic();
-//	backgroundmusic->setVolume(backgroundSoundValue);
-	ui->settingsBackgroundSoundSlider->setValue(backgroundSoundValue);
-}
-
-void mainMenu::on_settingsBackgroundSoundOff_clicked()
-{
-    int saver;
-	playbuttonsound();
-    //setbackgroundsound();
-    saver = ui->settingsBackgroundSoundSlider->value();
-    ui->settingsBackgroundSoundSlider->setValue(0);
-    backgroundSoundValue = saver;
-    backgroundSoundActive = 0;
-    emit setBackgroundMusicVolume(0);
-    //emit stopBackgroundMusic();
-}
-
-void mainMenu::on_settingsBackgroundSoundSlider_valueChanged(int value)
-{
-    if(backgroundSoundActive == 0){
-        backgroundSoundActive = 1;
-        //setbackgroundsound();
-	}
-    backgroundSoundValue = value;
-    emit setBackgroundMusicVolume(backgroundSoundValue);
-    //backgroundmusic->setVolume(backgroundSoundValue);
-}
-void mainMenu::on_settingsButtonSoundOn_clicked()
-{
-	playbuttonsound();
-    buttonSoundActive = 1;
-    emit setButtonSoundVolume(buttonSoundValue);
-    //buttonsound->setVolume(buttonSoundValue);
-	ui->settingsButtonSoundSlider->setValue(buttonSoundValue);
-}
-
-void mainMenu::on_settingsButtonSoundOff_clicked()
-{
-    int saver;
-	playbuttonsound();
-    saver = ui->settingsButtonSoundSlider->value();
-	ui->settingsButtonSoundSlider->setValue(0);
-    emit setButtonSoundVolume(0);
-    buttonSoundValue = saver;
-    buttonSoundActive = 0;
-}
-
-void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
-{
-    if(buttonSoundActive == 0){
-        buttonSoundActive = 1;
-    }
-    buttonSoundValue = value;
-    emit setButtonSoundVolume(buttonSoundValue);
-    //buttonsound->setVolume(buttonSoundValue);
-}
-
-void mainMenu::on_settingsRaceSoundOn_clicked()
-{
-	playbuttonsound();
-    raceSoundActive = 1;
-	ui->settingsRaceSoundSlider->setValue(raceSoundValue);
-    emit setCarSoundVolume(raceSoundValue);
-}
-
-void mainMenu::on_settingsRaceSoundOff_clicked()
-{
-    int saver;
-	playbuttonsound();
-    saver = ui->settingsRaceSoundSlider->value();
-	ui->settingsRaceSoundSlider->setValue(0);
-    emit setCarSoundVolume(0);
-    raceSoundValue = saver;
-    raceSoundActive = 0;
-}
-
-void mainMenu::on_settingsRaceSoundSlider_valueChanged(int value)
-{
-	//racesound lauter/leiser
-    if(raceSoundActive == 0){
-        raceSoundActive = 1;
-    }
-    raceSoundValue = value;
-    emit setCarSoundVolume(raceSoundValue);
-}
-
-// Highscore Configuration
-
-void mainMenu::on_settingsHighscoreResetButton_clicked()
-{
-	playbuttonsound();
-	//resetHighscore
-
-	QString filename;
-	filename = "highscores/Monza.score";
-	QFile outputFile(filename);
-	if (outputFile.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
-		QTextStream in(&outputFile);
-		for(int i = 0; i < 10; i++)	in << "-,-\n";
-		outputFile.close();
-	}
-
-	filename = "highscores/Hockenheimring.score";
-	QFile outputFile2(filename);
-	if (outputFile2.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
-		QTextStream in2(&outputFile2);
-		for(int i = 0; i < 10; i++)	in2 << "-,-\n";
-		outputFile2.close();
-	}
-
-filename = "highscores/YasMarina.score";
-QFile outputFile3(filename);
-if (outputFile3.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
-	QTextStream in3(&outputFile3);
-	for(int i = 0; i < 10; i++)	in3 << "-,-\n";
-	outputFile3.close();
-}
+    playbuttonsound();
+    // start level 4
 }
