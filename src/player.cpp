@@ -100,5 +100,6 @@ void Player::savePlayerName(QString name){
 	} else{
 		mPlayerName = name;
 		updateFile();
+		emit playerInputFinished();
 	}
 }
