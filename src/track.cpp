@@ -102,6 +102,7 @@ void Track::loadTrack(int width, int height, QImage background, QImage grayImage
     setSceneRect(0,0,mWidth, mHeight);
     setBackgroundBrush(QBrush(mBackground));
 
+    mLapNumber = 0;
     // delete old checkpoints and load new ones
     if(mCheckpoints != NULL)
     {

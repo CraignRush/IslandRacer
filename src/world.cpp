@@ -431,6 +431,8 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
             pauseGame();
         }
 
+        //ExitGame();
+
 /*
  * 		ExitGame();
 
@@ -714,8 +716,6 @@ void World::StopGame()
 {
 	mTimer->stop();
 	emit mCar1->stopCarSound();
-	if(mIsMultiplayer)
-		emit mCar2->stopCarSound();
 }
 
 void World::ResumeGame()
@@ -727,11 +727,13 @@ void World::ResumeGame()
     {
         mStartTimer->start();
         mTimer->start();
-    } else
+        // Start race sound
+        emit mCar1->playCarSound();
+    } else {
         mTimer->start();
-
-    // Start race sound
-    emit mCar1->playCarSound();
+        // Start race sound
+        emit mCar1->playCarSound();
+    }
 
     // Stop lap/total timer
     mViewPlayer1->ResumeGame();
@@ -791,7 +793,7 @@ void World::ExitGame()
 	hide();
 
 	mTimer->stop();
-	mTrack->removeItem(mCar1);
+    mTrack->removeItem(mCar1);
 	if(mIsMultiplayer)
         mViewportLayout->removeWidget(mVerticalSeperatorLine);
 		mTrack->removeItem(mCar2);
