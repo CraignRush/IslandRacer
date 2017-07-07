@@ -17,7 +17,14 @@ Checkpoint::Checkpoint(int checkpointCount, WorldPosition* checkpointPositions, 
         mCheckpoints[i].setPos(checkpointPositions[i].x(), checkpointPositions[i].y());
     }
 
-    mCarResetPositions = carResetPositions;
+    mCarResetPositions = new WorldPosition[checkpointCount];
+
+    for(int i= 0; i<checkpointCount; i++)
+    {
+        mCarResetPositions[i].setX(carResetPositions[i].x());
+        mCarResetPositions[i].setY(carResetPositions[i].y());
+        mCarResetPositions[i].setAngle(carResetPositions[i].angle());
+    }
     mCheckpointcounter = 1;
     mLapcounter = 0;
 }

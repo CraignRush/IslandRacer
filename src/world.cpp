@@ -114,11 +114,11 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
 World::~World()
 {
     // Delete objects from heap and set pointers to NULL
-    /*delete mCar1;
-    mCar1 = NULL;
+    //delete mCar1;
+    //mCar1 = NULL;
 
     delete mCar2;
-    mCar2 = NULL;*/
+    mCar2 = NULL;
 
     delete mWorld;
     mWorld = NULL;
@@ -260,7 +260,7 @@ void World::startLoop()
 
 		// start game loop and engine sound
 		mTimer->start(1000.0/mFps);
-		emit mCar1->playCarSound();
+        emit mCar1->playCarSound();
 	}
 
 	//mCounter->setOpacity(mOpacity);
