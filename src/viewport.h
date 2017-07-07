@@ -29,9 +29,11 @@ private:
     int mLaps = 1;
     QString mLapTime[3];
     QString mLapTimeEnd[3];
+    qint64 mCurLap;
 
     QString mTotalTimeText;
     QString mTotalTimeEnd;
+    qint64 mCurToTime;
 
     QPointF mPrevPos;
 

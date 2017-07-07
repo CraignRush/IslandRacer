@@ -362,6 +362,8 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mViewPlayer1->setFocusPolicy(Qt::NoFocus);
         mViewPlayer1->setCacheMode(QGraphicsView::CacheNone);
 
+        mViewPlayer1->setGraphicsEffect(mBlurEffectView1);
+
         mViewportLayout->addWidget(mViewPlayer1);
 
         //connect end race event to stop game loop
@@ -394,6 +396,7 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
         {
             pauseGame();
         }
+
 /*
  * 		ExitGame();
 
@@ -738,6 +741,7 @@ void World::ExitGame()
 	mTimer->stop();
 	mTrack->removeItem(mCar1);
 	if(mIsMultiplayer)
+        mViewportLayout->removeWidget(mVerticalSeperatorLine);
 		mTrack->removeItem(mCar2);
 	/*if(mCounter != NULL)
 	{

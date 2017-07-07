@@ -13,6 +13,7 @@ Viewport::Viewport(int width, int height, Track* track)
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 	//Initialize Label for ingame time display
+    mCurLap = 0;
 	mLapTimeText = "LAP TIME: ";
 	mLapTimeLabel = new QLabel();
 	mLapTimeLabel->setVisible(false);
@@ -25,6 +26,7 @@ Viewport::Viewport(int width, int height, Track* track)
 	mLapTimeLabel->setParent(this);
 
 	//Initialize Label for ingame total time display
+    mCurToTime = 0;
 	mTotalTimeText = "TOTAL TIME: ";
 	mTotalTimeLabel = new QLabel();
 	mTotalTimeLabel->setVisible(false);
@@ -123,19 +125,19 @@ void Viewport::startGame()
 void Viewport::updateOverlay(QPointF carpos, int fps)
 {
 	// Update lap time label
-	mElapsed = mLapTimeElapsed.elapsed();
+    mElapsed = mLapTimeElapsed.elapsed() + mCurLap;
 	mTime.setHMS(0,0,0,0);
 	mTime = mTime.addMSecs(mElapsed);
 	mLapTimeLabel->setText(mLapTimeText + mTime.toString("mm:ss.z"));
 
 	//Adjust the total time label position and text
-	mElapsed = mTotalTimeElapsed.elapsed();
+    mElapsed = mTotalTimeElapsed.elapsed() + mCurToTime;
 	mTime2.setHMS(0,0,0,0);
 	mTime2 = mTime2.addMSecs(mElapsed);
 	mTotalTimeLabel->setText(mTotalTimeText + mTime2.toString("mm:ss.z"));
 
 	// Update laps label
-	mLapLabel->setText(mLapText + QString::number(mLaps) + "/3");
+    mLapLabel->setText(mLapText + QString::number(mLaps) + "/3");
 
 	//Display current speed
 	double mSpeed = sqrt(qPow((carpos.x()-mPrevPos.x()),2)+qPow((carpos.y()-mPrevPos.y()),2))/20.f*fps*3.6*2.5;
@@ -147,7 +149,7 @@ void Viewport::updateOverlay(QPointF carpos, int fps)
 void Viewport::saveLapTime()
 {
 	//mLapTime[mLaps - 1] = mTime.toString("mm:ss.z");
-	if(mLaps =! 1)
+    if(mLaps <= 3)
 	{
 		mLaps++;
 	}
@@ -159,6 +161,7 @@ void Viewport::saveLapTime()
 		emit RaceFinished(&mLapTimeEnd[3], mTotalTimeEnd);
 	}
 	mElapsed = 0;
+    mCurLap = 0;
 	mLapTimeElapsed.restart();
 }
 
@@ -170,7 +173,7 @@ void Viewport::ResumeGame()
 
 void Viewport::pauseGame()
 {
-    //mLapTimeElapsed.stop();
-    //mTotalTimeElapsed.stop();
+    mCurLap += mLapTimeElapsed.elapsed();
+    mCurToTime += mTotalTimeElapsed.elapsed();
 }
 
