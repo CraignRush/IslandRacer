@@ -51,6 +51,10 @@ void Game::loadCircuit(Circuit circuit)
         filename = ":/circuits/YasMarina.circuit";
 		mPlayer->SetCircuit(YasMarina);
         break;
+    case Bahrain:
+        filename = ":/circuits/Bahrain.circuit";
+        mPlayer->SetCircuit(Bahrain);
+        break;
     }
 
     QFile inputFile(filename);

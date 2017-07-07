@@ -31,6 +31,8 @@
         <file>images/restart.png</file>
         <file>images/resume.png</file>
         <file>images/singleplayer.png</file>
+        <file>images/Bahraingrey.png</file>
+        <file>images/Bahraintextur.png</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>

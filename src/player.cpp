@@ -43,6 +43,9 @@ void Player::updateFile()
 	case YasMarina:
 		filename = "highscores/YasMarina.score";
 		break;
+    case Bahrain:
+        filename = "highscores/Bahrain.score";
+        break;
 	}
 
 	QFile file(filename);

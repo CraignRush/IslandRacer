@@ -16,7 +16,8 @@ enum Circuit
 {
 	Monza = 1,
 	Hockenheimring,
-	YasMarina
+    YasMarina,
+    Bahrain
 };
 
 class Player: public QObject

@@ -154,11 +154,13 @@ mainMenu::mainMenu(QWidget *parent) :
 	QPixmap hockenheim(":/images/images/Hockenheimtextur.png");
 	QPixmap monza(":/images/images/Monzatextur.png") ;
 	QPixmap yasmarina(":/images/images/YasMarinatextur.png");
+    QPixmap bahrain(":/images/images/Bahraintextur.png");
 
 	logo = logo.scaledToHeight(0.2 * screenHeight);
     hockenheim = hockenheim.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
     monza = monza.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
     yasmarina = yasmarina.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
+    bahrain = bahrain.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
 
 	// Set Icons
 	QIcon leftArrow(":/images/images/l-arrow-576725_1280.png");
@@ -509,9 +511,9 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level4Trackname->setStyleSheet("QLabel{background: transparent;}");
     ui->level4Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->level4Trackname->setFont(GillSansMTTitle);
-    ui->level4Trackname->setText("Irgendwas");
+    ui->level4Trackname->setText("Breezy Bridges");
     ui->level4Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
-    //ui->level4Trackpic->setPixmap(yasmarina);
+    ui->level4Trackpic->setPixmap(bahrain);
 }
 
 mainMenu::~mainMenu()
@@ -1136,4 +1138,5 @@ void mainMenu::on_level4_2Play_clicked()
 {
     playbuttonsound();
     // start level 4
+    game->loadCircuit(Bahrain);
 }
