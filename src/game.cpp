@@ -8,8 +8,6 @@ Game::Game()
     mWorld = new World(1920,1080);
     mWorld->hide();
 	mPlayer = new Player;
-	//connect end race signal to player class
-	connect(mWorld,SIGNAL(RaceFinished(QString[],QString)),mPlayer,SLOT(endRaceDialog(QString[],QString)));
 }
 
 Game::Game(int screenWidth, int screenHeight, bool fullscreen)
@@ -19,8 +17,6 @@ Game::Game(int screenWidth, int screenHeight, bool fullscreen)
         mWorld->showFullScreen();
     mWorld->hide();
 	mPlayer = new Player;
-	//connect end race signal to player class
-	connect(mWorld,SIGNAL(RaceFinished(QString[],QString)),mPlayer,SLOT(endRaceDialog(QString[],QString)));
 }
 
 Game::~Game()
@@ -146,9 +142,15 @@ void Game::loadCircuit(Circuit circuit)
         inputFile.close();
 
         // load circuit with parameter
+
         mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, &carPosition, mMultiplayer);
 
-        // show window on top
+		//connect end race signal to player class
+		if(!mMultiplayer){
+		connect(mWorld->getViewPlayer(1),SIGNAL(RaceFinished(QString[],QString)),mPlayer,SLOT(endRaceDialog(QString[],QString)));
+		connect(mPlayer,SIGNAL(playerInputFinished()),mWorld,SLOT(ExitGame()));
+		}
+		// show window on top
         mWorld->showFullScreen();
         mWorld->raise();
         mWorld->activateWindow();

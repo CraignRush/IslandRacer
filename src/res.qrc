@@ -27,6 +27,10 @@
         <file>images/reset.png</file>
         <file>images/soundOff.png</file>
         <file>images/soundOn.png</file>
+        <file>images/multiplayer.png</file>
+        <file>images/restart.png</file>
+        <file>images/resume.png</file>
+        <file>images/singleplayer.png</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>

@@ -1,5 +1,6 @@
 #include "world.h"
 #include <QDebug>
+#include "sound.h"
 #include <QLabel>
 #include <chrono>
 
@@ -8,10 +9,10 @@ using namespace std::chrono;
 
 World::World(int width, int height) : mWidth{width}, mHeight{height}
 {
-    // set window title from src.exe to IslandRacer
-    setWindowTitle(tr("IslandRacer"));
+	// set window title from src.exe to IslandRacer
+	setWindowTitle(tr("IslandRacer"));
 
-    // Create Box2D world object (zero gravity)
+	// Create Box2D world object (zero gravity)
 	mWorld = new b2World(b2Vec2(0.0f, 0.0f));
 
 	// Create track
@@ -106,8 +107,8 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
 	// connect game loop to timer
 	connect(mTimer, SIGNAL(timeout()), this, SLOT(gameLoop()));
 
-    // Init objects for start countdown
-    mStartTimer = NULL;
+	// Init objects for start countdown
+	mStartTimer = NULL;
 }
 
 World::~World()
@@ -155,6 +156,12 @@ World::~World()
         mCounterWidget = NULL;
    // }
 
+    delete mBlurEffectView1;
+    mBlurEffectView1 = NULL;
+
+    delete mBlurEffectView2;
+    mBlurEffectView2 = NULL;
+
     if(mViewPlayer1 != NULL)
     {
         delete mViewPlayer1;
@@ -176,12 +183,6 @@ World::~World()
     delete mViewportWidget;
     mViewportWidget = NULL;
 
-    delete mBlurEffectView1;
-    mBlurEffectView1 = NULL;
-
-    delete mBlurEffectView2;
-    mBlurEffectView2 = NULL;
-
     delete mPauseMenuWidget;
     mPauseMenuWidget = NULL;
 
@@ -195,95 +196,95 @@ World::~World()
 void World::gameLoop()
 {
 	//high_resolution_clock::time_point t1 = high_resolution_clock::now();
-//	QElapsedTimer timer;
-//	timer.start();
+	//	QElapsedTimer timer;
+	//	timer.start();
 
-    // Compute new positions in physical world
-    mWorld->Step(1.0f/mFps, 8, 3);
+	// Compute new positions in physical world
+	mWorld->Step(1.0f/mFps, 8, 3);
 
-    // Apply forces dependant on current user input
-    mCar1->computeUserInput(mCurrentInputStatePlayer1);
-    mCar1->updatePosition();
-    mViewPlayer1->ensureVisible(mCar1, 300, 400);
+	// Apply forces dependant on current user input
+	mCar1->computeUserInput(mCurrentInputStatePlayer1);
+	mCar1->updatePosition();
+	mViewPlayer1->ensureVisible(mCar1, 300, 400);
 
-    // Check for checkpoint collision
-    mTrack->updateCheckpoints(mCar1);
+	// Check for checkpoint collision
+	mTrack->updateCheckpoints(mCar1);
 
-    // Render cars on new position
-    mCar1->render();
+	// Render cars on new position
+	mCar1->render();
 
-    // Update time/lap overlay
-    mViewPlayer1->updateOverlay(mCar1->pos(),mFps);
+	// Update time/lap overlay
+	mViewPlayer1->updateOverlay(mCar1->pos(),mFps);
 
-    // Repeat steps for second car if multiplayer is enabled
-    if(mIsMultiplayer)
-    {
-        mCar2->computeUserInput(mCurrentInputStatePlayer2);
-        mCar2->updatePosition();
-        mViewPlayer2->ensureVisible(mCar2, 300, 400);
-        mTrack->updateCheckpoints(mCar2);
-        mCar2->render();
-        mViewPlayer2->updateOverlay(mCar2->pos(),mFps);
-    }
+	// Repeat steps for second car if multiplayer is enabled
+	if(mIsMultiplayer)
+	{
+		mCar2->computeUserInput(mCurrentInputStatePlayer2);
+		mCar2->updatePosition();
+		mViewPlayer2->ensureVisible(mCar2, 300, 400);
+		mTrack->updateCheckpoints(mCar2);
+		mCar2->render();
+		mViewPlayer2->updateOverlay(mCar2->pos(),mFps);
+	}
 
-//	high_resolution_clock::time_point t2 = high_resolution_clock::now();
-//	auto duration = duration_cast<microseconds>(t2-t1).count();
-//	qDebug() << duration;
+	//	high_resolution_clock::time_point t2 = high_resolution_clock::now();
+	//	auto duration = duration_cast<microseconds>(t2-t1).count();
+	//	qDebug() << duration;
 
-//	qDebug() << "The slow operation took" << timer.elapsed() << "nanoseconds";
+	//	qDebug() << "The slow operation took" << timer.elapsed() << "nanoseconds";
 }
 
 void World::startLoop()
 {
 	if(mStartCounter%100==0 && mStartCounter > 0)
 	{
-        mOpacity=1.0f;
-        //mCounter->setPlainText(QString::number(mStartCounter/100));
-        mCounter->setText(QString::number(mStartCounter/100));
-        //mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-20)/2,(mHeight-200)/2));
-        //mCounter->setPos((mWidth - mCounter->boundingRect().width()-20)/2,(mHeight-200)/2);
-    }
+		mOpacity=1.0f;
+		//mCounter->setPlainText(QString::number(mStartCounter/100));
+		mCounter->setText(QString::number(mStartCounter/100));
+		//mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-20)/2,(mHeight-200)/2));
+		//mCounter->setPos((mWidth - mCounter->boundingRect().width()-20)/2,(mHeight-200)/2);
+	}
 	if(mStartCounter == 0)
 	{
-        mOpacity=1.0f;
-        //mCounter->setPlainText("GO!");
-        mCounter->setText("GO!");
-        //mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-60)/2,(mHeight-200)/2));
-        //mCounter->setPos((mWidth - mCounter->boundingRect().width()-60)/2,(mHeight-200)/2);
-        mStartTimer->start(15);
+		mOpacity=1.0f;
+		//mCounter->setPlainText("GO!");
+		mCounter->setText("GO!");
+		//mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-60)/2,(mHeight-200)/2));
+		//mCounter->setPos((mWidth - mCounter->boundingRect().width()-60)/2,(mHeight-200)/2);
+		mStartTimer->start(15);
 
-        //start the race time immediately after go
-        mViewPlayer1->startGame();
-        if(mIsMultiplayer)
-            mViewPlayer2->startGame();
+		//start the race time immediately after go
+		mViewPlayer1->startGame();
+		if(mIsMultiplayer)
+			mViewPlayer2->startGame();
 
-        // start game loop and engine sound
-        mTimer->start(1000.0/mFps);
-        emit mCar1->playCarSound();
+		// start game loop and engine sound
+		mTimer->start(1000.0/mFps);
+		emit mCar1->playCarSound();
 	}
 
-    //mCounter->setOpacity(mOpacity);
-   //mCounter->setStyleSheet("color: rgba(255, 0, 0, " + QString::number(mOpacity*100) + "%)");
-    mOpacityEffect->setOpacity(mOpacity);
-    mOpacity -= 0.05f;
-    mStartCounter -= 5;
+	//mCounter->setOpacity(mOpacity);
+	//mCounter->setStyleSheet("color: rgba(255, 0, 0, " + QString::number(mOpacity*100) + "%)");
+	mOpacityEffect->setOpacity(mOpacity);
+	mOpacity -= 0.05f;
+	mStartCounter -= 5;
 
-    if(mStartCounter == -100)
+	if(mStartCounter == -100)
 	{
 		mStartTimer->stop();
 
-        mOpacityEffect->setOpacity(0.0);
-        /*delete mCounterWidget;
-        mCounterWidget = NULL;
+		mOpacityEffect->setOpacity(0.0);
+		/*delete mCounterWidget;
+		mCounterWidget = NULL;
 
-        delete mOpacityEffect;
-        mOpacityEffect = NULL;
+		delete mOpacityEffect;
+		mOpacityEffect = NULL;
 
-        delete mCounter;
-        mCounter = NULL;*/
-        //mTrack->removeItem(mCounter);
-        //delete mCounter;
-        //mCounter = NULL;
+		delete mCounter;
+		mCounter = NULL;*/
+		//mTrack->removeItem(mCounter);
+		//delete mCounter;
+		//mCounter = NULL;
 	}
 }
 
@@ -362,17 +363,21 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mViewPlayer1->setCacheMode(QGraphicsView::CacheNone);
 
         mViewportLayout->addWidget(mViewPlayer1);
+
+        //connect end race event to stop game loop
+        connect(mViewPlayer1, SIGNAL(StopGame()),this, SLOT(StopGame()));
     }
 
     // Init variables for start countdown
     mOpacity = 1.0f;
+
 	mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
-    mCounter->setText(QString(""));
+	mCounter->setText(QString(""));
 
 	// Init and start timer for game loop and start loop
 	mStartTimer = new QTimer(this);
 	connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
-    mStartTimer->start(50);
+	mStartTimer->start(50);
 }
 
 void World::keyPressEvent(QKeyEvent *keyEvent)
@@ -390,6 +395,8 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
             pauseGame();
         }
 /*
+ * 		ExitGame();
+
         hide();
         //mBlurEffect->setEnabled(false);
 
@@ -561,114 +568,117 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
 
 void World::keyReleaseEvent(QKeyEvent *keyEvent)
 {
-    // handle key press
-    switch(keyEvent->key())
-    {
-    case Qt::Key_Escape:
-        //mBlurEffect->setEnabled(true);
-        break;
-    case Qt::Key_Left:
-        // set new state depending on current state
-        switch(mCurrentInputStatePlayer1)
-        {
-        case AccelerateSteerLeft:
-            mCurrentInputStatePlayer1 = Accelerate; break;
-        case BreakSteerLeft:
-            mCurrentInputStatePlayer1 = Break; break;
-        case SteerLeft:
-            mCurrentInputStatePlayer1 = None; break;
-        }
-        break;
-    case Qt::Key_Right:
-        // set new state depending on current state
-        switch(mCurrentInputStatePlayer1)
-        {
-        case AccelerateSteerRight:
-            mCurrentInputStatePlayer1 = Accelerate; break;
-        case BreakSteerRight:
-            mCurrentInputStatePlayer1 = Break; break;
-        case SteerRight:
-            mCurrentInputStatePlayer1 = None; break;
-        }
-        break;
-    case Qt::Key_Up:
-        // set new state depending on current state
-        switch(mCurrentInputStatePlayer1)
-        {
-        case Accelerate:
-            mCurrentInputStatePlayer1 = None; break;
-        case AccelerateSteerLeft:
-            mCurrentInputStatePlayer1 = SteerLeft; break;
-        case AccelerateSteerRight:
-            mCurrentInputStatePlayer1 = SteerRight; break;
-        }
-        break;
-    case Qt::Key_Down:
-        // set new state depending on current state
-        switch(mCurrentInputStatePlayer1)
-        {
-        case Break:
-            mCurrentInputStatePlayer1 = None; break;
-        case BreakSteerLeft:
-            mCurrentInputStatePlayer1 = SteerLeft; break;
-        case BreakSteerRight:
-            mCurrentInputStatePlayer1 = SteerRight; break;
-        }
-        break;
-    case Qt::Key_A:
-        // set new state depending on current state
-        switch(mCurrentInputStatePlayer2)
-        {
-        case AccelerateSteerLeft:
-            mCurrentInputStatePlayer2 = Accelerate; break;
-        case BreakSteerLeft:
-            mCurrentInputStatePlayer2 = Break; break;
-        case SteerLeft:
-            mCurrentInputStatePlayer2 = None; break;
-        }
-        break;
-    case Qt::Key_D:
-        // set new state depending on current state
-        switch(mCurrentInputStatePlayer2)
-        {
-        case AccelerateSteerRight:
-            mCurrentInputStatePlayer2 = Accelerate; break;
-        case BreakSteerRight:
-            mCurrentInputStatePlayer2 = Break; break;
-        case SteerRight:
-            mCurrentInputStatePlayer2 = None; break;
-        }
-        break;
-    case Qt::Key_W:
-        // set new state depending on current state
-        switch(mCurrentInputStatePlayer2)
-        {
-        case Accelerate:
-            mCurrentInputStatePlayer2 = None; break;
-        case AccelerateSteerLeft:
-            mCurrentInputStatePlayer2 = SteerLeft; break;
-        case AccelerateSteerRight:
-            mCurrentInputStatePlayer2 = SteerRight; break;
-        }
-        break;
-    case Qt::Key_S:
-        // set new state depending on current state
-        switch(mCurrentInputStatePlayer2)
-        {
-        case Break:
-            mCurrentInputStatePlayer2 = None; break;
-        case BreakSteerLeft:
-            mCurrentInputStatePlayer2 = SteerLeft; break;
-        case BreakSteerRight:
-            mCurrentInputStatePlayer2 = SteerRight; break;
-        }
-        break;
-    }
+	// handle key press
+	switch(keyEvent->key())
+	{
+	case Qt::Key_Escape:
+		//mBlurEffect->setEnabled(true);
+		break;
+	case Qt::Key_Left:
+		// set new state depending on current state
+		switch(mCurrentInputStatePlayer1)
+		{
+		case AccelerateSteerLeft:
+			mCurrentInputStatePlayer1 = Accelerate; break;
+		case BreakSteerLeft:
+			mCurrentInputStatePlayer1 = Break; break;
+		case SteerLeft:
+			mCurrentInputStatePlayer1 = None; break;
+		}
+		break;
+	case Qt::Key_Right:
+		// set new state depending on current state
+		switch(mCurrentInputStatePlayer1)
+		{
+		case AccelerateSteerRight:
+			mCurrentInputStatePlayer1 = Accelerate; break;
+		case BreakSteerRight:
+			mCurrentInputStatePlayer1 = Break; break;
+		case SteerRight:
+			mCurrentInputStatePlayer1 = None; break;
+		}
+		break;
+	case Qt::Key_Up:
+		// set new state depending on current state
+		switch(mCurrentInputStatePlayer1)
+		{
+		case Accelerate:
+			mCurrentInputStatePlayer1 = None; break;
+		case AccelerateSteerLeft:
+			mCurrentInputStatePlayer1 = SteerLeft; break;
+		case AccelerateSteerRight:
+			mCurrentInputStatePlayer1 = SteerRight; break;
+		}
+		break;
+	case Qt::Key_Down:
+		// set new state depending on current state
+		switch(mCurrentInputStatePlayer1)
+		{
+		case Break:
+			mCurrentInputStatePlayer1 = None; break;
+		case BreakSteerLeft:
+			mCurrentInputStatePlayer1 = SteerLeft; break;
+		case BreakSteerRight:
+			mCurrentInputStatePlayer1 = SteerRight; break;
+		}
+		break;
+	case Qt::Key_A:
+		// set new state depending on current state
+		switch(mCurrentInputStatePlayer2)
+		{
+		case AccelerateSteerLeft:
+			mCurrentInputStatePlayer2 = Accelerate; break;
+		case BreakSteerLeft:
+			mCurrentInputStatePlayer2 = Break; break;
+		case SteerLeft:
+			mCurrentInputStatePlayer2 = None; break;
+		}
+		break;
+	case Qt::Key_D:
+		// set new state depending on current state
+		switch(mCurrentInputStatePlayer2)
+		{
+		case AccelerateSteerRight:
+			mCurrentInputStatePlayer2 = Accelerate; break;
+		case BreakSteerRight:
+			mCurrentInputStatePlayer2 = Break; break;
+		case SteerRight:
+			mCurrentInputStatePlayer2 = None; break;
+		}
+		break;
+	case Qt::Key_W:
+		// set new state depending on current state
+		switch(mCurrentInputStatePlayer2)
+		{
+		case Accelerate:
+			mCurrentInputStatePlayer2 = None; break;
+		case AccelerateSteerLeft:
+			mCurrentInputStatePlayer2 = SteerLeft; break;
+		case AccelerateSteerRight:
+			mCurrentInputStatePlayer2 = SteerRight; break;
+		}
+		break;
+	case Qt::Key_S:
+		// set new state depending on current state
+		switch(mCurrentInputStatePlayer2)
+		{
+		case Break:
+			mCurrentInputStatePlayer2 = None; break;
+		case BreakSteerLeft:
+			mCurrentInputStatePlayer2 = SteerLeft; break;
+		case BreakSteerRight:
+			mCurrentInputStatePlayer2 = SteerRight; break;
+		}
+		break;
+	}
 }
 
 void World::StopGame()
 {
 	mTimer->stop();
+	emit mCar1->stopCarSound();
+	if(mIsMultiplayer)
+		emit mCar2->stopCarSound();
 }
 
 void World::ResumeGame()
@@ -720,9 +730,61 @@ void World::pauseGame()
     mPauseMenuWidget->setVisible(true);
 }
 
-void World::GameExit()
+void World::ExitGame()
 {
+	hide();
+	//mBlurEffect->setEnabled(false);
 
+	mTimer->stop();
+	mTrack->removeItem(mCar1);
+	if(mIsMultiplayer)
+		mTrack->removeItem(mCar2);
+	/*if(mCounter != NULL)
+	{
+		delete mCounter;
+		mCounter = NULL;
+	}*/
+	if(mStartTimer != NULL)
+	{
+		mStartTimer->stop();
+		delete mStartTimer;
+		mStartTimer = NULL;
+	}
+
+	emit mCar1->stopCarSound();
+
+	//        if(mSpeedDisplay != NULL)
+	//        {
+	//            delete mSpeedDisplay;
+	//            mSpeedDisplay = NULL;
+	//        }
+
+	//        if(mTimeLabel != NULL)
+	//        {
+	//            delete mTimeLabel;
+	//            mTimeLabel = NULL;
+	//        }
+	//        if(mLapLabel != NULL)
+	//        {
+	//            delete mLapLabel;
+	//            mLapLabel = NULL;
+	//        }
+
+}
+
+Viewport* World::getViewPlayer(int number)
+{
+	switch (number) {
+	case 0:
+		break;
+	case 1:
+		return mViewPlayer1;
+		break;
+	case 2:
+		if(mIsMultiplayer)
+			return mViewPlayer2;
+		break;
+	}
 }
 
 

@@ -67,16 +67,15 @@ public:
     void keyReleaseEvent(QKeyEvent *keyEvent);
     void ResumeGame();
     void pauseGame();
-    void StopGame();
+    //void StopGame();
     static void GameExit();
+    Viewport *getViewPlayer(int number);
 
 public slots:
 	void gameLoop();
 	void startLoop();
-
-signals:
-    void RaceFinished(QString mLapTime[],QString mTotalTimeEnd);
-
+	void StopGame();
+	void ExitGame();
 };
 
 #endif // WORLD_H

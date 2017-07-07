@@ -2397,32 +2397,6 @@
           </property>
          </spacer>
         </item>
-        <item row="3" column="5" rowspan="4" colspan="2">
-         <widget class="QPushButton" name="playTypeSelect2Multiplayer">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Multiplayer</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2" rowspan="4" colspan="2">
-         <widget class="QPushButton" name="playTypeSelect2SinglePlayer">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Singleplayer</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="3" colspan="3">
          <widget class="QLabel" name="playTypeSelectTitle">
           <property name="text">
@@ -2468,6 +2442,32 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item row="3" column="5" rowspan="3" colspan="2">
+         <widget class="QPushButton" name="playTypeSelect2Multiplayer">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2" rowspan="3" colspan="2">
+         <widget class="QPushButton" name="playTypeSelect2SinglePlayer">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
