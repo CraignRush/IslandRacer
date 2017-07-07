@@ -38,6 +38,7 @@
         <file>Monza.circuit</file>
         <file>Hockenheimring.circuit</file>
         <file>YasMarina.circuit</file>
+        <file>Bahrain.circuit</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>sounds/backgroundmusic.wav</file>
