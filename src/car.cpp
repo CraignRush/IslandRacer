@@ -199,8 +199,7 @@ void Car::computeUndergroundImpact()
 {
 	Underground underground;
 
-	underground = mTrack->getUnderground(pos().x(), pos().y());
-
+    underground = mTrack->getUnderground(pos().x()+CAR_WIDTH*PX_TO_M_RATIO/2.0f*qCos(qDegreesToRadians(rotation()))-CAR_LENGTH*PX_TO_M_RATIO/2.0f*qSin(qDegreesToRadians(rotation())), pos().y()+CAR_WIDTH*PX_TO_M_RATIO/2.0f*qSin(qDegreesToRadians(rotation()))+CAR_LENGTH*PX_TO_M_RATIO/2.0f*qCos(qDegreesToRadians(rotation())));
 
 	switch(underground)
 	{

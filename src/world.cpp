@@ -47,8 +47,10 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     mCounterWidget = new QWidget();
     mPauseMenuWidget = new PauseMenu(mHeight);
     mOpacityEffect = new QGraphicsOpacityEffect();
-    mBlurEffectView1 = new QGraphicsBlurEffect();
-    mBlurEffectView2 = new QGraphicsBlurEffect();
+
+    // Init blur effect
+    mBlurEffectView1 = NULL;
+    mBlurEffectView2 = NULL;
 
     // Create horizontal border line between the two viewports
     //line->setFrameShape(QFrame::VLine);
@@ -61,17 +63,6 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     //line->setAutoFillBackground(true);
     //line->setPalette(pal);
     mVerticalSeperatorLine->setStyleSheet(QString("background-color: black;"));
-
-    // BLur effect for pause menu
-    mBlurEffectView1->setBlurRadius(15.0f);
-    mBlurEffectView1->setEnabled(false);
-    mBlurEffectView1->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
-    //mViewPlayer1->setGraphicsEffect(mBlurEffectView1);
-
-    mBlurEffectView2->setBlurRadius(15.0f);
-    mBlurEffectView2->setEnabled(false);
-    mBlurEffectView2->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
-    //mViewPlayer2->setGraphicsEffect(mBlurEffectView2);
 
     // Set up starting countdown
     mOpacityEffect->setOpacity(1.0);
@@ -156,11 +147,17 @@ World::~World()
         mCounterWidget = NULL;
    // }
 
-    delete mBlurEffectView1;
-    mBlurEffectView1 = NULL;
+    if(mBlurEffectView1 != NULL)
+    {
+        delete mBlurEffectView1;
+        mBlurEffectView1 = NULL;
+    }
 
-    delete mBlurEffectView2;
-    mBlurEffectView2 = NULL;
+    if(mBlurEffectView2 != NULL)
+    {
+        delete mBlurEffectView2;
+        mBlurEffectView2 = NULL;
+    }
 
     if(mViewPlayer1 != NULL)
     {
@@ -272,6 +269,8 @@ void World::startLoop()
 	if(mStartCounter == -100)
 	{
 		mStartTimer->stop();
+        delete mStartTimer;
+        mStartTimer = NULL;
 
 		mOpacityEffect->setOpacity(0.0);
 		/*delete mCounterWidget;
@@ -301,7 +300,19 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
     if(mViewportLayout->findChild<QWidget*>("mViewPlayer2"))
         mViewportLayout->removeWidget(mViewPlayer2);
 
-    // Delete existing viewports
+    // Delete existing viewports and blur effects
+    if(mBlurEffectView1 != NULL)
+    {
+        delete mBlurEffectView1;
+        mBlurEffectView1 = NULL;
+    }
+
+    if(mBlurEffectView2 != NULL)
+    {
+        delete mBlurEffectView2;
+        mBlurEffectView2 = NULL;
+    }
+
     if(mViewPlayer1 != NULL)
     {
         delete mViewPlayer1;
@@ -312,6 +323,8 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         delete mViewPlayer2;
         mViewPlayer2 = NULL;
     }
+
+    mPauseMenuWidget->setVisible(false);
 
     if(mIsMultiplayer)
     {
@@ -326,6 +339,19 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         // Create new Viewports for Player
         mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack);
         mViewPlayer2 = new Viewport(mWidth/2, mHeight, mTrack);
+
+        // Create blur for viewports
+        mBlurEffectView1 = new QGraphicsBlurEffect();
+        mBlurEffectView2 = new QGraphicsBlurEffect();
+
+        // Blur effect for pause menu
+        mBlurEffectView1->setBlurRadius(15.0f);
+        mBlurEffectView1->setEnabled(false);
+        mBlurEffectView1->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
+
+        mBlurEffectView2->setBlurRadius(15.0f);
+        mBlurEffectView2->setEnabled(false);
+        mBlurEffectView2->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
 
         // center cars in view
         mViewPlayer1->centerOn(mCar1);
@@ -354,6 +380,14 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         // Create new Viewports for Player
         mViewPlayer1 = new Viewport(mWidth, mHeight, mTrack);
+
+        // Create blur for viewport
+        mBlurEffectView1 = new QGraphicsBlurEffect();
+
+        // Blur effect for pause menu
+        mBlurEffectView1->setBlurRadius(15.0f);
+        mBlurEffectView1->setEnabled(false);
+        mBlurEffectView1->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
 
         // center cars in view
         mViewPlayer1->centerOn(mCar1);
@@ -686,16 +720,27 @@ void World::StopGame()
 
 void World::ResumeGame()
 {
-    // Resume game loop -> physic engine doesn't compute any further step
-	mTimer->start();
+    // Resume game loop and/or start loop-> physic engine doesn't compute any further step
+    if(mStartCounter > 0)
+        mStartTimer->start();
+    else if(mStartCounter >-100)
+    {
+        mStartTimer->start();
+        mTimer->start();
+    } else
+        mTimer->start();
 
     // Start race sound
     emit mCar1->playCarSound();
 
     // Stop lap/total timer
     mViewPlayer1->ResumeGame();
+    mBlurEffectView1->setEnabled(false);
     if(mIsMultiplayer)
+    {
         mViewPlayer2->ResumeGame();
+        mBlurEffectView2->setEnabled(false);
+    }
 
     // hide pause menu
     mPauseMenuWidget->setVisible(false);
@@ -704,30 +749,38 @@ void World::ResumeGame()
     //mViewPlayer1->setUpdatesEnabled(true);
     //if(mIsMultiplayer)
     //    mViewPlayer2->setUpdatesEnabled(true);
-    mBlurEffectView1->setEnabled(false);
-    mBlurEffectView2->setEnabled(false);
+
 }
 
 void World::pauseGame()
 {
-    // Pause game loop -> physic engine doesn't compute any further step
-    mTimer->stop();
+    // Pause game loop and/or start loop-> physic engine doesn't compute any further step
+    if(mStartCounter > 0)
+        mStartTimer->stop();
+    else if(mStartCounter >-100)
+    {
+        mStartTimer->stop();
+        mTimer->stop();
+    } else
+        mTimer->stop();
+
 
     // stop race sound
     emit mCar1->stopCarSound();
 
     // Pause lap/total timer
     mViewPlayer1->pauseGame();
+    mBlurEffectView1->setEnabled(true);
     if(mIsMultiplayer)
+    {
         mViewPlayer2->pauseGame();
+        mBlurEffectView2->setEnabled(true);
+    }
 
     // add blur effect (disable viewport updates so blur won't be removed with repaint)
     //mViewPlayer1->setUpdatesEnabled(false);
     //if(mIsMultiplayer)
     //  mViewPlayer2->setUpdatesEnabled(false);
-
-    mBlurEffectView1->setEnabled(true);
-    mBlurEffectView2->setEnabled(true);
 
     // show pause menu
     mPauseMenuWidget->setVisible(true);
@@ -736,7 +789,6 @@ void World::pauseGame()
 void World::ExitGame()
 {
 	hide();
-	//mBlurEffect->setEnabled(false);
 
 	mTimer->stop();
 	mTrack->removeItem(mCar1);
