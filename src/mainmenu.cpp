@@ -174,9 +174,12 @@ mainMenu::mainMenu(QWidget *parent) :
 	QIcon reset(":/images/images/reset.png");
 	QIcon soundOn(":/images/images/soundOn.png");
 	QIcon soundOff(":/images/images/soundOff.png");
+    QIcon singlePlayer(":/images/images/singleplayer.png");
+    QIcon multiPlayer(":/images/images/multiplayer.png");
 
 	// Set Icon Sizes
-	QSize bigButton(0.2 * screenHeight,0.1 * screenHeight);
+    QSize bigButton(0.4 * screenHeight, 0.2 * screenHeight);
+    QSize normalButton(0.2 * screenHeight,0.1 * screenHeight);
 	QSize smallButton(0.15 * screenHeight, 0.075 * screenHeight);
 	QSize arrowButton(0.125 * screenHeight, 0.1 * screenHeight);
 
@@ -222,25 +225,25 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->mainLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->mainLogo->setStyleSheet("QLabel{background: transparent;}");
 	ui->main2Level1->setIcon(play);
-	ui->main2Level1->setIconSize(bigButton);
+    ui->main2Level1->setIconSize(normalButton);
 	ui->main2Level1->setStyleSheet("QPushButton{background: transparent;}");
 	ui->main2Garage->setIcon(garage);
-	ui->main2Garage->setIconSize(bigButton);
+    ui->main2Garage->setIconSize(normalButton);
 	ui->main2Garage->setStyleSheet("QPushButton{background: transparent;}");
 	ui->main2Highscore->setIcon(highscore);
-	ui->main2Highscore->setIconSize(bigButton);
+    ui->main2Highscore->setIconSize(normalButton);
 	ui->main2Highscore->setStyleSheet("QPushButton{background: transparent;}");
 	ui->main2Settings->setIcon(settings);
-	ui->main2Settings->setIconSize(bigButton);
+    ui->main2Settings->setIconSize(normalButton);
 	ui->main2Settings->setStyleSheet("QPushButton{background: transparent;}");
 	ui->main2Manual->setIcon(manual);
-	ui->main2Manual->setIconSize(bigButton);
+    ui->main2Manual->setIconSize(normalButton);
 	ui->main2Manual->setStyleSheet("QPushButton{background: transparent;}");
 	ui->main2Credits->setIcon(credits);
-	ui->main2Credits->setIconSize(bigButton);
+    ui->main2Credits->setIconSize(normalButton);
 	ui->main2Credits->setStyleSheet("QPushButton{background: transparent;}");
 	ui->main2QuitGame->setIcon(quit);
-	ui->main2QuitGame->setIconSize(bigButton);
+    ui->main2QuitGame->setIconSize(normalButton);
 	ui->main2QuitGame->setStyleSheet("QPushButton{background: transparent;}");
 
 	// Items in garage
@@ -349,7 +352,7 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->settingsHighscoreResetLabel->setText("Highscore Reset:");
 	ui->settingsHighscoreResetButton->setStyleSheet("QPushButton{background: transparent; color: white}");
 	ui->settingsHighscoreResetButton->setIcon(reset);
-	ui->settingsHighscoreResetButton->setIconSize(bigButton);
+    ui->settingsHighscoreResetButton->setIconSize(normalButton);
 
 	// Items in manual
 	ui->manualLogo->setPixmap(logo);
@@ -406,13 +409,11 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->playTypeSelect2Main->setIcon(menu);
     ui->playTypeSelect2Main->setIconSize(smallButton);
     ui->playTypeSelect2Main->setStyleSheet("QPushButton{background: transparent;}");
-    //ui->playTypeSelect2SinglePlayer->setIcon(menu);
-    ui->playTypeSelect2SinglePlayer->setFont(GillSansMT);
-    ui->playTypeSelect2SinglePlayer->setIconSize(smallButton);
+    ui->playTypeSelect2SinglePlayer->setIcon(singlePlayer);
+    ui->playTypeSelect2SinglePlayer->setIconSize(bigButton);
     ui->playTypeSelect2SinglePlayer->setStyleSheet("QPushButton{background: transparent;}");
-    //ui->playTypeSelect2Multiplayer->setIcon(menu);
-    ui->playTypeSelect2Multiplayer->setIconSize(smallButton);
-    ui->playTypeSelect2Multiplayer->setFont(GillSansMT);
+    ui->playTypeSelect2Multiplayer->setIcon(multiPlayer);
+    ui->playTypeSelect2Multiplayer->setIconSize(bigButton);
     ui->playTypeSelect2Multiplayer->setStyleSheet("QPushButton{background: transparent;}");
     ui->playTypeSelectTitle->setStyleSheet("QLabel{background: transparent;}");
     ui->playTypeSelectTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -434,7 +435,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level1_2Main->setIconSize(smallButton);
     ui->level1_2Main->setStyleSheet("QPushButton{background: transparent;}");
     ui->level1_2Play->setIcon(play);
-    ui->level1_2Play->setIconSize(bigButton);
+    ui->level1_2Play->setIconSize(normalButton);
     ui->level1_2Play->setStyleSheet("QPushButton{background: transparent;}");
     ui->level1Trackname->setStyleSheet("QLabel{background: transparent;}");
     ui->level1Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -457,7 +458,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level2_2Main->setIconSize(smallButton);
     ui->level2_2Main->setStyleSheet("QPushButton{background: transparent;}");
     ui->level2_2Play->setIcon(play);
-    ui->level2_2Play->setIconSize(bigButton);
+    ui->level2_2Play->setIconSize(normalButton);
     ui->level2_2Play->setStyleSheet("QPushButton{background: transparent;}");
     ui->level2Trackname->setStyleSheet("QLabel{background: transparent;}");
     ui->level2Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -480,7 +481,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level3_2Main->setIconSize(smallButton);
     ui->level3_2Main->setStyleSheet("QPushButton{background: transparent;}");
     ui->level3_2Play->setIcon(play);
-    ui->level3_2Play->setIconSize(bigButton);
+    ui->level3_2Play->setIconSize(normalButton);
     ui->level3_2Play->setStyleSheet("QPushButton{background: transparent;}");
     ui->level3Trackname->setStyleSheet("QLabel{background: transparent;}");
     ui->level3Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -503,7 +504,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level4_2Main->setIconSize(smallButton);
     ui->level4_2Main->setStyleSheet("QPushButton{background: transparent;}");
     ui->level4_2Play->setIcon(play);
-    ui->level4_2Play->setIconSize(bigButton);
+    ui->level4_2Play->setIconSize(normalButton);
     ui->level4_2Play->setStyleSheet("QPushButton{background: transparent;}");
     ui->level4Trackname->setStyleSheet("QLabel{background: transparent;}");
     ui->level4Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
