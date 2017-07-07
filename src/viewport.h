@@ -41,6 +41,7 @@ public:
     void startGame();
     //void StopGame();
     void ResumeGame();
+    void pauseGame();
     //static void GameExit();
     void updateOverlay(QPointF carpos, int fps);
 

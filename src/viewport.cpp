@@ -157,8 +157,15 @@ void Viewport::saveLapTime()
     mLapTimeElapsed.restart();
 }
 
-void Viewport::ResumeGame(){
+void Viewport::ResumeGame()
+{
     mLapTimeElapsed.restart();
     mTotalTimeElapsed.restart();
+}
+
+void Viewport::pauseGame()
+{
+    //mLapTimeElapsed.stop();
+    //mTotalTimeElapsed.stop();
 }
 

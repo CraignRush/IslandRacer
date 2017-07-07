@@ -15,6 +15,7 @@
 #include "viewport.h"
 #include "player.h"
 #include "worldposition.h"
+#include "pausemenu.h"
 
 class World : public QMainWindow
 {
@@ -33,9 +34,10 @@ private:
     QWidget* mViewportWidget;                // Holds the two viewports
     QWidget* mVerticalSeperatorLine;         // Seperates the two viewports in multiplayer mode
     QWidget* mCounterWidget;                 // Holds label for starting count down
-    QWidget* mPauseMenuWidget;
+    PauseMenu* mPauseMenuWidget;             // Holds the pause menu as a widget
     QGraphicsOpacityEffect* mOpacityEffect;  // Graphics effect to fade out starting count down
-    //QGraphicsBlurEffect* mBlurEffect;         // Blur track when pause menu is open
+    QGraphicsBlurEffect* mBlurEffectView1;   // Blur view1 when pause menu is open
+    QGraphicsBlurEffect* mBlurEffectView2;   // Blur view2 when pause menu is open
 
     Car* mCar1;                 // car object (Graphics item) for player 1
     Car* mCar2;                 // car object for player 2
@@ -64,6 +66,7 @@ public:
     void keyPressEvent(QKeyEvent *keyEvent);
     void keyReleaseEvent(QKeyEvent *keyEvent);
     void ResumeGame();
+    void pauseGame();
     void StopGame();
     static void GameExit();
 
