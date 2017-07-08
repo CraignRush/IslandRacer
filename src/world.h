@@ -65,7 +65,6 @@ public:
     void loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer);
     void keyPressEvent(QKeyEvent *keyEvent);
     void keyReleaseEvent(QKeyEvent *keyEvent);
-    void ResumeGame();
     void pauseGame();
     //void StopGame();
     static void GameExit();
@@ -74,8 +73,10 @@ public:
 public slots:
 	void gameLoop();
 	void startLoop();
-	void StopGame();
-	void ExitGame();
+    void resumeGame();
+    void restartGame();
+    void stopGame();
+    void exitGame();
 };
 
 #endif // WORLD_H

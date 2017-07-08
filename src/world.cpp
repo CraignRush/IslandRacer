@@ -81,8 +81,13 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
 
     mViewportLayout->setContentsMargins(0,0,0,0);
     mViewportWidget->setLayout(mViewportLayout);
+    mViewportWidget->setFocusPolicy(Qt::StrongFocus);
 
+    // hide widget at start and connect signals
     mPauseMenuWidget->setVisible(false);
+    connect(mPauseMenuWidget, SIGNAL(resumeGame()), this, SLOT(resumeGame()));
+    connect(mPauseMenuWidget, SIGNAL(restartGame()), this, SLOT(restartGame()));
+    connect(mPauseMenuWidget, SIGNAL(quitGame()), this, SLOT(exitGame()));
 
     mMainLayout->setStackingMode(QStackedLayout::StackAll);
     mMainLayout->addWidget(mViewportWidget);
@@ -401,7 +406,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mViewportLayout->addWidget(mViewPlayer1);
 
         //connect end race event to stop game loop
-        connect(mViewPlayer1, SIGNAL(StopGame()),this, SLOT(StopGame()));
+        connect(mViewPlayer1, SIGNAL(stopGame()),this, SLOT(stopGame()));
     }
 
     // Init variables for start countdown
@@ -424,7 +429,7 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
     case Qt::Key_Escape: // Just for debugging, to close game and get back to menu.
         if(mPauseMenuWidget->isVisible()) // resume the game
         {
-            ResumeGame();
+            resumeGame();
         }
         else // pause the game
         {
@@ -712,13 +717,13 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
 	}
 }
 
-void World::StopGame()
+void World::stopGame()
 {
-	mTimer->stop();
-	emit mCar1->stopCarSound();
+    mTimer->stop();
+    emit mCar1->stopCarSound();
 }
 
-void World::ResumeGame()
+void World::resumeGame()
 {
     // Resume game loop and/or start loop-> physic engine doesn't compute any further step
     if(mStartCounter > 0)
@@ -735,22 +740,24 @@ void World::ResumeGame()
         emit mCar1->playCarSound();
     }
 
-    // Stop lap/total timer
-    mViewPlayer1->ResumeGame();
+    // Stop lap/total timer & hide blur effect
+    mViewPlayer1->resumeGame();
     mBlurEffectView1->setEnabled(false);
     if(mIsMultiplayer)
     {
-        mViewPlayer2->ResumeGame();
+        mViewPlayer2->resumeGame();
         mBlurEffectView2->setEnabled(false);
     }
 
     // hide pause menu
     mPauseMenuWidget->setVisible(false);
 
-    // remove blur effect (enable viewport for repaint again)
-    //mViewPlayer1->setUpdatesEnabled(true);
-    //if(mIsMultiplayer)
-    //    mViewPlayer2->setUpdatesEnabled(true);
+    // focus mViewportWidget to receive key input events
+    //mViewportWidget->focusWidget();
+}
+
+void World::restartGame()
+{
 
 }
 
@@ -788,7 +795,7 @@ void World::pauseGame()
     mPauseMenuWidget->setVisible(true);
 }
 
-void World::ExitGame()
+void World::exitGame()
 {
 	hide();
 
