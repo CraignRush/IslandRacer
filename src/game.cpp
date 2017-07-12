@@ -71,7 +71,7 @@ void Game::loadCircuit(Circuit circuit)
         int checkpointCount = 0;
         WorldPosition* checkpointPositions;
         WorldPosition* carResetPositions;
-        WorldPosition carPosition;
+        WorldPosition* carPositions;
 
         while (!in.atEnd())
         {
@@ -127,6 +127,19 @@ void Game::loadCircuit(Circuit circuit)
                 }
                 continue;
             }
+            if(list.value(0) == "CAR_STARTING_POSITIONS")
+            {
+                carPositions = (WorldPosition*) malloc(10 * 2 * sizeof(WorldPosition)); // max 10 cars in one race
+
+                list2 = list.value(1).split(QRegExp("(\\;)"));
+                for(int a = 0; a < list2.length(); a++)
+                {
+                    list3 = list2.value(a).split(QRegExp("(\\,)"));
+                    carPositions[a] = WorldPosition(list3.value(0).toInt(), list3.value(1).toInt(), list3.value(2).toDouble());
+                }
+                continue;
+            }
+/*
             if(list.value(0) == "CAR_X")
             {
                 carPosition.setX(list.value(1).toInt());
@@ -142,17 +155,18 @@ void Game::loadCircuit(Circuit circuit)
                 carPosition.setAngle(list.value(1).toDouble());
                 continue;
             }
+*/
         }
         inputFile.close();
 
         // load circuit with parameter
 
-        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, &carPosition, mMultiplayer);
+        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, carPositions, mMultiplayer);
 
 		//connect end race signal to player class
 		if(!mMultiplayer){
 		connect(mWorld->getViewPlayer(1),SIGNAL(RaceFinished(QString[],QString)),mPlayer,SLOT(endRaceDialog(QString[],QString)));
-		connect(mPlayer,SIGNAL(playerInputFinished()),mWorld,SLOT(ExitGame()));
+        connect(mPlayer,SIGNAL(playerInputFinished()),mWorld,SLOT(exitGame()));
 		}
 		// show window on top
         mWorld->showFullScreen();
@@ -168,6 +182,11 @@ void Game::loadCircuit(Circuit circuit)
         {
             free(carResetPositions);
             carResetPositions = NULL;
+        }
+        if(carPositions != NULL)
+        {
+            free(carPositions);
+            carPositions = NULL;
         }
 	}
 }

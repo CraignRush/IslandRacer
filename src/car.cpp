@@ -369,6 +369,11 @@ void Car::setPosition(int x, int y, double angle)
     delete rightRearJointDef;
 }
 
+void Car::setPosition(WorldPosition position)
+{
+    setPosition(position.x(), position.y(), position.angle());
+}
+
 //This function applies a "friction" in a direction orthogonal to the mBody's axis.
 void Car::killOrthogonalVelocity(b2Body *targetBody){
 

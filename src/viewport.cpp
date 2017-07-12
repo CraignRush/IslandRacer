@@ -108,7 +108,7 @@ void Viewport::startGame()
 	// Display lap time
 	mLapTimeLabel->setVisible(true);
 	mTime.setHMS(0,0,0,0);
-	mLapTimeElapsed.start();
+    mLapTimeElapsed.start();
 
 	// Display total time
 	mTotalTimeLabel->setVisible(true);
@@ -140,8 +140,8 @@ void Viewport::updateOverlay(QPointF carpos, int fps)
     mLapLabel->setText(mLapText + QString::number(mLaps) + "/3");
 
 	//Display current speed
-	double mSpeed = sqrt(qPow((carpos.x()-mPrevPos.x()),2)+qPow((carpos.y()-mPrevPos.y()),2))/20.f*fps*3.6*2.5;
-	mSpeedDisplay->setText(QString::number(mSpeed, 'f', 1) + "km/h");
+    double speed = sqrt(qPow((carpos.x()-mPrevPos.x()),2)+qPow((carpos.y()-mPrevPos.y()),2))/20.f*fps*3.6*2.5;
+    mSpeedDisplay->setText(QString::number(speed, 'f', 1) + "km/h");
 	mPrevPos = carpos;
 
 }
@@ -175,5 +175,23 @@ void Viewport::pauseGame()
 {
     mCurLap += mLapTimeElapsed.elapsed();
     mCurToTime += mTotalTimeElapsed.elapsed();
+}
+
+void Viewport::restartGame()
+{
+    mCurLap = 0;
+    mCurToTime = 0;
+    mElapsed = 0;
+    mLaps = 1;
+
+    // Hide widgets
+    mLapTimeLabel->setVisible(false);
+    mTotalTimeLabel->setVisible(false);
+    mLapLabel->setVisible(false);
+    mSpeedDisplay->setVisible(false);
+
+    // Call twice to set speed to 0.0 km/h
+    updateOverlay(QPointF(0.0f, 0.0f), 25);
+    updateOverlay(QPointF(0.0f, 0.0f), 25);
 }
 

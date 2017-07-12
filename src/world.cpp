@@ -176,6 +176,9 @@ World::~World()
         mViewPlayer2 = NULL;
     }
 
+    free(mCarStartingPositions);
+    mCarStartingPositions = NULL;
+
     delete mVerticalSeperatorLine;
     mVerticalSeperatorLine = NULL;
 
@@ -296,6 +299,11 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 {
     mIsMultiplayer = isMultiplayer;
 
+    // copy the starting positions for restart game
+    mCarStartingPositions = (WorldPosition*) malloc(20 * sizeof(WorldPosition));
+    for(int i = 0; i < carCount; i++)
+        mCarStartingPositions[i] = carPositions[i];
+
     // prepare scene
     mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpointPositions, carResetPositions);
 
@@ -339,7 +347,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         // set cars to starting position
         mCar1->setPosition(carPositions[0].x(), carPositions[0].y(), carPositions[0].angle());
-        mCar2->setPosition(carPositions[0].x(), carPositions[0].y(), carPositions[0].angle());
+        mCar2->setPosition(carPositions[1].x(), carPositions[1].y(), carPositions[1].angle());
 
         // Create new Viewports for Player
         mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack);
@@ -350,11 +358,11 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mBlurEffectView2 = new QGraphicsBlurEffect();
 
         // Blur effect for pause menu
-        mBlurEffectView1->setBlurRadius(15.0f);
+        mBlurEffectView1->setBlurRadius(25.0f);
         mBlurEffectView1->setEnabled(false);
         mBlurEffectView1->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
 
-        mBlurEffectView2->setBlurRadius(15.0f);
+        mBlurEffectView2->setBlurRadius(25.0f);
         mBlurEffectView2->setEnabled(false);
         mBlurEffectView2->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
 
@@ -390,7 +398,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mBlurEffectView1 = new QGraphicsBlurEffect();
 
         // Blur effect for pause menu
-        mBlurEffectView1->setBlurRadius(15.0f);
+        mBlurEffectView1->setBlurRadius(25.0f);
         mBlurEffectView1->setEnabled(false);
         mBlurEffectView1->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
 
@@ -727,14 +735,20 @@ void World::resumeGame()
 {
     // Resume game loop and/or start loop-> physic engine doesn't compute any further step
     if(mStartCounter > 0)
+    {
         mStartTimer->start();
+        mCounter->show();
+    }
     else if(mStartCounter >-100)
     {
         mStartTimer->start();
+        mCounter->show();
         mTimer->start();
         // Start race sound
         emit mCar1->playCarSound();
-    } else {
+    }
+    else
+    {
         mTimer->start();
         // Start race sound
         emit mCar1->playCarSound();
@@ -758,21 +772,56 @@ void World::resumeGame()
 
 void World::restartGame()
 {
+    // Stop game loop and sound
+    mTimer->stop();
+    emit mCar1->stopCarSound();
 
+    // Reset car positions & hide blur effect
+    mCar1->setPosition(mCarStartingPositions[0]);
+    mBlurEffectView1->setEnabled(false);
+    mViewPlayer1->centerOn(mCar1);
+    mViewPlayer1->restartGame();
+
+    if(mIsMultiplayer)
+    {
+        mCar2->setPosition(mCarStartingPositions[1]);
+        mBlurEffectView2->setEnabled(false);
+        mViewPlayer2->centerOn(mCar2);
+        mViewPlayer2->restartGame();
+    }
+
+    // hide pause menu
+    mPauseMenuWidget->setVisible(false);
+
+    // Init variables for start countdown
+    mOpacity = 1.0f;
+
+    mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
+    mCounter->setText(QString(""));
+    mCounter->show();
+
+    // Init and start timer for game loop and start loop
+    mStartTimer = new QTimer(this);
+    connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
+    mStartTimer->start(50);
 }
 
 void World::pauseGame()
 {
     // Pause game loop and/or start loop-> physic engine doesn't compute any further step
     if(mStartCounter > 0)
+    {
         mStartTimer->stop();
+        mCounter->hide();
+    }
     else if(mStartCounter >-100)
     {
         mStartTimer->stop();
+        mCounter->hide();
         mTimer->stop();
-    } else
+    }
+    else
         mTimer->stop();
-
 
     // stop race sound
     emit mCar1->stopCarSound();

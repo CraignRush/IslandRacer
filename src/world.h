@@ -26,6 +26,7 @@ private:
 	int mHeight;                // Height of world/scene
 
     bool mIsMultiplayer;
+    WorldPosition* mCarStartingPositions;
 
     QStackedLayout* mMainLayout;             // Main layout for game window
     QHBoxLayout* mViewportLayout;            // Layout for player viewport side by side
