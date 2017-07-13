@@ -163,10 +163,10 @@ void Viewport::saveLapTime()
     }
     else
     {
-        emit StopGame();
+        emit stopGame();
         mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.zzz");
         mTotalTimeEnd = mTime2.toString("mm:ss.zzz");
-        emit RaceFinished(&mLapTimeEnd[3], mTotalTimeEnd);
+        emit raceFinished(&mLapTimeEnd[3], mTotalTimeEnd);
     }
     mElapsed = 0;
     mCurLap = 0;

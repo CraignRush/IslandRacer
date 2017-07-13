@@ -165,7 +165,7 @@ void Game::loadCircuit(Circuit circuit)
 
 		//connect end race signal to player class
 		if(!mMultiplayer){
-		connect(mWorld->getViewPlayer(1),SIGNAL(RaceFinished(QString[],QString)),mPlayer,SLOT(endRaceDialog(QString[],QString)));
+        connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString[],QString)),mPlayer,SLOT(endRaceDialog(QString[],QString)));
         connect(mPlayer,SIGNAL(playerInputFinished()),mWorld,SLOT(exitGame()));
 		}
 		// show window on top
