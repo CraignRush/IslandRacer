@@ -202,7 +202,7 @@ void World::gameLoop()
 	// Apply forces dependant on current user input
 	mCar1->computeUserInput(mCurrentInputStatePlayer1);
 	mCar1->updatePosition();
-	mViewPlayer1->ensureVisible(mCar1, 300, 400);
+    mViewPlayer1->ensureVisible(mCar1, mVisibleWidth, mVisibleHeight);
 
 	// Check for checkpoint collision
 	mTrack->updateCheckpoints(mCar1);
@@ -218,7 +218,7 @@ void World::gameLoop()
 	{
 		mCar2->computeUserInput(mCurrentInputStatePlayer2);
 		mCar2->updatePosition();
-		mViewPlayer2->ensureVisible(mCar2, 300, 400);
+        mViewPlayer2->ensureVisible(mCar2,mVisibleWidth, mVisibleHeight);
 		mTrack->updateCheckpoints(mCar2);
 		mCar2->render();
 		mViewPlayer2->updateOverlay(mCar2->pos(),mFps);
@@ -340,6 +340,9 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack);
         mViewPlayer2 = new Viewport(mWidth/2, mHeight, mTrack);
 
+        mVisibleWidth = 0.4 * mWidth/2;
+        mVisibleHeight =  0.4 * mHeight;
+
         // Create blur for viewports
         mBlurEffectView1 = new QGraphicsBlurEffect();
         mBlurEffectView2 = new QGraphicsBlurEffect();
@@ -380,6 +383,9 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         // Create new Viewports for Player
         mViewPlayer1 = new Viewport(mWidth, mHeight, mTrack);
+
+        mVisibleWidth = 0.4 * mWidth;
+        mVisibleHeight =  0.4 * mHeight;
 
         // Create blur for viewport
         mBlurEffectView1 = new QGraphicsBlurEffect();

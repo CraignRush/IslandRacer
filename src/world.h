@@ -25,6 +25,9 @@ private:
 	int mWidth;                 // Width of world/scene
 	int mHeight;                // Height of world/scene
 
+    int mVisibleWidth;
+    int mVisibleHeight;
+
     bool mIsMultiplayer;
 
     QStackedLayout* mMainLayout;             // Main layout for game window

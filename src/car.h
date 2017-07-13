@@ -47,8 +47,8 @@ private:
 
     // car constants
     const float CAR_LENGTH = 4.4f;
-    const float CAR_WIDTH = 2.0f;       // Total Car Weight
-    const float CAR_WEIGHT = 650.0f;
+	const float CAR_WIDTH = 2.0f;
+	const float CAR_WEIGHT = 550.0f; // Total Car Weight
     const float TYRE_LENGTH = 0.5f;
     const float TYRE_WIDTH = 0.245f;
     const float TYRE_WEIGHT = 9.0f;
