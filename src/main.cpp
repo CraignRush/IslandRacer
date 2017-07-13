@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     mainMenu menu;
     menu.showFullScreen();
 
-//    PauseMenu menu;
+//    PauseMenu menu(1080);
 //    menu.show();
 
 //    Game game;

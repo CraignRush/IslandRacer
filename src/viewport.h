@@ -41,14 +41,16 @@ public:
     Viewport(int width, int height, Track* track);
     ~Viewport();
     void startGame();
-    void ResumeGame();
+    void resumeGame();
     void pauseGame();
+    void restartGame();
     //static void GameExit();
     void updateOverlay(QPointF carpos, int fps);
 
 signals:
-	 void StopGame();
-	void RaceFinished(QString mLapTime[],QString mTotalTimeEnd);
+    void stopGame();
+    void raceFinished(QString mLapTime[],QString mTotalTimeEnd);
+
 public slots:
     void saveLapTime();
 

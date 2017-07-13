@@ -81,8 +81,13 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
 
     mViewportLayout->setContentsMargins(0,0,0,0);
     mViewportWidget->setLayout(mViewportLayout);
+    mViewportWidget->setFocusPolicy(Qt::StrongFocus);
 
+    // hide widget at start and connect signals
     mPauseMenuWidget->setVisible(false);
+    connect(mPauseMenuWidget, SIGNAL(resumeGame()), this, SLOT(resumeGame()));
+    connect(mPauseMenuWidget, SIGNAL(restartGame()), this, SLOT(restartGame()));
+    connect(mPauseMenuWidget, SIGNAL(quitGame()), this, SLOT(exitGame()));
 
     mMainLayout->setStackingMode(QStackedLayout::StackAll);
     mMainLayout->addWidget(mViewportWidget);
@@ -170,6 +175,9 @@ World::~World()
         delete mViewPlayer2;
         mViewPlayer2 = NULL;
     }
+
+    free(mCarStartingPositions);
+    mCarStartingPositions = NULL;
 
     delete mVerticalSeperatorLine;
     mVerticalSeperatorLine = NULL;
@@ -291,6 +299,11 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 {
     mIsMultiplayer = isMultiplayer;
 
+    // copy the starting positions for restart game
+    mCarStartingPositions = (WorldPosition*) malloc(20 * sizeof(WorldPosition));
+    for(int i = 0; i < carCount; i++)
+        mCarStartingPositions[i] = carPositions[i];
+
     // prepare scene
     mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpointPositions, carResetPositions);
 
@@ -334,7 +347,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         // set cars to starting position
         mCar1->setPosition(carPositions[0].x(), carPositions[0].y(), carPositions[0].angle());
-        mCar2->setPosition(carPositions[0].x(), carPositions[0].y(), carPositions[0].angle());
+        mCar2->setPosition(carPositions[1].x(), carPositions[1].y(), carPositions[1].angle());
 
         // Create new Viewports for Player
         mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack);
@@ -348,11 +361,11 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mBlurEffectView2 = new QGraphicsBlurEffect();
 
         // Blur effect for pause menu
-        mBlurEffectView1->setBlurRadius(15.0f);
+        mBlurEffectView1->setBlurRadius(25.0f);
         mBlurEffectView1->setEnabled(false);
         mBlurEffectView1->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
 
-        mBlurEffectView2->setBlurRadius(15.0f);
+        mBlurEffectView2->setBlurRadius(25.0f);
         mBlurEffectView2->setEnabled(false);
         mBlurEffectView2->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
 
@@ -391,7 +404,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mBlurEffectView1 = new QGraphicsBlurEffect();
 
         // Blur effect for pause menu
-        mBlurEffectView1->setBlurRadius(15.0f);
+        mBlurEffectView1->setBlurRadius(25.0f);
         mBlurEffectView1->setEnabled(false);
         mBlurEffectView1->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
 
@@ -407,7 +420,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mViewportLayout->addWidget(mViewPlayer1);
 
         //connect end race event to stop game loop
-        connect(mViewPlayer1, SIGNAL(StopGame()),this, SLOT(StopGame()));
+        connect(mViewPlayer1, SIGNAL(stopGame()),this, SLOT(stopGame()));
     }
 
     // Init variables for start countdown
@@ -430,7 +443,7 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
     case Qt::Key_Escape: // Just for debugging, to close game and get back to menu.
         if(mPauseMenuWidget->isVisible()) // resume the game
         {
-            ResumeGame();
+            resumeGame();
         }
         else // pause the game
         {
@@ -718,60 +731,103 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
 	}
 }
 
-void World::StopGame()
+void World::stopGame()
 {
-	mTimer->stop();
-	emit mCar1->stopCarSound();
+    mTimer->stop();
+    emit mCar1->stopCarSound();
 }
 
-void World::ResumeGame()
+void World::resumeGame()
 {
     // Resume game loop and/or start loop-> physic engine doesn't compute any further step
     if(mStartCounter > 0)
+    {
         mStartTimer->start();
+        mCounter->show();
+    }
     else if(mStartCounter >-100)
     {
         mStartTimer->start();
+        mCounter->show();
         mTimer->start();
         // Start race sound
         emit mCar1->playCarSound();
-    } else {
+    }
+    else
+    {
         mTimer->start();
         // Start race sound
         emit mCar1->playCarSound();
     }
 
-    // Stop lap/total timer
-    mViewPlayer1->ResumeGame();
+    // Stop lap/total timer & hide blur effect
+    mViewPlayer1->resumeGame();
     mBlurEffectView1->setEnabled(false);
     if(mIsMultiplayer)
     {
-        mViewPlayer2->ResumeGame();
+        mViewPlayer2->resumeGame();
         mBlurEffectView2->setEnabled(false);
     }
 
     // hide pause menu
     mPauseMenuWidget->setVisible(false);
 
-    // remove blur effect (enable viewport for repaint again)
-    //mViewPlayer1->setUpdatesEnabled(true);
-    //if(mIsMultiplayer)
-    //    mViewPlayer2->setUpdatesEnabled(true);
+    // focus mViewportWidget to receive key input events
+    //mViewportWidget->focusWidget();
+}
 
+void World::restartGame()
+{
+    // Stop game loop and sound
+    mTimer->stop();
+    emit mCar1->stopCarSound();
+
+    // Reset car positions & hide blur effect
+    mCar1->setPosition(mCarStartingPositions[0]);
+    mBlurEffectView1->setEnabled(false);
+    mViewPlayer1->centerOn(mCar1);
+    mViewPlayer1->restartGame();
+
+    if(mIsMultiplayer)
+    {
+        mCar2->setPosition(mCarStartingPositions[1]);
+        mBlurEffectView2->setEnabled(false);
+        mViewPlayer2->centerOn(mCar2);
+        mViewPlayer2->restartGame();
+    }
+
+    // hide pause menu
+    mPauseMenuWidget->setVisible(false);
+
+    // Init variables for start countdown
+    mOpacity = 1.0f;
+
+    mStartCounter = 390;    // 3.9 sec --> short delay before counter begins
+    mCounter->setText(QString(""));
+    mCounter->show();
+
+    // Init and start timer for game loop and start loop
+    mStartTimer = new QTimer(this);
+    connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
+    mStartTimer->start(50);
 }
 
 void World::pauseGame()
 {
     // Pause game loop and/or start loop-> physic engine doesn't compute any further step
     if(mStartCounter > 0)
+    {
         mStartTimer->stop();
+        mCounter->hide();
+    }
     else if(mStartCounter >-100)
     {
         mStartTimer->stop();
+        mCounter->hide();
         mTimer->stop();
-    } else
+    }
+    else
         mTimer->stop();
-
 
     // stop race sound
     emit mCar1->stopCarSound();
@@ -794,7 +850,7 @@ void World::pauseGame()
     mPauseMenuWidget->setVisible(true);
 }
 
-void World::ExitGame()
+void World::exitGame()
 {
 	hide();
 

@@ -106,6 +106,7 @@ public:
 
     void updatePosition();
     void setPosition(int x, int y, double angle);
+    void setPosition(WorldPosition position);
 };
 
 #endif // CAR_H

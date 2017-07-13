@@ -69,7 +69,6 @@ Viewport::Viewport(int width, int height, Track* track)
         mLapTimeLabel->setGeometry(width - mLapTimeLabel->size().width() - (0.043 * width), height -(2 * mLapTimeLabel->size().height()) - (2 * (0.2 * mLapTimeLabel->size().height())), mLapTimeLabel->size().width(), mLapTimeLabel->size().height());
         mTotalTimeLabel->setGeometry(width - mTotalTimeLabel->size().width() - (0.02 * width), height - mTotalTimeLabel->size().height() - (0.2 * mTotalTimeLabel->size().height()), mTotalTimeLabel->size().width(), mTotalTimeLabel->size().height());
         mSpeedDisplay->setGeometry(0.024 * height, height - mSpeedDisplay->size().height() - (0.024 * height), mSpeedDisplay->size().width(), mSpeedDisplay->size().height());
-
     }
 
     connect(track,SIGNAL(LapChanged()),this,SLOT(saveLapTime()));
@@ -115,9 +114,9 @@ Viewport::~Viewport()
 
 void Viewport::startGame()
 {
-    // Display lap time
-    mLapTimeLabel->setVisible(true);
-    mTime.setHMS(0,0,0,0);
+	// Display lap time
+	mLapTimeLabel->setVisible(true);
+	mTime.setHMS(0,0,0,0);
     mLapTimeElapsed.start();
 
     // Display total time
@@ -153,7 +152,6 @@ void Viewport::updateOverlay(QPointF carpos, int fps)
     double mSpeed = sqrt(qPow((carpos.x()-mPrevPos.x()),2)+qPow((carpos.y()-mPrevPos.y()),2))/20.f*fps*3.6*2.5;
     mSpeedDisplay->setText(QString::number(mSpeed, 'f', 1) + "km/h");
     mPrevPos = carpos;
-
 }
 
 void Viewport::saveLapTime()
@@ -175,7 +173,7 @@ void Viewport::saveLapTime()
     mLapTimeElapsed.restart();
 }
 
-void Viewport::ResumeGame()
+void Viewport::resumeGame()
 {
     mLapTimeElapsed.restart();
     mTotalTimeElapsed.restart();
@@ -185,5 +183,23 @@ void Viewport::pauseGame()
 {
     mCurLap += mLapTimeElapsed.elapsed();
     mCurToTime += mTotalTimeElapsed.elapsed();
+}
+
+void Viewport::restartGame()
+{
+    mCurLap = 0;
+    mCurToTime = 0;
+    mElapsed = 0;
+    mLaps = 1;
+
+    // Hide widgets
+    mLapTimeLabel->setVisible(false);
+    mTotalTimeLabel->setVisible(false);
+    mLapLabel->setVisible(false);
+    mSpeedDisplay->setVisible(false);
+
+    // Call twice to set speed to 0.0 km/h
+    updateOverlay(QPointF(0.0f, 0.0f), 25);
+    updateOverlay(QPointF(0.0f, 0.0f), 25);
 }
 
