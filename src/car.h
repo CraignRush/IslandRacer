@@ -89,7 +89,7 @@ signals:
 
 public:
 	//! Fill the world with car object constructor
-    Car(b2World* world, Track* track);
+    Car(b2World* world, Track* track, int i);
     ~Car();
 	//! Show the car on screen
 	void render();

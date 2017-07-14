@@ -7,9 +7,16 @@
 #include "worldposition.h"
 
 
-Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
+Car::Car(b2World* world, Track* track, int i) : mWorld{world}, mTrack{track}
 {
-    setPixmap(QPixmap(":/images/images/car1.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
+    if (i==1)
+    {
+        setPixmap(QPixmap(":/images/images/1car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
+    }
+    else if (i==2)
+    {
+        setPixmap(QPixmap(":/images/images/2car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
+    }
     //setScale(0.05);
     ensureVisible(QRectF(), 500, 400);
 
