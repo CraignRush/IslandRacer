@@ -71,7 +71,7 @@ Viewport::Viewport(int width, int height, Track* track)
         mSpeedDisplay->setGeometry(0.024 * height, height - mSpeedDisplay->size().height() - (0.024 * height), mSpeedDisplay->size().width(), mSpeedDisplay->size().height());
     }
 
-    connect(track,SIGNAL(LapChanged()),this,SLOT(saveLapTime()));
+    //connect(track,SIGNAL(LapChanged()),this,SLOT(saveLapTime()));
 }
 
 Viewport::~Viewport()
