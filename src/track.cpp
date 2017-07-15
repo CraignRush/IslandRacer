@@ -7,17 +7,26 @@ Track::Track()
     mWidth = 0;
     mHeight = 0;
 
-    mCheckpoints = NULL;
+    mCheckpoints1 = NULL;
+    mCheckpoints2 = NULL;
 }
 
 Track::~Track()
 {
-    if(mCheckpoints != NULL)
+    if(mCheckpoints1 != NULL)
     {
-        for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
-            this->removeItem(mCheckpoints->GetCheckpoint(i));
-        delete mCheckpoints;
-        mCheckpoints = NULL;
+        for(int i=0; i<mCheckpoints1->GetNumberOfCheckpoints(); i++)
+            this->removeItem(mCheckpoints1->GetCheckpoint(i));
+        delete mCheckpoints1;
+        mCheckpoints1 = NULL;
+    }
+
+    if(mCheckpoints2 != NULL)
+    {
+        for(int i=0; i<mCheckpoints2->GetNumberOfCheckpoints(); i++)
+            this->removeItem(mCheckpoints2->GetCheckpoint(i));
+        delete mCheckpoints2;
+        mCheckpoints2 = NULL;
     }
 }
 
@@ -38,10 +47,10 @@ Track::Track(int level)
     {
     setBackgroundBrush(QBrush(QImage(":/images/images/YasMarinatextur.png")));
     }
-    mCheckpoints = new Checkpoint;
+    mCheckpoints1 = new Checkpoint;
 
-    for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
-        this->addItem(mCheckpoints->GetCheckpoint(i));
+    for(int i=0; i<mCheckpoints1->GetNumberOfCheckpoints(); i++)
+        this->addItem(mCheckpoints1->GetCheckpoint(i));
 }
 */
 
@@ -49,8 +58,8 @@ Track::Track(int level)
 Track::Track(int width, int height, QImage background, QImage grayImage)
 {
     // add checkpoints
-    for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
-        this->addItem(mCheckpoints->GetCheckpoint(i));
+    for(int i=0; i<mCheckpoints1->GetNumberOfCheckpoints(); i++)
+        this->addItem(mCheckpoints1->GetCheckpoint(i));
 
     loadTrack(width, height, background, grayImage);
 }
@@ -74,23 +83,39 @@ Underground Track::getUnderground(int x, int y)
     return Asphalt;
 }
 
-void Track::updateCheckpoints(QGraphicsPixmapItem* item)
+void Track::updateCheckpoints(QGraphicsPixmapItem* item, int index)
 {
-    if(!(collidingItems(item).isEmpty()))
-        mCheckpoints->CheckCheckpoint(item);
-	int checkpointLaps = mCheckpoints->GetLaps();
-	if(mLapNumber != checkpointLaps && checkpointLaps > 0){
-		emit LapChanged();
-		mLapNumber++;
-	}
+    if(index == 1)
+    {
+        if(!(collidingItems(item).isEmpty()))
+         mCheckpoints1->CheckCheckpoint(item);
+        int checkpointLaps = mCheckpoints1->GetLaps();
+        if(mLapNumber1 != checkpointLaps && checkpointLaps > 0){
+            emit LapChanged1();
+            mLapNumber1++;
+        }
+    }
+    else if(index == 2)
+    {
+        if(!(collidingItems(item).isEmpty()))
+         mCheckpoints2->CheckCheckpoint(item);
+        int checkpointLaps = mCheckpoints2->GetLaps();
+        if(mLapNumber2 != checkpointLaps && checkpointLaps > 0){
+            emit LapChanged2();
+            mLapNumber2++;
+        }
+    }
 }
 
-WorldPosition Track::getLastCheckpointPosition()
+WorldPosition Track::getLastCheckpointPosition(int index)
 {
-    return mCheckpoints->getLastCheckpointPosition();
+    if(index == 1)
+        return mCheckpoints1->getLastCheckpointPosition();
+    else if (index == 2)
+        return mCheckpoints2->getLastCheckpointPosition();
 }
 
-void Track::loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions)
+void Track::loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, bool isMultiplayer)
 {
     // set variables
     mWidth = width;
@@ -102,16 +127,33 @@ void Track::loadTrack(int width, int height, QImage background, QImage grayImage
     setSceneRect(0,0,mWidth, mHeight);
     setBackgroundBrush(QBrush(mBackground));
 
-    mLapNumber = 0;
+    mLapNumber1 = 0;
+    mLapNumber2 = 0;
     // delete old checkpoints and load new ones
-    if(mCheckpoints != NULL)
+    if(mCheckpoints1 != NULL)
     {
-        for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
-            this->removeItem(mCheckpoints->GetCheckpoint(i));
-        delete mCheckpoints;
+        for(int i=0; i<mCheckpoints1->GetNumberOfCheckpoints(); i++)
+            this->removeItem(mCheckpoints1->GetCheckpoint(i));
+        delete mCheckpoints1;
     }
-    mCheckpoints = new Checkpoint(checkpointCount, checkpointPositions, carResetPositions);
 
-    for(int i=0; i<mCheckpoints->GetNumberOfCheckpoints(); i++)
-        this->addItem(mCheckpoints->GetCheckpoint(i));
+    if(mCheckpoints2 != NULL)
+    {
+        for(int i=0; i<mCheckpoints2->GetNumberOfCheckpoints(); i++)
+            this->removeItem(mCheckpoints2->GetCheckpoint(i));
+        delete mCheckpoints2;
+    }
+
+    mCheckpoints1 = new Checkpoint(checkpointCount, checkpointPositions, carResetPositions);
+
+    for(int i=0; i<mCheckpoints1->GetNumberOfCheckpoints(); i++)
+        this->addItem(mCheckpoints1->GetCheckpoint(i));
+
+    if(isMultiplayer)
+    {
+        mCheckpoints2 = new Checkpoint(checkpointCount, checkpointPositions, carResetPositions);
+
+        for(int i=0; i<mCheckpoints2->GetNumberOfCheckpoints(); i++)
+            this->addItem(mCheckpoints2->GetCheckpoint(i));
+    }
 }

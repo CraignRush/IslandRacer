@@ -107,9 +107,9 @@ public:
 	//! Compute events on which key pressed
     void computeUserInput(enum InputState input);
 
-    void computeUndergroundImpact();
+    void computeUndergroundImpact(int index);
 
-    void updatePosition();
+    void updatePosition(int index);
     void setPosition(int x, int y, double angle);
     void setPosition(WorldPosition position);
     void setCarParams(int speedValue, int accelerationValue, int handlingValue);

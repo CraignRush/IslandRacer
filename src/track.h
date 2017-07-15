@@ -22,9 +22,11 @@ private:
     int mHeight;
     QImage mBackground;
     QImage mGrayImage;
-    Checkpoint* mCheckpoints;
+    Checkpoint* mCheckpoints1;
+    Checkpoint* mCheckpoints2;
 
-	int mLapNumber = 0;
+    int mLapNumber1 = 0;
+    int mLapNumber2 = 0;
 
 public:
     Track();
@@ -32,11 +34,12 @@ public:
     //Track(int level);
     //Track(int width, int height, QImage background, QImage grayImage);
     Underground getUnderground(int x, int y);
-    WorldPosition getLastCheckpointPosition();
-	void updateCheckpoints(QGraphicsPixmapItem* item);
-    void loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions);
+    WorldPosition getLastCheckpointPosition(int index);
+    void updateCheckpoints(QGraphicsPixmapItem* item, int index);
+    void loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, bool isMultiplayer);
 signals:
-	void LapChanged();
+    void LapChanged1();
+    void LapChanged2();
 };
 
 #endif // TRACK_H

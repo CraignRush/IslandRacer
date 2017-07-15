@@ -241,7 +241,7 @@ void Car::computeUserInput(InputState input)
     }
 }
 
-void Car::computeUndergroundImpact()
+void Car::computeUndergroundImpact(int index)
 {
     Underground underground;
 
@@ -262,14 +262,14 @@ void Car::computeUndergroundImpact()
         //mBody->SetAngularDamping(10.0f);
         break;
     case Water:
-        WorldPosition pos = mTrack->getLastCheckpointPosition();
+        WorldPosition pos = mTrack->getLastCheckpointPosition(index);
         mEngineSpeed = 0.0f;
         setPosition(pos.x(), pos.y(), pos.angle());
         break;
     }
 }
 
-void Car::updatePosition()
+void Car::updatePosition(int index)
 {
     // kill orthogonal velocity to avoid sliding
     killOrthogonalVelocity(mLeftWheel);
@@ -278,7 +278,7 @@ void Car::updatePosition()
     killOrthogonalVelocity(mRightRearWheel);
 
     // compute acceleration and steering forces
-    computeUndergroundImpact();
+    computeUndergroundImpact(index);
 
     computeSteering();
     computeDriving();

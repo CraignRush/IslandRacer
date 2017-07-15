@@ -214,11 +214,11 @@ void World::gameLoop()
 
 	// Apply forces dependant on current user input
 	mCar1->computeUserInput(mCurrentInputStatePlayer1);
-	mCar1->updatePosition();
+    mCar1->updatePosition(1);
     mViewPlayer1->ensureVisible(mCar1, mVisibleWidth, mVisibleHeight);
 
 	// Check for checkpoint collision
-	mTrack->updateCheckpoints(mCar1);
+    mTrack->updateCheckpoints(mCar1, 1);
 
 	// Render cars on new position
 	mCar1->render();
@@ -230,9 +230,9 @@ void World::gameLoop()
 	if(mIsMultiplayer)
 	{
 		mCar2->computeUserInput(mCurrentInputStatePlayer2);
-		mCar2->updatePosition();
+        mCar2->updatePosition(2);
         mViewPlayer2->ensureVisible(mCar2,mVisibleWidth, mVisibleHeight);
-		mTrack->updateCheckpoints(mCar2);
+        mTrack->updateCheckpoints(mCar2, 2);
 		mCar2->render();
 		mViewPlayer2->updateOverlay(mCar2->pos(),mFps);
 	}
@@ -310,7 +310,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mCarStartingPositions[i] = carPositions[i];
 
     // prepare scene
-    mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpointPositions, carResetPositions);
+    mTrack->loadTrack(width, height, QImage(background_path), QImage(gray_path), checkpointCount, checkpointPositions, carResetPositions, mIsMultiplayer);
 
     // Remove viewports from layout
     if(mViewportLayout->findChild<QWidget*>("mViewPlayer1"))
@@ -360,6 +360,9 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack);
         mViewPlayer2 = new Viewport(mWidth/2, mHeight, mTrack);
 
+        connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveLapTime()));
+        connect(mTrack, SIGNAL(LapChanged2()), mViewPlayer2, SLOT(saveLapTime()));
+
         mVisibleWidth = 0.4 * mWidth/2;
         mVisibleHeight =  0.4 * mHeight;
 
@@ -404,6 +407,8 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         // Create new Viewports for Player
         mViewPlayer1 = new Viewport(mWidth, mHeight, mTrack);
+
+        connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveLapTime()));
 
         mVisibleWidth = 0.4 * mWidth;
         mVisibleHeight =  0.4 * mHeight;
