@@ -19,8 +19,8 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
 	mTrack = new Track();
 
     // Create cars
-    mCar1 = new Car(mWorld, mTrack);
-    mCar2 = new Car(mWorld, mTrack);
+    mCar1 = new Car(mWorld, mTrack, 1);
+    mCar2 = new Car(mWorld, mTrack, 2);
 
     // Add the cars to the track/scene
     //mTrack->addItem(mCar1);

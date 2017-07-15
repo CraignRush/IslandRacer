@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/images">
-        <file>images/car1.png</file>
         <file>images/credits.png</file>
         <file>images/garage.png</file>
         <file>images/highscore.png</file>
@@ -33,6 +32,12 @@
         <file>images/singleplayer.png</file>
         <file>images/Bahraingrey.png</file>
         <file>images/Bahraintextur.png</file>
+        <file>images/highscorebackground.png</file>
+        <file>images/creditsbackground.png</file>
+        <file>images/settingsbackground.png</file>
+        <file>images/manualbackground.png</file>
+        <file>images/1car.png</file>
+        <file>images/2car.png</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>
