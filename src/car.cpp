@@ -20,17 +20,17 @@ Car::Car(b2World* world, Track* track, int i) : mWorld{world}, mTrack{track}
     //setScale(0.05);
     ensureVisible(QRectF(), 500, 400);
 
-    //! define our Main Car Body
+    //define our Main Car Body
     b2BodyDef *bodyDef = new b2BodyDef();
     bodyDef->type = b2_dynamicBody;
     bodyDef->linearDamping = 1.0f;
     bodyDef->angularDamping = 50.0f;//7.0f;
     bodyDef->position = mCarPosition;
 
-    //! Add Body to the world
+    //Add Body to the world
     mBody = mWorld->CreateBody(bodyDef);
 
-    //! Define the wheel bodies
+    //Define the wheel bodies
     b2BodyDef *leftWheelDef = new b2BodyDef();
     leftWheelDef->type = b2_dynamicBody;
     leftWheelDef->position = mBody->GetWorldPoint(mLeftFrontWheelPosition);
@@ -52,7 +52,7 @@ Car::Car(b2World* world, Track* track, int i) : mWorld{world}, mTrack{track}
     mLeftRearWheel = mWorld->CreateBody(leftRearWheelDef);
     mRightRearWheel = mWorld->CreateBody(rightRearWheelDef);
 
-    //! define shapes of car main body and wheels
+    //define shapes of car main body and wheels
     b2PolygonShape *boxDef = new b2PolygonShape();
     boxDef->SetAsBox(CAR_WIDTH/2.0f, CAR_LENGTH/2.0f);
     mBody->CreateFixture(boxDef,(CAR_WEIGHT - 4*TYRE_WEIGHT) / (CAR_WIDTH*CAR_LENGTH));
@@ -77,7 +77,7 @@ Car::Car(b2World* world, Track* track, int i) : mWorld{world}, mTrack{track}
     rightRearWheelShapeDef->SetAsBox(TYRE_WIDTH/2.0f, TYRE_LENGTH/2.0f);
     mRightRearWheel->CreateFixture(rightRearWheelShapeDef,TYRE_WEIGHT / (TYRE_WIDTH*TYRE_LENGTH));
 
-    //! Create rotatable joints for the front wheels
+    //Create rotatable joints for the front wheels
     b2RevoluteJointDef *leftJointDef = new b2RevoluteJointDef();
     leftJointDef->Initialize(mBody, mLeftWheel, mLeftWheel->GetWorldCenter());
     leftJointDef->enableMotor = true;
@@ -88,11 +88,11 @@ Car::Car(b2World* world, Track* track, int i) : mWorld{world}, mTrack{track}
     rightJointDef->enableMotor = true;
     rightJointDef->maxMotorTorque = MAX_TORQUE;
 
-    //! Add joints to the world
+    //Add joints to the world
     mLeftJoint = (b2RevoluteJoint*) mWorld->CreateJoint(leftJointDef);
     mRightJoint = (b2RevoluteJoint*) mWorld->CreateJoint(rightJointDef);
 
-    //! Define rear wheel static joints with only one degree of freedom
+    //Define rear wheel static joints with only one degree of freedom
     b2PrismaticJointDef *leftRearJointDef = new b2PrismaticJointDef();
     leftRearJointDef->Initialize(mBody, mLeftRearWheel, mLeftRearWheel->GetWorldCenter(), b2Vec2(0,1));
     leftRearJointDef->enableLimit = true;
@@ -105,15 +105,15 @@ Car::Car(b2World* world, Track* track, int i) : mWorld{world}, mTrack{track}
     rightRearJointDef->lowerTranslation = 0;
     rightRearJointDef->upperTranslation = 0;
 
-    //! Add rear wheel joint to the world
+    //Add rear wheel joint to the world
     mLeftRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(leftRearJointDef);
     mRightRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(rightRearJointDef);
 
-    // connect with sound class
+    //connect with sound class
     connect(this, SIGNAL(playCarSound()), Sound::getSoundInstance(this), SLOT(playCarSound()));
     connect(this, SIGNAL(stopCarSound()), Sound::getSoundInstance(this), SLOT(stopCarSound()));
 
-    // delete tmp vars
+    //delete tmp vars
     delete bodyDef;
     delete leftWheelDef;
     delete rightWheelDef;
@@ -142,7 +142,7 @@ Car::~Car()
 
 void Car::render()
 {
-    //! Get position of main car body and scale 1m = 20 px
+    //Get position of main car body and scale 1m = 20 px
     b2Vec2 pos = mBody->GetPosition();
     setPos((pos.x - (CAR_WIDTH / 2.0f)) * PX_TO_M_RATIO, (pos.y - (CAR_LENGTH / 2.0f)) * PX_TO_M_RATIO);
     setRotation(mBody->GetAngle() * 360.0 / (2.0 * 3.141592) + CAR_ROTATION_ANGLE);
@@ -309,10 +309,10 @@ void Car::setPosition(int x, int y, double angle)
     bodyDef->position = mCarPosition;
     bodyDef->angle = angle;
 
-    //! Add Body to the world
+    // Add Body to the world
     mBody = mWorld->CreateBody(bodyDef);
 
-    //! Define the wheel bodies
+    // Define the wheel bodies
     b2BodyDef *leftWheelDef = new b2BodyDef();
     leftWheelDef->type = b2_dynamicBody;
     leftWheelDef->position = mBody->GetWorldPoint(mLeftFrontWheelPosition);
@@ -338,7 +338,7 @@ void Car::setPosition(int x, int y, double angle)
     mLeftRearWheel = mWorld->CreateBody(leftRearWheelDef);
     mRightRearWheel = mWorld->CreateBody(rightRearWheelDef);
 
-    //! define shapes of car main body and wheels
+    // define shapes of car main body and wheels
     b2PolygonShape *boxDef = new b2PolygonShape();
     boxDef->SetAsBox(CAR_WIDTH/2.0f, CAR_LENGTH/2.0f);
     mBody->CreateFixture(boxDef,(CAR_WEIGHT - 4*TYRE_WEIGHT) / (CAR_WIDTH*CAR_LENGTH));
@@ -363,7 +363,7 @@ void Car::setPosition(int x, int y, double angle)
     rightRearWheelShapeDef->SetAsBox(TYRE_WIDTH/2.0f, TYRE_LENGTH/2.0f);
     mRightRearWheel->CreateFixture(rightRearWheelShapeDef,TYRE_WEIGHT / (TYRE_WIDTH*TYRE_LENGTH));
 
-    //! Create rotatable joints for the front wheels
+    // Create rotatable joints for the front wheels
     b2RevoluteJointDef *leftJointDef = new b2RevoluteJointDef();
     leftJointDef->Initialize(mBody, mLeftWheel, mLeftWheel->GetWorldCenter());
     leftJointDef->enableMotor = true;
@@ -374,11 +374,11 @@ void Car::setPosition(int x, int y, double angle)
     rightJointDef->enableMotor = true;
     rightJointDef->maxMotorTorque = MAX_TORQUE;
 
-    //! Add joints to the world
+    // Add joints to the world
     mLeftJoint = (b2RevoluteJoint*) mWorld->CreateJoint(leftJointDef);
     mRightJoint = (b2RevoluteJoint*) mWorld->CreateJoint(rightJointDef);
 
-    //! Define rear wheel static joints with only one degree of freedom
+    // Define rear wheel static joints with only one degree of freedom
     b2PrismaticJointDef *leftRearJointDef = new b2PrismaticJointDef();
     leftRearJointDef->Initialize(mBody, mLeftRearWheel, mLeftRearWheel->GetWorldCenter(), mBody->GetWorldVector(b2Vec2(0.0f, 1.0f)));
     leftRearJointDef->localAxisA.Set(0.0f, 1.0f);
@@ -393,7 +393,7 @@ void Car::setPosition(int x, int y, double angle)
     rightRearJointDef->lowerTranslation = 0;
     rightRearJointDef->upperTranslation = 0;
 
-    //! Add rear wheel joint to the world
+    // Add rear wheel joint to the world
     mLeftRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(leftRearJointDef);
     mRightRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(rightRearJointDef);
 
@@ -425,26 +425,26 @@ void Car::setPosition(WorldPosition position)
 //This function applies a "friction" in a direction orthogonal to the mBody's axis.
 void Car::killOrthogonalVelocity(b2Body *targetBody){
 
-    //! Get the normal vector "in sideway axis" of each wheel in world coordinates
+    // Get the normal vector "in sideway axis" of each wheel in world coordinates
     b2Vec2 currentRightNormal = targetBody->GetWorldVector(b2Vec2(1,0));
-    //! Get the vector of velocity in the normal's direction
+    // Get the vector of velocity in the normal's direction
     b2Vec2 lateralVelocity =  b2Dot(currentRightNormal, targetBody->GetLinearVelocity()) * currentRightNormal;
-    //! Compute counter impulse to compensate lateral velocity in each time step
+    // Compute counter impulse to compensate lateral velocity in each time step
     b2Vec2 impulse = targetBody->GetMass() * -lateralVelocity;
 
-    //! Allow drifting above a MAX_LATERAL_IMPULSE
+    // Allow drifting above a MAX_LATERAL_IMPULSE
     if (impulse.Length() > MAX_LATERAL_IMPULSE*mHandlingFac)
         impulse *= MAX_LATERAL_IMPULSE*mHandlingFac / impulse.Length();
 
-    //! Apply the linear impulse to each bodys center
+    // Apply the linear impulse to each bodys center
     targetBody->ApplyLinearImpulseToCenter(impulse,true);
-    //! Cancel the angular impulse by computing it through "Trägheitsmoment" * "Winkelgeschwindigkeit"
-    //! 0.1f through trial and error
+    // Cancel the angular impulse by computing it through "Trägheitsmoment" * "Winkelgeschwindigkeit"
+    // 0.1f through trial and error
     targetBody->ApplyAngularImpulse(0.1f * targetBody->GetInertia() * -targetBody->GetAngularVelocity(), true);
 }
 
 void Car::computeDriving(){
-    //! Driving
+    // Driving
     mLeftWheel->ApplyForceToCenter(mEngineSpeed * mLeftWheel->GetWorldVector(b2Vec2(0,1)),true);
     mLeftRearWheel->ApplyForceToCenter(mEngineSpeed * mLeftRearWheel->GetWorldVector(b2Vec2(0,1)),true);
     mRightWheel->ApplyForceToCenter(mEngineSpeed * mRightWheel->GetWorldVector(b2Vec2(0,1)),true);
@@ -452,7 +452,7 @@ void Car::computeDriving(){
 }
 
 void Car::computeSteering(){
-    //! Set motor speed of both revolute joints in relation to desired steering angle
+    // Set motor speed of both revolute joints in relation to desired steering angle
     mSpeed = mSteeringAngle - mLeftJoint->GetJointAngle();
     mLeftJoint->SetMotorSpeed(mSpeed * STEER_SPEED);
     mSpeed = mSteeringAngle - mRightJoint->GetJointAngle();

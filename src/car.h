@@ -12,7 +12,7 @@
 #include <QThread>
 #include "track.h"
 
-
+//! This enum contains all posible car movments
 enum InputState
 {
     None = 0,
@@ -26,21 +26,23 @@ enum InputState
     SteerLeft
 };
 
+
+//! Creates a car with interact methods
 class Car : public QObject, public QGraphicsPixmapItem
 {
 	Q_OBJECT
 
 private:
-	//! Set the relation of display pixels and meters
+    // Set the relation of display pixels and meters
     const int PX_TO_M_RATIO = 20;
     const float CAR_ROTATION_ANGLE = 0.0;//-90.0;
 
-	//! Variable car properties
-	//! max steering lock angle (default at pi/3)
+    // Variable car properties
+    // max steering lock angle (default at pi/3)
     const float MAX_STEER_ANGLE = (float)M_PI/4.0f;
     const float STEER_SPEED = 5.0f;//1.5f;         //5.0f;
     const float HORSEPOWERS = 3500.0f;       //240.0f;
-    const float MAX_LATERAL_IMPULSE = 20.0f; //1.7f; //! for drifting :D
+    const float MAX_LATERAL_IMPULSE = 20.0f; //1.7f; // for drifting :D
     const float MAX_TORQUE = 100.0f; //100.0f
     //const b2Vec2 CAR_STARTING_POS = b2Vec2(0.0f,0.0f);
 
@@ -63,16 +65,16 @@ private:
     double mAccelerationFac;
     double mHandlingFac;
 
-	//! Define the User Input States
+    // Define the User Input States
     enum InputState mInput;
-	//! Variables for user input
+    // Variables for user input
 	float mEngineSpeed =0.0f;
 	float mSteeringAngle = 0.0f;
 	float mSpeed;
 
     b2Vec2 mCarPosition = b2Vec2(110.0f, 50.0f);
 
-	//! b2World Objects
+    // b2World Objects
     b2World *mWorld;
 	b2Body *mBody;
 
@@ -89,29 +91,59 @@ private:
     Track* mTrack;
 
 signals:
+    //! Signal to start car sound.
     void playCarSound();
+
+    //! Signal to stop car sound.
     void stopCarSound();
 
 public:
-	//! Fill the world with car object constructor
+    //! Fill the world with car object.
     Car(b2World* world, Track* track, int i);
     ~Car();
-	//! Show the car on screen
+
+    //! Show the car on screen
 	void render();
-	//! Let wheels only roll "forward"
+
+    //! Let wheels only roll "forward"
     void killOrthogonalVelocity(b2Body* targetBody);
-	//! Compute the driving force
+
+    //! Compute the driving force
 	void computeDriving();
-	//! Compute the joint motor torque
+
+    //! Compute the joint motor torque
 	void computeSteering();
-	//! Compute events on which key pressed
+
+    //! Compute events on which key pressed
     void computeUserInput(enum InputState input);
 
+    //! Compute the different impact to the car
+    /*! \param index Number of player (1 or 2)
+     */
     void computeUndergroundImpact(int index);
 
+    //! New car position for each time step is calculated
+    /*! \param index Number of player (1 or 2)
+     */
     void updatePosition(int index);
+
+    //! New car is created and set to position
+    /*!
+     * \param x x-coordinate
+     * \param y y-coordinate
+     * \param angle rotation angle
+     */
     void setPosition(int x, int y, double angle);
+
+    //! Set car to position
     void setPosition(WorldPosition position);
+
+    //! Calculate parameter with "garage" values that impact car values
+    /*!
+     * \param speedValue Garage value for topspeed
+     * \param accelerationValue Garage value for acceleration
+     * \param handlingValue Garage value for handling
+     */
     void setCarParams(int speedValue, int accelerationValue, int handlingValue);
 };
 
