@@ -860,17 +860,17 @@ void mainMenu::computeMaximumValue()
         list = lineTime.split(QRegExp("\\:"));
         min = list.value(0).toInt();
         sec = list.value(1).toDouble();
-        inputFile3.close();
+        inputFile4.close();
     }
-    if(min < 3)
+    if(min < 4)
     {
         bahrainValue = 1;
     }
-    if(min < 2 && sec < 30)
+    if(min < 4 && sec < 30)
     {
         bahrainValue = 2;
     }
-    if(min < 2)
+    if(min < 3)
     {
         bahrainValue = 3;
     }
