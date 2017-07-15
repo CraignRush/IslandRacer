@@ -105,6 +105,8 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
 
 	// Init objects for start countdown
 	mStartTimer = NULL;
+
+    mCarStartingPositions = NULL;
 }
 
 World::~World()
@@ -176,8 +178,11 @@ World::~World()
         mViewPlayer2 = NULL;
     }
 
-    free(mCarStartingPositions);
-    mCarStartingPositions = NULL;
+    if(mCarStartingPositions != NULL)
+    {
+        free(mCarStartingPositions);
+        mCarStartingPositions = NULL;
+    }
 
     delete mVerticalSeperatorLine;
     mVerticalSeperatorLine = NULL;
@@ -295,7 +300,7 @@ void World::startLoop()
 	}
 }
 
-void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer)
+void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer, int speedValue, int accelerationValue, int handlingValue)
 {
     mIsMultiplayer = isMultiplayer;
 
@@ -348,6 +353,8 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         // set cars to starting position
         mCar1->setPosition(carPositions[0].x(), carPositions[0].y(), carPositions[0].angle());
         mCar2->setPosition(carPositions[1].x(), carPositions[1].y(), carPositions[1].angle());
+        mCar1->setCarParams(speedValue, accelerationValue, handlingValue);
+        mCar2->setCarParams(speedValue, accelerationValue, handlingValue);
 
         // Create new Viewports for Player
         mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack);
@@ -393,6 +400,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         // set car to starting position
         mCar1->setPosition(carPositions[0].x(), carPositions[0].y(), carPositions[0].angle());
+        mCar1->setCarParams(speedValue, accelerationValue, handlingValue);
 
         // Create new Viewports for Player
         mViewPlayer1 = new Viewport(mWidth, mHeight, mTrack);
@@ -819,27 +827,44 @@ void World::pauseGame()
     {
         mStartTimer->stop();
         mCounter->hide();
+
+        // Pause lap/total timer
+        mViewPlayer1->pauseGame(false);
+        mBlurEffectView1->setEnabled(true);
+        if(mIsMultiplayer)
+        {
+            mViewPlayer2->pauseGame(false);
+            mBlurEffectView2->setEnabled(true);
+        }
     }
     else if(mStartCounter >-100)
     {
         mStartTimer->stop();
         mCounter->hide();
         mTimer->stop();
-    }
-    else
+
+        // Pause lap/total timer
+        mViewPlayer1->pauseGame(true);
+        mBlurEffectView1->setEnabled(true);
+        if(mIsMultiplayer)
+        {
+            mViewPlayer2->pauseGame(true);
+            mBlurEffectView2->setEnabled(true);
+        }
+    } else {
         mTimer->stop();
+        // Pause lap/total timer
+        mViewPlayer1->pauseGame(true);
+        mBlurEffectView1->setEnabled(true);
+        if(mIsMultiplayer)
+        {
+            mViewPlayer2->pauseGame(true);
+            mBlurEffectView2->setEnabled(true);
+        }
+    }
 
     // stop race sound
     emit mCar1->stopCarSound();
-
-    // Pause lap/total timer
-    mViewPlayer1->pauseGame();
-    mBlurEffectView1->setEnabled(true);
-    if(mIsMultiplayer)
-    {
-        mViewPlayer2->pauseGame();
-        mBlurEffectView2->setEnabled(true);
-    }
 
     // add blur effect (disable viewport updates so blur won't be removed with repaint)
     //mViewPlayer1->setUpdatesEnabled(false);
@@ -870,6 +895,12 @@ void World::exitGame()
 		delete mStartTimer;
 		mStartTimer = NULL;
 	}
+
+    if(mCarStartingPositions != NULL)
+    {
+        free(mCarStartingPositions);
+        mCarStartingPositions = NULL;
+    }
 
 	emit mCar1->stopCarSound();
 

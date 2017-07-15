@@ -518,7 +518,7 @@ mainMenu::mainMenu(QWidget *parent) :
 
 mainMenu::~mainMenu()
 {
-	delete game;
+    delete game;
 	delete ui;
 }
 
@@ -1053,7 +1053,7 @@ void mainMenu::on_level1_2Play_clicked()
 	//world = new World(screenWidth,screenHeight,1);
 	//world->showFullScreen();
 	//hide();
-	game->loadCircuit(Monza);
+    game->loadCircuit(Monza, topspeedValue, accelerationValue, handlingValue);
 }
 
 // Buttons from Level 2
@@ -1083,7 +1083,7 @@ void mainMenu::on_level2_2Play_clicked()
 	//world = new World(screenWidth,screenHeight,2);
 	//world->showFullScreen();
 	//hide();
-	game->loadCircuit(Hockenheimring);
+    game->loadCircuit(Hockenheimring, topspeedValue, accelerationValue, handlingValue);
 }
 
 // Buttons from Level 3
@@ -1113,7 +1113,7 @@ void mainMenu::on_level3_2Play_clicked()
 	//world = new World(screenWidth,screenHeight,3);
 	//world->showFullScreen();
 	//hide();
-	game->loadCircuit(YasMarina);
+    game->loadCircuit(YasMarina, topspeedValue, accelerationValue, handlingValue);
 }
 
 void mainMenu::on_level4_2Main_clicked()
@@ -1138,5 +1138,5 @@ void mainMenu::on_level4_2Play_clicked()
 {
     playbuttonsound();
     // start level 4
-    game->loadCircuit(Bahrain);
+    game->loadCircuit(Bahrain, topspeedValue, accelerationValue, handlingValue);
 }

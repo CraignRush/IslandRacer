@@ -121,6 +121,11 @@ Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
     delete rightJointDef;
     delete leftRearJointDef;
     delete rightRearJointDef;
+
+    //set default values for car params
+    mSpeedFac = 1.0;
+    mAccelerationFac = 1.0;
+    mHandlingFac = 1.0;
 }
 
 Car::~Car()
@@ -157,40 +162,74 @@ void Car::computeUserInput(InputState input)
     switch(input)
     {
     case Accelerate:
-        mEngineSpeed = -HORSEPOWERS;
+        if(mEngineSpeed > 0)
+            mEngineSpeed = 0.0f;
+        if(mEngineSpeed > -HORSEPOWERS*mSpeedFac)
+            mEngineSpeed -= 400*1.f/(abs(mEngineSpeed)*0.01f+1.f)*mAccelerationFac;
         mSteeringAngle = 0.0f;
         break;
     case AccelerateSteerLeft:
-        mEngineSpeed = -HORSEPOWERS;
-        mSteeringAngle = -MAX_STEER_ANGLE;
+        if(mEngineSpeed > 0)
+            mEngineSpeed = 0.0f;
+        if(mEngineSpeed > -HORSEPOWERS*mSpeedFac)
+            mEngineSpeed -= 400*1.f/(abs(mEngineSpeed)*0.01f+1.f)*mAccelerationFac;
+        mSteeringAngle = -MAX_STEER_ANGLE*mHandlingFac; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
         break;
     case AccelerateSteerRight:
-        mEngineSpeed = -HORSEPOWERS;
-        mSteeringAngle = MAX_STEER_ANGLE;
+        if(mEngineSpeed > 0)
+            mEngineSpeed = 0.0f;
+        if(mEngineSpeed > -HORSEPOWERS*mSpeedFac)
+            mEngineSpeed -= 400*1.f/(abs(mEngineSpeed)*0.01f+1.f)*mAccelerationFac;
+        mSteeringAngle = MAX_STEER_ANGLE*mHandlingFac; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
         break;
     case Break:
-        mEngineSpeed = HORSEPOWERS;
+        if(mEngineSpeed < 0)
+            mEngineSpeed = 0.0f;
+        if(mEngineSpeed < HORSEPOWERS*mSpeedFac/2)
+            mEngineSpeed += 200*1.f/(abs(mEngineSpeed)*0.01f+1.f)*mAccelerationFac;
         mSteeringAngle = 0.0f;
         break;
     case BreakSteerLeft:
-        mEngineSpeed = HORSEPOWERS;
-        mSteeringAngle = -MAX_STEER_ANGLE;
+        if(mEngineSpeed < 0)
+            mEngineSpeed = 0.0f;
+        if(mEngineSpeed < HORSEPOWERS*mSpeedFac/2)
+            mEngineSpeed += 200*1.f/(abs(mEngineSpeed)*0.01f+1.f)*mAccelerationFac;
+        mSteeringAngle = -MAX_STEER_ANGLE*mHandlingFac; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
         break;
     case BreakSteerRight:
-        mEngineSpeed = HORSEPOWERS;
-        mSteeringAngle = MAX_STEER_ANGLE;
+        if(mEngineSpeed < 0)
+            mEngineSpeed = 0.0f;
+        if(mEngineSpeed < HORSEPOWERS*mSpeedFac/2)
+            mEngineSpeed += 200*1.f/(abs(mEngineSpeed)*0.01f+1.f)*mAccelerationFac;
+        mSteeringAngle = MAX_STEER_ANGLE*1.5; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
         break;
     case None:
-        mEngineSpeed = 0.0f;
+        //mEngineSpeed = 0.0f;
+        if(mEngineSpeed < -20.0f)
+            mEngineSpeed += 20+mBody->GetLinearVelocity().Length()*3;
+        else if(mEngineSpeed > 20.0f)
+            mEngineSpeed -= 20+mBody->GetLinearVelocity().Length()*3;
+        else
+            mEngineSpeed = 0.0f;
         mSteeringAngle = 0.0f;
         break;
     case SteerLeft:
-        mSteeringAngle = -MAX_STEER_ANGLE;
-        mEngineSpeed = mLeftWheel->GetLinearVelocity().Length();
+        mSteeringAngle = -MAX_STEER_ANGLE*mHandlingFac; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
+        if(mEngineSpeed < -20.0f)
+            mEngineSpeed += 20+mBody->GetLinearVelocity().Length()*3;
+        else if(mEngineSpeed > 20.0f)
+            mEngineSpeed -= 20+mBody->GetLinearVelocity().Length()*3;
+        else
+            mEngineSpeed = 0.0f;
         break;
     case SteerRight:
-        mSteeringAngle = MAX_STEER_ANGLE;
-        mEngineSpeed = mRightWheel->GetLinearVelocity().Length();
+        mSteeringAngle = MAX_STEER_ANGLE*mHandlingFac; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
+        if(mEngineSpeed < -20.0f)
+            mEngineSpeed += 20+mBody->GetLinearVelocity().Length()*3;
+        else if(mEngineSpeed > 20.0f)
+            mEngineSpeed -= 20+mBody->GetLinearVelocity().Length()*3;
+        else
+            mEngineSpeed = 0.0f;
         break;
     }
 }
@@ -217,6 +256,7 @@ void Car::computeUndergroundImpact()
         break;
     case Water:
         WorldPosition pos = mTrack->getLastCheckpointPosition();
+        mEngineSpeed = 0.0f;
         setPosition(pos.x(), pos.y(), pos.angle());
         break;
     }
@@ -224,7 +264,7 @@ void Car::computeUndergroundImpact()
 
 void Car::updatePosition()
 {
-    // kill orthogonal velocity to aviod sliding
+    // kill orthogonal velocity to avoid sliding
     killOrthogonalVelocity(mLeftWheel);
     killOrthogonalVelocity(mRightWheel);
     killOrthogonalVelocity(mLeftRearWheel);
@@ -386,8 +426,8 @@ void Car::killOrthogonalVelocity(b2Body *targetBody){
     b2Vec2 impulse = targetBody->GetMass() * -lateralVelocity;
 
     //! Allow drifting above a MAX_LATERAL_IMPULSE
-    if (impulse.Length() > MAX_LATERAL_IMPULSE)
-        impulse *= MAX_LATERAL_IMPULSE / impulse.Length();
+    if (impulse.Length() > MAX_LATERAL_IMPULSE*mHandlingFac)
+        impulse *= MAX_LATERAL_IMPULSE*mHandlingFac / impulse.Length();
 
     //! Apply the linear impulse to each bodys center
     targetBody->ApplyLinearImpulseToCenter(impulse,true);
@@ -399,7 +439,9 @@ void Car::killOrthogonalVelocity(b2Body *targetBody){
 void Car::computeDriving(){
     //! Driving
     mLeftWheel->ApplyForceToCenter(mEngineSpeed * mLeftWheel->GetWorldVector(b2Vec2(0,1)),true);
+    mLeftRearWheel->ApplyForceToCenter(mEngineSpeed * mLeftRearWheel->GetWorldVector(b2Vec2(0,1)),true);
     mRightWheel->ApplyForceToCenter(mEngineSpeed * mRightWheel->GetWorldVector(b2Vec2(0,1)),true);
+    mRightRearWheel->ApplyForceToCenter(mEngineSpeed * mRightRearWheel->GetWorldVector(b2Vec2(0,1)),true);
 }
 
 void Car::computeSteering(){
@@ -408,4 +450,12 @@ void Car::computeSteering(){
     mLeftJoint->SetMotorSpeed(mSpeed * STEER_SPEED);
     mSpeed = mSteeringAngle - mRightJoint->GetJointAngle();
     mRightJoint->SetMotorSpeed(mSpeed * STEER_SPEED);
+}
+
+void Car::setCarParams(int speedValue, int accelerationValue, int handlingValue){
+    mSpeedFac = 1.0f + 0.03f * speedValue;
+    mAccelerationFac = 1.0f + 0.1f * accelerationValue;
+    mHandlingFac = 1.0f + 0.05f * handlingValue;
+
+    mEngineSpeed = 0.0f;
 }

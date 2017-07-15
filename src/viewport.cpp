@@ -179,10 +179,13 @@ void Viewport::resumeGame()
     mTotalTimeElapsed.restart();
 }
 
-void Viewport::pauseGame()
+void Viewport::pauseGame(bool running)
 {
-    mCurLap += mLapTimeElapsed.elapsed();
-    mCurToTime += mTotalTimeElapsed.elapsed();
+    if(running)
+    {
+        mCurLap += mLapTimeElapsed.elapsed();
+        mCurToTime += mTotalTimeElapsed.elapsed();
+    }
 }
 
 void Viewport::restartGame()

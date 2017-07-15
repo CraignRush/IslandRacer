@@ -42,7 +42,7 @@ public:
     ~Viewport();
     void startGame();
     void resumeGame();
-    void pauseGame();
+    void pauseGame(bool running);
     void restartGame();
     //static void GameExit();
     void updateOverlay(QPointF carpos, int fps);

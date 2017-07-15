@@ -33,7 +33,7 @@ void Game::setMultiplayer(bool mp)
     mMultiplayer = mp;
 }
 
-void Game::loadCircuit(Circuit circuit)
+void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, int handlingValue)
 {
     QString filename;
 
@@ -161,7 +161,7 @@ void Game::loadCircuit(Circuit circuit)
 
         // load circuit with parameter
 
-        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, carPositions, mMultiplayer);
+        mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, carPositions, mMultiplayer, speedValue, accelerationValue, handlingValue);
 
 		//connect end race signal to player class
 		if(!mMultiplayer){

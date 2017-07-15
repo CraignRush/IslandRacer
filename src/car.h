@@ -37,10 +37,10 @@ private:
 
 	//! Variable car properties
 	//! max steering lock angle (default at pi/3)
-    const float MAX_STEER_ANGLE = (float)M_PI/7.0f;
+    const float MAX_STEER_ANGLE = (float)M_PI/4.0f;
     const float STEER_SPEED = 5.0f;//1.5f;         //5.0f;
-    const float HORSEPOWERS = 8000.0f;       //240.0f;
-    const float MAX_LATERAL_IMPULSE = 0.0f; //1.7f; //! for drifting :D
+    const float HORSEPOWERS = 3500.0f;       //240.0f;
+    const float MAX_LATERAL_IMPULSE = 20.0f; //1.7f; //! for drifting :D
     const float MAX_TORQUE = 100.0f; //100.0f
     //const b2Vec2 CAR_STARTING_POS = b2Vec2(0.0f,0.0f);
 
@@ -57,6 +57,11 @@ private:
     const b2Vec2 mRightRearWheelPosition = b2Vec2((CAR_WIDTH/2.0f),((CAR_LENGTH/2.0f) - (TYRE_LENGTH/2.0f) - 0.15f));
     const b2Vec2 mLeftFrontWheelPosition = b2Vec2(-(CAR_WIDTH/2.0f),-((CAR_LENGTH/2.0f) - (TYRE_LENGTH/2.0f) - 0.15f));
     const b2Vec2 mRightFrontWheelPosition = b2Vec2((CAR_WIDTH/2.0f),-((CAR_LENGTH/2.0f) - (TYRE_LENGTH/2.0f) - 0.15f));
+
+    //Factors you select in the garage
+    double mSpeedFac;
+    double mAccelerationFac;
+    double mHandlingFac;
 
 	//! Define the User Input States
     enum InputState mInput;
@@ -107,6 +112,7 @@ public:
     void updatePosition();
     void setPosition(int x, int y, double angle);
     void setPosition(WorldPosition position);
+    void setCarParams(int speedValue, int accelerationValue, int handlingValue);
 };
 
 #endif // CAR_H
