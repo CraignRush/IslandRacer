@@ -79,5 +79,6 @@ DISTFILES += \
     highscores/Monza.score \
     highscores/YasMarina.score \
     settings/garage.set \
-    settings/sound.set
+    settings/sound.set \
+    highscores/Bahrain.score
 

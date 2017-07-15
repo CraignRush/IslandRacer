@@ -61,6 +61,8 @@ private slots:
 
 	void on_main2Settings_clicked();
 
+    void computeMaximumValue();
+
     void on_garage2Main_clicked();
 
     void on_garageAccelerationSlider_valueChanged(int value);
@@ -156,6 +158,7 @@ private:
 	int handlingValue;
 	int topspeedValue;
 	int maximumValue;
+    int minimumValue = 10;
     int backgroundSoundActive;
     int backgroundSoundValue;
     int buttonSoundActive;

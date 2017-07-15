@@ -98,9 +98,6 @@ mainMenu::mainMenu(QWidget *parent) :
         inputFile5.close();
     }
 
-	maximumValue = 10;
-
-
 	// Get Screensize
 	QScreen *screen = QGuiApplication::primaryScreen();
 	QRect  screenGeometry = screen->geometry();
@@ -592,7 +589,7 @@ void mainMenu::playbuttonsound()
  *          7 - Level 1
  *          8 - Level 2
  *          9 - Level 3
- *
+ *         10 - Level 4
 */
 
 // Buttons from the main menu
@@ -606,6 +603,7 @@ void mainMenu::on_main2Garage_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(1);
+    computeMaximumValue();
     int decider = maximumValue - accelerationValue - topspeedValue - handlingValue;
     ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
 }
@@ -746,6 +744,143 @@ void mainMenu::on_main2QuitGame_clicked()
 }
 
 // Buttons and Sliders from Garage
+
+void mainMenu::computeMaximumValue()
+{
+    QString filename;
+    QString lineAll;
+    QString lineTime;
+    QStringList list;
+    int monzaValue = 0, hockenheimringValue = 0, yasmarinaValue = 0, bahrainValue = 0;
+    int min = 0;
+    double sec = 0;
+
+    // get the MonzaValue
+    filename = "highscores/Monza.score";
+    QFile inputFile1(filename);
+    if (inputFile1.open(QIODevice::ReadOnly))
+    {
+        QTextStream in1(&inputFile1);
+        lineAll = in1.readLine();
+        list = lineAll.split(QRegExp("\\,"));
+        lineTime = list.at(1);
+        list = lineTime.split(QRegExp("\\:"));
+        min = list.value(0).toInt();
+        sec = list.value(1).toDouble();
+        inputFile1.close();
+    }
+    if(min < 3)
+    {
+        monzaValue = 1;
+    }
+    if(min < 3 && sec < 30)
+    {
+        monzaValue = 2;
+    }
+    if(min < 2)
+    {
+        monzaValue = 3;
+    }
+    if(min == 0 && sec == 0)
+    {
+        monzaValue = 0;
+    }
+
+    // get the HockenheimringValue
+    filename = "highscores/Hockenheimring.score";
+    QFile inputFile2(filename);
+    if (inputFile2.open(QIODevice::ReadOnly))
+    {
+        QTextStream in2(&inputFile2);
+        lineAll = in2.readLine();
+        list = lineAll.split(QRegExp("\\,"));
+        lineTime = list.at(1);
+        list = lineTime.split(QRegExp("\\:"));
+        min = list.value(0).toInt();
+        sec = list.value(1).toDouble();
+        inputFile2.close();
+    }
+    if(min < 3 && sec < 30)
+    {
+        hockenheimringValue = 1;
+    }
+    if(min < 2)
+    {
+        hockenheimringValue = 2;
+    }
+    if(min < 2 && sec < 30 || min < 1)
+    {
+        hockenheimringValue = 3;
+    }
+    if(min == 0 && sec == 0)
+    {
+        hockenheimringValue = 0;
+    }
+
+    // get the YasMarinaValue
+    filename = "highscores/YasMarina.score";
+    QFile inputFile3(filename);
+    if (inputFile3.open(QIODevice::ReadOnly))
+    {
+        QTextStream in3(&inputFile3);
+        lineAll = in3.readLine();
+        list = lineAll.split(QRegExp("\\,"));
+        lineTime = list.at(1);
+        list = lineTime.split(QRegExp("\\:"));
+        min = list.value(0).toInt();
+        sec = list.value(1).toDouble();
+        inputFile3.close();
+    }
+    if(min < 3)
+    {
+        yasmarinaValue = 1;
+    }
+    if(min < 2 && sec < 30)
+    {
+        yasmarinaValue = 2;
+    }
+    if(min < 2)
+    {
+        yasmarinaValue = 3;
+    }
+    if(min == 0 && sec == 0)
+    {
+        yasmarinaValue = 0;
+    }
+
+    // get the BahrainValue
+    filename = "highscores/Bahrain.score";
+    QFile inputFile4(filename);
+    if (inputFile4.open(QIODevice::ReadOnly))
+    {
+        QTextStream in4(&inputFile4);
+        lineAll = in4.readLine();
+        list = lineAll.split(QRegExp("\\,"));
+        lineTime = list.at(1);
+        list = lineTime.split(QRegExp("\\:"));
+        min = list.value(0).toInt();
+        sec = list.value(1).toDouble();
+        inputFile3.close();
+    }
+    if(min < 3)
+    {
+        bahrainValue = 1;
+    }
+    if(min < 2 && sec < 30)
+    {
+        bahrainValue = 2;
+    }
+    if(min < 2)
+    {
+        bahrainValue = 3;
+    }
+    if(min == 0 && sec == 0)
+    {
+        bahrainValue = 0;
+    }
+
+    maximumValue = minimumValue + monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue;
+}
 
 void mainMenu::on_garage2Main_clicked()
 {
@@ -1013,6 +1148,14 @@ void mainMenu::on_settingsHighscoreResetButton_clicked()
         QTextStream in3(&outputFile3);
         for(int i = 0; i < 10; i++)	in3 << "-,-\n";
         outputFile3.close();
+    }
+
+    filename = "highscores/Bahrain.score";
+    QFile outputFile4(filename);
+    if (outputFile4.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+        QTextStream in4(&outputFile4);
+        for(int i = 0; i < 10; i++)	in4 << "-,-\n";
+        outputFile4.close();
     }
 }
 
