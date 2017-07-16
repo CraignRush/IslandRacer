@@ -3,24 +3,48 @@
 Viewport::Viewport(int width, int height, Track* track)
 {
     //scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
-
+    mWidth = width;
+    mHeight = height;
     // Set track as scene for this view
     setScene(track);
 
     // Set size for view and disable scrollbars
-    setFixedSize(width, height);
+    setFixedSize(mWidth, mHeight);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+    //Initialize Opacity Effect with its clock counter
+    mOpacity = 1.0;
+    mOpacityEffect = new QGraphicsOpacityEffect(this);
+    mOpacityEffect->setOpacity(mOpacity);
+    mOpacityTimer = new QTimer();
+    mOpacityTimer->setInterval(100);
+    connect(mOpacityTimer,SIGNAL(timeout()),this,SLOT(updateLabelOpacity()));
+
+
+
+    //Initialize Label for ingame total time display
+    mCurToTime = 0;
+    mTotalTimeText = "TOTAL TIME: ";
+    mTotalTimeLabel = new QLabel();
+    mTotalTimeLabel->setVisible(false);
+    mTotalTimeLabel->setFont(QFont("GillSansMT",mWidth/80,60)); // Font: family, PointSize, Weight(how bold)
+    mTotalTimeLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
+    mTotalTimeLabel->setText(mTotalTimeText + "mm:ss.zzz");
+    //    mTotalTimeLabel->setFixedSize(QSize(350,50));
+    mTotalTimeLabel->adjustSize();
+    mTotalTimeLabel->setParent(this);
+
+    QSize stdRectSize = mTotalTimeLabel->size();
     //Initialize Label for ingame lap counter display
     mLapText = "LAPS: ";
     mLapLabel = new QLabel();
     mLapLabel->setVisible(false);
-    mLapLabel->setFont(QFont("GillSansMT",width/100,60));
+    mLapLabel->setFont(QFont("GillSansMT",mWidth/80,60));
     mLapLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
     mLapLabel->setText(mLapText + "0/3");
-    //   mLapLabel->setFixedSize(QSize(150,50));
-    mLapLabel->adjustSize();
+    mLapLabel->setFixedSize(stdRectSize);
+    mLapLabel->setAlignment(Qt::AlignLeft);
     mLapLabel->setParent(this);
 
     //Initialize Label for ingame time display
@@ -28,54 +52,49 @@ Viewport::Viewport(int width, int height, Track* track)
     mLapTimeText = "LAP TIME: ";
     mLapTimeLabel = new QLabel();
     mLapTimeLabel->setVisible(false);
-    mLapTimeLabel->setFont(QFont("GillSansMT",width/100,60)); // Font: family, PointSize, Weight(how bold)
+    mLapTimeLabel->setFont(QFont("GillSansMT",mWidth/80,60)); // Font: family, PointSize, Weight(how bold)
     mLapTimeLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
     mLapTimeLabel->setText(mLapTimeText + "mm:ss.zzz");
-    //    mLapTimeLabel->setFixedSize(QSize(300,50));
-    mLapTimeLabel->adjustSize();
+    mLapTimeLabel->setFixedSize(stdRectSize);
+    mLapTimeLabel->setAlignment(Qt::AlignLeft);
     mLapTimeLabel->setParent(this);
-
-    //Initialize Label for ingame total time display
-    mCurToTime = 0;
-    mTotalTimeText = "TOTAL TIME: ";
-    mTotalTimeLabel = new QLabel();
-    mTotalTimeLabel->setVisible(false);
-    mTotalTimeLabel->setFont(QFont("GillSansMT",width/100,60)); // Font: family, PointSize, Weight(how bold)
-    mTotalTimeLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
-    mTotalTimeLabel->setText(mTotalTimeText + "mm:ss.zzz");
-    //    mTotalTimeLabel->setFixedSize(QSize(350,50));
-    mTotalTimeLabel->adjustSize();
-    mTotalTimeLabel->setParent(this);
 
 
     //Initialize Label for speedometer
     mSpeedDisplay = new QLabel();
     mSpeedDisplay->setVisible(false);
     mSpeedDisplay->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
-    mSpeedDisplay->setFont(QFont("GillSansMT",width/50,60));
+    mSpeedDisplay->setFont(QFont("GillSansMT",mWidth/30,60));
     //    mSpeedDisplay->setFixedSize(QSize(390,110));
     mSpeedDisplay->setText("000.0km/h");
     mSpeedDisplay->adjustSize();
     mSpeedDisplay->setParent(this);
     mPrevPos = QPointF(0,0);
 
-    if(width > height){
-        mLapLabel->setGeometry(width - mLapLabel->size().width() - (0.146 * width), height - (3 * mLapLabel->size().height()) - (3 * (0.2 * mLapLabel->size().height())), mLapLabel->size().width(), mLapLabel->size().height());
-        mLapTimeLabel->setGeometry(width - mLapTimeLabel->size().width() - (0.045 * width), height -(2 * mLapTimeLabel->size().height()) - (2 * (0.2 * mLapTimeLabel->size().height())), mLapTimeLabel->size().width(), mLapTimeLabel->size().height());
-        mTotalTimeLabel->setGeometry(width - mTotalTimeLabel->size().width() - (0.02 * width), height - mTotalTimeLabel->size().height() - (0.2 * mTotalTimeLabel->size().height()), mTotalTimeLabel->size().width(), mTotalTimeLabel->size().height());
-        mSpeedDisplay->setGeometry(0.024 * height, height - mSpeedDisplay->size().height() - (0.024 * height), mSpeedDisplay->size().width(), mSpeedDisplay->size().height());
-    } else {
-        mLapLabel->setGeometry(width - mLapLabel->size().width() - (0.137 * width), height - (3 * mLapLabel->size().height()) - (3 * (0.2 * mLapLabel->size().height())), mLapLabel->size().width(), mLapLabel->size().height());
-        mLapTimeLabel->setGeometry(width - mLapTimeLabel->size().width() - (0.043 * width), height -(2 * mLapTimeLabel->size().height()) - (2 * (0.2 * mLapTimeLabel->size().height())), mLapTimeLabel->size().width(), mLapTimeLabel->size().height());
-        mTotalTimeLabel->setGeometry(width - mTotalTimeLabel->size().width() - (0.02 * width), height - mTotalTimeLabel->size().height() - (0.2 * mTotalTimeLabel->size().height()), mTotalTimeLabel->size().width(), mTotalTimeLabel->size().height());
-        mSpeedDisplay->setGeometry(0.024 * height, height - mSpeedDisplay->size().height() - (0.024 * height), mSpeedDisplay->size().width(), mSpeedDisplay->size().height());
-    }
+    mLapLabel->setGeometry(mWidth - mLapLabel->size().width() - (0.02 * mWidth), mHeight - (3 * mLapLabel->size().height()) - (3 * (0.2 * mLapLabel->size().height())), mLapLabel->size().width(), mLapLabel->size().height());
+    mLapTimeLabel->setGeometry(width - mLapTimeLabel->size().width() - (0.02 * mWidth), mHeight -(2 * mLapTimeLabel->size().height()) - (2 * (0.2 * mLapTimeLabel->size().height())), mLapTimeLabel->size().width(), mLapTimeLabel->size().height());
+    mTotalTimeLabel->setGeometry(width - mTotalTimeLabel->size().width() - (0.02 * mWidth), mHeight - mTotalTimeLabel->size().height() - (0.2 * mTotalTimeLabel->size().height()), mTotalTimeLabel->size().width(), mTotalTimeLabel->size().height());
+    mSpeedDisplay->setGeometry(0.024 * mHeight, mHeight - mSpeedDisplay->size().height() - (0.024 * mHeight), mSpeedDisplay->size().width(), mSpeedDisplay->size().height());
 
-    //connect(track,SIGNAL(LapChanged()),this,SLOT(saveLapTime()));
 }
 
 Viewport::~Viewport()
 {
+    if(mLooserLabel != NULL)
+    {
+        delete mLooserLabel;
+        mLooserLabel = NULL;
+    }
+    if(mWinnerLabel != NULL)
+    {
+        delete mWinnerLabel;
+        mWinnerLabel = NULL;
+    }
+    if(mOpacityEffect != NULL)
+    {
+        delete mOpacityEffect;
+        mOpacityEffect = NULL;
+    }
     if(mLapTimeLabel != NULL)
     {
         delete mLapTimeLabel;
@@ -110,13 +129,14 @@ Viewport::~Viewport()
         delete mSpeedDisplay;
         mSpeedDisplay = NULL;
     }
+
 }
 
 void Viewport::startGame()
 {
-	// Display lap time
-	mLapTimeLabel->setVisible(true);
-	mTime.setHMS(0,0,0,0);
+    // Display lap time
+    mLapTimeLabel->setVisible(true);
+    mTime.setHMS(0,0,0,0);
     mLapTimeElapsed.start();
 
     // Display total time
@@ -157,7 +177,7 @@ void Viewport::updateOverlay(QPointF carpos, int fps)
 void Viewport::saveLapTime()
 {
     //mLapTime[mLaps - 1] = mTime.toString("mm:ss.z");
-    if(mLaps <= 2)
+    if(mLaps >= 2)
     {
         mLaps++;
     }
@@ -172,6 +192,52 @@ void Viewport::saveLapTime()
     mCurLap = 0;
     mLapTimeElapsed.restart();
 }
+
+void Viewport::showLooserLabel()
+{
+    mLooserLabel = new QLabel;
+    mLooserLabel->setVisible(false);
+    mLooserLabel->setFont(QFont("GillSansMT",mWidth/20,60));
+    mLooserLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,0); color : red; }");
+    mLooserLabel->setText("LOOSER!!");
+    mLooserLabel->adjustSize();
+    mLooserLabel->setGeometry(mWidth/2 - (mLooserLabel->size().width()/2), mHeight/2 - (mLooserLabel->size().height()), mLooserLabel->size().width(), mLooserLabel->size().height());
+    // mLooserLabel->setAlignment(Qt::AlignCenter);
+    mLooserLabel->setParent(this);
+    mLooserLabel->setVisible(true);
+    mLooserLabel->setGraphicsEffect(mOpacityEffect);
+    mOpacityTimer->start();
+}
+
+void Viewport::showWinnerLabel()
+{
+    mWinnerLabel = new QLabel;
+    mWinnerLabel->setVisible(false);
+    mWinnerLabel->setFont(QFont("GillSansMT",mWidth/20,60));
+    mWinnerLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,0); color : green; }");
+    mWinnerLabel->setText("WINNER!!");
+    mWinnerLabel->adjustSize();
+    mWinnerLabel->setGeometry(mWidth/2 - (mWinnerLabel->size().width()/2), mHeight/2 - (mWinnerLabel->size().height()/2), mWinnerLabel->size().width(), mWinnerLabel->size().height());
+    // mWinnerLabel->setAlignment(Qt::AlignCenter);
+    mWinnerLabel->setParent(this);
+    mWinnerLabel->setVisible(true);
+    mWinnerLabel->setGraphicsEffect(mOpacityEffect);
+    mOpacityTimer->start();
+}
+
+void Viewport::updateLabelOpacity()
+{
+    if(mOpacity < 0.01){
+        mOpacityTimer->stop();
+        emit quitGame();
+    }
+    mOpacity -= 0.025;
+    mOpacityEffect->setOpacity(mOpacity);
+
+
+}
+
+
 
 void Viewport::resumeGame()
 {

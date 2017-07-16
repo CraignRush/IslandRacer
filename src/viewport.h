@@ -3,7 +3,9 @@
 
 #include <QGraphicsView>
 #include <QTime>
+#include <QTimer>
 #include <QElapsedTimer>
+#include <QGraphicsOpacityEffect>
 #include <QObject>
 #include <QKeyEvent>
 #include <QLabel>
@@ -14,10 +16,13 @@ class Viewport : public QGraphicsView
     Q_OBJECT
 
 private:
+    int mWidth, mHeight;
     QLabel* mSpeedDisplay;              // Display current Speed
     QLabel* mLapTimeLabel;              // contains the String with the elapsed time per lap
     QLabel* mTotalTimeLabel;            // contains the String with the total elapsed time
     QLabel* mLapLabel;                  // contains the label in the scene
+    QLabel* mLooserLabel = NULL;
+    QLabel* mWinnerLabel = NULL;
     QElapsedTimer mLapTimeElapsed;     	// computes the elapsed time since "GO!" in ms
     QElapsedTimer mTotalTimeElapsed;
     QElapsedTimer mPauseTimeElapsed;	// Computes the time of pause pressed
@@ -37,6 +42,10 @@ private:
 
     QPointF mPrevPos;
 
+    QGraphicsOpacityEffect* mOpacityEffect;
+    double mOpacity;
+    QTimer* mOpacityTimer;
+
 public:
     Viewport(int width, int height, Track* track);
     ~Viewport();
@@ -49,10 +58,14 @@ public:
 
 signals:
     void stopGame();
+    void quitGame();
     void raceFinished(QString mLapTime[],QString mTotalTimeEnd);
 
 public slots:
     void saveLapTime();
+    void showLooserLabel();
+    void showWinnerLabel();
+    void updateLabelOpacity();
 
 };
 

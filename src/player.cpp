@@ -75,8 +75,10 @@ void Player::updateFile()
 				lineOfInsertion++;
 			}
 		}
-		list.insert(lineOfInsertion,QString(mPlayerName + "," + mTotalTime));
-		list.removeLast();
+        if(lineOfInsertion >= 0 && lineOfInsertion < 10){
+            list.insert(lineOfInsertion,QString(mPlayerName + "," + mTotalTime));
+            list.removeLast();
+        }
 		file.close();
 
 		if(file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text )){
@@ -89,7 +91,7 @@ void Player::updateFile()
 void Player::endRaceDialog(QString lapTimeArray[], QString totalTime)
 {
 	mInputDialog.showNormal();
-	memcpy(mPlayerTimes,lapTimeArray,sizeof(mPlayerTimes));
+    //memcpy(mPlayerTimes,lapTimeArray,sizeof(mPlayerTimes));
 	mTotalTime = totalTime;
 }
 
