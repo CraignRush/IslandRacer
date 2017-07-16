@@ -153,6 +153,8 @@ mainMenu::mainMenu(QWidget *parent) :
 	QPixmap yasmarina(":/images/images/YasMarinatextur.png");
     QPixmap bahrain(":/images/images/Bahraintextur.png");
     QPixmap silverstone(":/images/images/Silverstonetextur.png");
+    QPixmap starYellow(":/images/images/star-yellow.png");
+    QPixmap starDark(":/images/images/star-dark.png");
 
 	logo = logo.scaledToHeight(0.2 * screenHeight);
     hockenheim = hockenheim.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
@@ -160,6 +162,8 @@ mainMenu::mainMenu(QWidget *parent) :
     yasmarina = yasmarina.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
     bahrain = bahrain.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
     silverstone = silverstone.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
+    starYellow = starYellow.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1),Qt::IgnoreAspectRatio);
+    starDark = starDark.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1),Qt::IgnoreAspectRatio);
 
 	// Set Icons
 	QIcon leftArrow(":/images/images/l-arrow-576725_1280.png");
@@ -450,11 +454,6 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->playTypeSelectTitle->setFont(GillSansMTTitle);
     ui->playTypeSelectTitle->setText("Choose your playtype:");
 
-    QPixmap starYellow(":/images/images/star-yellow.png");
-    QPixmap starDark(":/images/images/star-dark.png");
-    starYellow = starYellow.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1));
-    starDark = starDark.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1));
-
     // Items in Level 1
     ui->level1Logo->setPixmap(logo);
     ui->level1Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -479,11 +478,10 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level1Trackpic->setPixmap(monza);
     ui->level1Star1->setStyleSheet("QLabel{background: transparent;}");
     ui->level1Star1->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    ui->level1Star1->setPixmap(starYellow);
+    ui->level1Star1->setPixmap(starDark);
     ui->level1Star2->setStyleSheet("QLabel{background: transparent;}");
     ui->level1Star2->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    ui->level1Star2->setPixmap(starYellow);
-    ui->level1Star2->setEnabled(false);
+    ui->level1Star2->setPixmap(starDark);
     ui->level1Star3->setStyleSheet("QLabel{background: transparent;}");
     ui->level1Star3->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->level1Star3->setPixmap(starDark);
@@ -510,6 +508,15 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level2Trackname->setText("Chancy Circuit");
     ui->level2Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
     ui->level2Trackpic->setPixmap(hockenheim);
+    ui->level2Star1->setStyleSheet("QLabel{background: transparent;}");
+    ui->level2Star1->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level2Star1->setPixmap(starDark);
+    ui->level2Star2->setStyleSheet("QLabel{background: transparent;}");
+    ui->level2Star2->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level2Star2->setPixmap(starDark);
+    ui->level2Star3->setStyleSheet("QLabel{background: transparent;}");
+    ui->level2Star3->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level2Star3->setPixmap(starDark);
 
     // Items in Level 3
     ui->level3Logo->setPixmap(logo);
@@ -533,6 +540,15 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level3Trackname->setText("Deadly Desert");
     ui->level3Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
     ui->level3Trackpic->setPixmap(yasmarina);
+    ui->level3Star1->setStyleSheet("QLabel{background: transparent;}");
+    ui->level3Star1->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level3Star1->setPixmap(starDark);
+    ui->level3Star2->setStyleSheet("QLabel{background: transparent;}");
+    ui->level3Star2->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level3Star2->setPixmap(starDark);
+    ui->level3Star3->setStyleSheet("QLabel{background: transparent;}");
+    ui->level3Star3->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level3Star3->setPixmap(starDark);
 
     // Items in Level 4
     ui->level4Logo->setPixmap(logo);
@@ -556,6 +572,15 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level4Trackname->setText("Breezy Bridges");
     ui->level4Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
     ui->level4Trackpic->setPixmap(bahrain);
+    ui->level4Star1->setStyleSheet("QLabel{background: transparent;}");
+    ui->level4Star1->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level4Star1->setPixmap(starDark);
+    ui->level4Star2->setStyleSheet("QLabel{background: transparent;}");
+    ui->level4Star2->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level4Star2->setPixmap(starDark);
+    ui->level4Star3->setStyleSheet("QLabel{background: transparent;}");
+    ui->level4Star3->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level4Star3->setPixmap(starDark);
 
     // Items in Level 5
     ui->level5Logo->setPixmap(logo);
@@ -579,6 +604,15 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level5Trackname->setText("Rapid Randomness");
     ui->level5Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
     ui->level5Trackpic->setPixmap(silverstone);
+    ui->level5Star1->setStyleSheet("QLabel{background: transparent;}");
+    ui->level5Star1->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level5Star1->setPixmap(starDark);
+    ui->level5Star2->setStyleSheet("QLabel{background: transparent;}");
+    ui->level5Star2->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level5Star2->setPixmap(starDark);
+    ui->level5Star3->setStyleSheet("QLabel{background: transparent;}");
+    ui->level5Star3->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level5Star3->setPixmap(starDark);
 }
 
 mainMenu::~mainMenu()
@@ -630,6 +664,7 @@ void mainMenu::playbuttonsound()
  *          8 - Level 2
  *          9 - Level 3
  *         10 - Level 4
+ *         11 - Level 5
 */
 
 // Buttons from the main menu
@@ -638,6 +673,7 @@ void mainMenu::on_main2Level1_clicked()
 	playbuttonsound();
     ui->stackedWidget->setCurrentIndex(6);
     computeMaximumValue();
+    setStars();
 }
 
 void mainMenu::on_main2Garage_clicked()
@@ -877,15 +913,15 @@ void mainMenu::computeMaximumValue()
         sec = list.value(1).toDouble();
         inputFile3.close();
     }
-    if(min < 3)
+    if(min < 4)
     {
         yasmarinaValue = 1;
     }
-    if(min < 2 && sec < 30)
+    if(min < 3 && sec < 30)
     {
         yasmarinaValue = 2;
     }
-    if(min < 2)
+    if(min < 3)
     {
         yasmarinaValue = 3;
     }
@@ -957,6 +993,125 @@ void mainMenu::computeMaximumValue()
     }
 
     maximumValue = minimumValue + monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue + silverstoneValue;
+}
+
+void mainMenu::setStars()
+{
+    QPixmap starYellow(":/images/images/star-yellow.png");
+    QPixmap starDark(":/images/images/star-dark.png");
+    starYellow = starYellow.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1),Qt::IgnoreAspectRatio);
+    starDark = starDark.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1),Qt::IgnoreAspectRatio);
+
+    switch (monzaValue) {
+    case 0:
+        ui->level1Star1->setPixmap(starDark);
+        ui->level1Star2->setPixmap(starDark);
+        ui->level1Star3->setPixmap(starDark);
+        break;
+    case 1:
+        ui->level1Star1->setPixmap(starYellow);
+        ui->level1Star2->setPixmap(starDark);
+        ui->level1Star3->setPixmap(starDark);
+        break;
+    case 2:
+        ui->level1Star1->setPixmap(starYellow);
+        ui->level1Star2->setPixmap(starYellow);
+        ui->level1Star3->setPixmap(starDark);
+        break;
+    default:
+        ui->level1Star1->setPixmap(starYellow);
+        ui->level1Star2->setPixmap(starYellow);
+        ui->level1Star3->setPixmap(starYellow);
+        break;
+    }
+    switch (hockenheimringValue) {
+    case 0:
+        ui->level2Star1->setPixmap(starDark);
+        ui->level2Star2->setPixmap(starDark);
+        ui->level2Star3->setPixmap(starDark);
+        break;
+    case 1:
+        ui->level2Star1->setPixmap(starYellow);
+        ui->level2Star2->setPixmap(starDark);
+        ui->level2Star3->setPixmap(starDark);
+        break;
+    case 2:
+        ui->level2Star1->setPixmap(starYellow);
+        ui->level2Star2->setPixmap(starYellow);
+        ui->level2Star3->setPixmap(starDark);
+        break;
+    default:
+        ui->level2Star1->setPixmap(starYellow);
+        ui->level2Star2->setPixmap(starYellow);
+        ui->level2Star3->setPixmap(starYellow);
+        break;
+    }
+    switch (yasmarinaValue) {
+    case 0:
+        ui->level3Star1->setPixmap(starDark);
+        ui->level3Star2->setPixmap(starDark);
+        ui->level3Star3->setPixmap(starDark);
+        break;
+    case 1:
+        ui->level3Star1->setPixmap(starYellow);
+        ui->level3Star2->setPixmap(starDark);
+        ui->level3Star3->setPixmap(starDark);
+        break;
+    case 2:
+        ui->level3Star1->setPixmap(starYellow);
+        ui->level3Star2->setPixmap(starYellow);
+        ui->level3Star3->setPixmap(starDark);
+        break;
+    default:
+        ui->level3Star1->setPixmap(starYellow);
+        ui->level3Star2->setPixmap(starYellow);
+        ui->level3Star3->setPixmap(starYellow);
+        break;
+    }
+    switch (bahrainValue) {
+    case 0:
+        ui->level4Star1->setPixmap(starDark);
+        ui->level4Star2->setPixmap(starDark);
+        ui->level4Star3->setPixmap(starDark);
+        break;
+    case 1:
+        ui->level4Star1->setPixmap(starYellow);
+        ui->level4Star2->setPixmap(starDark);
+        ui->level4Star3->setPixmap(starDark);
+        break;
+    case 2:
+        ui->level4Star1->setPixmap(starYellow);
+        ui->level4Star2->setPixmap(starYellow);
+        ui->level4Star3->setPixmap(starDark);
+        break;
+    default:
+        ui->level4Star1->setPixmap(starYellow);
+        ui->level4Star2->setPixmap(starYellow);
+        ui->level4Star3->setPixmap(starYellow);
+        break;
+    }
+    switch (silverstoneValue) {
+    case 0:
+        ui->level5Star1->setPixmap(starDark);
+        ui->level5Star2->setPixmap(starDark);
+        ui->level5Star3->setPixmap(starDark);
+        break;
+    case 1:
+        ui->level5Star1->setPixmap(starYellow);
+        ui->level5Star2->setPixmap(starDark);
+        ui->level5Star3->setPixmap(starDark);
+        break;
+    case 2:
+        ui->level5Star1->setPixmap(starYellow);
+        ui->level5Star2->setPixmap(starYellow);
+        ui->level5Star3->setPixmap(starDark);
+        break;
+    default:
+        ui->level5Star1->setPixmap(starYellow);
+        ui->level5Star2->setPixmap(starYellow);
+        ui->level5Star3->setPixmap(starYellow);
+        break;
+    }
 }
 
 void mainMenu::on_garage2Main_clicked()
@@ -1288,7 +1443,7 @@ void mainMenu::on_level1_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count() - 1); // Left is last Level
-    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue+silverstoneValue) < 8)
+    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue) < 8)
     {
         ui->level5_2Play->setEnabled(false);
     }
@@ -1438,7 +1593,7 @@ void mainMenu::on_level4_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
-    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue+silverstoneValue) < 8)
+    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue) < 8)
     {
         ui->level5_2Play->setEnabled(false);
     }

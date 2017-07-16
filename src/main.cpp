@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 //    menu.show();
 
 //    Game game;
-//    game.loadCircuit(Monza);
+//    game.loadCircuit(Silverstone, 10, 10, 10);
 
     return a.exec();
 }
