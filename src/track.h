@@ -10,6 +10,7 @@
 enum Underground
 {
     Asphalt = 0,
+    Magic = 70,
     Grass = 114,
     Sand = 188,
     Water = 252
