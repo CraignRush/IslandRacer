@@ -92,7 +92,7 @@ void Player::updateFile()
 void Player::endRaceDialog(QString lapTimeArray[], QString totalTime)
 {
 	mInputDialog.showNormal();
-	memcpy(mPlayerTimes,lapTimeArray,sizeof(mPlayerTimes));
+    //memcpy(mPlayerTimes,lapTimeArray,sizeof(mPlayerTimes));
 	mTotalTime = totalTime;
 }
 

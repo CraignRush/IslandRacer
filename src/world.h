@@ -120,7 +120,7 @@ public slots:
     //! Restarts the game and sets all values like you just loaded the track
     void restartGame();
 
-    //! Stops game loop
+    //! Stops game loop after completing all laps
     void stopGame();
 
     //! End Game
