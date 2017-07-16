@@ -7,7 +7,7 @@ Game::Game()
 {
     mWorld = new World(1920,1080);
     mWorld->hide();
-	mPlayer = new Player;
+    mPlayer = new Player;
 }
 
 Game::Game(int screenWidth, int screenHeight, bool fullscreen)
@@ -16,7 +16,7 @@ Game::Game(int screenWidth, int screenHeight, bool fullscreen)
     if(fullscreen)
         mWorld->showFullScreen();
     mWorld->hide();
-	mPlayer = new Player;
+    mPlayer = new Player;
 }
 
 Game::~Game()
@@ -41,15 +41,15 @@ void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, i
     {
     case Monza:
         filename = ":/circuits/Monza.circuit";
-		mPlayer->SetCircuit(Monza);
+        mPlayer->SetCircuit(Monza);
         break;
     case Hockenheimring:
         filename = ":/circuits/Hockenheimring.circuit";
-		mPlayer->SetCircuit(Hockenheimring);
+        mPlayer->SetCircuit(Hockenheimring);
         break;
     case YasMarina:
         filename = ":/circuits/YasMarina.circuit";
-		mPlayer->SetCircuit(YasMarina);
+        mPlayer->SetCircuit(YasMarina);
         break;
     case Bahrain:
         filename = ":/circuits/Bahrain.circuit";
@@ -143,7 +143,7 @@ void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, i
                 }
                 continue;
             }
-/*
+            /*
             if(list.value(0) == "CAR_X")
             {
                 carPosition.setX(list.value(1).toInt());
@@ -167,12 +167,18 @@ void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, i
 
         mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, carPositions, mMultiplayer, speedValue, accelerationValue, handlingValue);
 
-		//connect end race signal to player class
-		if(!mMultiplayer){
-        connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString[],QString)),mPlayer,SLOT(endRaceDialog(QString[],QString)));
-        connect(mPlayer,SIGNAL(playerInputFinished()),mWorld,SLOT(exitGame()));
-		}
-		// show window on top
+        //connect end race signal to player class
+        if(!mMultiplayer){
+            connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString[],QString)),mPlayer,SLOT(endRaceDialog(QString[],QString)));
+            connect(mPlayer,SIGNAL(playerInputFinished()),mWorld,SLOT(exitGame()));
+        } else {
+            connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString[],QString)),mWorld->getViewPlayer(2),SLOT(showLooserLabel()));
+            connect(mWorld->getViewPlayer(2),SIGNAL(raceFinished(QString[],QString)),mWorld->getViewPlayer(1),SLOT(showLooserLabel()));
+
+            connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString[],QString)),mWorld->getViewPlayer(1),SLOT(showWinnerLabel()));
+            connect(mWorld->getViewPlayer(2),SIGNAL(raceFinished(QString[],QString)),mWorld->getViewPlayer(2),SLOT(showWinnerLabel()));
+        }
+        // show window on top
         mWorld->showFullScreen();
         mWorld->raise();
         mWorld->activateWindow();
@@ -192,6 +198,6 @@ void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, i
             free(carPositions);
             carPositions = NULL;
         }
-	}
+    }
 }
 
