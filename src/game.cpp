@@ -55,6 +55,10 @@ void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, i
         filename = ":/circuits/Bahrain.circuit";
         mPlayer->SetCircuit(Bahrain);
         break;
+    case Silverstone:
+        filename = ":/circuits/Silverstone.circuit";
+        mPlayer->SetCircuit(Silverstone);
+        break;
     }
 
     QFile inputFile(filename);

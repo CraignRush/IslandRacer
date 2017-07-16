@@ -152,12 +152,14 @@ mainMenu::mainMenu(QWidget *parent) :
 	QPixmap monza(":/images/images/Monzatextur.png") ;
 	QPixmap yasmarina(":/images/images/YasMarinatextur.png");
     QPixmap bahrain(":/images/images/Bahraintextur.png");
+    QPixmap silverstone(":/images/images/Silverstonetextur.png");
 
 	logo = logo.scaledToHeight(0.2 * screenHeight);
     hockenheim = hockenheim.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
     monza = monza.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
     yasmarina = yasmarina.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
     bahrain = bahrain.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
+    silverstone = silverstone.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
 
 	// Set Icons
 	QIcon leftArrow(":/images/images/l-arrow-576725_1280.png");
@@ -576,7 +578,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level5Trackname->setFont(GillSansMTTitle);
     ui->level5Trackname->setText("Rapid Randomness");
     ui->level5Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
-    //ui->level5Trackpic->setPixmap(yasmarina);
+    ui->level5Trackpic->setPixmap(silverstone);
 }
 
 mainMenu::~mainMenu()
@@ -797,6 +799,7 @@ void mainMenu::computeMaximumValue()
     hockenheimringValue = 0;
     yasmarinaValue = 0;
     bahrainValue = 0;
+    silverstoneValue=0;
 
     // get the MonzaValue
     filename = "highscores/Monza.score";
@@ -922,7 +925,38 @@ void mainMenu::computeMaximumValue()
         bahrainValue = 0;
     }
 
-    maximumValue = minimumValue + monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue;
+    // get the SilverstoneValue
+    filename = "highscores/Silverstone.score";
+    QFile inputFile5(filename);
+    if (inputFile5.open(QIODevice::ReadOnly))
+    {
+        QTextStream in5(&inputFile5);
+        lineAll = in5.readLine();
+        list = lineAll.split(QRegExp("\\,"));
+        lineTime = list.at(1);
+        list = lineTime.split(QRegExp("\\:"));
+        min = list.value(0).toInt();
+        sec = list.value(1).toDouble();
+        inputFile5.close();
+    }
+    if(min < 4)
+    {
+        silverstoneValue = 1;
+    }
+    if(min < 4 && sec < 30)
+    {
+        silverstoneValue = 2;
+    }
+    if(min < 3)
+    {
+        silverstoneValue = 3;
+    }
+    if(min == 0 && sec == 0)
+    {
+        silverstoneValue = 0;
+    }
+
+    maximumValue = minimumValue + monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue + silverstoneValue;
 }
 
 void mainMenu::on_garage2Main_clicked()
@@ -1200,6 +1234,14 @@ void mainMenu::on_settingsHighscoreResetButton_clicked()
         for(int i = 0; i < 10; i++)	in4 << "-,-\n";
         outputFile4.close();
     }
+
+    filename = "highscores/Silverstone.score";
+    QFile outputFile5(filename);
+    if (outputFile5.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+        QTextStream in5(&outputFile5);
+        for(int i = 0; i < 10; i++)	in5 << "-,-\n";
+        outputFile5.close();
+    }
 }
 
 // Buttons from Manual
@@ -1246,7 +1288,7 @@ void mainMenu::on_level1_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count() - 1); // Left is last Level
-    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue) < 8)
+    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue+silverstoneValue) < 8)
     {
         ui->level5_2Play->setEnabled(false);
     }
@@ -1396,7 +1438,7 @@ void mainMenu::on_level4_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
-    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue) < 8)
+    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue+silverstoneValue) < 8)
     {
         ui->level5_2Play->setEnabled(false);
     }
@@ -1443,5 +1485,7 @@ void mainMenu::on_level5_2Right_clicked()
 
 void mainMenu::on_level5_2Play_clicked()
 {
+    playbuttonsound();
     // start level 5
+    game->loadCircuit(Silverstone, topspeedValue, accelerationValue, handlingValue);
 }

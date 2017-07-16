@@ -40,6 +40,8 @@
         <file>images/2car.png</file>
         <file>images/star-dark.png</file>
         <file>images/star-yellow.png</file>
+        <file>images/Silverstonetextur.png</file>
+        <file>images/Silverstonegrey.png</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>

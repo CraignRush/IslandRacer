@@ -171,6 +171,7 @@ private:
     int hockenheimringValue;
     int yasmarinaValue;
     int bahrainValue;
+    int silverstoneValue;
     int backgroundSoundActive;
     int backgroundSoundValue;
     int buttonSoundActive;

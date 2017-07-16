@@ -17,7 +17,8 @@ enum Circuit
 	Monza = 1,
 	Hockenheimring,
     YasMarina,
-    Bahrain
+    Bahrain,
+    Silverstone
 };
 
 class Player: public QObject
