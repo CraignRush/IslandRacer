@@ -193,8 +193,9 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level2HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
     ui->level3HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
     ui->level4HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+    ui->level5HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
 
-	// Set Fonts
+    // Set Fonts
 	GillSansMT.setFamily("GillSansMT");
 	GillSansMT.setPointSize(20);
 	GillSansMT.setBold(1);
@@ -447,6 +448,10 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->playTypeSelectTitle->setFont(GillSansMTTitle);
     ui->playTypeSelectTitle->setText("Choose your playtype:");
 
+    QPixmap starYellow(":/images/images/star-yellow.png");
+    QPixmap starDark(":/images/images/star-dark.png");
+    starYellow = starYellow.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1));
+    starDark = starDark.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1));
 
     // Items in Level 1
     ui->level1Logo->setPixmap(logo);
@@ -470,6 +475,16 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level1Trackname->setText("Sunny Speedway");
     ui->level1Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
     ui->level1Trackpic->setPixmap(monza);
+    ui->level1Star1->setStyleSheet("QLabel{background: transparent;}");
+    ui->level1Star1->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level1Star1->setPixmap(starYellow);
+    ui->level1Star2->setStyleSheet("QLabel{background: transparent;}");
+    ui->level1Star2->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level1Star2->setPixmap(starYellow);
+    ui->level1Star2->setEnabled(false);
+    ui->level1Star3->setStyleSheet("QLabel{background: transparent;}");
+    ui->level1Star3->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level1Star3->setPixmap(starDark);
 
     // Items in Level 2
     ui->level2Logo->setPixmap(logo);
@@ -539,6 +554,29 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level4Trackname->setText("Breezy Bridges");
     ui->level4Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
     ui->level4Trackpic->setPixmap(bahrain);
+
+    // Items in Level 5
+    ui->level5Logo->setPixmap(logo);
+    ui->level5Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level5Logo->setStyleSheet("QLabel{background: transparent;}");
+    ui->level5_2Right->setIcon(rightArrow);
+    ui->level5_2Right->setIconSize(arrowButton);
+    ui->level5_2Right->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level5_2Left->setIcon(leftArrow);
+    ui->level5_2Left->setIconSize(arrowButton);
+    ui->level5_2Left->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level5_2Main->setIcon(menu);
+    ui->level5_2Main->setIconSize(smallButton);
+    ui->level5_2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level5_2Play->setIcon(play);
+    ui->level5_2Play->setIconSize(normalButton);
+    ui->level5_2Play->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level5Trackname->setStyleSheet("QLabel{background: transparent;}");
+    ui->level5Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level5Trackname->setFont(GillSansMTTitle);
+    ui->level5Trackname->setText("Rapid Randomness");
+    ui->level5Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
+    //ui->level5Trackpic->setPixmap(yasmarina);
 }
 
 mainMenu::~mainMenu()
@@ -597,6 +635,7 @@ void mainMenu::on_main2Level1_clicked()
 {
 	playbuttonsound();
     ui->stackedWidget->setCurrentIndex(6);
+    computeMaximumValue();
 }
 
 void mainMenu::on_main2Garage_clicked()
@@ -751,9 +790,13 @@ void mainMenu::computeMaximumValue()
     QString lineAll;
     QString lineTime;
     QStringList list;
-    int monzaValue = 0, hockenheimringValue = 0, yasmarinaValue = 0, bahrainValue = 0;
     int min = 0;
     double sec = 0;
+
+    monzaValue = 0;
+    hockenheimringValue = 0;
+    yasmarinaValue = 0;
+    bahrainValue = 0;
 
     // get the MonzaValue
     filename = "highscores/Monza.score";
@@ -808,7 +851,7 @@ void mainMenu::computeMaximumValue()
     {
         hockenheimringValue = 2;
     }
-    if(min < 2 && sec < 30 || min < 1)
+    if((min < 2 && sec < 30) || min < 1)
     {
         hockenheimringValue = 3;
     }
@@ -1203,12 +1246,28 @@ void mainMenu::on_level1_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count() - 1); // Left is last Level
+    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue) < 8)
+    {
+        ui->level5_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level5_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level1_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
+    if((monzaValue) < 1)
+    {
+        ui->level2_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level2_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level1_2Main_clicked()
@@ -1245,6 +1304,14 @@ void mainMenu::on_level2_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
+    if((monzaValue + hockenheimringValue) < 3)
+    {
+        ui->level3_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level3_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level2_2Play_clicked()
@@ -1269,12 +1336,28 @@ void mainMenu::on_level3_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
+    if((monzaValue) < 1)
+    {
+        ui->level2_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level2_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level3_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
+    if((monzaValue + hockenheimringValue + yasmarinaValue) < 6)
+    {
+        ui->level4_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level4_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level3_2Play_clicked()
@@ -1287,6 +1370,8 @@ void mainMenu::on_level3_2Play_clicked()
     game->loadCircuit(YasMarina, topspeedValue, accelerationValue, handlingValue);
 }
 
+// Buttons from Level 4
+
 void mainMenu::on_level4_2Main_clicked()
 {
     playbuttonsound();
@@ -1297,12 +1382,28 @@ void mainMenu::on_level4_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
+    if((monzaValue + hockenheimringValue) < 3)
+    {
+        ui->level3_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level3_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level4_2Right_clicked()
 {
     playbuttonsound();
-    ui->stackedWidget->setCurrentIndex(7);    // Page 7 is Level 1
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
+    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue) < 8)
+    {
+        ui->level5_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level5_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level4_2Play_clicked()
@@ -1310,4 +1411,37 @@ void mainMenu::on_level4_2Play_clicked()
     playbuttonsound();
     // start level 4
     game->loadCircuit(Bahrain, topspeedValue, accelerationValue, handlingValue);
+}
+
+// Buttons from Level 5
+
+void mainMenu::on_level5_2Main_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void mainMenu::on_level5_2Left_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
+    if((monzaValue + hockenheimringValue + yasmarinaValue) < 6)
+    {
+        ui->level4_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level4_2Play->setEnabled(true);
+    }
+}
+
+void mainMenu::on_level5_2Right_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(7);    // Page 7 is Level 1
+}
+
+void mainMenu::on_level5_2Play_clicked()
+{
+    // start level 5
 }
