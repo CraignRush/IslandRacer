@@ -1,6 +1,7 @@
 #ifndef VIEWPORT_H
 #define VIEWPORT_H
 
+#include "underwatereffect.h"
 #include <QGraphicsView>
 #include <QTime>
 #include <QTimer>
@@ -46,6 +47,8 @@ private:
     QGraphicsOpacityEffect* mOpacityEffect;
     double mOpacity;
     QTimer* mOpacityTimer;
+
+    UnderwaterEffect* mUnderwaterEffect;
 
 public:
     //! Generates a QGraphicsView with some display elements

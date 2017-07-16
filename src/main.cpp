@@ -3,6 +3,7 @@
 #include <mainmenu.h>
 #include "game.h"
 #include "pausemenu.h"
+#include "underwatereffect.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +11,7 @@ int main(int argc, char *argv[])
 
     mainMenu menu;
     menu.showFullScreen();
+
 
 //    PauseMenu menu(1080);
 //    menu.show();

@@ -1,5 +1,6 @@
 #include "viewport.h"
 
+
 Viewport::Viewport(int width, int height, Track* track)
 {
     //scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
@@ -12,6 +13,10 @@ Viewport::Viewport(int width, int height, Track* track)
     setFixedSize(mWidth, mHeight);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    mUnderwaterEffect =  new UnderwaterEffect(this);
+    mUnderwaterEffect->setEnabled(true);
+    setGraphicsEffect(mUnderwaterEffect); // for debugging purposes
 
     //Initialize Opacity Effect with its clock counter
     mOpacity = 1.0;
