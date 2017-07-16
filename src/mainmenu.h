@@ -63,6 +63,8 @@ private slots:
 
     void computeMaximumValue();
 
+    void setStars();
+
     void on_garage2Main_clicked();
 
     void on_garageAccelerationSlider_valueChanged(int value);
@@ -158,7 +160,7 @@ private slots:
 private:
 	Ui::mainMenu *ui;
 	//World* world;
-	Game* game;
+    Game* game;
 
 	int screenWidth;
 	int screenHeight;

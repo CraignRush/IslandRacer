@@ -79,6 +79,7 @@ Underground Track::getUnderground(int x, int y)
     case Grass: return Grass;
     case Sand: return Sand;
     case Water: return Water;
+    case Magic: return Magic;
     }
 
     return Asphalt;

@@ -82,5 +82,6 @@ DISTFILES += \
     highscores/YasMarina.score \
     settings/garage.set \
     settings/sound.set \
-    highscores/Bahrain.score
+    highscores/Bahrain.score \
+    highscores/Silverstone.score
 
