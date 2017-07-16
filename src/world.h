@@ -17,6 +17,7 @@
 #include "worldposition.h"
 #include "pausemenu.h"
 
+//! Manage the whole game procedure
 class World : public QMainWindow
 {
 	Q_OBJECT
@@ -64,22 +65,65 @@ private:
     float mOpacity;                 // Opacity for fade out effect of StartCounter
 
 public:
+    //! Set up basic game elements
 	World(int width,int height);
     ~World();
+
+    //! Load the selected Track and generates all missing elements for the game
+    /*!
+     * \param width Your screen width
+     * \param height Your screen height
+     * \param background_path Dir location of the track image
+     * \param gray_path Dir location of the grey scale track image
+     * \param checkpointCount Number of checkpoints on selected track
+     * \param checkpointPositions Array with position of all checkpoints
+     * \param carResetPositions Array with position of all reset positions
+     * \param carCount Number of Players
+     * \param carPositions Car starting position
+     * \param isMultiplayer Bool it you selected MP or SP
+     * \param speedValue Garage value for topspeed
+     * \param accelerationValue Garage value for acceleration
+     * \param handlingValue Garage value for handling
+     */
     void loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer, int speedValue, int accelerationValue, int handlingValue);
+
+    //! Manage all key press events
     void keyPressEvent(QKeyEvent *keyEvent);
+
+    //! Manage all key release events
     void keyReleaseEvent(QKeyEvent *keyEvent);
+
+    //! Stops game loop to pause the game and display pausemenu
     void pauseGame();
     //void StopGame();
+
+    //! Removes/Sets world elements to load a new track
     static void GameExit();
+
+    //! Get the QGraphicsView of the choosen player
     Viewport *getViewPlayer(int number);
 
 public slots:
+    //! Slot for the game loop
+    /*! Car movment is calculated and checkpoints are checked
+     */
 	void gameLoop();
+
+    //! Slot for start loop
+    /*! Displays the beginning sequence
+     */
 	void startLoop();
+
+    //! Resume the game after pause
     void resumeGame();
+
+    //! Restarts the game and sets all values like you just loaded the track
     void restartGame();
+
+    //! Stops game loop after completing all laps
     void stopGame();
+
+    //! End Game
     void exitGame();
 };
 

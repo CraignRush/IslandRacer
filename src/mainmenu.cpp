@@ -98,9 +98,6 @@ mainMenu::mainMenu(QWidget *parent) :
         inputFile5.close();
     }
 
-	maximumValue = 10;
-
-
 	// Get Screensize
 	QScreen *screen = QGuiApplication::primaryScreen();
 	QRect  screenGeometry = screen->geometry();
@@ -155,12 +152,14 @@ mainMenu::mainMenu(QWidget *parent) :
 	QPixmap monza(":/images/images/Monzatextur.png") ;
 	QPixmap yasmarina(":/images/images/YasMarinatextur.png");
     QPixmap bahrain(":/images/images/Bahraintextur.png");
+    QPixmap silverstone(":/images/images/Silverstonetextur.png");
 
 	logo = logo.scaledToHeight(0.2 * screenHeight);
     hockenheim = hockenheim.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
     monza = monza.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
     yasmarina = yasmarina.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
     bahrain = bahrain.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
+    silverstone = silverstone.scaled(QSize(0.5 * screenWidth, 0.5 * screenHeight),Qt::IgnoreAspectRatio);
 
 	// Set Icons
 	QIcon leftArrow(":/images/images/l-arrow-576725_1280.png");
@@ -196,8 +195,9 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level2HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
     ui->level3HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
     ui->level4HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
+    ui->level5HorizontalSpacer->changeSize(0.15 * screenHeight,0.075 * screenHeight);
 
-	// Set Fonts
+    // Set Fonts
 	GillSansMT.setFamily("GillSansMT");
 	GillSansMT.setPointSize(20);
 	GillSansMT.setBold(1);
@@ -450,6 +450,10 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->playTypeSelectTitle->setFont(GillSansMTTitle);
     ui->playTypeSelectTitle->setText("Choose your playtype:");
 
+    QPixmap starYellow(":/images/images/star-yellow.png");
+    QPixmap starDark(":/images/images/star-dark.png");
+    starYellow = starYellow.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1));
+    starDark = starDark.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1));
 
     // Items in Level 1
     ui->level1Logo->setPixmap(logo);
@@ -473,6 +477,16 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level1Trackname->setText("Sunny Speedway");
     ui->level1Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
     ui->level1Trackpic->setPixmap(monza);
+    ui->level1Star1->setStyleSheet("QLabel{background: transparent;}");
+    ui->level1Star1->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level1Star1->setPixmap(starYellow);
+    ui->level1Star2->setStyleSheet("QLabel{background: transparent;}");
+    ui->level1Star2->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level1Star2->setPixmap(starYellow);
+    ui->level1Star2->setEnabled(false);
+    ui->level1Star3->setStyleSheet("QLabel{background: transparent;}");
+    ui->level1Star3->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level1Star3->setPixmap(starDark);
 
     // Items in Level 2
     ui->level2Logo->setPixmap(logo);
@@ -542,6 +556,29 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->level4Trackname->setText("Breezy Bridges");
     ui->level4Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
     ui->level4Trackpic->setPixmap(bahrain);
+
+    // Items in Level 5
+    ui->level5Logo->setPixmap(logo);
+    ui->level5Logo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level5Logo->setStyleSheet("QLabel{background: transparent;}");
+    ui->level5_2Right->setIcon(rightArrow);
+    ui->level5_2Right->setIconSize(arrowButton);
+    ui->level5_2Right->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level5_2Left->setIcon(leftArrow);
+    ui->level5_2Left->setIconSize(arrowButton);
+    ui->level5_2Left->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level5_2Main->setIcon(menu);
+    ui->level5_2Main->setIconSize(smallButton);
+    ui->level5_2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level5_2Play->setIcon(play);
+    ui->level5_2Play->setIconSize(normalButton);
+    ui->level5_2Play->setStyleSheet("QPushButton{background: transparent;}");
+    ui->level5Trackname->setStyleSheet("QLabel{background: transparent;}");
+    ui->level5Trackname->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->level5Trackname->setFont(GillSansMTTitle);
+    ui->level5Trackname->setText("Rapid Randomness");
+    ui->level5Trackpic->setStyleSheet("QLabel{background: transparent; border: 5px solid black}");
+    ui->level5Trackpic->setPixmap(silverstone);
 }
 
 mainMenu::~mainMenu()
@@ -592,7 +629,7 @@ void mainMenu::playbuttonsound()
  *          7 - Level 1
  *          8 - Level 2
  *          9 - Level 3
- *
+ *         10 - Level 4
 */
 
 // Buttons from the main menu
@@ -600,12 +637,14 @@ void mainMenu::on_main2Level1_clicked()
 {
 	playbuttonsound();
     ui->stackedWidget->setCurrentIndex(6);
+    computeMaximumValue();
 }
 
 void mainMenu::on_main2Garage_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(1);
+    computeMaximumValue();
     int decider = maximumValue - accelerationValue - topspeedValue - handlingValue;
     ui->garageLabel->setText("You have " + QString::number(decider) + " points left to distribute");
 }
@@ -746,6 +785,179 @@ void mainMenu::on_main2QuitGame_clicked()
 }
 
 // Buttons and Sliders from Garage
+
+void mainMenu::computeMaximumValue()
+{
+    QString filename;
+    QString lineAll;
+    QString lineTime;
+    QStringList list;
+    int min = 0;
+    double sec = 0;
+
+    monzaValue = 0;
+    hockenheimringValue = 0;
+    yasmarinaValue = 0;
+    bahrainValue = 0;
+    silverstoneValue=0;
+
+    // get the MonzaValue
+    filename = "highscores/Monza.score";
+    QFile inputFile1(filename);
+    if (inputFile1.open(QIODevice::ReadOnly))
+    {
+        QTextStream in1(&inputFile1);
+        lineAll = in1.readLine();
+        list = lineAll.split(QRegExp("\\,"));
+        lineTime = list.at(1);
+        list = lineTime.split(QRegExp("\\:"));
+        min = list.value(0).toInt();
+        sec = list.value(1).toDouble();
+        inputFile1.close();
+    }
+    if(min < 3)
+    {
+        monzaValue = 1;
+    }
+    if(min < 3 && sec < 30)
+    {
+        monzaValue = 2;
+    }
+    if(min < 2)
+    {
+        monzaValue = 3;
+    }
+    if(min == 0 && sec == 0)
+    {
+        monzaValue = 0;
+    }
+
+    // get the HockenheimringValue
+    filename = "highscores/Hockenheimring.score";
+    QFile inputFile2(filename);
+    if (inputFile2.open(QIODevice::ReadOnly))
+    {
+        QTextStream in2(&inputFile2);
+        lineAll = in2.readLine();
+        list = lineAll.split(QRegExp("\\,"));
+        lineTime = list.at(1);
+        list = lineTime.split(QRegExp("\\:"));
+        min = list.value(0).toInt();
+        sec = list.value(1).toDouble();
+        inputFile2.close();
+    }
+    if(min < 3 && sec < 30)
+    {
+        hockenheimringValue = 1;
+    }
+    if(min < 2)
+    {
+        hockenheimringValue = 2;
+    }
+    if((min < 2 && sec < 30) || min < 1)
+    {
+        hockenheimringValue = 3;
+    }
+    if(min == 0 && sec == 0)
+    {
+        hockenheimringValue = 0;
+    }
+
+    // get the YasMarinaValue
+    filename = "highscores/YasMarina.score";
+    QFile inputFile3(filename);
+    if (inputFile3.open(QIODevice::ReadOnly))
+    {
+        QTextStream in3(&inputFile3);
+        lineAll = in3.readLine();
+        list = lineAll.split(QRegExp("\\,"));
+        lineTime = list.at(1);
+        list = lineTime.split(QRegExp("\\:"));
+        min = list.value(0).toInt();
+        sec = list.value(1).toDouble();
+        inputFile3.close();
+    }
+    if(min < 3)
+    {
+        yasmarinaValue = 1;
+    }
+    if(min < 2 && sec < 30)
+    {
+        yasmarinaValue = 2;
+    }
+    if(min < 2)
+    {
+        yasmarinaValue = 3;
+    }
+    if(min == 0 && sec == 0)
+    {
+        yasmarinaValue = 0;
+    }
+
+    // get the BahrainValue
+    filename = "highscores/Bahrain.score";
+    QFile inputFile4(filename);
+    if (inputFile4.open(QIODevice::ReadOnly))
+    {
+        QTextStream in4(&inputFile4);
+        lineAll = in4.readLine();
+        list = lineAll.split(QRegExp("\\,"));
+        lineTime = list.at(1);
+        list = lineTime.split(QRegExp("\\:"));
+        min = list.value(0).toInt();
+        sec = list.value(1).toDouble();
+        inputFile4.close();
+    }
+    if(min < 4)
+    {
+        bahrainValue = 1;
+    }
+    if(min < 4 && sec < 30)
+    {
+        bahrainValue = 2;
+    }
+    if(min < 3)
+    {
+        bahrainValue = 3;
+    }
+    if(min == 0 && sec == 0)
+    {
+        bahrainValue = 0;
+    }
+
+    // get the SilverstoneValue
+    filename = "highscores/Silverstone.score";
+    QFile inputFile5(filename);
+    if (inputFile5.open(QIODevice::ReadOnly))
+    {
+        QTextStream in5(&inputFile5);
+        lineAll = in5.readLine();
+        list = lineAll.split(QRegExp("\\,"));
+        lineTime = list.at(1);
+        list = lineTime.split(QRegExp("\\:"));
+        min = list.value(0).toInt();
+        sec = list.value(1).toDouble();
+        inputFile5.close();
+    }
+    if(min < 4)
+    {
+        silverstoneValue = 1;
+    }
+    if(min < 4 && sec < 30)
+    {
+        silverstoneValue = 2;
+    }
+    if(min < 3)
+    {
+        silverstoneValue = 3;
+    }
+    if(min == 0 && sec == 0)
+    {
+        silverstoneValue = 0;
+    }
+
+    maximumValue = minimumValue + monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue + silverstoneValue;
+}
 
 void mainMenu::on_garage2Main_clicked()
 {
@@ -1014,6 +1226,22 @@ void mainMenu::on_settingsHighscoreResetButton_clicked()
         for(int i = 0; i < 10; i++)	in3 << "-,-\n";
         outputFile3.close();
     }
+
+    filename = "highscores/Bahrain.score";
+    QFile outputFile4(filename);
+    if (outputFile4.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+        QTextStream in4(&outputFile4);
+        for(int i = 0; i < 10; i++)	in4 << "-,-\n";
+        outputFile4.close();
+    }
+
+    filename = "highscores/Silverstone.score";
+    QFile outputFile5(filename);
+    if (outputFile5.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
+        QTextStream in5(&outputFile5);
+        for(int i = 0; i < 10; i++)	in5 << "-,-\n";
+        outputFile5.close();
+    }
 }
 
 // Buttons from Manual
@@ -1060,12 +1288,28 @@ void mainMenu::on_level1_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count() - 1); // Left is last Level
+    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue+silverstoneValue) < 8)
+    {
+        ui->level5_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level5_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level1_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
+    if((monzaValue) < 1)
+    {
+        ui->level2_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level2_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level1_2Main_clicked()
@@ -1102,6 +1346,14 @@ void mainMenu::on_level2_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
+    if((monzaValue + hockenheimringValue) < 3)
+    {
+        ui->level3_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level3_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level2_2Play_clicked()
@@ -1126,12 +1378,28 @@ void mainMenu::on_level3_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
+    if((monzaValue) < 1)
+    {
+        ui->level2_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level2_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level3_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
+    if((monzaValue + hockenheimringValue + yasmarinaValue) < 6)
+    {
+        ui->level4_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level4_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level3_2Play_clicked()
@@ -1144,6 +1412,8 @@ void mainMenu::on_level3_2Play_clicked()
     game->loadCircuit(YasMarina, topspeedValue, accelerationValue, handlingValue);
 }
 
+// Buttons from Level 4
+
 void mainMenu::on_level4_2Main_clicked()
 {
     playbuttonsound();
@@ -1154,12 +1424,28 @@ void mainMenu::on_level4_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
+    if((monzaValue + hockenheimringValue) < 3)
+    {
+        ui->level3_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level3_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level4_2Right_clicked()
 {
     playbuttonsound();
-    ui->stackedWidget->setCurrentIndex(7);    // Page 7 is Level 1
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
+    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue+silverstoneValue) < 8)
+    {
+        ui->level5_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level5_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level4_2Play_clicked()
@@ -1167,4 +1453,39 @@ void mainMenu::on_level4_2Play_clicked()
     playbuttonsound();
     // start level 4
     game->loadCircuit(Bahrain, topspeedValue, accelerationValue, handlingValue);
+}
+
+// Buttons from Level 5
+
+void mainMenu::on_level5_2Main_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void mainMenu::on_level5_2Left_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
+    if((monzaValue + hockenheimringValue + yasmarinaValue) < 6)
+    {
+        ui->level4_2Play->setEnabled(false);
+    }
+    else
+    {
+        ui->level4_2Play->setEnabled(true);
+    }
+}
+
+void mainMenu::on_level5_2Right_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(7);    // Page 7 is Level 1
+}
+
+void mainMenu::on_level5_2Play_clicked()
+{
+    playbuttonsound();
+    // start level 5
+    game->loadCircuit(Silverstone, topspeedValue, accelerationValue, handlingValue);
 }

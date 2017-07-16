@@ -61,6 +61,8 @@ private slots:
 
 	void on_main2Settings_clicked();
 
+    void computeMaximumValue();
+
     void on_garage2Main_clicked();
 
     void on_garageAccelerationSlider_valueChanged(int value);
@@ -145,6 +147,14 @@ private slots:
 
     void on_level4_2Play_clicked();
 
+    void on_level5_2Right_clicked();
+
+    void on_level5_2Left_clicked();
+
+    void on_level5_2Main_clicked();
+
+    void on_level5_2Play_clicked();
+
 private:
 	Ui::mainMenu *ui;
 	//World* world;
@@ -156,6 +166,12 @@ private:
 	int handlingValue;
 	int topspeedValue;
 	int maximumValue;
+    int minimumValue = 10;
+    int monzaValue;
+    int hockenheimringValue;
+    int yasmarinaValue;
+    int bahrainValue;
+    int silverstoneValue;
     int backgroundSoundActive;
     int backgroundSoundValue;
     int buttonSoundActive;

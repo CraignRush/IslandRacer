@@ -6,6 +6,8 @@
 #include <QtMath>
 #include "worldposition.h"
 
+
+//! Creates the checkpoints and provide methods to interact with them
 class Checkpoint : QGraphicsRectItem
 {
 private:
@@ -16,12 +18,29 @@ private:
     WorldPosition* mCarResetPositions;
 
 public:
-    //Checkpoint();
+    //! Creats the checkpoints.
+    /*! Reset positions are also generated.
+     * \param checkpointCount Number of checkpoints
+     * \param checkpointPositions Array with x,y and rotation value for each checkpoint
+     * \param carResetPositions Array with x.y and roatation value for each reset position
+     */
     Checkpoint(int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions);
+
+    //! Returns checkpoint[index]
     QGraphicsRectItem* GetCheckpoint(int index);
+
+    //! Check if QGraphicsItem colides with checkpoint.
+    /*! mCheckpointcounter and mLapcounter is increased if necessary.
+     */
     void CheckCheckpoint(QGraphicsPixmapItem*);
+
+    //! Returns the total number of checkpoints.
     int GetNumberOfCheckpoints();
+
+    //! Returns the reset positon of the last checkpoint you pase.
     WorldPosition getLastCheckpointPosition();
+
+    //! Returns your current lap.
 	int GetLaps();
 };
 
