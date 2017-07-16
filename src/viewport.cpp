@@ -76,10 +76,17 @@ Viewport::Viewport(int width, int height, Track* track)
     mTotalTimeLabel->setGeometry(width - mTotalTimeLabel->size().width() - (0.02 * mWidth), mHeight - mTotalTimeLabel->size().height() - (0.2 * mTotalTimeLabel->size().height()), mTotalTimeLabel->size().width(), mTotalTimeLabel->size().height());
     mSpeedDisplay->setGeometry(0.024 * mHeight, mHeight - mSpeedDisplay->size().height() - (0.024 * mHeight), mSpeedDisplay->size().width(), mSpeedDisplay->size().height());
 
+    mWinnerLabel = NULL;
+    mLooserLabel = NULL;
+
 }
 
 Viewport::~Viewport()
 {
+
+    delete mOpacityEffect;
+    mOpacityEffect = NULL;
+
     if(mLooserLabel != NULL)
     {
         delete mLooserLabel;
@@ -90,45 +97,47 @@ Viewport::~Viewport()
         delete mWinnerLabel;
         mWinnerLabel = NULL;
     }
-    if(mOpacityEffect != NULL)
-    {
-        delete mOpacityEffect;
-        mOpacityEffect = NULL;
-    }
-    if(mLapTimeLabel != NULL)
-    {
+  //  if(mOpacityEffect != NULL)
+    //{
+        //delete mOpacityEffect;
+        //mOpacityEffect = NULL;
+   // }
+   // if(mLapTimeLabel != NULL)
+   // {
         delete mLapTimeLabel;
         mLapTimeLabel = NULL;
-    }
+   // }
 
-    if(mLapLabel != NULL)
-    {
+  //  if(mLapLabel != NULL)
+   // {
         delete mLapLabel;
         mLapLabel = NULL;
-    }
+   // }
 
-    if(mTotalTimeLabel != NULL)
-    {
+  //  if(mTotalTimeLabel != NULL)
+   // {
         delete mTotalTimeLabel;
         mTotalTimeLabel = NULL;
-    }
+   // }
 
-    if(mLapTimeLabel != NULL)
-    {
+   // if(mLapTimeLabel != NULL)
+    //{
         delete mLapTimeLabel;
         mLapTimeLabel = NULL;
-    }
+   // }
 
-    if(mLapLabel != NULL)
-    {
+    //if(mLapLabel != NULL)
+    //{
         delete mLapLabel;
         mLapLabel = NULL;
-    }
-    if(mSpeedDisplay != NULL)
-    {
+   // }
+    //if(mSpeedDisplay != NULL)
+    //{
         delete mSpeedDisplay;
         mSpeedDisplay = NULL;
-    }
+   // }
+
+    delete mOpacityTimer;
 
 }
 
@@ -229,6 +238,7 @@ void Viewport::updateLabelOpacity()
 {
     if(mOpacity < 0.01){
         mOpacityTimer->stop();
+
         emit quitGame();
     }
     mOpacity -= 0.025;

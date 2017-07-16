@@ -452,6 +452,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
     mStartTimer = new QTimer(this);
     connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
     mStartTimer->start(50);
+    mCounter->show();
 }
 
 void World::keyPressEvent(QKeyEvent *keyEvent)
@@ -826,6 +827,11 @@ void World::restartGame()
     mCounter->show();
 
     // Init and start timer for game loop and start loop
+    if(mStartTimer != NULL)
+    {
+        delete mStartTimer;
+        mStartTimer = NULL;
+    }
     mStartTimer = new QTimer(this);
     connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
     mStartTimer->start(50);
@@ -915,7 +921,6 @@ void World::exitGame()
     }
 
     emit mCar1->stopCarSound();
-
     //        if(mSpeedDisplay != NULL)
     //        {
     //            delete mSpeedDisplay;
