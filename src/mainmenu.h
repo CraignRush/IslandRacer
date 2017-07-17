@@ -24,6 +24,10 @@ class mainMenu : public QMainWindow
 private:
 	QString mName;
 	QString mZeit;
+    QString mLap1;
+    QString mLap2;
+    QString mLap3;
+    QString mHighscoreMatrix[5][10];
 	QString mLevel1HighscoreMatrix[2][10];
 	QString mLevel2HighscoreMatrix[2][10];
 	QString mLevel3HighscoreMatrix[2][10];
@@ -81,6 +85,12 @@ private slots:
 
     void on_highscore2Main_clicked();
 
+    void on_highscore2Right_clicked();
+
+    void on_highscore2Left_clicked();
+
+    void insertHighscoreToTable();
+
     void on_settings2Main_clicked();
 
     void on_settingsBackgroundSoundOn_clicked();
@@ -102,6 +112,10 @@ private slots:
     void on_settingsRaceSoundSlider_valueChanged(int value);
 
     void on_settingsHighscoreResetButton_clicked();
+
+    void setbackgroundsound();
+
+    void playbuttonsound();
 
     void on_manual2Main_clicked();
 
@@ -136,10 +150,6 @@ private slots:
 	void on_level3_2Main_clicked();
 
 	void on_level3_2Play_clicked();
-
-    void setbackgroundsound();
-
-    void playbuttonsound();
 
     void on_level4_2Main_clicked();
 
@@ -180,6 +190,7 @@ private:
     int buttonSoundValue;
     int raceSoundActive;
     int raceSoundValue;
+    int highscoreTrackNumber = 0;
 
     //QMediaPlaylist *playlist;
     //QMediaPlayer *buttonsound;
