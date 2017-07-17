@@ -40,7 +40,7 @@ public:
 
 public slots:
     //! Slot to select multi- or singleplayer
-    void setMultiplayer(bool mp);
+    void setGameMode(bool mp);
 };
 
 #endif // GAME_H

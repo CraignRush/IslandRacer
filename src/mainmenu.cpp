@@ -108,7 +108,7 @@ mainMenu::mainMenu(QWidget *parent) :
 	game = new Game(screenWidth, screenHeight, true);
 
     // connect the multiplayer option
-    connect(this, SIGNAL(setMultiplayer(bool)), game, SLOT(setMultiplayer(bool)));
+    connect(this, SIGNAL(setGameMode(bool)), game, SLOT(setGameMode(bool)));
 
     // --- Set up sound ---
     // connect all signals to their corresponding slots
@@ -335,7 +335,7 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->highscoreLevelTitle->setFont(GillSansMT);
     ui->highscoreTable->setStyleSheet("QTableWidget{background: transparent;}");
 
-	// Items in settings
+    // Items in settings
 	ui->settingsLogo->setPixmap(logo);
 	ui->settingsLogo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->settingsLogo->setStyleSheet("QLabel{background: transparent;}");
@@ -1163,7 +1163,14 @@ void mainMenu::insertHighscoreToTable()
 
     QString filename;
     QString line;
+    QString Name;
+    QString Zeit;
+    QString Lap1;
+    QString Lap2;
+    QString Lap3;
+    QString HighscoreMatrix[5][10];
     QStringList list;
+
 
     switch (highscoreTrackNumber) {
     case 0:
@@ -1198,24 +1205,24 @@ void mainMenu::insertHighscoreToTable()
         while(!in.atEnd()){
             line = in.readLine();
             list = line.split(QRegExp("\\,"));
-            mHighscoreMatrix[0][i] = list.at(0);
-            mHighscoreMatrix[1][i] = list.at(1);
-            mHighscoreMatrix[2][i] = list.at(2);
-            mHighscoreMatrix[3][i] = list.at(3);
-            mHighscoreMatrix[4][i] = list.at(4);
+            HighscoreMatrix[0][i] = list.at(0);
+            HighscoreMatrix[1][i] = list.at(1);
+            HighscoreMatrix[2][i] = list.at(2);
+            HighscoreMatrix[3][i] = list.at(3);
+            HighscoreMatrix[4][i] = list.at(4);
             i++;
         }
         for(int i = 0; i < 10;i++){
-            mName = mHighscoreMatrix[0][i];
-            mZeit = mHighscoreMatrix[1][i];
-            mLap1 = mHighscoreMatrix[2][i];
-            mLap2 = mHighscoreMatrix[3][i];
-            mLap3 = mHighscoreMatrix[4][i];
-            ui->highscoreTable->item(i,0)->setText(mName);
-            ui->highscoreTable->item(i,1)->setText(mZeit);
-            ui->highscoreTable->item(i,2)->setText(mLap1);
-            ui->highscoreTable->item(i,3)->setText(mLap2);
-            ui->highscoreTable->item(i,4)->setText(mLap3);
+            Name = HighscoreMatrix[0][i];
+            Zeit = HighscoreMatrix[1][i];
+            Lap1 = HighscoreMatrix[2][i];
+            Lap2 = HighscoreMatrix[3][i];
+            Lap3 = HighscoreMatrix[4][i];
+            ui->highscoreTable->item(i,0)->setText(Name);
+            ui->highscoreTable->item(i,1)->setText(Zeit);
+            ui->highscoreTable->item(i,2)->setText(Lap1);
+            ui->highscoreTable->item(i,3)->setText(Lap2);
+            ui->highscoreTable->item(i,4)->setText(Lap3);
             ui->highscoreTable->item(i,0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
             ui->highscoreTable->item(i,1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
             ui->highscoreTable->item(i,2)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
@@ -1429,14 +1436,16 @@ void mainMenu::on_playTypeSelect2SinglePlayer_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(7);
-    emit setMultiplayer(false);
+    emit setGameMode(false);
+    mIsMultiplayer = false;
 }
 
 void mainMenu::on_playTypeSelect2Multiplayer_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(7);
-    emit setMultiplayer(true);
+    emit setGameMode(true);
+    mIsMultiplayer = true;
 }
 
 void mainMenu::on_playTypeSelect2Main_clicked()
@@ -1451,13 +1460,16 @@ void mainMenu::on_level1_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->count() - 1); // Left is last Level
-    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue) < 8)
+    if(mIsMultiplayer == false)
     {
-        ui->level5_2Play->setEnabled(false);
-    }
-    else
-    {
-        ui->level5_2Play->setEnabled(true);
+        if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue) < 8)
+        {
+            ui->level5_2Play->setEnabled(false);
+        }
+        else
+        {
+            ui->level5_2Play->setEnabled(true);
+        }
     }
 }
 
@@ -1465,13 +1477,16 @@ void mainMenu::on_level1_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
-    if((monzaValue) < 1)
+    if(mIsMultiplayer == false)
     {
-        ui->level2_2Play->setEnabled(false);
-    }
-    else
-    {
-        ui->level2_2Play->setEnabled(true);
+        if((monzaValue) < 1)
+        {
+            ui->level2_2Play->setEnabled(false);
+        }
+        else
+        {
+            ui->level2_2Play->setEnabled(true);
+        }
     }
 }
 
@@ -1509,13 +1524,16 @@ void mainMenu::on_level2_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
-    if((monzaValue + hockenheimringValue) < 3)
+    if(mIsMultiplayer == false)
     {
-        ui->level3_2Play->setEnabled(false);
-    }
-    else
-    {
-        ui->level3_2Play->setEnabled(true);
+        if((monzaValue + hockenheimringValue) < 3)
+        {
+            ui->level3_2Play->setEnabled(false);
+        }
+        else
+        {
+            ui->level3_2Play->setEnabled(true);
+        }
     }
 }
 
@@ -1541,13 +1559,16 @@ void mainMenu::on_level3_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
-    if((monzaValue) < 1)
+    if(mIsMultiplayer == false)
     {
-        ui->level2_2Play->setEnabled(false);
-    }
-    else
-    {
-        ui->level2_2Play->setEnabled(true);
+        if((monzaValue) < 1)
+        {
+            ui->level2_2Play->setEnabled(false);
+        }
+        else
+        {
+            ui->level2_2Play->setEnabled(true);
+        }
     }
 }
 
@@ -1555,13 +1576,16 @@ void mainMenu::on_level3_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
-    if((monzaValue + hockenheimringValue + yasmarinaValue) < 6)
+    if(mIsMultiplayer == false)
     {
-        ui->level4_2Play->setEnabled(false);
-    }
-    else
-    {
-        ui->level4_2Play->setEnabled(true);
+        if((monzaValue + hockenheimringValue + yasmarinaValue) < 6)
+        {
+            ui->level4_2Play->setEnabled(false);
+        }
+        else
+        {
+            ui->level4_2Play->setEnabled(true);
+        }
     }
 }
 
@@ -1587,13 +1611,16 @@ void mainMenu::on_level4_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
-    if((monzaValue + hockenheimringValue) < 3)
+    if(mIsMultiplayer == false)
     {
-        ui->level3_2Play->setEnabled(false);
-    }
-    else
-    {
-        ui->level3_2Play->setEnabled(true);
+        if((monzaValue + hockenheimringValue) < 3)
+        {
+            ui->level3_2Play->setEnabled(false);
+        }
+        else
+        {
+            ui->level3_2Play->setEnabled(true);
+        }
     }
 }
 
@@ -1601,13 +1628,16 @@ void mainMenu::on_level4_2Right_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() + 1);
-    if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue) < 8)
+    if(mIsMultiplayer == false)
     {
-        ui->level5_2Play->setEnabled(false);
-    }
-    else
-    {
-        ui->level5_2Play->setEnabled(true);
+        if((monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue) < 8)
+        {
+            ui->level5_2Play->setEnabled(false);
+        }
+        else
+        {
+            ui->level5_2Play->setEnabled(true);
+        }
     }
 }
 
@@ -1630,13 +1660,16 @@ void mainMenu::on_level5_2Left_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex() - 1);
-    if((monzaValue + hockenheimringValue + yasmarinaValue) < 6)
+    if(mIsMultiplayer == false)
     {
-        ui->level4_2Play->setEnabled(false);
-    }
-    else
-    {
-        ui->level4_2Play->setEnabled(true);
+        if((monzaValue + hockenheimringValue + yasmarinaValue) < 6)
+        {
+            ui->level4_2Play->setEnabled(false);
+        }
+        else
+        {
+            ui->level4_2Play->setEnabled(true);
+        }
     }
 }
 

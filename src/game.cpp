@@ -28,7 +28,7 @@ Game::~Game()
     mPlayer = NULL;
 }
 
-void Game::setMultiplayer(bool mp)
+void Game::setGameMode(bool mp)
 {
     mMultiplayer = mp;
 }
