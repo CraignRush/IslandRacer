@@ -20,16 +20,16 @@ mainMenu::mainMenu(QWidget *parent) :
     QString filename;
 
     filename = "settings/garage.set";
-    QFile inputFile4(filename);
-    if (inputFile4.open(QIODevice::ReadOnly))
+    QFile inputFile1(filename);
+    if (inputFile1.open(QIODevice::ReadOnly))
     {
-        QTextStream in4(&inputFile4);
+        QTextStream in1(&inputFile1);
         QString line;
         QStringList list;
 
-        while(!in4.atEnd())
+        while(!in1.atEnd())
         {
-            line = in4.readLine();
+            line = in1.readLine();
             list = line.split(QRegExp("\\="));
 
             if(list.value(0) == "topspeedValue")
@@ -48,20 +48,20 @@ mainMenu::mainMenu(QWidget *parent) :
                 continue;
             }
         }
-        inputFile4.close();
+        inputFile1.close();
     }
 
     filename = "settings/sound.set";
-    QFile inputFile5(filename);
-    if (inputFile5.open(QIODevice::ReadOnly))
+    QFile inputFile2(filename);
+    if (inputFile2.open(QIODevice::ReadOnly))
     {
-        QTextStream in5(&inputFile5);
+        QTextStream in2(&inputFile2);
         QString line;
         QStringList list;
 
-        while(!in5.atEnd())
+        while(!in2.atEnd())
         {
-            line = in5.readLine();
+            line = in2.readLine();
             list = line.split(QRegExp("\\="));
 
             if(list.value(0) == "backgroundSoundValue")
@@ -95,7 +95,7 @@ mainMenu::mainMenu(QWidget *parent) :
                 continue;
             }
         }
-        inputFile5.close();
+        inputFile2.close();
     }
 
 	// Get Screensize
@@ -203,12 +203,12 @@ mainMenu::mainMenu(QWidget *parent) :
 
     // Set Fonts
 	GillSansMT.setFamily("GillSansMT");
-	GillSansMT.setPointSize(20);
+    GillSansMT.setPointSize(screenHeight * 0.02);
 	GillSansMT.setBold(1);
 
 	QFont GillSansMTTitle;
 	GillSansMTTitle = GillSansMT;
-	GillSansMTTitle.setPointSize(30);
+    GillSansMTTitle.setPointSize(screenHeight * 0.03);
 
     // Backgrounds for all
 
@@ -320,25 +320,20 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->highscore2Main->setIcon(menu);
 	ui->highscore2Main->setIconSize(smallButton);
 	ui->highscore2Main->setStyleSheet("QPushButton{background: transparent;}");
+    ui->highscore2Left->setIcon(leftArrow);
+    ui->highscore2Left->setIconSize(arrowButton);
+    ui->highscore2Left->setStyleSheet("QPushButton{background: transparent;}");
+    ui->highscore2Right->setIcon(rightArrow);
+    ui->highscore2Right->setIconSize(arrowButton);
+    ui->highscore2Right->setStyleSheet("QPushButton{background: transparent;}");
 	ui->highscoreTitle->setStyleSheet("QLabel{background: transparent;}");
 	ui->highscoreTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->highscoreTitle->setFont(GillSansMTTitle);
 	ui->highscoreTitle->setText("Highscore:");
-    ui->highscoreLevel1->setStyleSheet("QLabel{background: transparent; color: black}");
-	ui->highscoreLevel1->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-	ui->highscoreLevel1->setFont(GillSansMT);
-	ui->highscoreLevel1->setText("Sunny Speedway");
-    ui->highscoreLevel2->setStyleSheet("QLabel{background: transparent; color: black}");
-	ui->highscoreLevel2->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-	ui->highscoreLevel2->setFont(GillSansMT);
-	ui->highscoreLevel2->setText("Chancy Circuit");
-    ui->highscoreLevel3->setStyleSheet("QLabel{background: transparent; color: black}");
-	ui->highscoreLevel3->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-	ui->highscoreLevel3->setFont(GillSansMT);
-	ui->highscoreLevel3->setText("Deadly Desert");
-	ui->highscoretablelevel1->setStyleSheet("QTableWidget{background: transparent;}");
-	ui->highscoretablelevel2->setStyleSheet("QTableWidget{background: transparent;}");
-	ui->highscoretablelevel3->setStyleSheet("QTableWidget{background: transparent;}");
+    ui->highscoreLevelTitle->setStyleSheet("QLabel{background: transparent; color: black}");
+    ui->highscoreLevelTitle->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->highscoreLevelTitle->setFont(GillSansMT);
+    ui->highscoreTable->setStyleSheet("QTableWidget{background: transparent;}");
 
 	// Items in settings
 	ui->settingsLogo->setPixmap(logo);
@@ -689,98 +684,7 @@ void mainMenu::on_main2Highscore_clicked()
 {
 	playbuttonsound();
     ui->stackedWidget->setCurrentIndex(2);
-
-	ui->highscoretablelevel1->setFont(QFont("GillSansMT",15,17));
-	ui->highscoretablelevel2->setFont(QFont("GillSansMT",15,17));
-	ui->highscoretablelevel3->setFont(QFont("GillSansMT",15,17));
-
-	QString filename;
-	QString line;
-	QStringList list;
-
-	filename = "highscores/Monza.score";
-	QFile inputFile(filename);
-	if (inputFile.open(QIODevice::ReadOnly))
-	{
-		QTextStream in(&inputFile);
-        int i = 0;
-		while(!in.atEnd()){
-			line = in.readLine();
-			list = line.split(QRegExp("\\,"));
-			mLevel1HighscoreMatrix[0][i] = list.at(0);
-			mLevel1HighscoreMatrix[1][i] = list.at(1);
-			i++;
-		}
-		for(int i = 0; i < 10;i++){
-			mName = mLevel1HighscoreMatrix[0][i];
-			mZeit = mLevel1HighscoreMatrix[1][i];
-			ui->highscoretablelevel1->item(i,0)->setText(mName);
-			ui->highscoretablelevel1->item(i,1)->setText(mZeit);
-			ui->highscoretablelevel1->item(i,0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-			ui->highscoretablelevel1->item(i,1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-			ui->highscoretablelevel1->item(i,0)->setBackgroundColor(QColor(255,255,255,90));
-			ui->highscoretablelevel1->item(i,1)->setBackgroundColor(QColor(255,255,255,90));
-		}
-		inputFile.close();
-	}
-	ui->highscoretablelevel1->setMaximumHeight(ui->highscoretablelevel1->height());
-	ui->highscoretablelevel1->setMaximumWidth(ui->highscoretablelevel1->width());
-
-	filename = "highscores/Hockenheimring.score";
-	QFile inputFile2(filename);
-	if (inputFile2.open(QIODevice::ReadOnly))
-	{
-		QTextStream in2(&inputFile2);
-        int i = 0;
-		while(!in2.atEnd()){
-			line = in2.readLine();
-			list = line.split(QRegExp("\\,"));
-			mLevel2HighscoreMatrix[0][i] = list.at(0);
-			mLevel2HighscoreMatrix[1][i] = list.at(1);
-			i++;
-		}
-		for(int i = 0; i < 10;i++){
-			mName = mLevel2HighscoreMatrix[0][i];
-			mZeit = mLevel2HighscoreMatrix[1][i];
-			ui->highscoretablelevel2->item(i,0)->setText(mName);
-			ui->highscoretablelevel2->item(i,1)->setText(mZeit);
-			ui->highscoretablelevel2->item(i,0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-			ui->highscoretablelevel2->item(i,1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-			ui->highscoretablelevel2->item(i,0)->setBackgroundColor(QColor(255,255,255,90));
-			ui->highscoretablelevel2->item(i,1)->setBackgroundColor(QColor(255,255,255,90));
-		}
-		inputFile2.close();
-	}
-	ui->highscoretablelevel2->setMaximumHeight(ui->highscoretablelevel2->height());
-	ui->highscoretablelevel2->setMaximumWidth(ui->highscoretablelevel2->width());
-
-	filename = "highscores/YasMarina.score";
-	QFile inputFile3(filename);
-	if (inputFile3.open(QIODevice::ReadOnly))
-	{
-		QTextStream in3(&inputFile3);
-        int i = 0;
-		while(!in3.atEnd()){
-			line = in3.readLine();
-			list = line.split(QRegExp("\\,"));
-			mLevel3HighscoreMatrix[0][i] = list.at(0);
-			mLevel3HighscoreMatrix[1][i] = list.at(1);
-			i++;
-		}
-		for(int i = 0; i < 10;i++){
-			mName = mLevel3HighscoreMatrix[0][i];
-			mZeit = mLevel3HighscoreMatrix[1][i];
-			ui->highscoretablelevel3->item(i,0)->setText(mName);
-			ui->highscoretablelevel3->item(i,1)->setText(mZeit);
-			ui->highscoretablelevel3->item(i,0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-			ui->highscoretablelevel3->item(i,1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-			ui->highscoretablelevel3->item(i,0)->setBackgroundColor(QColor(255,255,255,90));
-			ui->highscoretablelevel3->item(i,1)->setBackgroundColor(QColor(255,255,255,90));
-		}
-		inputFile3.close();
-	}
-	ui->highscoretablelevel3->setMaximumHeight(ui->highscoretablelevel3->height());
-	ui->highscoretablelevel3->setMaximumWidth(ui->highscoretablelevel3->width());
+    insertHighscoreToTable();
 }
 
 void mainMenu::on_main2Settings_clicked()
@@ -822,6 +726,7 @@ void mainMenu::on_main2QuitGame_clicked()
 
 // Buttons and Sliders from Garage
 
+// Get the number of points which can be distributed from the Highscores
 void mainMenu::computeMaximumValue()
 {
     QString filename;
@@ -995,6 +900,7 @@ void mainMenu::computeMaximumValue()
     maximumValue = minimumValue + monzaValue + hockenheimringValue + yasmarinaValue + bahrainValue + silverstoneValue;
 }
 
+// Set the correct amount of Stars in the Level Selector according to the values of the Highscores
 void mainMenu::setStars()
 {
     QPixmap starYellow(":/images/images/star-yellow.png");
@@ -1215,14 +1121,116 @@ void mainMenu::on_garageHandlingSlider_sliderReleased()
     }
 }
 
-// Garage end
-
 // Buttons from Highscore
 
 void mainMenu::on_highscore2Main_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
+}
+
+void mainMenu::on_highscore2Right_clicked()
+{
+    playbuttonsound();
+    if(highscoreTrackNumber < 4)
+    {
+        highscoreTrackNumber++;
+    }
+    else
+    {
+        highscoreTrackNumber = 0;
+    }
+    insertHighscoreToTable();
+}
+
+void mainMenu::on_highscore2Left_clicked()
+{
+    playbuttonsound();
+    if(highscoreTrackNumber > 0)
+    {
+        highscoreTrackNumber++;
+    }
+    else
+    {
+        highscoreTrackNumber = 4;
+    }
+    insertHighscoreToTable();
+}
+
+void mainMenu::insertHighscoreToTable()
+{
+    ui->highscoreTable->setFont(QFont("GillSansMT",15,17));
+
+    QString filename;
+    QString line;
+    QStringList list;
+
+    switch (highscoreTrackNumber) {
+    case 0:
+        filename = "highscores/Monza.score";
+        ui->highscoreLevelTitle->setText("Sunny Speedway");
+        break;
+    case 1:
+        filename = "highscores/Hockenheimring.score";
+        ui->highscoreLevelTitle->setText("Chancy Circuit");
+        break;
+    case 2:
+        filename = "highscores/YasMarina.score";
+        ui->highscoreLevelTitle->setText("Deadly Desert");
+        break;
+    case 3:
+        filename = "highscores/Bahrain.score";
+        ui->highscoreLevelTitle->setText("Breezy Bridges");
+        break;
+    case 4:
+        filename = "highscores/Silverstone.score";
+        ui->highscoreLevelTitle->setText("Rapid Randomness");
+        break;
+    default:
+        break;
+    }
+
+    QFile inputFile(filename);
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+        QTextStream in(&inputFile);
+        int i = 0;
+        while(!in.atEnd()){
+            line = in.readLine();
+            list = line.split(QRegExp("\\,"));
+            mHighscoreMatrix[0][i] = list.at(0);
+            mHighscoreMatrix[1][i] = list.at(1);
+            mHighscoreMatrix[2][i] = list.at(2);
+            mHighscoreMatrix[3][i] = list.at(3);
+            mHighscoreMatrix[4][i] = list.at(4);
+            i++;
+        }
+        for(int i = 0; i < 10;i++){
+            mName = mHighscoreMatrix[0][i];
+            mZeit = mHighscoreMatrix[1][i];
+            mLap1 = mHighscoreMatrix[2][i];
+            mLap2 = mHighscoreMatrix[3][i];
+            mLap3 = mHighscoreMatrix[4][i];
+            ui->highscoreTable->item(i,0)->setText(mName);
+            ui->highscoreTable->item(i,1)->setText(mZeit);
+            ui->highscoreTable->item(i,2)->setText(mLap1);
+            ui->highscoreTable->item(i,3)->setText(mLap2);
+            ui->highscoreTable->item(i,4)->setText(mLap3);
+            ui->highscoreTable->item(i,0)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+            ui->highscoreTable->item(i,1)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+            ui->highscoreTable->item(i,2)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+            ui->highscoreTable->item(i,3)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+            ui->highscoreTable->item(i,4)->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+            ui->highscoreTable->item(i,0)->setBackgroundColor(QColor(255,255,255,90));
+            ui->highscoreTable->item(i,1)->setBackgroundColor(QColor(255,255,255,90));
+            ui->highscoreTable->item(i,2)->setBackgroundColor(QColor(255,255,255,90));
+            ui->highscoreTable->item(i,3)->setBackgroundColor(QColor(255,255,255,90));
+            ui->highscoreTable->item(i,4)->setBackgroundColor(QColor(255,255,255,90));
+        }
+        inputFile.close();
+    }
+    ui->highscoreTable->setMaximumHeight(ui->highscoreTable->height());
+    ui->highscoreTable->setMaximumWidth(ui->highscoreTable->width());
 }
 
 /* Settings Configeration
@@ -1362,7 +1370,7 @@ void mainMenu::on_settingsHighscoreResetButton_clicked()
     QFile outputFile(filename);
     if (outputFile.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
         QTextStream in(&outputFile);
-        for(int i = 0; i < 10; i++)	in << "-,-\n";
+        for(int i = 0; i < 10; i++)	in << "-,-,-,-,-\n";
         outputFile.close();
     }
 
@@ -1370,7 +1378,7 @@ void mainMenu::on_settingsHighscoreResetButton_clicked()
     QFile outputFile2(filename);
     if (outputFile2.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
         QTextStream in2(&outputFile2);
-        for(int i = 0; i < 10; i++)	in2 << "-,-\n";
+        for(int i = 0; i < 10; i++)	in2 << "-,-,-,-,-\n";
         outputFile2.close();
     }
 
@@ -1378,7 +1386,7 @@ void mainMenu::on_settingsHighscoreResetButton_clicked()
     QFile outputFile3(filename);
     if (outputFile3.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
         QTextStream in3(&outputFile3);
-        for(int i = 0; i < 10; i++)	in3 << "-,-\n";
+        for(int i = 0; i < 10; i++)	in3 << "-,-,-,-,-\n";
         outputFile3.close();
     }
 
@@ -1386,7 +1394,7 @@ void mainMenu::on_settingsHighscoreResetButton_clicked()
     QFile outputFile4(filename);
     if (outputFile4.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
         QTextStream in4(&outputFile4);
-        for(int i = 0; i < 10; i++)	in4 << "-,-\n";
+        for(int i = 0; i < 10; i++)	in4 << "-,-,-,-,-\n";
         outputFile4.close();
     }
 
@@ -1394,7 +1402,7 @@ void mainMenu::on_settingsHighscoreResetButton_clicked()
     QFile outputFile5(filename);
     if (outputFile5.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
         QTextStream in5(&outputFile5);
-        for(int i = 0; i < 10; i++)	in5 << "-,-\n";
+        for(int i = 0; i < 10; i++)	in5 << "-,-,-,-,-\n";
         outputFile5.close();
     }
 }
@@ -1644,3 +1652,4 @@ void mainMenu::on_level5_2Play_clicked()
     // start level 5
     game->loadCircuit(Silverstone, topspeedValue, accelerationValue, handlingValue);
 }
+
