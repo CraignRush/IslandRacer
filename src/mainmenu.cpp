@@ -905,8 +905,8 @@ void mainMenu::setStars()
 {
     QPixmap starYellow(":/images/images/star-yellow.png");
     QPixmap starDark(":/images/images/star-dark.png");
-    starYellow = starYellow.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1),Qt::IgnoreAspectRatio);
-    starDark = starDark.scaled(QSize(screenHeight * 0.1, screenHeight * 0.1),Qt::IgnoreAspectRatio);
+    starYellow = starYellow.scaled(QSize(mScreenHeight * 0.1, mScreenHeight * 0.1),Qt::IgnoreAspectRatio);
+    starDark = starDark.scaled(QSize(mScreenHeight * 0.1, mScreenHeight * 0.1),Qt::IgnoreAspectRatio);
 
     switch (mMonzaValue) {
     case 0:
@@ -1328,8 +1328,8 @@ void mainMenu::on_settingsButtonSoundOff_clicked()
 
 void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
 {
-    if(buttonSoundActive == 0){
-        buttonSoundActive = 1;
+    if(mButtonSoundActive == 0){
+        mButtonSoundActive = 1;
     }
     mButtonSoundValue = value;
     emit setButtonSoundVolume(mButtonSoundValue);
