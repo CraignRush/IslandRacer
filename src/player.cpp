@@ -17,6 +17,7 @@ Player::Player()
     mInputDialog.setModal(Qt::WindowModal);
 
     connect(&mInputDialog,SIGNAL(textValueSelected(QString)),this,SLOT(savePlayerName(QString)));
+
     connect(&mInputDialog,SIGNAL(rejected()),this,SIGNAL(playerInputFinished()));
 
 

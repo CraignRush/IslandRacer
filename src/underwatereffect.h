@@ -10,6 +10,8 @@
 #include <QImage>
 #include <QTimeLine>
 
+#include "track.h"
+
 
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795
@@ -20,7 +22,7 @@ class UnderwaterEffect : public QGraphicsEffect
     Q_OBJECT
 
 public:
-    UnderwaterEffect(QObject *parent = 0);
+    UnderwaterEffect(Track *parent = 0);
     ~UnderwaterEffect();
     void applyUnderwater(const QImage* img, QImage* result1, QImage *result2, int amp, qreal tick);
     void sourceChanged(ChangeFlags flags);
@@ -34,9 +36,11 @@ private:
     QImage mModifiedImage1;
     QImage mModifiedImage2;
     QTimeLine* mTimeLine;
+    QPainter* mPainter;
     bool mEnableEffect;
     int mAmplitude;
     int mSpeed;
+    Track* mParent;
 
 };
 
