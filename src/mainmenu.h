@@ -28,31 +28,31 @@ private:
     Game* game;
 
     // Screen size
-    int screenWidth;
-    int screenHeight;
+    int mScreenWidth;
+    int mScreenHeight;
 
     // Garage values
-    int accelerationValue;
-    int handlingValue;
-    int topspeedValue;
-    int maximumValue;
-    int minimumValue = 10;
-    int monzaValue;
-    int hockenheimringValue;
-    int yasmarinaValue;
-    int bahrainValue;
-    int silverstoneValue;
+    int mAccelerationValue;
+    int mHandlingValue;
+    int mTopspeedValue;
+    int mMaximumValue;
+    int mMinimumValue = 10;
+    int mMonzaValue;
+    int mHockenheimringValue;
+    int mYasmarinaValue;
+    int mBahrainValue;
+    int mSilverstoneValue;
 
     // Sound values
-    int backgroundSoundActive;
-    int backgroundSoundValue;
-    int buttonSoundActive;
-    int buttonSoundValue;
-    int raceSoundActive;
-    int raceSoundValue;
+    int mBackgroundSoundActive;
+    int mBackgroundSoundValue;
+    int mButtonSoundActive;
+    int mButtonSoundValue;
+    int mRaceSoundActive;
+    int mRaceSoundValue;
 
     // Highscore selector
-    int highscoreTrackNumber = 0;
+    int mHighscoreTrackNumber = 0;
 
     // Game Mode
     bool mIsMultiplayer;
