@@ -54,23 +54,54 @@ private:
 public:
     explicit PauseMenu(int screenHeight, QWidget *parent = 0);
     ~PauseMenu();
+
+    //! Plays button Sound if active
     void playButtonSoundIfOn();
 
 signals:
+    //! Signal to resume game
     void resumeGame();
+
+    //! Signal to restart game
     void restartGame();
+
+    //! Signal to quit game
     void quitGame();
 
+    //! Signal to start background music
     void playBackgroundMusic();
+
+    //! Signal to stop background music
     void stopBackgroundMusic();
+
+    //! Signal to set volume of background music
+    /*!
+     * \param volume Volume of the background music
+     */
     void setBackgroundMusicVolume(int volume);
+
+    //! Signal to start car sound
     void playCarSound();
+
+    //! Signal to stop car sound
     void stopCarSound();
+
+    //! Signal to set volume of car sound
+    /*!
+     * \param volume Volume of the car sound
+     */
     void setCarSoundVolume(int volume);
+
+    //! Signal to play button sound
     void playButtonSound();
+
+    //! Signal to set volume of button sound
+    /*!
+     * \param volume Volume of the button sound
+     */
     void setButtonSoundVolume(int volume);
 
-public slots:
+private slots:
     void resumeClicked();
     void restartClicked();
     void settingsClicked();
