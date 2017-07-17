@@ -1,36 +1,47 @@
 #ifndef UNDERWATEREFFECT_H
 #define UNDERWATEREFFECT_H
 
-#include <QWidget>
+
+#include <QGraphicsEffect>
 #include <qtgui>
 #include <cmath>
-#include <QGroupBox>
-#include <QSlider>
+#include <QUrl>
+#include <QList>
+#include <QImage>
+#include <QTimeLine>
+
+#include "track.h"
+
 
 #ifndef M_PI
 #define M_PI 3.1415926535897932384626433832795
 #endif
 
-class UnderwaterEffect : public QWidget
+class UnderwaterEffect : public QGraphicsEffect
 {
     Q_OBJECT
-public:
-    UnderwaterEffect();
-    void loadImage(const QString& file);
-    void loadImage(const QImage& image);
-    void dragEnterEvent(QDragEnterEvent*);
-    void dropEvent(QDropEvent* event);
-    void paintEvent(QPaintEvent*);
 
+public:
+    UnderwaterEffect(Track *parent = 0);
+    ~UnderwaterEffect();
+    void applyUnderwater(const QImage* img, QImage* result1, QImage *result2, int amp, qreal tick);
+    void sourceChanged(ChangeFlags flags);
+    QRectF boundingRectFor(const QRectF &rect);
+
+protected:
+    void draw(QPainter*painter);
 private:
-    QString mFileName;
+    QRectF mRect;
     QImage mImage;
     QImage mModifiedImage1;
     QImage mModifiedImage2;
     QTimeLine* mTimeLine;
-    QGroupBox* mEnableEffect;
-    QSlider* mAmplitudeSlider;
-    QSlider* mSpeedSlider;
+    QPainter* mPainter;
+    bool mEnableEffect;
+    int mAmplitude;
+    int mSpeed;
+    Track* mParent;
+
 };
 
 #endif // UNDERWATEREFFECT_H

@@ -103,7 +103,7 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     // connect game loop to timer
     connect(mTimer, SIGNAL(timeout()), this, SLOT(gameLoop()));
 
-    // Init objects for start countdown
+       // Init objects for start countdown
     mStartTimer = NULL;
 
     mCarStartingPositions = NULL;
@@ -357,10 +357,10 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mCar2->setCarParams(speedValue, accelerationValue, handlingValue);
 
         // Create new Viewports for Player
-        mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack);
-        mViewPlayer2 = new Viewport(mWidth/2, mHeight, mTrack);
+        mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack, true);
+        mViewPlayer2 = new Viewport(mWidth/2, mHeight, mTrack, true);
 
-        connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveLapTime()));
+        connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveL3apTime()));
         connect(mTrack, SIGNAL(LapChanged2()), mViewPlayer2, SLOT(saveLapTime()));
 
         mVisibleWidth = 0.4 * mWidth/2;
@@ -412,7 +412,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mCar1->setCarParams(speedValue, accelerationValue, handlingValue);
 
         // Create new Viewports for Player
-        mViewPlayer1 = new Viewport(mWidth, mHeight, mTrack);
+        mViewPlayer1 = new Viewport(mWidth, mHeight, mTrack, true);
 
         connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveLapTime()));
 

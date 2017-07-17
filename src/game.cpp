@@ -1,5 +1,6 @@
 #include "game.h"
 #include <QTextStream>
+#include "underwatereffect.h"
 #include <QStringList>
 #include <QString>
 
@@ -168,16 +169,16 @@ void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, i
         if(!mMultiplayer){
             // load circuit with parameter
             mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, carPositions, mMultiplayer, speedValue, accelerationValue, handlingValue);
-            connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString[],QString)),mPlayer,SLOT(endRaceDialog(QString[],QString)));
+            connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString*,QString)),mPlayer,SLOT(endRaceDialog(QString*,QString)));
             connect(mPlayer,SIGNAL(playerInputFinished()),mWorld,SLOT(exitGame()));
         } else {
             // load circuit with parameter
             mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 2, carPositions, mMultiplayer, speedValue, accelerationValue, handlingValue);
-            connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString[],QString)),mWorld->getViewPlayer(2),SLOT(showLooserLabel()));
-            connect(mWorld->getViewPlayer(2),SIGNAL(raceFinished(QString[],QString)),mWorld->getViewPlayer(1),SLOT(showLooserLabel()));
+            connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString*,QString)),mWorld->getViewPlayer(2),SLOT(showLooserLabel()));
+            connect(mWorld->getViewPlayer(2),SIGNAL(raceFinished(QString*,QString)),mWorld->getViewPlayer(1),SLOT(showLooserLabel()));
 
-            connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString[],QString)),mWorld->getViewPlayer(1),SLOT(showWinnerLabel()));
-            connect(mWorld->getViewPlayer(2),SIGNAL(raceFinished(QString[],QString)),mWorld->getViewPlayer(2),SLOT(showWinnerLabel()));
+            connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString*,QString)),mWorld->getViewPlayer(1),SLOT(showWinnerLabel()));
+            connect(mWorld->getViewPlayer(2),SIGNAL(raceFinished(QString*,QString)),mWorld->getViewPlayer(2),SLOT(showWinnerLabel()));
         }
         // show window on top
         mWorld->showFullScreen();

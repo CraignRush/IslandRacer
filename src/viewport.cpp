@@ -1,6 +1,7 @@
 #include "viewport.h"
 
-Viewport::Viewport(int width, int height, Track* track)
+
+Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
 {
     //scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
     mWidth = width;
@@ -12,6 +13,21 @@ Viewport::Viewport(int width, int height, Track* track)
     setFixedSize(mWidth, mHeight);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    if(!isMultiplayer){
+        mTextSizeSpeed = mWidth/60;
+        mTextSizeTime = mWidth/100;
+    } else {
+        mTextSizeSpeed = mWidth/25;
+        mTextSizeTime = mWidth/50;
+    }
+
+    /////////ONLY FOR DEBUGGING NOT WORKING////////////////
+    //mUnderwaterEffect =  new UnderwaterEffect(this);
+    //mUnderwaterEffect->setEnabled(true);
+    //setGraphicsEffect(mUnderwaterEffect);
+    //////////////////////////////////////////////////////
+
 
     //Initialize Opacity Effect with its clock counter
     mOpacity = 1.0;
@@ -28,7 +44,7 @@ Viewport::Viewport(int width, int height, Track* track)
     mTotalTimeText = "TOTAL TIME: ";
     mTotalTimeLabel = new QLabel();
     mTotalTimeLabel->setVisible(false);
-    mTotalTimeLabel->setFont(QFont("GillSansMT",mWidth/80,60)); // Font: family, PointSize, Weight(how bold)
+    mTotalTimeLabel->setFont(QFont("GillSansMT",mTextSizeTime,60)); // Font: family, PointSize, Weight(how bold)
     mTotalTimeLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
     mTotalTimeLabel->setText(mTotalTimeText + "mm:ss.zzz");
     //    mTotalTimeLabel->setFixedSize(QSize(350,50));
@@ -40,7 +56,7 @@ Viewport::Viewport(int width, int height, Track* track)
     mLapText = "LAPS: ";
     mLapLabel = new QLabel();
     mLapLabel->setVisible(false);
-    mLapLabel->setFont(QFont("GillSansMT",mWidth/80,60));
+    mLapLabel->setFont(QFont("GillSansMT",mTextSizeTime,60));
     mLapLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
     mLapLabel->setText(mLapText + "0/3");
     mLapLabel->setFixedSize(stdRectSize);
@@ -52,19 +68,21 @@ Viewport::Viewport(int width, int height, Track* track)
     mLapTimeText = "LAP TIME: ";
     mLapTimeLabel = new QLabel();
     mLapTimeLabel->setVisible(false);
-    mLapTimeLabel->setFont(QFont("GillSansMT",mWidth/80,60)); // Font: family, PointSize, Weight(how bold)
+    mLapTimeLabel->setFont(QFont("GillSansMT",mTextSizeTime,60)); // Font: family, PointSize, Weight(how bold)
     mLapTimeLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
     mLapTimeLabel->setText(mLapTimeText + "mm:ss.zzz");
     mLapTimeLabel->setFixedSize(stdRectSize);
     mLapTimeLabel->setAlignment(Qt::AlignLeft);
     mLapTimeLabel->setParent(this);
 
+   //
+    mLapTimeEnd = new QString[3];
 
     //Initialize Label for speedometer
     mSpeedDisplay = new QLabel();
     mSpeedDisplay->setVisible(false);
     mSpeedDisplay->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
-    mSpeedDisplay->setFont(QFont("GillSansMT",mWidth/30,60));
+    mSpeedDisplay->setFont(QFont("GillSansMT",mTextSizeSpeed,60));
     //    mSpeedDisplay->setFixedSize(QSize(390,110));
     mSpeedDisplay->setText("000.0km/h");
     mSpeedDisplay->adjustSize();
@@ -162,6 +180,9 @@ void Viewport::startGame()
 
 void Viewport::updateOverlay(QPointF carpos, int fps)
 {
+    //debugging!
+    //mUnderwaterEffect->update();
+
     // Update lap time label
     mElapsed = mLapTimeElapsed.elapsed() + mCurLap;
     mTime.setHMS(0,0,0,0);
@@ -185,9 +206,10 @@ void Viewport::updateOverlay(QPointF carpos, int fps)
 
 void Viewport::saveLapTime()
 {
-    //mLapTime[mLaps - 1] = mTime.toString("mm:ss.z");
+
     if(mLaps >= 2)
     {
+        mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.z");
         mLaps++;
     }
     else
@@ -195,7 +217,8 @@ void Viewport::saveLapTime()
         emit stopGame();
         mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.zzz");
         mTotalTimeEnd = mTime2.toString("mm:ss.zzz");
-        emit raceFinished(&mLapTimeEnd[3], mTotalTimeEnd);
+
+        emit raceFinished(mLapTimeEnd, mTotalTimeEnd);
     }
     mElapsed = 0;
     mCurLap = 0;
@@ -211,7 +234,6 @@ void Viewport::showLooserLabel()
     mLooserLabel->setText("LOOSER!!");
     mLooserLabel->adjustSize();
     mLooserLabel->setGeometry(mWidth/2 - (mLooserLabel->size().width()/2), mHeight/2 - (mLooserLabel->size().height()), mLooserLabel->size().width(), mLooserLabel->size().height());
-    // mLooserLabel->setAlignment(Qt::AlignCenter);
     mLooserLabel->setParent(this);
     mLooserLabel->setVisible(true);
     mLooserLabel->setGraphicsEffect(mOpacityEffect);
@@ -227,7 +249,6 @@ void Viewport::showWinnerLabel()
     mWinnerLabel->setText("WINNER!!");
     mWinnerLabel->adjustSize();
     mWinnerLabel->setGeometry(mWidth/2 - (mWinnerLabel->size().width()/2), mHeight/2 - (mWinnerLabel->size().height()/2), mWinnerLabel->size().width(), mWinnerLabel->size().height());
-    // mWinnerLabel->setAlignment(Qt::AlignCenter);
     mWinnerLabel->setParent(this);
     mWinnerLabel->setVisible(true);
     mWinnerLabel->setGraphicsEffect(mOpacityEffect);

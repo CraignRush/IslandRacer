@@ -281,6 +281,7 @@ void Car::computeUndergroundImpact(int index)
         WorldPosition pos = mTrack->getLastCheckpointPosition(index);
         mEngineSpeed = 0.0f;
         setPosition(pos.x(), pos.y(), pos.angle());
+      //  emit startUnderwaterEffect;
         break;
     }
 }
