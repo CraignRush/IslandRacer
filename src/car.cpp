@@ -109,6 +109,12 @@ Car::Car(b2World* world, Track* track, int i) : mWorld{world}, mTrack{track}
     mLeftRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(leftRearJointDef);
     mRightRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(rightRearJointDef);
 
+    mBody->SetBullet(true);
+    mLeftWheel->SetBullet(true);
+    mRightWheel->SetBullet(true);
+    mLeftRearWheel->SetBullet(true);
+    mRightRearWheel->SetBullet(true);
+
     //connect with sound class
     connect(this, SIGNAL(playCarSound()), Sound::getSoundInstance(this), SLOT(playCarSound()));
     connect(this, SIGNAL(stopCarSound()), Sound::getSoundInstance(this), SLOT(stopCarSound()));
@@ -281,7 +287,7 @@ void Car::computeUndergroundImpact(int index)
         WorldPosition pos = mTrack->getLastCheckpointPosition(index);
         mEngineSpeed = 0.0f;
         setPosition(pos.x(), pos.y(), pos.angle());
-      //  emit startUnderwaterEffect;
+        //  emit startUnderwaterEffect;
         break;
     }
 }
@@ -413,6 +419,12 @@ void Car::setPosition(int x, int y, double angle)
     // Add rear wheel joint to the world
     mLeftRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(leftRearJointDef);
     mRightRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(rightRearJointDef);
+
+    mBody->SetBullet(true);
+    mLeftWheel->SetBullet(true);
+    mRightWheel->SetBullet(true);
+    mLeftRearWheel->SetBullet(true);
+    mRightRearWheel->SetBullet(true);
 
     // render new car position
     render();
