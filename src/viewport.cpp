@@ -14,9 +14,12 @@ Viewport::Viewport(int width, int height, Track* track)
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    mUnderwaterEffect =  new UnderwaterEffect(this);
-    mUnderwaterEffect->setEnabled(true);
-    setGraphicsEffect(mUnderwaterEffect); // for debugging purposes
+
+    /////////ONLY FOR DEBUGGING NOT WORKING////////////////
+    //mUnderwaterEffect =  new UnderwaterEffect(this);
+    //mUnderwaterEffect->setEnabled(true);
+    //setGraphicsEffect(mUnderwaterEffect);
+    //////////////////////////////////////////////////////
 
     //Initialize Opacity Effect with its clock counter
     mOpacity = 1.0;
@@ -64,6 +67,8 @@ Viewport::Viewport(int width, int height, Track* track)
     mLapTimeLabel->setAlignment(Qt::AlignLeft);
     mLapTimeLabel->setParent(this);
 
+   //
+    mLapTimeEnd = new QString[3];
 
     //Initialize Label for speedometer
     mSpeedDisplay = new QLabel();
@@ -190,9 +195,10 @@ void Viewport::updateOverlay(QPointF carpos, int fps)
 
 void Viewport::saveLapTime()
 {
-    //mLapTime[mLaps - 1] = mTime.toString("mm:ss.z");
+
     if(mLaps >= 2)
     {
+        mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.z");
         mLaps++;
     }
     else
@@ -200,7 +206,8 @@ void Viewport::saveLapTime()
         emit stopGame();
         mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.zzz");
         mTotalTimeEnd = mTime2.toString("mm:ss.zzz");
-        emit raceFinished(&mLapTimeEnd[3], mTotalTimeEnd);
+
+        emit raceFinished(mLapTimeEnd, mTotalTimeEnd);
     }
     mElapsed = 0;
     mCurLap = 0;

@@ -10,6 +10,7 @@
 #include <QInputDialog>
 #include <QTemporaryFile>
 #include <QIODevice>
+#include <QVector>
 
 
 enum Circuit
@@ -26,7 +27,7 @@ class Player: public QObject
 	Q_OBJECT
 private:
 	QString mPlayerName;
-	QString mPlayerTimes[3];
+    QString mLapTimes[3];
 	QString mTotalTime;
 	QInputDialog mInputDialog;
 	Circuit mCircuit;
@@ -37,7 +38,7 @@ public:
 signals:
 	void playerInputFinished();
 public slots:
-	void endRaceDialog(QString lapTimeArray[], QString totalTime);
+    void endRaceDialog(QString* mLapTimeEnd,QString mTotalTimeEnd);
 	void savePlayerName(QString name);
 };
 
