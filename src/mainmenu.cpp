@@ -17,6 +17,7 @@ mainMenu::mainMenu(QWidget *parent) :
 	// Initial Values
 	ui->stackedWidget->setCurrentIndex(0);
 
+    // Read in garage values
     QString filename;
 
     filename = "settings/garage.set";
@@ -51,6 +52,7 @@ mainMenu::mainMenu(QWidget *parent) :
         inputFile1.close();
     }
 
+    // Read in the sound values
     filename = "settings/sound.set";
     QFile inputFile2(filename);
     if (inputFile2.open(QIODevice::ReadOnly))
@@ -123,30 +125,24 @@ mainMenu::mainMenu(QWidget *parent) :
     connect(this, SIGNAL(setButtonSoundVolume(int)), Sound::getSoundInstance(this), SLOT(setButtonSoundVolume(int)));
 
     // set up sound volume from stored values and start background music
-    on_settingsButtonSoundSlider_valueChanged(mButtonSoundValue);
-    on_settingsRaceSoundSlider_valueChanged(mRaceSoundValue);
-    on_settingsBackgroundSoundSlider_valueChanged(mBackgroundSoundValue);
-
     emit playBackgroundMusic();
+    emit setButtonSoundVolume(0);
+    if(mBackgroundSoundActive == 0){
+        on_settingsBackgroundSoundOff_clicked();
+    }
+    else{
+        on_settingsBackgroundSoundSlider_valueChanged(mBackgroundSoundValue);
+    }
 
-// Set und start playing Backgroundmusic
-//	playlist = new QMediaPlaylist();
-	//playlist->addMedia(QUrl("qrc:/sounds/sounds/backgroundmusic.wav"));
-//	playlist->addMedia(QUrl("qrc:/sounds/sounds/intense-bg-music.wav")); //source: https://www.royaltyfreemusicforfree.com/free-background-music/intense-background-music
-//	playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    if(mRaceSoundActive == 0){
+        on_settingsRaceSoundOff_clicked();
+    }
+    else{
+        on_settingsRaceSoundSlider_valueChanged(mRaceSoundValue);
+    }
 
-//	backgroundmusic = new QMediaPlayer();
-//	backgroundmusic->setPlaylist(playlist);
-//	backgroundmusic->setVolume(backgroundSoundValue);
-//	backgroundmusic->play();
-//    setbackgroundsound();
 
-	// Set Buttonsound
-//    buttonsound = new QMediaPlayer();
-//    buttonsound->setMedia(QUrl("qrc:/sounds/sounds/buttonsound.wav"));
-//    buttonsound->setVolume(buttonSoundValue);
-
-	// Set Pixmaps
+    // Set and scale Pixmaps
 	QPixmap logo(":/images/images/Logo.png");
 	QPixmap hockenheim(":/images/images/Hockenheimtextur.png");
 	QPixmap monza(":/images/images/Monzatextur.png") ;
@@ -210,8 +206,9 @@ mainMenu::mainMenu(QWidget *parent) :
 	GillSansMTTitle = GillSansMT;
     GillSansMTTitle.setPointSize(mScreenHeight * 0.03);
 
-    // Backgrounds for all
+    // Setup UI
 
+    // Backgrounds for all
     QPixmap backgroundMain(":/images/images/palmtree1_3840_2160.jpg");
     backgroundMain = backgroundMain.scaled(QSize(mScreenWidth,mScreenHeight), Qt::IgnoreAspectRatio);
 	QPalette palette;
@@ -647,7 +644,7 @@ void mainMenu::playbuttonsound()
     }
 }
 
-//  Buttons from the Main Menu UI
+//  Buttons and functions from the Main Menu UI
 
 /*  pages:  0 - Main Menu
  *          1 - Garage
@@ -663,17 +660,33 @@ void mainMenu::playbuttonsound()
  *         11 - Level 5
 */
 
-// Buttons from the main menu
+/* Begin main
+ *
+ * Functions in main:
+ * on_main2Level1_clicked()
+ * on_main2Garage_clicked()
+ * on_main2Highscore_clicked()
+ * on_main2Settings_clicked()
+ * on_main2Manual_clicked()
+ * on_main2Credits_clicked()
+ * on_main2QuitGame_clicked()
+*/
 void mainMenu::on_main2Level1_clicked()
 {
+    if(mButtonSoundActive == 1)
+    {
+        ui->settingsButtonSoundSlider->setValue(mButtonSoundValue);
+    }
 	playbuttonsound();
     ui->stackedWidget->setCurrentIndex(6);
-    computeMaximumValue();
-    setStars();
 }
 
 void mainMenu::on_main2Garage_clicked()
 {
+    if(mButtonSoundActive == 1)
+    {
+        ui->settingsButtonSoundSlider->setValue(mButtonSoundValue);
+    }
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(1);
     computeMaximumValue();
@@ -683,7 +696,11 @@ void mainMenu::on_main2Garage_clicked()
 
 void mainMenu::on_main2Highscore_clicked()
 {
-	playbuttonsound();
+    if(mButtonSoundActive == 1)
+    {
+        ui->settingsButtonSoundSlider->setValue(mButtonSoundValue);
+    }
+    playbuttonsound();
     ui->stackedWidget->setCurrentIndex(2);
     insertHighscoreToTable();
 }
@@ -708,12 +725,20 @@ void mainMenu::on_main2Settings_clicked()
 
 void mainMenu::on_main2Manual_clicked()
 {
+    if(mButtonSoundActive == 1)
+    {
+        ui->settingsButtonSoundSlider->setValue(mButtonSoundValue);
+    }
 	playbuttonsound();
     ui->stackedWidget->setCurrentIndex(4);
 }
 
 void mainMenu::on_main2Credits_clicked()
 {
+    if(mButtonSoundActive == 1)
+    {
+        ui->settingsButtonSoundSlider->setValue(mButtonSoundValue);
+    }
 	playbuttonsound();
     ui->stackedWidget->setCurrentIndex(5);
 }
@@ -724,8 +749,21 @@ void mainMenu::on_main2QuitGame_clicked()
 	QCoreApplication::quit();
 }
 
-// Buttons and Sliders from Garage
+// End main
 
+/* Begin garage
+ *
+ * Functions in garage:
+ * computeMaximumValue()
+ * setStars()
+ * on_garage2Main_clicked()
+ * on_garageAccelerationSlider_valueChanged(int value)
+ * on_garageAccelerationSlider_sliderReleased()
+ * on_garageTopspeedSlider_valueChanged(int value)
+ * on_garageTopspeedSlider_sliderReleased()
+ * on_garageHandlingSlider_valueChanged(int value)
+ * on_garageHandlingSlider_sliderReleased()
+*/
 // Get the number of points which can be distributed from the Highscores
 void mainMenu::computeMaximumValue()
 {
@@ -900,7 +938,7 @@ void mainMenu::computeMaximumValue()
     mMaximumValue = mMinimumValue + mMonzaValue + mHockenheimringValue + mYasmarinaValue + mBahrainValue + mSilverstoneValue;
 }
 
-// Set the correct amount of Stars in the Level Selector according to the values of the Highscores
+// Set the correct amount of stars in the level selector according to the values in the highscores
 void mainMenu::setStars()
 {
     QPixmap starYellow(":/images/images/star-yellow.png");
@@ -1020,6 +1058,7 @@ void mainMenu::setStars()
     }
 }
 
+// save the settings from the garage
 void mainMenu::on_garage2Main_clicked()
 {
     playbuttonsound();
@@ -1120,8 +1159,16 @@ void mainMenu::on_garageHandlingSlider_sliderReleased()
         ui->garageHandlingSlider->setValue(setvalue);
     }
 }
+// End garage
 
-// Buttons from Highscore
+/* Begin highscore
+ *
+ * Functions in highscore:
+ * on_highscore2Main_clicked()
+ * on_highscore2Right_clicked()
+ * on_highscore2Left_clicked()
+ * insertHighscoreToTable()
+*/
 
 void mainMenu::on_highscore2Main_clicked()
 {
@@ -1148,7 +1195,7 @@ void mainMenu::on_highscore2Left_clicked()
     playbuttonsound();
     if(mHighscoreTrackNumber > 0)
     {
-        mHighscoreTrackNumber++;
+        mHighscoreTrackNumber--;
     }
     else
     {
@@ -1157,6 +1204,7 @@ void mainMenu::on_highscore2Left_clicked()
     insertHighscoreToTable();
 }
 
+// Write highscore in table
 void mainMenu::insertHighscoreToTable()
 {
     ui->highscoreTable->setFont(QFont("GillSansMT",15,17));
@@ -1170,7 +1218,6 @@ void mainMenu::insertHighscoreToTable()
     QString lap3;
     QString highscoreMatrix[5][10];
     QStringList list;
-
 
     switch (mHighscoreTrackNumber) {
     case 0:
@@ -1240,14 +1287,25 @@ void mainMenu::insertHighscoreToTable()
     ui->highscoreTable->setMaximumWidth(ui->highscoreTable->width());
 }
 
-/* Settings Configeration
+// End highscore
+
+/* Begin settings
  *
- * Buttons from Settings
- *
- * Sound Configeration and Highscore Reset directly behind
- *
+ * Functions in settings:
+ * on_settings2Main_clicked()
+ * on_settingsBackgroundSoundOn_clicked()
+ * on_settingsBackgroundSoundOff_clicked()
+ * on_settingsBackgroundSoundSlider_valueChanged(int value)
+ * on_settingsButtonSoundOn_clicked()
+ * on_settingsButtonSoundOff_clicked()
+ * on_settingsButtonSoundSlider_valueChanged(int value)
+ * on_settingsRaceSoundOn_clicked()
+ * on_settingsRaceSoundOff_clicked()
+ * on_settingsRaceSoundSlider_valueChanged(int value)
+ * on_settingsHighscoreResetButton_clicked()
 */
 
+// saves the sound configuration
 void mainMenu::on_settings2Main_clicked()
 {
     playbuttonsound();
@@ -1271,15 +1329,11 @@ void mainMenu::on_settings2Main_clicked()
 }
 
 // Sound Configeration
-
 void mainMenu::on_settingsBackgroundSoundOn_clicked()
 {
     playbuttonsound();
     mBackgroundSoundActive = 1;
-    //setbackgroundsound();
     emit setBackgroundMusicVolume(mBackgroundSoundValue);
-    //emit playBackgroundMusic();
-//	backgroundmusic->setVolume(backgroundSoundValue);
     ui->settingsBackgroundSoundSlider->setValue(mBackgroundSoundValue);
 }
 
@@ -1287,31 +1341,29 @@ void mainMenu::on_settingsBackgroundSoundOff_clicked()
 {
     int saver;
     playbuttonsound();
-    //setbackgroundsound();
     saver = ui->settingsBackgroundSoundSlider->value();
     ui->settingsBackgroundSoundSlider->setValue(0);
-    mBackgroundSoundValue = saver;
+    if(saver != 0){
+        mBackgroundSoundValue = saver;
+    }
     mBackgroundSoundActive = 0;
     emit setBackgroundMusicVolume(0);
-    //emit stopBackgroundMusic();
 }
 
 void mainMenu::on_settingsBackgroundSoundSlider_valueChanged(int value)
 {
     if(mBackgroundSoundActive == 0){
         mBackgroundSoundActive = 1;
-        //setbackgroundsound();
     }
     mBackgroundSoundValue = value;
     emit setBackgroundMusicVolume(mBackgroundSoundValue);
-    //backgroundmusic->setVolume(backgroundSoundValue);
 }
+
 void mainMenu::on_settingsButtonSoundOn_clicked()
 {
     playbuttonsound();
     mButtonSoundActive = 1;
     emit setButtonSoundVolume(mButtonSoundValue);
-    //buttonsound->setVolume(buttonSoundValue);
     ui->settingsButtonSoundSlider->setValue(mButtonSoundValue);
 }
 
@@ -1321,9 +1373,11 @@ void mainMenu::on_settingsButtonSoundOff_clicked()
     playbuttonsound();
     saver = ui->settingsButtonSoundSlider->value();
     ui->settingsButtonSoundSlider->setValue(0);
-    emit setButtonSoundVolume(0);
-    mButtonSoundValue = saver;
+    if(saver != 0){
+        mButtonSoundValue = saver;
+    }
     mButtonSoundActive = 0;
+    emit setButtonSoundVolume(0);
 }
 
 void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
@@ -1333,7 +1387,6 @@ void mainMenu::on_settingsButtonSoundSlider_valueChanged(int value)
     }
     mButtonSoundValue = value;
     emit setButtonSoundVolume(mButtonSoundValue);
-    //buttonsound->setVolume(buttonSoundValue);
 }
 
 void mainMenu::on_settingsRaceSoundOn_clicked()
@@ -1350,14 +1403,15 @@ void mainMenu::on_settingsRaceSoundOff_clicked()
     playbuttonsound();
     saver = ui->settingsRaceSoundSlider->value();
     ui->settingsRaceSoundSlider->setValue(0);
-    emit setCarSoundVolume(0);
-    mRaceSoundValue = saver;
+    if(saver != 0){
+        mRaceSoundValue = saver;
+    }
     mRaceSoundActive = 0;
+    emit setCarSoundVolume(0);
 }
 
 void mainMenu::on_settingsRaceSoundSlider_valueChanged(int value)
 {
-    //racesound lauter/leiser
     if(mRaceSoundActive == 0){
         mRaceSoundActive = 1;
     }
@@ -1365,14 +1419,13 @@ void mainMenu::on_settingsRaceSoundSlider_valueChanged(int value)
     emit setCarSoundVolume(mRaceSoundValue);
 }
 
-// Highscore Reset
-
+// Highscore reset
 void mainMenu::on_settingsHighscoreResetButton_clicked()
 {
     playbuttonsound();
-    //resetHighscore
 
     QString filename;
+
     filename = "highscores/Monza.score";
     QFile outputFile(filename);
     if (outputFile.open(QIODevice::WriteOnly | QIODevice::Truncate| QIODevice::Text)){
@@ -1413,29 +1466,45 @@ void mainMenu::on_settingsHighscoreResetButton_clicked()
         outputFile5.close();
     }
 }
+// End settings
 
-// Buttons from Manual
-
+/* Begin manual
+ *
+ * Functions in manual:
+ * on_manual2Main_clicked()
+*/
 void mainMenu::on_manual2Main_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
 }
+// End manual
 
-// Buttons from Credits
-
+/* Begin credits
+ *
+ * Functions in credits:
+ * on_credits2Main_clicked()
+*/
 void mainMenu::on_credits2Main_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
 }
+// End credits
 
-// Buttons from playTypeSelect
-
+/* Begin playTypeSelect
+ *
+ * Functions in playTypeSelect:
+ * on_playTypeSelect2SinglePlayer_clicked()
+ * on_playTypeSelect2Multiplayer_clicked()
+ * on_playTypeSelect2Main_clicked()
+*/
 void mainMenu::on_playTypeSelect2SinglePlayer_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(7);
+    computeMaximumValue();
+    setStars();
     emit setGameMode(false);
     mIsMultiplayer = false;
 }
@@ -1444,6 +1513,8 @@ void mainMenu::on_playTypeSelect2Multiplayer_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(7);
+    computeMaximumValue();
+    setStars();
     emit setGameMode(true);
     mIsMultiplayer = true;
 }
@@ -1453,9 +1524,16 @@ void mainMenu::on_playTypeSelect2Main_clicked()
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(0);
 }
+// End playTypeSelect
 
-// Buttons from Level 1
-
+/* Begin level 1
+ *
+ * Functions in level 1:
+ * on_level1_2Left_clicked()
+ * on_level1_2Right_clicked()
+ * on_level1_2Main_clicked()
+ * on_level1_2Play_clicked()
+*/
 void mainMenu::on_level1_2Left_clicked()
 {
     playbuttonsound();
@@ -1493,25 +1571,28 @@ void mainMenu::on_level1_2Right_clicked()
 void mainMenu::on_level1_2Main_clicked()
 {
 	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(6);
 }
 
 void mainMenu::on_level1_2Play_clicked()
 {
 	playbuttonsound();
-	//start Level 1
-	//world = new World(screenWidth,screenHeight,1);
-	//world->showFullScreen();
-	//hide();
     game->loadCircuit(Monza, mTopspeedValue, mAccelerationValue, mHandlingValue);
 }
+// End level 1
 
-// Buttons from Level 2
-
+/* Begin level 2
+ *
+ * Functions in level 2:
+ * on_level2_2Left_clicked()
+ * on_level2_2Right_clicked()
+ * on_level2_2Main_clicked()
+ * on_level2_2Play_clicked()
+*/
 void mainMenu::on_level2_2Main_clicked()
 {
 	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(6);
 }
 
 void mainMenu::on_level2_2Left_clicked()
@@ -1540,19 +1621,22 @@ void mainMenu::on_level2_2Right_clicked()
 void mainMenu::on_level2_2Play_clicked()
 {
 	playbuttonsound();
-	//start Level 2
-	//world = new World(screenWidth,screenHeight,2);
-	//world->showFullScreen();
-	//hide();
     game->loadCircuit(Hockenheimring, mTopspeedValue, mAccelerationValue, mHandlingValue);
 }
+// End level 2
 
-// Buttons from Level 3
-
+/* Begin level 3
+ *
+ * Functions in level 3:
+ * on_level3_2Left_clicked()
+ * on_level3_2Right_clicked()
+ * on_level3_2Main_clicked()
+ * on_level3_2Play_clicked()
+*/
 void mainMenu::on_level3_2Main_clicked()
 {
 	playbuttonsound();
-	ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(6);
 }
 
 void mainMenu::on_level3_2Left_clicked()
@@ -1592,19 +1676,22 @@ void mainMenu::on_level3_2Right_clicked()
 void mainMenu::on_level3_2Play_clicked()
 {
 	playbuttonsound();
-	//start Level 3
-	//world = new World(screenWidth,screenHeight,3);
-	//world->showFullScreen();
-	//hide();
     game->loadCircuit(YasMarina, mTopspeedValue, mAccelerationValue, mHandlingValue);
 }
+// End level 3
 
-// Buttons from Level 4
-
+/* Begin level 4
+ *
+ * Functions in level 4:
+ * on_level4_2Left_clicked()
+ * on_level4_2Right_clicked()
+ * on_level4_2Main_clicked()
+ * on_level4_2Play_clicked()
+*/
 void mainMenu::on_level4_2Main_clicked()
 {
     playbuttonsound();
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(6);
 }
 
 void mainMenu::on_level4_2Left_clicked()
@@ -1644,16 +1731,22 @@ void mainMenu::on_level4_2Right_clicked()
 void mainMenu::on_level4_2Play_clicked()
 {
     playbuttonsound();
-    // start level 4
     game->loadCircuit(Bahrain, mTopspeedValue, mAccelerationValue, mHandlingValue);
 }
+// End level 4
 
-// Buttons from Level 5
-
+/* Begin level 5
+ *
+ * Functions in level 5:
+ * on_level5_2Left_clicked()
+ * on_level5_2Right_clicked()
+ * on_level5_2Main_clicked()
+ * on_level5_2Play_clicked()
+*/
 void mainMenu::on_level5_2Main_clicked()
 {
     playbuttonsound();
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(6);
 }
 
 void mainMenu::on_level5_2Left_clicked()
@@ -1682,6 +1775,6 @@ void mainMenu::on_level5_2Right_clicked()
 void mainMenu::on_level5_2Play_clicked()
 {
     playbuttonsound();
-    // start level 5
     game->loadCircuit(Silverstone, mTopspeedValue, mAccelerationValue, mHandlingValue);
 }
+// End level 5

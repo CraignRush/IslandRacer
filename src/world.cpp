@@ -360,7 +360,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack, true);
         mViewPlayer2 = new Viewport(mWidth/2, mHeight, mTrack, true);
 
-        connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveL3apTime()));
+        connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveLapTime()));
         connect(mTrack, SIGNAL(LapChanged2()), mViewPlayer2, SLOT(saveLapTime()));
 
         mVisibleWidth = 0.4 * mWidth/2;
