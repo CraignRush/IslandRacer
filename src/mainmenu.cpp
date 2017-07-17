@@ -794,15 +794,15 @@ void mainMenu::computeMaximumValue()
         sec = list.value(1).toDouble();
         inputFile1.close();
     }
-    if(min < 3)
+    if(min < 2)
     {
         mMonzaValue = 1;
     }
-    if(min < 3 && sec < 30)
+    if(min < 2 && sec < 30)
     {
         mMonzaValue = 2;
     }
-    if(min < 2)
+    if(min < 2 && sec < 20)
     {
         mMonzaValue = 3;
     }
@@ -825,15 +825,15 @@ void mainMenu::computeMaximumValue()
         sec = list.value(1).toDouble();
         inputFile2.close();
     }
-    if(min < 3 && sec < 30)
+    if((min < 3 && sec < 20) || min < 2)
     {
         mHockenheimringValue = 1;
     }
-    if(min < 2)
+    if(min < 2 && sec < 50)
     {
         mHockenheimringValue = 2;
     }
-    if((min < 2 && sec < 30) || min < 1)
+    if((min < 2 && sec < 35) || min < 1)
     {
         mHockenheimringValue = 3;
     }
@@ -856,15 +856,15 @@ void mainMenu::computeMaximumValue()
         sec = list.value(1).toDouble();
         inputFile3.close();
     }
-    if(min < 4)
+    if(min < 3 && 35)
     {
         mYasmarinaValue = 1;
     }
-    if(min < 3 && sec < 30)
+    if((min < 3 && sec < 5) || min < 2)
     {
         mYasmarinaValue = 2;
     }
-    if(min < 3)
+    if((min < 2 && sec < 50) || min < 1)
     {
         mYasmarinaValue = 3;
     }
@@ -887,15 +887,15 @@ void mainMenu::computeMaximumValue()
         sec = list.value(1).toDouble();
         inputFile4.close();
     }
-    if(min < 4)
+    if((min < 4 && sec < 15) || min < 3)
     {
         mBahrainValue = 1;
     }
-    if(min < 4 && sec < 30)
+    if(min < 3 && sec < 45)
     {
         mBahrainValue = 2;
     }
-    if(min < 3)
+    if((min < 3 && sec < 30) || min < 2)
     {
         mBahrainValue = 3;
     }
@@ -918,15 +918,15 @@ void mainMenu::computeMaximumValue()
         sec = list.value(1).toDouble();
         inputFile5.close();
     }
-    if(min < 4)
+    if(min < 3 && sec < 40)
     {
         mSilverstoneValue = 1;
     }
-    if(min < 4 && sec < 30)
+    if((min < 3 && sec < 10) || min < 2)
     {
         mSilverstoneValue = 2;
     }
-    if(min < 3)
+    if((min < 2 && sec < 55) || min < 1)
     {
         mSilverstoneValue = 3;
     }
@@ -1549,6 +1549,9 @@ void mainMenu::on_level1_2Left_clicked()
             ui->level5_2Play->setEnabled(true);
         }
     }
+    else{
+        ui->level5_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level1_2Right_clicked()
@@ -1565,6 +1568,9 @@ void mainMenu::on_level1_2Right_clicked()
         {
             ui->level2_2Play->setEnabled(true);
         }
+    }
+    else{
+        ui->level2_2Play->setEnabled(true);
     }
 }
 
@@ -1616,6 +1622,9 @@ void mainMenu::on_level2_2Right_clicked()
             ui->level3_2Play->setEnabled(true);
         }
     }
+    else{
+        ui->level3_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level2_2Play_clicked()
@@ -1654,6 +1663,9 @@ void mainMenu::on_level3_2Left_clicked()
             ui->level2_2Play->setEnabled(true);
         }
     }
+    else{
+        ui->level2_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level3_2Right_clicked()
@@ -1670,6 +1682,9 @@ void mainMenu::on_level3_2Right_clicked()
         {
             ui->level4_2Play->setEnabled(true);
         }
+    }
+    else{
+        ui->level4_2Play->setEnabled(true);
     }
 }
 
@@ -1709,6 +1724,9 @@ void mainMenu::on_level4_2Left_clicked()
             ui->level3_2Play->setEnabled(true);
         }
     }
+    else{
+        ui->level3_2Play->setEnabled(true);
+    }
 }
 
 void mainMenu::on_level4_2Right_clicked()
@@ -1725,6 +1743,9 @@ void mainMenu::on_level4_2Right_clicked()
         {
             ui->level5_2Play->setEnabled(true);
         }
+    }
+    else{
+        ui->level5_2Play->setEnabled(true);
     }
 }
 
@@ -1763,6 +1784,9 @@ void mainMenu::on_level5_2Left_clicked()
         {
             ui->level4_2Play->setEnabled(true);
         }
+    }
+    else{
+        ui->level4_2Play->setEnabled(true);
     }
 }
 
