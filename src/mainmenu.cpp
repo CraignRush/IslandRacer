@@ -800,11 +800,11 @@ void mainMenu::computeMaximumValue()
     {
         mMonzaValue = 1;
     }
-    if(min < 2 && sec < 30)
+    if(min < 2 && sec < 25)
     {
         mMonzaValue = 2;
     }
-    if(min < 2 && sec < 20)
+    if(min < 2 && sec < 15)
     {
         mMonzaValue = 3;
     }
@@ -827,7 +827,7 @@ void mainMenu::computeMaximumValue()
         sec = list.value(1).toDouble();
         inputFile2.close();
     }
-    if((min < 3 && sec < 20) || min < 2)
+    if((min < 3 && sec < 25) || min < 2)
     {
         mHockenheimringValue = 1;
     }
@@ -835,7 +835,7 @@ void mainMenu::computeMaximumValue()
     {
         mHockenheimringValue = 2;
     }
-    if((min < 2 && sec < 35) || min < 1)
+    if((min < 2 && sec < 40) || min < 1)
     {
         mHockenheimringValue = 3;
     }
@@ -858,15 +858,15 @@ void mainMenu::computeMaximumValue()
         sec = list.value(1).toDouble();
         inputFile3.close();
     }
-    if(min < 3 && 35)
+    if((min < 3 && sec < 30) || min < 2)
     {
         mYasmarinaValue = 1;
     }
-    if((min < 3 && sec < 5) || min < 2)
+    if((min < 2 && sec < 55)
     {
         mYasmarinaValue = 2;
     }
-    if((min < 2 && sec < 50) || min < 1)
+    if((min < 2 && sec < 45) || min < 1)
     {
         mYasmarinaValue = 3;
     }
@@ -889,15 +889,15 @@ void mainMenu::computeMaximumValue()
         sec = list.value(1).toDouble();
         inputFile4.close();
     }
-    if((min < 4 && sec < 15) || min < 3)
+    if((min < 4 && sec < 10) || min < 3)
     {
         mBahrainValue = 1;
     }
-    if(min < 3 && sec < 45)
+    if(min < 3 && sec < 35)
     {
         mBahrainValue = 2;
     }
-    if((min < 3 && sec < 30) || min < 2)
+    if((min < 3 && sec < 25) || min < 2)
     {
         mBahrainValue = 3;
     }
@@ -920,15 +920,15 @@ void mainMenu::computeMaximumValue()
         sec = list.value(1).toDouble();
         inputFile5.close();
     }
-    if(min < 3 && sec < 40)
+    if(min < 3 && sec < 35)
     {
         mSilverstoneValue = 1;
     }
-    if((min < 3 && sec < 10) || min < 2)
+    if(min < 2)
     {
         mSilverstoneValue = 2;
     }
-    if((min < 2 && sec < 55) || min < 1)
+    if((min < 2 && sec < 50) || min < 1)
     {
         mSilverstoneValue = 3;
     }
