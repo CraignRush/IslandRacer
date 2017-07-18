@@ -52,7 +52,7 @@ public:
      * \param item The car object
      * \param index Indicates the player (1 or 2)
      */
-    void updateCheckpoints(QGraphicsPixmapItem* item, int index);
+    void updateCheckpoints(QGraphicsItem* item, int index);
 
     //! Calls the ResetCheckpointcounter function of checkpoint class
     /*!

@@ -34,7 +34,7 @@ QGraphicsRectItem* Checkpoint::GetCheckpoint(int index)
     return &mCheckpoints[index];
 }
 
-void Checkpoint::CheckCheckpoint(QGraphicsPixmapItem* car)
+void Checkpoint::CheckCheckpoint(QGraphicsItem* car)
 {
     for(int i = 0; i<mNumberOfCheckpoints; i++)
     {

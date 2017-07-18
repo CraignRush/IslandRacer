@@ -7,13 +7,13 @@
 #include "worldposition.h"
 
 
-Car::Car(b2World* world, Track* track, int i) : mWorld{world}, mTrack{track}
+Car::Car(b2World* world, Track* track, int carIndex) : mWorld{world}, mTrack{track}
 {
-    if (i==1)
+    if (carIndex==1)
     {
         setPixmap(QPixmap(":/images/images/1car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
     }
-    else if (i==2)
+    else if (carIndex==2)
     {
         setPixmap(QPixmap(":/images/images/2car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
     }
@@ -148,10 +148,11 @@ Car::~Car()
 
 void Car::render()
 {
-    //Get position of main car body and scale 1m = 20 px
-    b2Vec2 pos = mBody->GetPosition();
-    setPos((pos.x - (CAR_WIDTH / 2.0f)) * PX_TO_M_RATIO, (pos.y - (CAR_LENGTH / 2.0f)) * PX_TO_M_RATIO);
-    setRotation(mBody->GetAngle() * 360.0 / (2.0 * 3.141592) + CAR_ROTATION_ANGLE);
+    // Set position of car image (upper left corner) to car body position (center) and scale 1m = 20 px
+    double angle = mBody->GetAngle();
+    setRotation(angle * 360.0 / (2.0 * 3.141592) + CAR_ROTATION_ANGLE);
+    b2Vec2 pos = mBody->GetWorldPoint(b2Vec2(-(CAR_WIDTH / 2.0f), -(CAR_LENGTH / 2.0f)));
+    setPos(pos.x * PX_TO_M_RATIO, pos.y * PX_TO_M_RATIO);
 }
 
 
@@ -323,7 +324,7 @@ void Car::setPosition(int x, int y, double angle)
     mWorld->DestroyBody(mRightRearWheel);
     mWorld->DestroyBody(mBody);
 
-    mCarPosition = b2Vec2((((float) x) / PX_TO_M_RATIO) + (CAR_WIDTH/2.0f), (((float) y) / PX_TO_M_RATIO) + (CAR_LENGTH/2.0f));
+    mCarPosition = b2Vec2((((float) x) / PX_TO_M_RATIO) + (CAR_WIDTH/2.0f) * qCos(angle) - (CAR_LENGTH/2.0f) * qSin(angle), (((float) y) / PX_TO_M_RATIO) + (CAR_WIDTH/2.0f)*qSin(angle) + (CAR_LENGTH/2.0f)*qCos(angle));
 
     // Create new one on new position
     b2BodyDef *bodyDef = new b2BodyDef();
