@@ -35,8 +35,6 @@ public:
     //! Init values
     Track();
     ~Track();
-    //Track(int level);
-    //Track(int width, int height, QImage background, QImage grayImage);
 
     //! Get the underground for position (x,y)
     Underground getUnderground(int x, int y);

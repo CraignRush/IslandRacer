@@ -22,11 +22,6 @@ Sound::Sound(QObject* parent)
     mBackgroundMusic->setSource(QUrl("qrc:/sounds/sounds/background_andi.wav"));
     mBackgroundMusic->setLoopCount(QSoundEffect::Infinite);
     mBackgroundMusic->setParent(parent);
-    //mBackgroundMusic = new QMediaPlayer();
-    //QMediaPlaylist* playlist = new QMediaPlaylist();
-    //playlist->addMedia(QUrl("qrc:/sounds/sounds/background_andi.mp3"));
-    //playlist->setPlaybackMode(QMediaPlaylist::Loop);
-    //mBackgroundMusic->setPlaylist(playlist);
 
     // Start sound engine in extra thread in background
     mSoundThread = new QThread();
@@ -92,7 +87,6 @@ void Sound::setCarSoundVolume(int volume)
 
 void Sound::playButtonSound()
 {
-    //mButtonClickSound->setVolume(1.0f);
     mButtonClickSound->play();
 }
 

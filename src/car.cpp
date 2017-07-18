@@ -17,7 +17,7 @@ Car::Car(b2World* world, Track* track, int carIndex) : mWorld{world}, mTrack{tra
     {
         setPixmap(QPixmap(":/images/images/2car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
     }
-    //setScale(0.05);
+
     ensureVisible(QRectF(), 500, 400);
 
     //define our Main Car Body
@@ -158,20 +158,6 @@ void Car::render()
 
 void Car::computeUserInput(InputState input)
 {
-    /*    qDebug() << "Left Wheel Position: " << leftWheel->GetPosition().x << ", " << leftWheel->GetPosition().y;
-    qDebug() << "Right Wheel Position: " << rightWheel->GetPosition().x <<", " <<  rightWheel->GetPosition().y;
-    qDebug() << "Car mBody Position: " << mBody->GetPosition().x <<", " <<  mBody->GetPosition().y;
-    qDebug() << "Car mBody Angle: " << mBody->GetAngle();
-    qDebug() << "RW Angle: " << rightWheel->GetAngle();
-    qDebug() << "RW Angle: " << rightWheel->GetTransform().q.GetAngle();
-    qDebug() << "LW Angle: " << leftWheel->GetAngle();
-    qDebug() << "LW Angle: " << leftWheel->GetTransform().q.GetAngle();
-    qDebug() << "RRW Angle: " << rightRearWheel->GetAngle();
-    qDebug() << "RRW Angle: " << rightRearWheel->GetTransform().q.GetAngle();
-    qDebug() << "LRW Angle: " << leftRearWheel->GetAngle();
-    qDebug() << "LRW Angle: " << leftRearWheel->GetTransform().q.GetAngle();*/
-
-    //qDebug() << "Speed: " << mBody->GetLinearVelocity().x << "," << mBody->GetLinearVelocity().y;
 
     switch(input)
     {
@@ -187,14 +173,14 @@ void Car::computeUserInput(InputState input)
             mEngineSpeed = 0.0f;
         if(mEngineSpeed > -HORSEPOWERS*mSpeedFac)
             mEngineSpeed -= 400*1.f/(abs(mEngineSpeed)*0.01f+1.f)*mAccelerationFac;
-        mSteeringAngle = -MAX_STEER_ANGLE*mHandlingFac; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
+        mSteeringAngle = -MAX_STEER_ANGLE*mHandlingFac;
         break;
     case AccelerateSteerRight:
         if(mEngineSpeed > 0)
             mEngineSpeed = 0.0f;
         if(mEngineSpeed > -HORSEPOWERS*mSpeedFac)
             mEngineSpeed -= 400*1.f/(abs(mEngineSpeed)*0.01f+1.f)*mAccelerationFac;
-        mSteeringAngle = MAX_STEER_ANGLE*mHandlingFac; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
+        mSteeringAngle = MAX_STEER_ANGLE*mHandlingFac;
         break;
     case Break:
         if(mEngineSpeed < 0)
@@ -208,17 +194,16 @@ void Car::computeUserInput(InputState input)
             mEngineSpeed = 0.0f;
         if(mEngineSpeed < HORSEPOWERS*mSpeedFac/2)
             mEngineSpeed += 200*1.f/(abs(mEngineSpeed)*0.01f+1.f)*mAccelerationFac;
-        mSteeringAngle = -MAX_STEER_ANGLE*mHandlingFac; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
+        mSteeringAngle = -MAX_STEER_ANGLE*mHandlingFac;
         break;
     case BreakSteerRight:
         if(mEngineSpeed < 0)
             mEngineSpeed = 0.0f;
         if(mEngineSpeed < HORSEPOWERS*mSpeedFac/2)
             mEngineSpeed += 200*1.f/(abs(mEngineSpeed)*0.01f+1.f)*mAccelerationFac;
-        mSteeringAngle = MAX_STEER_ANGLE*1.5; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
+        mSteeringAngle = MAX_STEER_ANGLE*1.5;
         break;
     case None:
-        //mEngineSpeed = 0.0f;
         if(mEngineSpeed < -20.0f)
             mEngineSpeed += 20+mBody->GetLinearVelocity().Length()*3;
         else if(mEngineSpeed > 20.0f)
@@ -228,7 +213,7 @@ void Car::computeUserInput(InputState input)
         mSteeringAngle = 0.0f;
         break;
     case SteerLeft:
-        mSteeringAngle = -MAX_STEER_ANGLE*mHandlingFac; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
+        mSteeringAngle = -MAX_STEER_ANGLE*mHandlingFac;
         if(mEngineSpeed < -20.0f)
             mEngineSpeed += 20+mBody->GetLinearVelocity().Length()*3;
         else if(mEngineSpeed > 20.0f)
@@ -237,7 +222,7 @@ void Car::computeUserInput(InputState input)
             mEngineSpeed = 0.0f;
         break;
     case SteerRight:
-        mSteeringAngle = MAX_STEER_ANGLE*mHandlingFac; //*(1.f/(qPow(0.06f*mBody->GetLinearVelocity().Length()*abs(mEngineSpeed)/HORSEPOWERS,3)+1.f));
+        mSteeringAngle = MAX_STEER_ANGLE*mHandlingFac;
         if(mEngineSpeed < -20.0f)
             mEngineSpeed += 20+mBody->GetLinearVelocity().Length()*3;
         else if(mEngineSpeed > 20.0f)
@@ -255,18 +240,16 @@ void Car::computeUndergroundImpact(int index)
 
     srand(time(NULL));
     int i = rand()%3;
+    // set values depending on underground
     switch(underground)
     {
     case Asphalt:
         mBody->SetLinearDamping(1.0f);
-        //mBody->SetAngularDamping(7.0f);
         break;
     case Grass:
         mBody->SetLinearDamping(1.8f);
-        //mBody->SetAngularDamping(8.5f);
         break;
     case Magic:
-        //i =rand()%3;
         if(i==0)
         {
             setPosition(3900,180,1.95);
@@ -283,13 +266,11 @@ void Car::computeUndergroundImpact(int index)
         break;
     case Sand:
         mBody->SetLinearDamping(2.5f);
-        //mBody->SetAngularDamping(10.0f);
         break;
     case Water:
         WorldPosition pos = mTrack->getLastCheckpointPosition(index);
         mEngineSpeed = 0.0f;
         setPosition(pos.x(), pos.y(), pos.angle());
-        //  emit startUnderwaterEffect;
         break;
     }
 }

@@ -144,23 +144,7 @@ void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, i
                 }
                 continue;
             }
-            /*
-            if(list.value(0) == "CAR_X")
-            {
-                carPosition.setX(list.value(1).toInt());
-                continue;
-            }
-            if(list.value(0) == "CAR_Y")
-            {
-                carPosition.setY(list.value(1).toInt());
-                continue;
-            }
-            if(list.value(0) == "CAR_ANGLE")
-            {
-                carPosition.setAngle(list.value(1).toDouble());
-                continue;
-            }
-*/
+
         }
         inputFile.close();
 

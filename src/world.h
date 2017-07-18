@@ -95,7 +95,6 @@ public:
 
     //! Stops game loop to pause the game and display pausemenu
     void pauseGame();
-    //void StopGame();
 
     //! Removes/Sets world elements to load a new track
     static void GameExit();

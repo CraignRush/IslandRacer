@@ -18,7 +18,6 @@ private:
     QSoundEffect* mCarAcceleratingSound;
     QSoundEffect* mButtonClickSound;
     QSoundEffect* mBackgroundMusic;
-    //QMediaPlayer* mBackgroundMusic;
 
 public:
     static Sound* getSoundInstance(QObject* parent);

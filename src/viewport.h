@@ -78,7 +78,6 @@ public:
     //! Resets all values (e.g. mCurLap or mLaps)to beginnig default
     void restartGame();
 
-    //static void GameExit();
     //! Each time step during gameLoop this function is called to update all labels
     /*! carpos and fps is need to calculate current speed
      * \param carpos Current position of car

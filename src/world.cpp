@@ -22,10 +22,6 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     mCar1 = new Car(mWorld, mTrack, 1);
     mCar2 = new Car(mWorld, mTrack, 2);
 
-    // Add the cars to the track/scene
-    //mTrack->addItem(mCar1);
-    //mTrack->addItem(mCar2);
-
     // Init viewports
     mViewPlayer1 = NULL;
     mViewPlayer2 = NULL;
@@ -53,15 +49,8 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     mBlurEffectView2 = NULL;
 
     // Create horizontal border line between the two viewports
-    //line->setFrameShape(QFrame::VLine);
     mVerticalSeperatorLine->setFixedWidth(2);
     mVerticalSeperatorLine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    //line->setFrameShadow(QFrame::Sunken);
-    // set black background of line
-    //QPalette pal = palette();
-    //pal.setColor(QPalette::Background, Qt::black);
-    //line->setAutoFillBackground(true);
-    //line->setPalette(pal);
     mVerticalSeperatorLine->setStyleSheet(QString("background-color: black;"));
 
     // Set up starting countdown
@@ -112,9 +101,6 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
 World::~World()
 {
     // Delete objects from heap and set pointers to NULL
-    //delete mCar1;
-    //mCar1 = NULL;
-
     delete mCar2;
     mCar2 = NULL;
 
@@ -127,17 +113,11 @@ World::~World()
     delete mTrack;
     mTrack = NULL;
 
-    //if(mOpacityEffect != NULL)
-    // {
     delete mOpacityEffect;
     mOpacityEffect = NULL;
-    // }
 
-    //if(mCounter != NULL)
-    //{
     delete mCounter;
     mCounter = NULL;
-    //}
 
     if(mStartTimer != NULL)
     {
@@ -148,11 +128,8 @@ World::~World()
     delete mCounterLayout;
     mCounterLayout = NULL;
 
-    //if(mCounterWidget != NULL)
-    // {
     delete mCounterWidget;
     mCounterWidget = NULL;
-    // }
 
     if(mBlurEffectView1 != NULL)
     {
@@ -205,10 +182,6 @@ World::~World()
 
 void World::gameLoop()
 {
-    //high_resolution_clock::time_point t1 = high_resolution_clock::now();
-    //	QElapsedTimer timer;
-    //	timer.start();
-
     // Compute new positions in physical world
     mWorld->Step(1.0f/mFps, 8, 3);
 
@@ -236,12 +209,6 @@ void World::gameLoop()
         mCar2->render();
         mViewPlayer2->updateOverlay(mCar2->pos(),mFps);
     }
-
-    //	high_resolution_clock::time_point t2 = high_resolution_clock::now();
-    //	auto duration = duration_cast<microseconds>(t2-t1).count();
-    //	qDebug() << duration;
-
-    //	qDebug() << "The slow operation took" << timer.elapsed() << "nanoseconds";
 }
 
 void World::startLoop()
@@ -249,18 +216,12 @@ void World::startLoop()
     if(mStartCounter%100==0 && mStartCounter > 0)
     {
         mOpacity=1.0f;
-        //mCounter->setPlainText(QString::number(mStartCounter/100));
         mCounter->setText(QString::number(mStartCounter/100));
-        //mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-20)/2,(mHeight-200)/2));
-        //mCounter->setPos((mWidth - mCounter->boundingRect().width()-20)/2,(mHeight-200)/2);
     }
     if(mStartCounter == 0)
     {
         mOpacity=1.0f;
-        //mCounter->setPlainText("GO!");
         mCounter->setText("GO!");
-        //mCounter->setPos(mapToScene((mWidth - mCounter->boundingRect().width()-60)/2,(mHeight-200)/2));
-        //mCounter->setPos((mWidth - mCounter->boundingRect().width()-60)/2,(mHeight-200)/2);
         mStartTimer->start(15);
 
         //start the race time immediately after go
@@ -273,8 +234,6 @@ void World::startLoop()
         emit mCar1->playCarSound();
     }
 
-    //mCounter->setOpacity(mOpacity);
-    //mCounter->setStyleSheet("color: rgba(255, 0, 0, " + QString::number(mOpacity*100) + "%)");
     mOpacityEffect->setOpacity(mOpacity);
     mOpacity -= 0.05f;
     mStartCounter -= 5;
@@ -286,17 +245,6 @@ void World::startLoop()
         mStartTimer = NULL;
 
         mOpacityEffect->setOpacity(0.0);
-        /*delete mCounterWidget;
-        mCounterWidget = NULL;
-
-        delete mOpacityEffect;
-        mOpacityEffect = NULL;
-
-        delete mCounter;
-        mCounter = NULL;*/
-        //mTrack->removeItem(mCounter);
-        //delete mCounter;
-        //mCounter = NULL;
     }
 }
 
@@ -460,7 +408,7 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
     // handle key press
     switch(keyEvent->key())
     {
-    case Qt::Key_Escape: // Just for debugging, to close game and get back to menu.
+    case Qt::Key_Escape:
         if(mPauseMenuWidget->isVisible()) // resume the game
         {
             resumeGame();
@@ -469,49 +417,6 @@ void World::keyPressEvent(QKeyEvent *keyEvent)
         {
             pauseGame();
         }
-
-        //ExitGame();
-
-        /*
- * 		ExitGame();
-
-        hide();
-        //mBlurEffect->setEnabled(false);
-
-        mTimer->stop();
-        mTrack->removeItem(mCar1);
-        if(mIsMultiplayer)
-            mTrack->removeItem(mCar2);
-        /*if(mCounter != NULL)
-        {
-            delete mCounter;
-            mCounter = NULL;
-        }*/
-        /*       if(mStartTimer != NULL)
-        {
-            mStartTimer->stop();
-            delete mStartTimer;
-            mStartTimer = NULL;
-        }
-
-        emit mCar1->stopCarSound();
-*/
-        //        if(mSpeedDisplay != NULL)
-        //        {
-        //            delete mSpeedDisplay;
-        //            mSpeedDisplay = NULL;
-        //        }
-
-        //        if(mTimeLabel != NULL)
-        //        {
-        //            delete mTimeLabel;
-        //            mTimeLabel = NULL;
-        //        }
-        //        if(mLapLabel != NULL)
-        //        {
-        //            delete mLapLabel;
-        //            mLapLabel = NULL;
-        //        }
         break;
     case Qt::Key_Left:
         // set new state depending on current state
@@ -650,7 +555,6 @@ void World::keyReleaseEvent(QKeyEvent *keyEvent)
     switch(keyEvent->key())
     {
     case Qt::Key_Escape:
-        //mBlurEffect->setEnabled(true);
         break;
     case Qt::Key_Left:
         // set new state depending on current state
@@ -791,9 +695,6 @@ void World::resumeGame()
 
     // hide pause menu
     mPauseMenuWidget->setVisible(false);
-
-    // focus mViewportWidget to receive key input events
-    //mViewportWidget->focusWidget();
 }
 
 void World::restartGame()
@@ -885,11 +786,6 @@ void World::pauseGame()
     // stop race sound
     emit mCar1->stopCarSound();
 
-    // add blur effect (disable viewport updates so blur won't be removed with repaint)
-    //mViewPlayer1->setUpdatesEnabled(false);
-    //if(mIsMultiplayer)
-    //  mViewPlayer2->setUpdatesEnabled(false);
-
     // show pause menu
     mPauseMenuWidget->setVisible(true);
 }
@@ -904,11 +800,7 @@ void World::exitGame()
         mViewportLayout->removeWidget(mVerticalSeperatorLine);
         mTrack->removeItem(mCar2);
     }
-    /*if(mCounter != NULL)
-    {
-        delete mCounter;
-        mCounter = NULL;
-    }*/
+
     if(mStartTimer != NULL)
     {
         mStartTimer->stop();
@@ -923,22 +815,6 @@ void World::exitGame()
     }
 
     emit mCar1->stopCarSound();
-    //        if(mSpeedDisplay != NULL)
-    //        {
-    //            delete mSpeedDisplay;
-    //            mSpeedDisplay = NULL;
-    //        }
-
-    //        if(mTimeLabel != NULL)
-    //        {
-    //            delete mTimeLabel;
-    //            mTimeLabel = NULL;
-    //        }
-    //        if(mLapLabel != NULL)
-    //        {
-    //            delete mLapLabel;
-    //            mLapLabel = NULL;
-    //        }
 
 }
 

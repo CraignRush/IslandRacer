@@ -24,7 +24,6 @@ class mainMenu : public QMainWindow
 	Q_OBJECT
 private:
     Ui::mainMenu *ui;
-    //World* world;
     Game* game;
 
     // Screen size
@@ -56,10 +55,6 @@ private:
 
     // Game Mode
     bool mIsMultiplayer;
-
-    //QMediaPlaylist *playlist;
-    //QMediaPlayer *buttonsound;
-    //QMediaPlayer *backgroundmusic;
 
 public:
 	explicit mainMenu(QWidget *parent = 0);

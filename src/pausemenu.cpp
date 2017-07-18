@@ -330,8 +330,6 @@ void PauseMenu::settingsClicked()
     mGridLayout->addWidget(mButtonSoundSlider, 4, 4, 1, 2);
     //mGridLayout->addItem(mHorizontalSpacer, 4, 6, 1, 1, Qt::AlignCenter);
 
-    // Adapt grid layout for settings menu
-    //mGridLayout->setColumnMinimumWidth(6, 100);
 }
 
 void PauseMenu::quitClicked()

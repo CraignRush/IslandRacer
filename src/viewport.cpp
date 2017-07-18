@@ -3,7 +3,6 @@
 
 Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
 {
-    //scale(mWidth / 1920.0f * 2.0f,mHeight / 1080.0f * 2.0f);
     mWidth = width;
     mHeight = height;
     // Set track as scene for this view
@@ -47,12 +46,10 @@ Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
     mTotalTimeLabel->setFont(QFont("GillSansMT",mTextSizeTime,60)); // Font: family, PointSize, Weight(how bold)
     mTotalTimeLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
     mTotalTimeLabel->setText(mTotalTimeText + "mm:ss.zzz");
-    //    mTotalTimeLabel->setFixedSize(QSize(350,50));
     mTotalTimeLabel->adjustSize();
     mTotalTimeLabel->setParent(this);
 
     QSize stdRectSize = mTotalTimeLabel->size();
-    //Initialize Label for ingame lap counter display
     mLapText = "LAPS: ";
     mLapLabel = new QLabel();
     mLapLabel->setVisible(false);
@@ -83,7 +80,6 @@ Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
     mSpeedDisplay->setVisible(false);
     mSpeedDisplay->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
     mSpeedDisplay->setFont(QFont("GillSansMT",mTextSizeSpeed,60));
-    //    mSpeedDisplay->setFixedSize(QSize(390,110));
     mSpeedDisplay->setText("000.0km/h");
     mSpeedDisplay->adjustSize();
     mSpeedDisplay->setParent(this);
@@ -115,45 +111,24 @@ Viewport::~Viewport()
         delete mWinnerLabel;
         mWinnerLabel = NULL;
     }
-  //  if(mOpacityEffect != NULL)
-    //{
-        //delete mOpacityEffect;
-        //mOpacityEffect = NULL;
-   // }
-   // if(mLapTimeLabel != NULL)
-   // {
+
         delete mLapTimeLabel;
         mLapTimeLabel = NULL;
-   // }
 
-  //  if(mLapLabel != NULL)
-   // {
         delete mLapLabel;
         mLapLabel = NULL;
-   // }
 
-  //  if(mTotalTimeLabel != NULL)
-   // {
         delete mTotalTimeLabel;
         mTotalTimeLabel = NULL;
-   // }
 
-   // if(mLapTimeLabel != NULL)
-    //{
         delete mLapTimeLabel;
         mLapTimeLabel = NULL;
-   // }
 
-    //if(mLapLabel != NULL)
-    //{
         delete mLapLabel;
         mLapLabel = NULL;
-   // }
-    //if(mSpeedDisplay != NULL)
-    //{
+
         delete mSpeedDisplay;
         mSpeedDisplay = NULL;
-   // }
 
     delete mOpacityTimer;
 
@@ -180,9 +155,6 @@ void Viewport::startGame()
 
 void Viewport::updateOverlay(QPointF carpos, int fps)
 {
-    //debugging!
-    //mUnderwaterEffect->update();
-
     // Update lap time label
     mElapsed = mLapTimeElapsed.elapsed() + mCurLap;
     mTime.setHMS(0,0,0,0);
