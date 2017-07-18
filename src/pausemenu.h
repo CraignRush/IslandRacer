@@ -7,9 +7,11 @@
 #include <QLabel>
 #include <QSlider>
 #include <QSpacerItem>
+#include <QTextStream>
 #include "sound.h"
 #include <QFile>
 
+//! Creates the pause menu
 class PauseMenu : public QWidget
 {
     Q_OBJECT

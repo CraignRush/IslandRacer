@@ -252,7 +252,8 @@ void Car::computeUndergroundImpact(int index)
     Underground underground;
     underground = mTrack->getUnderground(pos().x()+CAR_WIDTH*PX_TO_M_RATIO/2.0f*qCos(qDegreesToRadians(rotation()))-CAR_LENGTH*PX_TO_M_RATIO/2.0f*qSin(qDegreesToRadians(rotation())), pos().y()+CAR_WIDTH*PX_TO_M_RATIO/2.0f*qSin(qDegreesToRadians(rotation()))+CAR_LENGTH*PX_TO_M_RATIO/2.0f*qCos(qDegreesToRadians(rotation())));
 
-    int i;
+    srand(time(NULL));
+    int i = rand()%3;
     switch(underground)
     {
     case Asphalt:
@@ -264,7 +265,7 @@ void Car::computeUndergroundImpact(int index)
         //mBody->SetAngularDamping(8.5f);
         break;
     case Magic:
-        i =rand()%3;
+        //i =rand()%3;
         if(i==0)
         {
             setPosition(3900,180,1.95);

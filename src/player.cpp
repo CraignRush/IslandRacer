@@ -100,7 +100,7 @@ void Player::updateFile()
 void Player::endRaceDialog(QString* mLapTimeEnd,QString mTotalTimeEnd)
 {
     mInputDialog.showNormal();
-    for(int i = 0; i < 1; i++){
+    for(int i = 0; i < 3; i++){
         mLapTimes[i] = mLapTimeEnd[i];
     }
     mTotalTime = mTotalTimeEnd;

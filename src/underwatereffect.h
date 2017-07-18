@@ -3,7 +3,7 @@
 
 
 #include <QGraphicsEffect>
-#include <qtgui>
+#include <QtGui>
 #include <cmath>
 #include <QUrl>
 #include <QList>

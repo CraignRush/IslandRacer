@@ -76,6 +76,9 @@ public:
     //! The number of stars above the levels get set according to the highscores
     void setStars();
 
+    //! The values set in the garage get saved
+    void saveGarage();
+
 signals:
     //! Signal to start background music
     void playBackgroundMusic();

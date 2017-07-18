@@ -395,9 +395,10 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->manualLabel->setFont(GillSansMT);
 	ui->manualLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	ui->manualLabel->setText("MOVING THE CAR:\n\n"
-							 "UP = Accelerate\n"
-							 "DOWN = Brake\n"
-							 "LEFT/RIGHT = Steer\n"
+                             "UP = Accelerate\n"
+                             "DOWN = Brake\n"
+                             "LEFT/RIGHT = Steer\n"
+                             "Try WASD to get going on the left screen in the multiplayer\n"
 							 "ESC = Back to main menu\n\n"
 							 "You can adjust the attributes of the car in the garage.\n"
 							 "The better your times on the tracks are, the more points you can distribute.\n"
@@ -756,6 +757,7 @@ void mainMenu::on_main2QuitGame_clicked()
  * Functions in garage:
  * computeMaximumValue()
  * setStars()
+ * saveGarage()
  * on_garage2Main_clicked()
  * on_garageAccelerationSlider_valueChanged(int value)
  * on_garageAccelerationSlider_sliderReleased()
@@ -1059,11 +1061,8 @@ void mainMenu::setStars()
 }
 
 // save the settings from the garage
-void mainMenu::on_garage2Main_clicked()
+void mainMenu::saveGarage()
 {
-    playbuttonsound();
-    ui->stackedWidget->setCurrentIndex(0);
-
     QString out("topspeedValue=" + QString::number(mTopspeedValue) + "\n"
                 "accelerationValue=" + QString::number(mAccelerationValue) + "\n"
                 "handlingValue=" + QString::number(mHandlingValue) + "\n");
@@ -1075,6 +1074,13 @@ void mainMenu::on_garage2Main_clicked()
         in << out;
         outputFile.close();
     }
+}
+
+void mainMenu::on_garage2Main_clicked()
+{
+    playbuttonsound();
+    ui->stackedWidget->setCurrentIndex(0);
+    saveGarage();
 }
 
 void mainMenu::on_garageAccelerationSlider_valueChanged(int value)
@@ -1419,11 +1425,17 @@ void mainMenu::on_settingsRaceSoundSlider_valueChanged(int value)
     emit setCarSoundVolume(mRaceSoundValue);
 }
 
-// Highscore reset
 void mainMenu::on_settingsHighscoreResetButton_clicked()
 {
     playbuttonsound();
 
+    // Garage reset
+    ui->garageAccelerationSlider->setValue(0);
+    ui->garageHandlingSlider->setValue(0);
+    ui->garageTopspeedSlider->setValue(0);
+    saveGarage();
+
+    // Highscore reset
     QString filename;
 
     filename = "highscores/Monza.score";
