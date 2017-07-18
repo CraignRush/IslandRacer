@@ -73,6 +73,7 @@ private:
 	float mSpeed;
 
     b2Vec2 mCarPosition = b2Vec2(110.0f, 50.0f);
+    int mIndex;
 
     // b2World Objects
     b2World *mWorld;
@@ -148,6 +149,8 @@ public:
      * \param handlingValue Garage value for handling
      */
     void setCarParams(int speedValue, int accelerationValue, int handlingValue);
+public slots:
+    void setToResetPos();
 };
 
 #endif // CAR_H

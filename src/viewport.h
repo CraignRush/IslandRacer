@@ -1,7 +1,6 @@
 #ifndef VIEWPORT_H
 #define VIEWPORT_H
 
-#include "underwatereffect.h"
 #include <QGraphicsView>
 #include <QTime>
 #include <QTimer>
@@ -10,7 +9,6 @@
 #include <QObject>
 #include <QKeyEvent>
 #include <QLabel>
-#include <QVector>
 #include "track.h"
 
 //! Provides the view for the track
@@ -38,7 +36,6 @@ private:
     QString* mLapTimeEnd;
     qint64 mCurLap;
 
-
     QString mTotalTimeText;
     QString mTotalTimeEnd;
     qint64 mCurToTime;
@@ -48,8 +45,6 @@ private:
     QGraphicsOpacityEffect* mOpacityEffect;
     double mOpacity;
     QTimer* mOpacityTimer;
-
-    UnderwaterEffect* mUnderwaterEffect;
 
     int mTextSizeTime, mTextSizeSpeed;
 
@@ -93,6 +88,7 @@ signals:
     //! Signal that race is finished and start end dialog in player class
     void raceFinished(QString* mLapTimeEnd,QString mTotalTimeEnd);
 
+
 public slots:
     //! Slot which is called every time a lap is completed
     /*! Updates all label params for a new lap
@@ -101,7 +97,6 @@ public slots:
     void showLooserLabel();
     void showWinnerLabel();
     void updateLabelOpacity();
-
 };
 
 #endif // VIEWPORT_H

@@ -20,17 +20,18 @@
 //! Manage the whole game procedure
 class World : public QMainWindow
 {
-	Q_OBJECT
+    Q_OBJECT
 
 private:
-	int mWidth;                 // Width of world/scene
-	int mHeight;                // Height of world/scene
+    int mWidth;                 // Width of world/scene
+    int mHeight;                // Height of world/scene
 
     int mVisibleWidth;
     int mVisibleHeight;
 
     bool mIsMultiplayer;
     WorldPosition* mCarStartingPositions;
+    bool mUnderwaterActive;
 
     QStackedLayout* mMainLayout;             // Main layout for game window
     QHBoxLayout* mViewportLayout;            // Layout for player viewport side by side
@@ -64,9 +65,13 @@ private:
     int mStartCounter;              // remaining start sequence Time in 10msec steps
     float mOpacity;                 // Opacity for fade out effect of StartCounter
 
+    qreal mColorStrength;        // between 0 (transparent) and 1 (fully colorized)
+    QTimer* mColorizeTimer;      //timer to enable gradual rendering
+    QGraphicsColorizeEffect* mColorize; //instance of effect
+
 public:
     //! Set up basic game elements
-	World(int width,int height);
+    World(int width,int height);
     ~World();
 
     //! Load the selected Track and generates all missing elements for the game
@@ -107,12 +112,12 @@ public slots:
     //! Slot for the game loop
     /*! Car movment is calculated and checkpoints are checked
      */
-	void gameLoop();
+    void gameLoop();
 
     //! Slot for start loop
     /*! Displays the beginning sequence
      */
-	void startLoop();
+    void startLoop();
 
     //! Resume the game after pause
     void resumeGame();
@@ -125,6 +130,15 @@ public slots:
 
     //! End Game
     void exitGame();
+
+    void startColorizeEffect();
+    void setColorizeStrength();
+
+signals:
+    //! Calls the setStrength Slot of the Colorize Effect to change the transparency
+    void colorize(qreal strength);
+    void setCarBack();
+
 };
 
 #endif // WORLD_H

@@ -157,7 +157,7 @@ void Car::render()
 
 void Car::computeUserInput(InputState input)
 {
-    /*    qDebug() << "Left Wheel Position: " << leftWheel->GetPosition().x << ", " << leftWheel->GetPosition().y;
+ /* qDebug() << "Left Wheel Position: " << leftWheel->GetPosition().x << ", " << leftWheel->GetPosition().y;
     qDebug() << "Right Wheel Position: " << rightWheel->GetPosition().x <<", " <<  rightWheel->GetPosition().y;
     qDebug() << "Car mBody Position: " << mBody->GetPosition().x <<", " <<  mBody->GetPosition().y;
     qDebug() << "Car mBody Angle: " << mBody->GetAngle();
@@ -249,6 +249,7 @@ void Car::computeUserInput(InputState input)
 
 void Car::computeUndergroundImpact(int index)
 {
+    mIndex = index;
     Underground underground;
     underground = mTrack->getUnderground(pos().x()+CAR_WIDTH*PX_TO_M_RATIO/2.0f*qCos(qDegreesToRadians(rotation()))-CAR_LENGTH*PX_TO_M_RATIO/2.0f*qSin(qDegreesToRadians(rotation())), pos().y()+CAR_WIDTH*PX_TO_M_RATIO/2.0f*qSin(qDegreesToRadians(rotation()))+CAR_LENGTH*PX_TO_M_RATIO/2.0f*qCos(qDegreesToRadians(rotation())));
 
@@ -284,10 +285,8 @@ void Car::computeUndergroundImpact(int index)
         //mBody->SetAngularDamping(10.0f);
         break;
     case Water:
-        WorldPosition pos = mTrack->getLastCheckpointPosition(index);
         mEngineSpeed = 0.0f;
-        setPosition(pos.x(), pos.y(), pos.angle());
-        //  emit startUnderwaterEffect;
+        emit startUnderwaterEffect();
         break;
     }
 }
@@ -494,4 +493,10 @@ void Car::setCarParams(int speedValue, int accelerationValue, int handlingValue)
     mHandlingFac = 1.0f + 0.05f * handlingValue;
 
     mEngineSpeed = 0.0f;
+}
+
+void Car::setToResetPos()
+{
+    WorldPosition pos = mTrack->getLastCheckpointPosition(mIndex);
+    setPosition(pos.x(), pos.y(), pos.angle());
 }

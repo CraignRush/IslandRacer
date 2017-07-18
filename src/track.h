@@ -3,6 +3,9 @@
 
 #include <QGraphicsScene>
 #include <QObject>
+#include <QGraphicsColorizeEffect>
+#include <QColor>
+#include <QDebug>
 #include "checkpoint.h"
 #include "worldposition.h"
 
@@ -24,6 +27,8 @@ private:
     int mWidth;
     int mHeight;
     QImage mBackground;
+    QGraphicsPixmapItem* mEffectBackground;
+    QGraphicsColorizeEffect* mColorize;
     QImage mGrayImage;
     Checkpoint* mCheckpoints1;
     Checkpoint* mCheckpoints2;
@@ -66,6 +71,8 @@ public:
      * \param isMultiplayer Indicates if you need elements for SP or MP
      */
     void loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, bool isMultiplayer);
+
+    QGraphicsColorizeEffect* getEffect();
 signals:
 
     //! Signal if lap of player 1 has changed
