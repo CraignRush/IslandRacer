@@ -85,7 +85,7 @@ Underground Track::getUnderground(int x, int y)
     return Asphalt;
 }
 
-void Track::updateCheckpoints(QGraphicsPixmapItem* item, int index)
+void Track::updateCheckpoints(QGraphicsItem* item, int index)
 {
     if(index == 1)
     {

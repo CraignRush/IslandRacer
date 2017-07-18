@@ -32,7 +32,7 @@ public:
     //! Check if QGraphicsItem colides with checkpoint.
     /*! mCheckpointcounter and mLapcounter is increased if necessary.
      */
-    void CheckCheckpoint(QGraphicsPixmapItem*);
+    void CheckCheckpoint(QGraphicsItem*);
 
     //! Returns the total number of checkpoints.
     int GetNumberOfCheckpoints();

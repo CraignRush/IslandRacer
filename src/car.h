@@ -47,7 +47,7 @@ private:
     //const b2Vec2 CAR_STARTING_POS = b2Vec2(0.0f,0.0f);
 
 
-    // car constants
+    // car constants (in mks system)
     const float CAR_LENGTH = 4.4f;
 	const float CAR_WIDTH = 2.0f;
 	const float CAR_WEIGHT = 550.0f; // Total Car Weight
