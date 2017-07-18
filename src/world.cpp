@@ -807,6 +807,7 @@ void World::restartGame()
     mBlurEffectView1->setEnabled(false);
     mViewPlayer1->centerOn(mCar1);
     mViewPlayer1->restartGame();
+    mTrack->ResetCheckpoint(1);
 
     if(mIsMultiplayer)
     {
@@ -814,6 +815,7 @@ void World::restartGame()
         mBlurEffectView2->setEnabled(false);
         mViewPlayer2->centerOn(mCar2);
         mViewPlayer2->restartGame();
+        mTrack->ResetCheckpoint(2);
     }
 
     // hide pause menu

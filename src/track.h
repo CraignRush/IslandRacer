@@ -54,6 +54,12 @@ public:
      */
     void updateCheckpoints(QGraphicsPixmapItem* item, int index);
 
+    //! Calls the ResetCheckpointcounter function of checkpoint class
+    /*!
+     * \param index Indicates the player (1 or 2)
+     */
+    void ResetCheckpoint(int index);
+
     //! Set up the scene and generating the necessary checkpoints
     /*!
      * \param width Your screen width

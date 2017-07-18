@@ -37,6 +37,9 @@ public:
     //! Returns the total number of checkpoints.
     int GetNumberOfCheckpoints();
 
+    //! Set mCheckpointcounter to starting checkpoint
+    void ResetCheckpointcounter();
+
     //! Returns the reset positon of the last checkpoint you pase.
     WorldPosition getLastCheckpointPosition();
 

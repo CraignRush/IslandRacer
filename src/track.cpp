@@ -109,6 +109,17 @@ void Track::updateCheckpoints(QGraphicsPixmapItem* item, int index)
     }
 }
 
+void Track::ResetCheckpoint(int index)
+{
+    if(index == 1)
+    {
+        mCheckpoints1->ResetCheckpointcounter();
+    }else if(index == 2)
+    {
+        mCheckpoints2->ResetCheckpointcounter();
+    }
+}
+
 WorldPosition Track::getLastCheckpointPosition(int index)
 {
     if(index == 1)
@@ -137,6 +148,7 @@ void Track::loadTrack(int width, int height, QImage background, QImage grayImage
         for(int i=0; i<mCheckpoints1->GetNumberOfCheckpoints(); i++)
             this->removeItem(mCheckpoints1->GetCheckpoint(i));
         delete mCheckpoints1;
+        mCheckpoints1 = NULL;
     }
 
     if(mCheckpoints2 != NULL)
@@ -144,6 +156,7 @@ void Track::loadTrack(int width, int height, QImage background, QImage grayImage
         for(int i=0; i<mCheckpoints2->GetNumberOfCheckpoints(); i++)
             this->removeItem(mCheckpoints2->GetCheckpoint(i));
         delete mCheckpoints2;
+        mCheckpoints2 = NULL;
     }
 
     mCheckpoints1 = new Checkpoint(checkpointCount, checkpointPositions, carResetPositions);

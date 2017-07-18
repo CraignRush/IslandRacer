@@ -74,3 +74,8 @@ int Checkpoint::GetLaps()
 {
 	return mLapcounter;
 }
+
+void Checkpoint::ResetCheckpointcounter()
+{
+    mCheckpointcounter = 1;
+}
