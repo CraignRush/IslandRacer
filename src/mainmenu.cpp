@@ -862,7 +862,7 @@ void mainMenu::computeMaximumValue()
     {
         mYasmarinaValue = 1;
     }
-    if((min < 2 && sec < 55)
+    if(min < 2 && sec < 55)
     {
         mYasmarinaValue = 2;
     }
