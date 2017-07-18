@@ -109,6 +109,12 @@ Car::Car(b2World* world, Track* track, int carIndex) : mWorld{world}, mTrack{tra
     mLeftRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(leftRearJointDef);
     mRightRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(rightRearJointDef);
 
+    mBody->SetBullet(true);
+    mLeftWheel->SetBullet(true);
+    mRightWheel->SetBullet(true);
+    mLeftRearWheel->SetBullet(true);
+    mRightRearWheel->SetBullet(true);
+
     //connect with sound class
     connect(this, SIGNAL(playCarSound()), Sound::getSoundInstance(this), SLOT(playCarSound()));
     connect(this, SIGNAL(stopCarSound()), Sound::getSoundInstance(this), SLOT(stopCarSound()));
@@ -247,7 +253,8 @@ void Car::computeUndergroundImpact(int index)
     Underground underground;
     underground = mTrack->getUnderground(pos().x()+CAR_WIDTH*PX_TO_M_RATIO/2.0f*qCos(qDegreesToRadians(rotation()))-CAR_LENGTH*PX_TO_M_RATIO/2.0f*qSin(qDegreesToRadians(rotation())), pos().y()+CAR_WIDTH*PX_TO_M_RATIO/2.0f*qSin(qDegreesToRadians(rotation()))+CAR_LENGTH*PX_TO_M_RATIO/2.0f*qCos(qDegreesToRadians(rotation())));
 
-    int i;
+    srand(time(NULL));
+    int i = rand()%3;
     switch(underground)
     {
     case Asphalt:
@@ -259,7 +266,7 @@ void Car::computeUndergroundImpact(int index)
         //mBody->SetAngularDamping(8.5f);
         break;
     case Magic:
-        i =rand()%3;
+        //i =rand()%3;
         if(i==0)
         {
             setPosition(3900,180,1.95);
@@ -282,7 +289,7 @@ void Car::computeUndergroundImpact(int index)
         WorldPosition pos = mTrack->getLastCheckpointPosition(index);
         mEngineSpeed = 0.0f;
         setPosition(pos.x(), pos.y(), pos.angle());
-      //  emit startUnderwaterEffect;
+        //  emit startUnderwaterEffect;
         break;
     }
 }
@@ -414,6 +421,12 @@ void Car::setPosition(int x, int y, double angle)
     // Add rear wheel joint to the world
     mLeftRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(leftRearJointDef);
     mRightRearJoint = (b2PrismaticJoint*) mWorld->CreateJoint(rightRearJointDef);
+
+    mBody->SetBullet(true);
+    mLeftWheel->SetBullet(true);
+    mRightWheel->SetBullet(true);
+    mLeftRearWheel->SetBullet(true);
+    mRightRearWheel->SetBullet(true);
 
     // render new car position
     render();

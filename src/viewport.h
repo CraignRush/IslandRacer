@@ -51,6 +51,8 @@ private:
 
     UnderwaterEffect* mUnderwaterEffect;
 
+    int mTextSizeTime, mTextSizeSpeed;
+
 public:
     //! Generates a QGraphicsView with some display elements
     /*!
@@ -58,7 +60,7 @@ public:
      * \param height The height of the view
      * \param track The QGraphics scene which is displayed
      */
-    Viewport(int width, int height, Track* track);
+    Viewport(int width, int height, Track* track, bool isMultiplayer);
     ~Viewport();
 
     //! Init label params for game start
