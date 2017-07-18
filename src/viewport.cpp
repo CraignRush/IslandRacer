@@ -14,28 +14,20 @@ Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     if(!isMultiplayer){
-        mTextSizeSpeed = mWidth/60;
-        mTextSizeTime = mWidth/100;
+        mTextSizeSpeed = mWidth/50;
+        mTextSizeTime = mWidth/90;
     } else {
-        mTextSizeSpeed = mWidth/25;
+        mTextSizeSpeed = mWidth/30;
         mTextSizeTime = mWidth/50;
     }
-
-    /////////ONLY FOR DEBUGGING NOT WORKING////////////////
-    //mUnderwaterEffect =  new UnderwaterEffect(this);
-    //mUnderwaterEffect->setEnabled(true);
-    //setGraphicsEffect(mUnderwaterEffect);
-    //////////////////////////////////////////////////////
-
 
     //Initialize Opacity Effect with its clock counter
     mOpacity = 1.0;
     mOpacityEffect = new QGraphicsOpacityEffect(this);
     mOpacityEffect->setOpacity(mOpacity);
     mOpacityTimer = new QTimer();
-    mOpacityTimer->setInterval(100);
+    mOpacityTimer->setInterval(50);
     connect(mOpacityTimer,SIGNAL(timeout()),this,SLOT(updateLabelOpacity()));
-
 
 
     //Initialize Label for ingame total time display
@@ -72,7 +64,7 @@ Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
     mLapTimeLabel->setAlignment(Qt::AlignLeft);
     mLapTimeLabel->setParent(this);
 
-   //
+    //
     mLapTimeEnd = new QString[3];
 
     //Initialize Label for speedometer
@@ -111,24 +103,23 @@ Viewport::~Viewport()
         delete mWinnerLabel;
         mWinnerLabel = NULL;
     }
+    delete mLapTimeLabel;
+    mLapTimeLabel = NULL;
 
-        delete mLapTimeLabel;
-        mLapTimeLabel = NULL;
+    delete mLapLabel;
+    mLapLabel = NULL;
 
-        delete mLapLabel;
-        mLapLabel = NULL;
+    delete mTotalTimeLabel;
+    mTotalTimeLabel = NULL;
 
-        delete mTotalTimeLabel;
-        mTotalTimeLabel = NULL;
+    delete mLapTimeLabel;
+    mLapTimeLabel = NULL;
 
-        delete mLapTimeLabel;
-        mLapTimeLabel = NULL;
+    delete mLapLabel;
+    mLapLabel = NULL;
 
-        delete mLapLabel;
-        mLapLabel = NULL;
-
-        delete mSpeedDisplay;
-        mSpeedDisplay = NULL;
+    delete mSpeedDisplay;
+    mSpeedDisplay = NULL;
 
     delete mOpacityTimer;
 
@@ -178,18 +169,13 @@ void Viewport::updateOverlay(QPointF carpos, int fps)
 
 void Viewport::saveLapTime()
 {
-
-    if(mLaps <= 2)
-    {
+    if(mLaps <= 2) {
         mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.z");
         mLaps++;
-    }
-    else
-    {
+    }else{
         emit stopGame();
         mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.zzz");
         mTotalTimeEnd = mTime2.toString("mm:ss.zzz");
-
         emit raceFinished(mLapTimeEnd, mTotalTimeEnd);
     }
     mElapsed = 0;
@@ -231,15 +217,11 @@ void Viewport::updateLabelOpacity()
 {
     if(mOpacity < 0.01){
         mOpacityTimer->stop();
-
         emit quitGame();
     }
     mOpacity -= 0.025;
     mOpacityEffect->setOpacity(mOpacity);
-
-
 }
-
 
 
 void Viewport::resumeGame()

@@ -1,5 +1,4 @@
 #include "car.h"
-#include "world.h"
 #include "sound.h"
 #include <cmath>
 #include <QDebug>
@@ -235,6 +234,7 @@ void Car::computeUserInput(InputState input)
 
 void Car::computeUndergroundImpact(int index)
 {
+    mIndex = index;
     Underground underground;
     underground = mTrack->getUnderground(pos().x()+CAR_WIDTH*PX_TO_M_RATIO/2.0f*qCos(qDegreesToRadians(rotation()))-CAR_LENGTH*PX_TO_M_RATIO/2.0f*qSin(qDegreesToRadians(rotation())), pos().y()+CAR_WIDTH*PX_TO_M_RATIO/2.0f*qSin(qDegreesToRadians(rotation()))+CAR_LENGTH*PX_TO_M_RATIO/2.0f*qCos(qDegreesToRadians(rotation())));
 
@@ -268,8 +268,9 @@ void Car::computeUndergroundImpact(int index)
         mBody->SetLinearDamping(2.5f);
         break;
     case Water:
-        WorldPosition pos = mTrack->getLastCheckpointPosition(index);
         mEngineSpeed = 0.0f;
+       // emit startUnderwaterEffect();
+        WorldPosition pos = mTrack->getLastCheckpointPosition(mIndex);
         setPosition(pos.x(), pos.y(), pos.angle());
         break;
     }
@@ -477,4 +478,10 @@ void Car::setCarParams(int speedValue, int accelerationValue, int handlingValue)
     mHandlingFac = 1.0f + 0.05f * handlingValue;
 
     mEngineSpeed = 0.0f;
+}
+
+void Car::setToResetPos()
+{
+    WorldPosition pos = mTrack->getLastCheckpointPosition(mIndex);
+    setPosition(pos.x(), pos.y(), pos.angle());
 }

@@ -12,12 +12,7 @@
         <file>images/settings.png</file>
         <file>images/Island1.png</file>
         <file>images/Island1gray.png</file>
-        <file>images/Logo.png</file>
         <file>images/Garage.jpg</file>
-        <file>images/Testisland.png</file>
-        <file>images/Monzatextur.png</file>
-        <file>images/Hockenheimtextur.png</file>
-        <file>images/YasMarinatextur.png</file>
         <file>images/Hockenheimgrey.png</file>
         <file>images/Monzagrey.png</file>
         <file>images/YasMarinagrey.png</file>
@@ -31,17 +26,21 @@
         <file>images/resume.png</file>
         <file>images/singleplayer.png</file>
         <file>images/Bahraingrey.png</file>
-        <file>images/Bahraintextur.png</file>
-        <file>images/highscorebackground.png</file>
-        <file>images/creditsbackground.png</file>
-        <file>images/settingsbackground.png</file>
-        <file>images/manualbackground.png</file>
-        <file>images/1car.png</file>
-        <file>images/2car.png</file>
         <file>images/star-dark.png</file>
         <file>images/star-yellow.png</file>
-        <file>images/Silverstonetextur.png</file>
         <file>images/Silverstonegrey.png</file>
+        <file>images/Bahraintextur.jpg</file>
+        <file>images/creditsbackground.jpg</file>
+        <file>images/highscorebackground.jpg</file>
+        <file>images/manualbackground.jpg</file>
+        <file>images/settingsbackground.jpg</file>
+        <file>images/Silverstonetextur.jpg</file>
+        <file>images/Hockenheimtextur.jpg</file>
+        <file>images/Monzatextur.jpg</file>
+        <file>images/Logo.png</file>
+        <file>images/YasMarinatextur.jpg</file>
+        <file>images/1car.png</file>
+        <file>images/2car.png</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>

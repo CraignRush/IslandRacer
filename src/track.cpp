@@ -1,7 +1,5 @@
 #include "track.h"
-#include "underwatereffect.h"
-#include <QColor>
-#include <QDebug>
+
 
 Track::Track()
 {
@@ -102,6 +100,16 @@ void Track::loadTrack(int width, int height, QImage background, QImage grayImage
     mBackground = background;
     mGrayImage = grayImage;
 
+    /////////ONLY FOR DEBUGGING NOT WORKING////////////////
+    //mEffectBackground = this->addPixmap(QPixmap::fromImage(mBackground));
+    //QRect viewportRect(0, 0,  mWidth, mHeight);
+    //QRectF visibleSceneRect = this->mapToScene(viewportRect).boundingRect();
+    //UnderwaterEffect* mUnderwaterEffect =  new UnderwaterEffect(this);
+    //mUnderwaterEffect->setEnabled(true);
+    //mEffectBackground->setGraphicsEffect(mUnderwaterEffect);
+    //////////////////////////////////////////////////////
+
+
     // set the scene size to image width/height and set background image
     setSceneRect(0,0,mWidth, mHeight);
     setBackgroundBrush(QBrush(mBackground));
@@ -137,4 +145,9 @@ void Track::loadTrack(int width, int height, QImage background, QImage grayImage
         for(int i=0; i<mCheckpoints2->GetNumberOfCheckpoints(); i++)
             this->addItem(mCheckpoints2->GetCheckpoint(i));
     }
+}
+
+QGraphicsColorizeEffect *Track::getEffect()
+{
+    return mColorize;
 }

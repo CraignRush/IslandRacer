@@ -2,17 +2,22 @@
 #define MAINMENU_H
 
 #include <QMainWindow>
-//#include "world.h"
-#include "game.h"
+
+#include <QMediaPlaylist>
+#include <QMediaPlayer>
+#include <QPixmap>
+#include <QPalette>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QTextStream>
 #include <QFile>
 #include <QStringList>
-#include "ui_mainmenu.h"
 #include <qscreen.h>
 #include <QString>
+#include "ui_mainmenu.h"
 #include "sound.h"
+#include "qscreen.h"
+#include "game.h"
 
 namespace Ui {
 class mainMenu;

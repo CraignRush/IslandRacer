@@ -1,6 +1,7 @@
 #include "world.h"
 #include <QDebug>
 #include "sound.h"
+#include <QThread>
 #include <QLabel>
 #include <chrono>
 
@@ -14,6 +15,7 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
 
     // Create Box2D world object (zero gravity)
     mWorld = new b2World(b2Vec2(0.0f, 0.0f));
+    mWorld->SetContinuousPhysics(true);
 
     // Create track
     mTrack = new Track();
@@ -34,13 +36,13 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     mCurrentInputStatePlayer2 = None;
 
     // Set up layouts and widgets to display
-    mMainLayout = new QStackedLayout(this);
-    mViewportLayout = new QHBoxLayout(this);
-    mCounterLayout = new QHBoxLayout(this);
-    mMainWidget = new QWidget();
-    mViewportWidget = new QWidget();
-    mVerticalSeperatorLine = new QWidget();
-    mCounterWidget = new QWidget();
+    mMainWidget = new QWidget(this);
+    mViewportWidget = new QWidget(this);
+    mVerticalSeperatorLine = new QWidget(this);
+    mCounterWidget = new QWidget(this);
+    mMainLayout = new QStackedLayout();
+    mViewportLayout = new QHBoxLayout(mViewportWidget);
+    mCounterLayout = new QHBoxLayout(mCounterWidget);
     mPauseMenuWidget = new PauseMenu(mHeight);
     mOpacityEffect = new QGraphicsOpacityEffect();
 
@@ -92,7 +94,7 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     // connect game loop to timer
     connect(mTimer, SIGNAL(timeout()), this, SLOT(gameLoop()));
 
-       // Init objects for start countdown
+    // Init objects for start countdown
     mStartTimer = NULL;
 
     mCarStartingPositions = NULL;
@@ -182,22 +184,25 @@ World::~World()
 
 void World::gameLoop()
 {
-    // Compute new positions in physical world
-    mWorld->Step(1.0f/mFps, 8, 3);
 
-    // Apply forces dependant on current user input
-    mCar1->computeUserInput(mCurrentInputStatePlayer1);
-    mCar1->updatePosition(1);
-    mViewPlayer1->ensureVisible(mCar1, mVisibleWidth, mVisibleHeight);
+ //   if(!mUnderwaterActive){
+        // Compute new positions in physical world
+        mWorld->Step(1.0f/mFps, 8, 3);
 
-    // Check for checkpoint collision
-    mTrack->updateCheckpoints(mCar1, 1);
+        // Apply forces dependant on current user input
+        mCar1->computeUserInput(mCurrentInputStatePlayer1);
+        mCar1->updatePosition(1);
+        mViewPlayer1->ensureVisible(mCar1, mVisibleWidth, mVisibleHeight);
 
-    // Render cars on new position
-    mCar1->render();
+        // Check for checkpoint collision
+        mTrack->updateCheckpoints(mCar1, 1);
 
-    // Update time/lap overlay
-    mViewPlayer1->updateOverlay(mCar1->pos(),mFps);
+        // Render cars on new position
+        mCar1->render();
+
+        // Update time/lap overlay
+        mViewPlayer1->updateOverlay(mCar1->pos(),mFps);
+//    }
 
     // Repeat steps for second car if multiplayer is enabled
     if(mIsMultiplayer)
@@ -251,6 +256,7 @@ void World::startLoop()
 void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer, int speedValue, int accelerationValue, int handlingValue)
 {
     mIsMultiplayer = isMultiplayer;
+    mUnderwaterActive = false;
 
     // copy the starting positions for restart game
     mCarStartingPositions = (WorldPosition*) malloc(20 * sizeof(WorldPosition));
@@ -310,6 +316,8 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveLapTime()));
         connect(mTrack, SIGNAL(LapChanged2()), mViewPlayer2, SLOT(saveLapTime()));
+        //       connect(mCar1,SIGNAL(startUnderwaterEffect()),mViewPlayer1,SLOT(startColorizeEffect()));
+        //       connect(mCar2,SIGNAL(startUnderwaterEffect()),mViewPlayer2,SLOT(startColorizeEffect()));
 
         mVisibleWidth = 0.4 * mWidth/2;
         mVisibleHeight =  0.4 * mHeight;
@@ -364,13 +372,33 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveLapTime()));
 
+        // mViewPlayer1->setForegroundRole(QPalette::setColor(QPalette::),QColor(0,0,190,100)));
+
+        /////////////////////////COLORIZE EFFECT DEBUGGING///////////////////////
+//        mColorize = new QGraphicsColorizeEffect();
+//        mColorStrength = 0.3;
+//        mColor = QColor(0,0,190);
+//        mColorize->setStrength(mColorStrength);
+//        mColorize->setEnabled(false);
+
+//        mColorizeTimer = new QTimer(this);
+//        mColorizeTimer->setInterval(10);
+
+//        connect(mCar1,SIGNAL(startUnderwaterEffect()),this,SLOT(startColorizeEffect()));
+//        connect(mColorizeTimer,SIGNAL(timeout()),this,SLOT(setColorizeStrength()));
+//        //       connect(this,SIGNAL(colorize(qreal)),mColorize,SLOT(setStrength(qreal)));
+//        //      connect(mColorize,SIGNAL(strengthChanged(qreal)),mColorize,SLOT(update()));
+//        connect(this,SIGNAL(setCarBack()),mCar1,SLOT(setToResetPos()));
+        /////////////////////////////////////////////////////////////////////////////
+
+
         mVisibleWidth = 0.4 * mWidth;
         mVisibleHeight =  0.4 * mHeight;
 
         // Create blur for viewport
         mBlurEffectView1 = new QGraphicsBlurEffect();
 
-        // Blur effect for pause menu
+        //Blur effect for pause menu
         mBlurEffectView1->setBlurRadius(25.0f);
         mBlurEffectView1->setEnabled(false);
         mBlurEffectView1->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
@@ -380,7 +408,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         // Prevent manually scrolling with arrow keys
         mViewPlayer1->setFocusPolicy(Qt::NoFocus);
-        mViewPlayer1->setCacheMode(QGraphicsView::CacheNone);
+        mViewPlayer1->setCacheMode(QGraphicsView::CacheBackground);
 
         mViewPlayer1->setGraphicsEffect(mBlurEffectView1);
 
@@ -401,6 +429,37 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
     connect(mStartTimer, SIGNAL(timeout()), this, SLOT(startLoop()));
     mStartTimer->start(50);
     mCounter->show();
+
+
+}
+
+void World::startColorizeEffect(){
+    mUnderwaterActive = true;
+    mColorize->setEnabled(true);
+    mViewPlayer1->setGraphicsEffect(mColorize);
+    //mViewPlayer1->setUpdatesEnabled(false);
+    mColorizeTimer->start();
+}
+
+void World::setColorizeStrength()
+{
+    if(mColorStrength <= 1.0){
+        mColorStrength += 0.001;
+        mColorize->setStrength(mColorStrength);
+        repaint();
+        //  mViewPlayer1->update();
+        //  this->update();
+
+        //emit colorize(mColorStrength);
+        qDebug() << "mColorStrength" << mColorStrength;
+    } else {
+        mColorize->setEnabled(false);
+        emit setCarBack();
+        mUnderwaterActive = false;
+        mColorizeTimer->stop();
+        mColorStrength = 0.0;
+        mColorize->setStrength(mColorStrength);
+    }
 }
 
 void World::keyPressEvent(QKeyEvent *keyEvent)
