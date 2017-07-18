@@ -143,12 +143,12 @@ mainMenu::mainMenu(QWidget *parent) :
 
 
     // Set and scale Pixmaps
-	QPixmap logo(":/images/images/Logo.png");
-	QPixmap hockenheim(":/images/images/Hockenheimtextur.png");
-	QPixmap monza(":/images/images/Monzatextur.png") ;
-	QPixmap yasmarina(":/images/images/YasMarinatextur.png");
-    QPixmap bahrain(":/images/images/Bahraintextur.png");
-    QPixmap silverstone(":/images/images/Silverstonetextur.png");
+    QPixmap logo(":/images/images/Logo.png");
+    QPixmap hockenheim(":/images/images/Hockenheimtextur.jpg");
+    QPixmap monza(":/images/images/Monzatextur.jpg") ;
+    QPixmap yasmarina(":/images/images/YasMarinatextur.jpg");
+    QPixmap bahrain(":/images/images/Bahraintextur.jpg");
+    QPixmap silverstone(":/images/images/Silverstonetextur.jpg");
     QPixmap starYellow(":/images/images/star-yellow.png");
     QPixmap starDark(":/images/images/star-dark.png");
 
@@ -199,7 +199,7 @@ mainMenu::mainMenu(QWidget *parent) :
 
     // Set Fonts
 	GillSansMT.setFamily("GillSansMT");
-    GillSansMT.setPointSize(mScreenHeight * 0.02);
+    GillSansMT.setPointSize(mScreenHeight * 0.015);
 	GillSansMT.setBold(1);
 
 	QFont GillSansMTTitle;
@@ -223,28 +223,28 @@ mainMenu::mainMenu(QWidget *parent) :
 	ui->garage->setPalette(palette2);
 	ui->garage->setAutoFillBackground(true);
 
-    QPixmap backgroundHighscore(":/images/images/highscorebackground.png");
+    QPixmap backgroundHighscore(":/images/images/highscorebackground.jpg");
     backgroundHighscore = backgroundHighscore.scaled(QSize(mScreenWidth,mScreenHeight), Qt::IgnoreAspectRatio);
     QPalette palette3;
     palette3.setBrush(QPalette::Background, backgroundHighscore);
     ui->highscore->setPalette(palette3);
     ui->highscore->setAutoFillBackground(true);
 
-    QPixmap backgroundSettings(":/images/images/settingsbackground.png");
+    QPixmap backgroundSettings(":/images/images/settingsbackground.jpg");
     backgroundSettings = backgroundSettings.scaled(QSize(mScreenWidth,mScreenHeight), Qt::IgnoreAspectRatio);
     QPalette palette4;
     palette4.setBrush(QPalette::Background, backgroundSettings);
     ui->settings->setPalette(palette4);
     ui->settings->setAutoFillBackground(true);
 
-    QPixmap backgroundCredits(":/images/images/creditsbackground.png");
+    QPixmap backgroundCredits(":/images/images/creditsbackground.jpg");
     backgroundCredits = backgroundCredits.scaled(QSize(mScreenWidth,mScreenHeight), Qt::IgnoreAspectRatio);
     QPalette palette5;
     palette5.setBrush(QPalette::Background, backgroundCredits);
     ui->credits->setPalette(palette5);
     ui->credits->setAutoFillBackground(true);
 
-    QPixmap backgroundManual(":/images/images/manualbackground.png");
+    QPixmap backgroundManual(":/images/images/manualbackground.jpg");
     backgroundManual = backgroundManual.scaled(QSize(mScreenWidth,mScreenHeight), Qt::IgnoreAspectRatio);
     QPalette palette6;
     palette6.setBrush(QPalette::Background, backgroundManual);

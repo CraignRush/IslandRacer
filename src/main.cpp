@@ -3,7 +3,6 @@
 #include <mainmenu.h>
 #include "game.h"
 #include "pausemenu.h"
-#include "underwatereffect.h"
 
 int main(int argc, char *argv[])
 {

@@ -10,6 +10,7 @@
 #include <QLabel>
 #include <QWidget>
 #include <QGraphicsOpacityEffect>
+#include <QGraphicsColorizeEffect>
 #include "track.h"
 #include "car.h"
 #include "viewport.h"
@@ -68,6 +69,7 @@ private:
     qreal mColorStrength;        // between 0 (transparent) and 1 (fully colorized)
     QTimer* mColorizeTimer;      //timer to enable gradual rendering
     QGraphicsColorizeEffect* mColorize; //instance of effect
+    QColor mColor;
 
 public:
     //! Set up basic game elements

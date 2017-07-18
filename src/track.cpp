@@ -135,7 +135,7 @@ void Track::loadTrack(int width, int height, QImage background, QImage grayImage
 
     // set the scene size to image width/height and set background image
     setSceneRect(0,0,mWidth, mHeight);
-   // setBackgroundBrush(QBrush(mBackground));
+    //setBackgroundBrush(QBrush(mBackground));
 
     mLapNumber1 = 0;
     mLapNumber2 = 0;

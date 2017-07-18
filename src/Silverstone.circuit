@@ -1,6 +1,6 @@
 WIDTH=5760
 HEIGHT=3240
-BACKGROUND=:/images/images/Silverstonetextur.png
+BACKGROUND=:/images/images/Silverstonetextur.jpg
 GRAY=:/images/images/Silverstonegrey.png
 CHECKPOINT_COUNT=10
 CHECKPOINTS=1285,2376,2.65;900,1575,-2.9;3045,355,-1.57;4022,2502,1.8;3153,2205,2.2;2580,1500,3.14;2565,1050,-1.0;1580,2240,3.14;2050,2800,0.0;1500,2825,2.1;

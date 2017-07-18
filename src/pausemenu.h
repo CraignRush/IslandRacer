@@ -10,6 +10,8 @@
 #include "sound.h"
 #include <QFile>
 
+
+//! Show pause menu if ESC was pressed while playing the game
 class PauseMenu : public QWidget
 {
     Q_OBJECT
