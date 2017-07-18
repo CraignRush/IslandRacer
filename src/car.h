@@ -124,6 +124,9 @@ public:
     //! Compute the joint motor torque
 	void computeSteering();
 
+    //! Compute angular velocity for swirl animation
+    void computeSwirl();
+
     //! Compute events on which key pressed
     void computeUserInput(enum InputState input);
 
@@ -134,8 +137,9 @@ public:
 
     //! New car position for each time step is calculated
     /*! \param index Number of player (1 or 2)
+     *! \param underwaterAnimationActive underwater effect running state
      */
-    void updatePosition(int index);
+    void updatePosition(int index, bool underwaterAnimationActive);
 
     //! New car is created and set to position
     /*!

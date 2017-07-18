@@ -157,7 +157,6 @@ void Car::render()
 
 void Car::computeUserInput(InputState input)
 {
-
     switch(input)
     {
     case Accelerate:
@@ -253,7 +252,6 @@ void Car::computeUndergroundImpact(int index)
         if(i==0)
         {
             setPosition(3900,180,1.95);
-
         }
         else if(i==1)
         {
@@ -269,27 +267,33 @@ void Car::computeUndergroundImpact(int index)
         break;
     case Water:
         mEngineSpeed = 0.0f;
-       // emit startUnderwaterEffect();
-        WorldPosition pos = mTrack->getLastCheckpointPosition(mIndex);
-        setPosition(pos.x(), pos.y(), pos.angle());
+        emit startUnderwaterEffect();
+        //WorldPosition pos = mTrack->getLastCheckpointPosition(mIndex);
+        //setPosition(pos.x(), pos.y(), pos.angle());
         break;
     }
 }
 
-void Car::updatePosition(int index)
+void Car::updatePosition(int index, bool underwaterAnimationActive)
 {
-    // kill orthogonal velocity to avoid sliding
-    killOrthogonalVelocity(mLeftWheel);
-    killOrthogonalVelocity(mRightWheel);
-    killOrthogonalVelocity(mLeftRearWheel);
-    killOrthogonalVelocity(mRightRearWheel);
+    if(!underwaterAnimationActive)
+    {
+        // kill orthogonal velocity to avoid sliding
+        killOrthogonalVelocity(mLeftWheel);
+        killOrthogonalVelocity(mRightWheel);
+        killOrthogonalVelocity(mLeftRearWheel);
+        killOrthogonalVelocity(mRightRearWheel);
 
-    // compute acceleration and steering forces
-    computeUndergroundImpact(index);
+        // compute acceleration and steering forces
+        computeUndergroundImpact(index);
 
-    computeSteering();
-    computeDriving();
-
+        computeSteering();
+        computeDriving();
+    }
+    else
+    {
+        computeSwirl();
+    }
 }
 
 // x, y in pixels
@@ -470,6 +474,12 @@ void Car::computeSteering(){
     mLeftJoint->SetMotorSpeed(mSpeed * STEER_SPEED);
     mSpeed = mSteeringAngle - mRightJoint->GetJointAngle();
     mRightJoint->SetMotorSpeed(mSpeed * STEER_SPEED);
+}
+
+void Car::computeSwirl()
+{
+    // Set angular velocity to simulate a swirl
+    mBody->SetAngularVelocity(15.0f);
 }
 
 void Car::setCarParams(int speedValue, int accelerationValue, int handlingValue){
