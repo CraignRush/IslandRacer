@@ -22,7 +22,7 @@ private:
     QThread* mSoundThread;
     QSoundEffect* mCarAcceleratingSound;
     QSoundEffect* mButtonClickSound;
-    //QSoundEffect* mBackgroundMusic;
+    QSoundEffect* mWaterSound;
     QSoundEffect* mRaceStartSound1;
     QSoundEffect* mRaceStartSound2;
     QSoundEffect* mFinishTheme;
@@ -61,10 +61,19 @@ public slots:
     //! Start button sound
     void playButtonSound();
 
+    //! Start water sound
+    void playWaterSound();
+
     //! Stop button sound
     void setButtonSoundVolume(int volume);
+
+    //! Start race sound 1
     void playRaceStart1Sound();
+
+    //! Start race sound 2
     void playRaceStart2Sound();
+
+    //! Start finish sound
     void playFinishSound();
 };
 
