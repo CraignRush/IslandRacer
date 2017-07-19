@@ -45,6 +45,11 @@
         <file>images/Logo_Splash.png</file>
         <file>images/speedometer_background.png</file>
         <file>images/speedometer_needle.png</file>
+        <file>images/3car.png</file>
+        <file>images/4car.png</file>
+        <file>images/5car.png</file>
+        <file>images/6car.png</file>
+        <file>images/7car.png</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>

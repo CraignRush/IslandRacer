@@ -33,7 +33,7 @@ void Game::setGameMode(bool mp)
     mMultiplayer = mp;
 }
 
-void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, int handlingValue)
+void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, int handlingValue, int carValue)
 {
     QString filename;
 
@@ -151,12 +151,12 @@ void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, i
         //connect end race signal to player class
         if(!mMultiplayer){
             // load circuit with parameter
-            mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, carPositions, mMultiplayer, speedValue, accelerationValue, handlingValue);
+            mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 1, carPositions, mMultiplayer, speedValue, accelerationValue, handlingValue, carValue);
             connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString*,QString)),mPlayer,SLOT(endRaceDialog(QString*,QString)));
             connect(mPlayer,SIGNAL(playerInputFinished()),mWorld,SLOT(exitGame()));
         } else {
             // load circuit with parameter
-            mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 2, carPositions, mMultiplayer, speedValue, accelerationValue, handlingValue);
+            mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 2, carPositions, mMultiplayer, speedValue, accelerationValue, handlingValue, carValue);
             connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString*,QString)),mWorld->getViewPlayer(2),SLOT(showLooserLabel()));
             connect(mWorld->getViewPlayer(2),SIGNAL(raceFinished(QString*,QString)),mWorld->getViewPlayer(1),SLOT(showLooserLabel()));
 

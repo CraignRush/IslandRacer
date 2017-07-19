@@ -66,7 +66,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="main">
        <property name="sizePolicy">
@@ -306,27 +306,14 @@
         <property name="spacing">
          <number>0</number>
         </property>
-        <item row="1" column="1">
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="5" column="1">
-         <widget class="QLabel" name="garageTopspeedLabel">
+        <item row="1" column="3">
+         <widget class="QLabel" name="garageTitle">
           <property name="text">
            <string/>
           </property>
          </widget>
         </item>
-        <item row="6" column="2">
+        <item row="6" column="3">
          <widget class="QSlider" name="garageAccelerationSlider">
           <property name="maximum">
            <number>10</number>
@@ -341,29 +328,51 @@
            <enum>Qt::Horizontal</enum>
           </property>
           <property name="tickPosition">
-           <enum>QSlider::TicksAbove</enum>
+           <enum>QSlider::NoTicks</enum>
           </property>
           <property name="tickInterval">
            <number>1</number>
           </property>
          </widget>
         </item>
-        <item row="5" column="2">
-         <widget class="QSlider" name="garageTopspeedSlider">
-          <property name="maximum">
-           <number>10</number>
-          </property>
-          <property name="pageStep">
-           <number>0</number>
-          </property>
+        <item row="2" column="0">
+         <spacer name="verticalSpacer">
           <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+           <enum>Qt::Vertical</enum>
           </property>
-          <property name="tickPosition">
-           <enum>QSlider::TicksAbove</enum>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
           </property>
-          <property name="tickInterval">
-           <number>1</number>
+         </spacer>
+        </item>
+        <item row="0" column="0" colspan="8">
+         <widget class="QLabel" name="garageLogo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -380,8 +389,8 @@
           </property>
          </spacer>
         </item>
-        <item row="8" column="0">
-         <spacer name="verticalSpacer_6">
+        <item row="9" column="0">
+         <spacer name="verticalSpacer_7">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -393,8 +402,8 @@
           </property>
          </spacer>
         </item>
-        <item row="9" column="0">
-         <spacer name="verticalSpacer_7">
+        <item row="8" column="0">
+         <spacer name="verticalSpacer_6">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -432,47 +441,6 @@
           </property>
          </spacer>
         </item>
-        <item row="2" column="0">
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="0" colspan="6">
-         <widget class="QLabel" name="garageLogo">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QPushButton" name="garage2Main">
           <property name="text">
@@ -480,49 +448,7 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="2">
-         <widget class="QSlider" name="garageHandlingSlider">
-          <property name="maximum">
-           <number>10</number>
-          </property>
-          <property name="pageStep">
-           <number>0</number>
-          </property>
-          <property name="value">
-           <number>0</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="tickPosition">
-           <enum>QSlider::TicksAbove</enum>
-          </property>
-          <property name="tickInterval">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="4">
-         <spacer name="horizontalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="7" column="1">
-         <widget class="QLabel" name="garageHandlingLabel">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="5">
+        <item row="1" column="7">
          <spacer name="garageHorizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -538,22 +464,56 @@
           </property>
          </spacer>
         </item>
+        <item row="6" column="6">
+         <widget class="QSlider" name="garageHandlingSlider">
+          <property name="maximum">
+           <number>10</number>
+          </property>
+          <property name="pageStep">
+           <number>0</number>
+          </property>
+          <property name="value">
+           <number>0</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="tickPosition">
+           <enum>QSlider::NoTicks</enum>
+          </property>
+          <property name="tickInterval">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
         <item row="6" column="1">
+         <widget class="QSlider" name="garageTopspeedSlider">
+          <property name="maximum">
+           <number>10</number>
+          </property>
+          <property name="pageStep">
+           <number>0</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="tickPosition">
+           <enum>QSlider::NoTicks</enum>
+          </property>
+          <property name="tickInterval">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="3">
          <widget class="QLabel" name="garageAccelerationLabel">
           <property name="text">
            <string/>
           </property>
          </widget>
         </item>
-        <item row="2" column="2">
-         <widget class="QLabel" name="garageLabel">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="2">
-         <spacer name="horizontalSpacer_15">
+        <item row="8" column="6">
+         <spacer name="horizontalSpacer_44">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -565,8 +525,82 @@
           </property>
          </spacer>
         </item>
-        <item row="1" column="2">
-         <widget class="QLabel" name="garageTitle">
+        <item row="1" column="1" colspan="2">
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="8" column="1">
+         <spacer name="horizontalSpacer_36">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="5" column="6">
+         <widget class="QLabel" name="garageHandlingLabel">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLabel" name="garageTopspeedLabel">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="2">
+         <widget class="QPushButton" name="garage2Left">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="4">
+         <widget class="QPushButton" name="garage2Right">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="3" rowspan="3">
+         <widget class="QLabel" name="garageCarLabel">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4" colspan="3">
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="2" colspan="3">
+         <widget class="QLabel" name="garageLabel">
           <property name="text">
            <string/>
           </property>
@@ -1162,45 +1196,6 @@
         <property name="spacing">
          <number>0</number>
         </property>
-        <item row="5" column="1">
-         <widget class="QLabel" name="settingsRaceSoundLabel">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLabel" name="settingsButtonSoundLabel">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="4">
-         <widget class="QSlider" name="settingsRaceSoundSlider">
-          <property name="maximum">
-           <number>100</number>
-          </property>
-          <property name="pageStep">
-           <number>0</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="4">
          <widget class="QSlider" name="settingsBackgroundSoundSlider">
           <property name="maximum">
@@ -1211,19 +1206,6 @@
           </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="3">
-         <widget class="QPushButton" name="settingsButtonSoundOff">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string/>
           </property>
          </widget>
         </item>
@@ -1392,19 +1374,6 @@
           </property>
          </spacer>
         </item>
-        <item row="5" column="3">
-         <widget class="QPushButton" name="settingsRaceSoundOff">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="1">
          <widget class="QLabel" name="settingsBackgroundSoundLabel">
           <property name="sizePolicy">
@@ -1415,19 +1384,6 @@
           </property>
           <property name="text">
            <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="4">
-         <widget class="QSlider" name="settingsButtonSoundSlider">
-          <property name="maximum">
-           <number>100</number>
-          </property>
-          <property name="pageStep">
-           <number>0</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
@@ -1470,10 +1426,10 @@
           </property>
          </spacer>
         </item>
-        <item row="4" column="2">
-         <widget class="QPushButton" name="settingsButtonSoundOn">
+        <item row="6" column="2" colspan="2">
+         <widget class="QPushButton" name="settingsHighscoreResetButton">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -1483,7 +1439,33 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="2">
+        <item row="4" column="4">
+         <widget class="QSlider" name="settingsRaceSoundSlider">
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="pageStep">
+           <number>0</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="4">
+         <widget class="QSlider" name="settingsButtonSoundSlider">
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="pageStep">
+           <number>0</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
          <widget class="QPushButton" name="settingsRaceSoundOn">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -1496,10 +1478,62 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="2" colspan="2">
-         <widget class="QPushButton" name="settingsHighscoreResetButton">
+        <item row="4" column="3">
+         <widget class="QPushButton" name="settingsRaceSoundOff">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QPushButton" name="settingsButtonSoundOn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="3">
+         <widget class="QPushButton" name="settingsButtonSoundOff">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLabel" name="settingsRaceSoundLabel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLabel" name="settingsButtonSoundLabel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -3412,7 +3446,7 @@
          </spacer>
         </item>
         <item row="7" column="1">
-         <spacer name="horizontalSpacer_29">
+         <spacer name="horizontalSpacer_15">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -3425,7 +3459,7 @@
          </spacer>
         </item>
         <item row="7" column="7">
-         <spacer name="horizontalSpacer_44">
+         <spacer name="horizontalSpacer_29">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -3448,8 +3482,8 @@
        <zorder>level5Star1</zorder>
        <zorder>level5Star2</zorder>
        <zorder>level5Star3</zorder>
+       <zorder>horizontalSpacer_15</zorder>
        <zorder>horizontalSpacer_29</zorder>
-       <zorder>horizontalSpacer_44</zorder>
       </widget>
      </widget>
     </item>

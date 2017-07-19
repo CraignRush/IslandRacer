@@ -44,12 +44,13 @@ private:
     int mHandlingValue;
     int mTopspeedValue;
     int mMaximumValue;
-    int mMinimumValue = 10;
+    const int mMinimumValue = 10;
     int mMonzaValue;
     int mHockenheimringValue;
     int mYasmarinaValue;
     int mBahrainValue;
     int mSilverstoneValue;
+    int mCarValue;
 
     // Sound values
     int mBackgroundSoundActive;
@@ -84,6 +85,9 @@ public:
 
     //! The values set in the garage get saved
     void saveGarage();
+
+    //! The car picture gets set in the garage
+    void setCar();
 
 signals:
     //! Signal to start background music
@@ -154,6 +158,10 @@ private slots:
     void on_garageHandlingSlider_valueChanged(int value);
 
     void on_garageHandlingSlider_sliderReleased();
+
+    void on_garage2Right_clicked();
+
+    void on_garage2Left_clicked();
 
     void on_highscore2Main_clicked();
 

@@ -314,6 +314,67 @@ void PauseMenu::settingsClicked()
     mSettingsButton->hide();
     mQuitButton->hide();
 
+    // Read in the sound values (can be changed in main menu as well)
+    QString filename = "settings/sound.set";
+    QFile inputFile(filename);
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+        QTextStream in(&inputFile);
+        QString line;
+        QStringList list;
+
+        while(!in.atEnd())
+        {
+            line = in.readLine();
+            list = line.split(QRegExp("\\="));
+
+            if(list.value(0) == "backgroundSoundValue")
+            {
+                mBackgroundMusicValue = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "backgroundSoundActive")
+            {
+                mBackgroundMusicActive = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "buttonSoundValue")
+            {
+                mButtonSoundValue = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "buttonSoundActive")
+            {
+                mButtonSoundActive = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "raceSoundValue")
+            {
+                mCarSoundValue = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "raceSoundActive")
+            {
+                mCarSoundActive = list.value(1).toInt();
+                continue;
+            }
+        }
+        inputFile.close();
+    }
+
+    if(mBackgroundMusicActive == 1)
+    {
+        mBackgroundMusicSlider->setValue(mBackgroundMusicValue);
+    }
+    if(mButtonSoundActive == 1)
+    {
+        mButtonSoundSlider->setValue(mButtonSoundValue);
+    }
+    if(mCarSoundActive == 1)
+    {
+        mCarSoundSlider->setValue(mCarSoundValue);
+    }
+
     // Add widgets for settings tab
     mGridLayout->addWidget(mBackButton, 1, 0, 1, 1);
 

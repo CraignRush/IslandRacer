@@ -6,17 +6,8 @@
 #include "worldposition.h"
 
 
-Car::Car(b2World* world, Track* track, int carIndex) : mWorld{world}, mTrack{track}
+Car::Car(b2World* world, Track* track) : mWorld{world}, mTrack{track}
 {
-    if (carIndex==1)
-    {
-        setPixmap(QPixmap(":/images/images/1car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
-    }
-    else if (carIndex==2)
-    {
-        setPixmap(QPixmap(":/images/images/2car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
-    }
-
     ensureVisible(QRectF(), 500, 400);
 
     //define our Main Car Body
@@ -496,4 +487,33 @@ void Car::setToResetPos()
 {
     WorldPosition pos = mTrack->getLastCheckpointPosition(mIndex);
     setPosition(pos.x(), pos.y(), pos.angle());
+}
+
+void Car::setCarPixmap(int carIndex)
+{
+    switch (carIndex) {
+    case 1:
+        this->setPixmap(QPixmap(":/images/images/1car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
+        break;
+    case 2:
+        this->setPixmap(QPixmap(":/images/images/2car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
+        break;
+    case 3:
+        this->setPixmap(QPixmap(":/images/images/3car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
+        break;
+    case 4:
+        this->setPixmap(QPixmap(":/images/images/4car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
+        break;
+    case 5:
+        this->setPixmap(QPixmap(":/images/images/5car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
+        break;
+    case 6:
+        this->setPixmap(QPixmap(":/images/images/6car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
+        break;
+    case 7:
+        this->setPixmap(QPixmap(":/images/images/7car.png").scaled(CAR_WIDTH*PX_TO_M_RATIO, CAR_LENGTH*PX_TO_M_RATIO));
+        break;
+    default:
+        break;
+    }
 }
