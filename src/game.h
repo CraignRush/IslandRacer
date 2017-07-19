@@ -36,7 +36,7 @@ public:
      * \param accelerationValue Garage value for acceleration
      * \param handlingValue Garage value for handling
      */
-    void loadCircuit(enum Circuit circuit, int speedValue, int accelerationValue, int handlingValue);
+    void loadCircuit(enum Circuit circuit, int speedValue, int accelerationValue, int handlingValue, int carValue);
 
 public slots:
     //! Slot to select multi- or singleplayer

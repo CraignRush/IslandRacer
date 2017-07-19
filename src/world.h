@@ -95,8 +95,9 @@ public:
      * \param speedValue Garage value for topspeed
      * \param accelerationValue Garage value for acceleration
      * \param handlingValue Garage value for handling
-     */
-    void loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer, int speedValue, int accelerationValue, int handlingValue);
+     * \param carValue Garage Pixmap for the car
+    */
+    void loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer, int speedValue, int accelerationValue, int handlingValue, int carValue);
 
     //! Manage all key press events
     void keyPressEvent(QKeyEvent *keyEvent);
@@ -147,6 +148,10 @@ signals:
     void colorize(qreal strength);
     void setCar1Back();
     void setCar2Back();
+
+    //! Sets the pixmap of the car
+    void setCar1Pixmap(int i);
+    void setCar2Pixmap(int i);
 
     //! Sets the sound effects a race start
     void playRaceSound1();

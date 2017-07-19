@@ -21,8 +21,12 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     mTrack = new Track();
 
     // Create cars
-    mCar1 = new Car(mWorld, mTrack, 1);
-    mCar2 = new Car(mWorld, mTrack, 2);
+    mCar1 = new Car(mWorld, mTrack);
+    mCar2 = new Car(mWorld, mTrack);
+
+    // Connect Car
+    connect(this,SIGNAL(setCar1Pixmap(int)),mCar1,SLOT(setCarPixmap(int)));
+    connect(this,SIGNAL(setCar2Pixmap(int)),mCar2,SLOT(setCarPixmap(int)));
 
     // Init viewports
     mViewPlayer1 = NULL;
@@ -268,7 +272,7 @@ void World::startLoop()
     }
 }
 
-void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer, int speedValue, int accelerationValue, int handlingValue)
+void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer, int speedValue, int accelerationValue, int handlingValue, int carValue)
 {
     mIsMultiplayer = isMultiplayer;
     mUnderwaterActivePlayer1 = false;
@@ -314,8 +318,20 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
     mPauseMenuWidget->setVisible(false);
 
+
+
     if(mIsMultiplayer)
     {
+        int i = rand() % 7 + 1;
+        emit setCar1Pixmap(i);
+        if(i == 7 || i == 6){
+            i = rand() % 5 + 1;
+        }
+        else{
+            i = i + 2;
+        }
+        emit setCar2Pixmap(i);
+
         // Add second car to scene
         mTrack->addItem(mCar1);
         mTrack->addItem(mCar2);
@@ -397,6 +413,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
     }
     else
     {
+        emit setCar1Pixmap(carValue);
         mTrack->addItem(mCar1);
 
         // set car to starting position

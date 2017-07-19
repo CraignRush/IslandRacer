@@ -52,6 +52,11 @@ mainMenu::mainMenu(QWidget *parent) :
                 mHandlingValue = list.value(1).toInt();
                 continue;
             }
+            if(list.value(0) == "carValue")
+            {
+                mCarValue = list.value(1).toInt();
+                continue;
+            }
         }
         inputFile1.close();
     }
@@ -168,8 +173,8 @@ mainMenu::mainMenu(QWidget *parent) :
     yasmarina = yasmarina.scaled(QSize(0.5 * mScreenWidth, 0.5 * mScreenHeight),Qt::IgnoreAspectRatio);
     bahrain = bahrain.scaled(QSize(0.5 * mScreenWidth, 0.5 * mScreenHeight),Qt::IgnoreAspectRatio);
     silverstone = silverstone.scaled(QSize(0.5 * mScreenWidth, 0.5 * mScreenHeight),Qt::IgnoreAspectRatio);
-    starYellow = starYellow.scaled(QSize(0.1 * mScreenWidth, 0.1 * mScreenHeight),Qt::IgnoreAspectRatio);
-    starDark = starDark.scaled(QSize(0.1 * mScreenWidth, 0.1 * mScreenHeight),Qt::IgnoreAspectRatio);
+    starYellow = starYellow.scaled(QSize(0.1 * mScreenHeight, 0.1 * mScreenHeight),Qt::IgnoreAspectRatio);
+    starDark = starDark.scaled(QSize(0.1 * mScreenHeight, 0.1 * mScreenHeight),Qt::IgnoreAspectRatio);
 
     // Set Icons
     QIcon leftArrow(":/images/images/l-arrow-576725_1280.png");
@@ -316,9 +321,18 @@ mainMenu::mainMenu(QWidget *parent) :
     ui->garageHandlingLabel->setText("Your handling value: " + QString::number(mHandlingValue));
     ui->garageHandlingLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->garageHandlingLabel->setFont(GillSansMT);
+    ui->garage2Left->setIcon(leftArrow);
+    ui->garage2Left->setIconSize(arrowButton);
+    ui->garage2Left->setStyleSheet("QPushButton{background: transparent;}");
+    ui->garage2Right->setIcon(rightArrow);
+    ui->garage2Right->setIconSize(arrowButton);
+    ui->garage2Right->setStyleSheet("QPushButton{background: transparent;}");
+    ui->garageCarLabel->setStyleSheet("QLabel{background: transparent;}");
+    ui->garageCarLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->garageLabel->setStyleSheet("QLabel{background: transparent;}");
     ui->garageLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     ui->garageLabel->setFont(GillSansMT);
+    setCar();
 
     // Items in highscore
     ui->highscoreLogo->setPixmap(logo);
@@ -767,6 +781,7 @@ void mainMenu::on_main2QuitGame_clicked()
  * Functions in garage:
  * computeMaximumValue()
  * setStars()
+ * setCar()
  * saveGarage()
  * on_garage2Main_clicked()
  * on_garageAccelerationSlider_valueChanged(int value)
@@ -775,6 +790,8 @@ void mainMenu::on_main2QuitGame_clicked()
  * on_garageTopspeedSlider_sliderReleased()
  * on_garageHandlingSlider_valueChanged(int value)
  * on_garageHandlingSlider_sliderReleased()
+ * on_garage2Left_clicked()
+ * on_garage2Right_clicked()
 */
 // Get the number of points which can be distributed from the Highscores
 void mainMenu::computeMaximumValue()
@@ -1070,12 +1087,59 @@ void mainMenu::setStars()
     }
 }
 
+// set the car in the garage
+void mainMenu::setCar()
+{
+    QPixmap car1(":/images/images/1car.png");
+    QPixmap car2(":/images/images/2car.png");
+    QPixmap car3(":/images/images/3car.png");
+    QPixmap car4(":/images/images/4car.png");
+    QPixmap car5(":/images/images/5car.png");
+    QPixmap car6(":/images/images/6car.png");
+    QPixmap car7(":/images/images/7car.png");
+
+    car1 = car1.scaled(QSize(0.1 * mScreenHeight, 0.2 * mScreenHeight),Qt::IgnoreAspectRatio);
+    car2 = car2.scaled(QSize(0.1 * mScreenHeight, 0.2 * mScreenHeight),Qt::IgnoreAspectRatio);
+    car3 = car3.scaled(QSize(0.1 * mScreenHeight, 0.2 * mScreenHeight),Qt::IgnoreAspectRatio);
+    car4 = car4.scaled(QSize(0.1 * mScreenHeight, 0.2 * mScreenHeight),Qt::IgnoreAspectRatio);
+    car5 = car5.scaled(QSize(0.1 * mScreenHeight, 0.2 * mScreenHeight),Qt::IgnoreAspectRatio);
+    car6 = car6.scaled(QSize(0.1 * mScreenHeight, 0.2 * mScreenHeight),Qt::IgnoreAspectRatio);
+    car7 = car7.scaled(QSize(0.1 * mScreenHeight, 0.2 * mScreenHeight),Qt::IgnoreAspectRatio);
+
+    switch (mCarValue) {
+    case 1:
+        ui->garageCarLabel->setPixmap(car1);
+        break;
+    case 2:
+        ui->garageCarLabel->setPixmap(car2);
+        break;
+    case 3:
+        ui->garageCarLabel->setPixmap(car3);
+        break;
+    case 4:
+        ui->garageCarLabel->setPixmap(car4);
+        break;
+    case 5:
+        ui->garageCarLabel->setPixmap(car5);
+        break;
+    case 6:
+        ui->garageCarLabel->setPixmap(car6);
+        break;
+    case 7:
+        ui->garageCarLabel->setPixmap(car7);
+        break;
+    default:
+        break;
+    }
+}
+
 // save the settings from the garage
 void mainMenu::saveGarage()
 {
     QString out("topspeedValue=" + QString::number(mTopspeedValue) + "\n"
-                                                                     "accelerationValue=" + QString::number(mAccelerationValue) + "\n"
-                                                                                                                                  "handlingValue=" + QString::number(mHandlingValue) + "\n");
+                "accelerationValue=" + QString::number(mAccelerationValue) + "\n"
+                "handlingValue=" + QString::number(mHandlingValue) + "\n"
+                "carValue=" + QString::number(mCarValue) + "\n");
     QString filename;
     filename = "settings/garage.set";
     QFile outputFile(filename);
@@ -1174,6 +1238,28 @@ void mainMenu::on_garageHandlingSlider_sliderReleased()
     if(decider < 0){
         ui->garageHandlingSlider->setValue(setvalue);
     }
+}
+
+void mainMenu::on_garage2Right_clicked()
+{
+    if(mCarValue == 7){
+        mCarValue = 1;
+    }
+    else{
+        mCarValue++;
+    }
+    setCar();
+}
+
+void mainMenu::on_garage2Left_clicked()
+{
+    if(mCarValue == 1){
+        mCarValue = 7;
+    }
+    else{
+        mCarValue--;
+    }
+    setCar();
 }
 // End garage
 
@@ -1609,7 +1695,7 @@ void mainMenu::on_level1_2Play_clicked()
 
     mSplash->showMessage(QString("Loading " + mCircuitName.at(Monza) + " Map"),Qt::AlignHCenter | Qt::AlignTop);
 
-    game->loadCircuit(Monza, mTopspeedValue, mAccelerationValue, mHandlingValue);
+    game->loadCircuit(Monza, mTopspeedValue, mAccelerationValue, mHandlingValue, mCarValue);
     mSplash->close();
 }
 // End level 1
@@ -1660,7 +1746,7 @@ void mainMenu::on_level2_2Play_clicked()
     playbuttonsound();
 
     mSplash->showMessage(QString("Loading " + mCircuitName.at(Hockenheimring) + " Map"),Qt::AlignHCenter | Qt::AlignTop);
-    game->loadCircuit(Hockenheimring, mTopspeedValue, mAccelerationValue, mHandlingValue);
+    game->loadCircuit(Hockenheimring, mTopspeedValue, mAccelerationValue, mHandlingValue, mCarValue);
     mSplash->close();
 }
 // End level 2
@@ -1725,7 +1811,7 @@ void mainMenu::on_level3_2Play_clicked()
     playbuttonsound();
 
     mSplash->showMessage(QString("Loading " + mCircuitName.at(YasMarina) + " Map"),Qt::AlignHCenter | Qt::AlignTop);
-    game->loadCircuit(YasMarina, mTopspeedValue, mAccelerationValue, mHandlingValue);
+    game->loadCircuit(YasMarina, mTopspeedValue, mAccelerationValue, mHandlingValue, mCarValue);
     mSplash->close();
 }
 // End level 3
@@ -1790,7 +1876,7 @@ void mainMenu::on_level4_2Play_clicked()
     playbuttonsound();
 
     mSplash->showMessage(QString("Loading " + mCircuitName.at(Bahrain) + " Map"),Qt::AlignHCenter | Qt::AlignTop);
-    game->loadCircuit(Bahrain, mTopspeedValue, mAccelerationValue, mHandlingValue);
+    game->loadCircuit(Bahrain, mTopspeedValue, mAccelerationValue, mHandlingValue, mCarValue);
     mSplash->close();
 }
 // End level 4
@@ -1841,7 +1927,7 @@ void mainMenu::on_level5_2Play_clicked()
     playbuttonsound();
 
     mSplash->showMessage(QString("Loading " + mCircuitName.at(Silverstone) + " Map"),Qt::AlignHCenter | Qt::AlignTop);
-    game->loadCircuit(Silverstone, mTopspeedValue, mAccelerationValue, mHandlingValue);
+    game->loadCircuit(Silverstone, mTopspeedValue, mAccelerationValue, mHandlingValue, mCarValue);
     mSplash->close();
 }
 // End level 5
