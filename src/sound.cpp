@@ -1,11 +1,23 @@
 #include "sound.h"
 #include <QMediaPlaylist>
+#include <QMediaPlayer>
 
 // Define static member variable
 Sound* Sound::mSoundInstance;
 
 Sound::Sound(QObject* parent)
 {       
+    mBackgroundMusic = new QMediaPlayer();
+    mPlaylist = new QMediaPlaylist();
+    mPlaylist->addMedia(QUrl("qrc:/sounds/sounds/background_andi.wav"));
+    mPlaylist->addMedia(QUrl("qrc:/sounds/sounds/intense-bg-music.wav"));
+    // mPlaylist->addMedia(QUrl("qrc:/sounds/sounds/GT_Start.wav"));
+    //mPlaylist->addMedia(QUrl("qrc:/sounds/sounds/GT_Stop.wav"));
+    //mPlaylist->addMedia(QUrl("qrc:/sounds/sounds/WinTheme.wav"));
+    mBackgroundMusic->setPlaylist(mPlaylist);
+    mPlaylist->setPlaybackMode(QMediaPlaylist::Random);
+    mBackgroundMusic->play();
+
     // Init enginge sond during car acceleration
     mCarAcceleratingSound = new QSoundEffect();
     mCarAcceleratingSound->setSource(QUrl("qrc:/sounds/sounds/car_accelerating_loop.wav"));
@@ -17,11 +29,11 @@ Sound::Sound(QObject* parent)
     mButtonClickSound->setSource(QUrl("qrc:/sounds/sounds/buttonsound.wav"));
     mButtonClickSound->setParent(parent);
 
-    // Init background music
-    mBackgroundMusic = new QSoundEffect();
-    mBackgroundMusic->setSource(QUrl("qrc:/sounds/sounds/background_andi.wav"));
-    mBackgroundMusic->setLoopCount(QSoundEffect::Infinite);
-    mBackgroundMusic->setParent(parent);
+    //    // Init background music
+    //    mBackgroundMusic = new QSoundEffect();
+    //    mBackgroundMusic->setSource(QUrl("qrc:/sounds/sounds/background_andi.wav"));
+    //    mBackgroundMusic->setLoopCount(QSoundEffect::Infinite);
+    //    mBackgroundMusic->setParent(parent);
 
     // Init race start sound(1)
     mRaceStartSound1 = new QSoundEffect();
@@ -82,7 +94,7 @@ void Sound::stopBackgroundMusic()
 
 void Sound::setBackgroundMusicVolume(int volume)    // volume range: 0..100
 {
-    mBackgroundMusic->setVolume(volume/100.0f);        // volume range 0.0f ... 1.0f
+    mBackgroundMusic->setVolume(volume);        // volume range 0.0f ... 1.0f
 }
 
 void Sound::playCarSound()

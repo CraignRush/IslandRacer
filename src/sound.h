@@ -17,10 +17,13 @@ private:
     QThread* mSoundThread;
     QSoundEffect* mCarAcceleratingSound;
     QSoundEffect* mButtonClickSound;
-    QSoundEffect* mBackgroundMusic;
+    //QSoundEffect* mBackgroundMusic;
     QSoundEffect* mRaceStartSound1;
     QSoundEffect* mRaceStartSound2;
     QSoundEffect* mFinishTheme;
+
+    QMediaPlayer* mBackgroundMusic;
+    QMediaPlaylist* mPlaylist;
 
 public:
     static Sound* getSoundInstance(QObject* parent);
