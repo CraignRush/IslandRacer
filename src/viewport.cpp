@@ -78,11 +78,11 @@ Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
     mSpeedDisplay->setParent(this);
     mPrevPos = QPointF(0,0);
 */
-    mSpeedDisplay = new Speedometer(0.2 * mHeight,0.2 * mHeight);
+    if(isMultiplayer)
+        mSpeedDisplay = new Speedometer(0.2 * mHeight,0.2 * mHeight);
+    else
+        mSpeedDisplay = new Speedometer(0.3 * mHeight,0.3 * mHeight);
     mSpeedDisplay->setVisible(false);
-    //mSpeedDisplay->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
-    //mSpeedDisplay->setFont(QFont("GillSansMT",mTextSizeSpeed,60));
-    //mSpeedDisplay->setText("000.0km/h");
     mSpeedDisplay->adjustSize();
     mSpeedDisplay->setParent(this);
     mPrevPos = QPointF(0,0);

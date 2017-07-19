@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QPainter>
 
+//! This class is a graphical widget which displays a speedometer
 class Speedometer : public QLabel
 {
     Q_OBJECT
@@ -15,6 +16,7 @@ private:
     QLabel* mNeedle;
     QPixmap* mNeedleImage;
     QPoint mRotationPoint;
+    QLabel* mDisplay;
 
     double mAngle;
     const double mMaxAngle = 135.0;
@@ -24,6 +26,11 @@ private:
 
 public:
     explicit Speedometer(int width, int height, QWidget *parent = nullptr);
+    ~Speedometer();
+
+    //! Sets the angle of the needle in speedometer relative to velocity
+    //! Updates the text label with velocity
+    //! \param velocity current velocity
     void setVelocity(double velocity);
 
 signals:
