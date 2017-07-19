@@ -1,6 +1,6 @@
 backgroundSoundValue=100
-backgroundSoundActive=0
+backgroundSoundActive=1
 buttonSoundValue=100
-buttonSoundActive=0
+buttonSoundActive=1
 raceSoundValue=100
-raceSoundActive=0
+raceSoundActive=1

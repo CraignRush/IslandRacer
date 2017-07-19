@@ -41,6 +41,8 @@
         <file>images/YasMarinatextur.jpg</file>
         <file>images/1car.png</file>
         <file>images/2car.png</file>
+        <file>images/Logo.jpg</file>
+        <file>images/Logo_Splash.png</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>
@@ -58,5 +60,8 @@
         <file>sounds/intense-bg-music.wav</file>
         <file>sounds/background_andi.mp3</file>
         <file>sounds/background_andi.wav</file>
+        <file>sounds/GT_End.wav</file>
+        <file>sounds/GT_Start.wav</file>
+        <file>sounds/WinTheme.wav</file>
     </qresource>
 </RCC>

@@ -22,7 +22,13 @@ private:
     QThread* mSoundThread;
     QSoundEffect* mCarAcceleratingSound;
     QSoundEffect* mButtonClickSound;
-    QSoundEffect* mBackgroundMusic;
+    //QSoundEffect* mBackgroundMusic;
+    QSoundEffect* mRaceStartSound1;
+    QSoundEffect* mRaceStartSound2;
+    QSoundEffect* mFinishTheme;
+
+    QMediaPlayer* mBackgroundMusic;
+    QMediaPlaylist* mPlaylist;
 
 public:
     //! Static method for singelton access
@@ -57,6 +63,9 @@ public slots:
 
     //! Stop button sound
     void setButtonSoundVolume(int volume);
+    void playRaceStart1Sound();
+    void playRaceStart2Sound();
+    void playFinishSound();
 };
 
 #endif // SOUND_H

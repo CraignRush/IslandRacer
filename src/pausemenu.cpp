@@ -50,6 +50,11 @@ PauseMenu::PauseMenu(int screenHeight, QWidget *parent) : QWidget(parent)
         inputFile.close();
     }
 
+//    setStyleSheet("QWidget{background-color : rgba(255,255,255,100)}");
+//    setAutoFillBackground(true);
+
+
+
     // Main Layout
     mGridLayout = new QGridLayout();
 
@@ -107,7 +112,7 @@ PauseMenu::PauseMenu(int screenHeight, QWidget *parent) : QWidget(parent)
 
     // Background music
     mBackgroundMusicLabel = new QLabel();
-    mBackgroundMusicLabel->setStyleSheet("QLabel{background: transparent; color: black}");
+    mBackgroundMusicLabel->setStyleSheet("QLabel{background: transparent;color: black}");
     mBackgroundMusicLabel->setFont(GillSansMT);
     mBackgroundMusicLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     mBackgroundMusicLabel->setText("Background Sound:");
@@ -136,7 +141,7 @@ PauseMenu::PauseMenu(int screenHeight, QWidget *parent) : QWidget(parent)
 
     // Car sound
     mCarSoundLabel = new QLabel();
-    mCarSoundLabel->setStyleSheet("QLabel{background: transparent; color: black}");
+    mCarSoundLabel->setStyleSheet("QLabel{background: transparent;color: black}");
     mCarSoundLabel->setFont(GillSansMT);
     mCarSoundLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     mCarSoundLabel->setText("Race Sound:");

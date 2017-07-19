@@ -148,6 +148,10 @@ signals:
     void setCar1Back();
     void setCar2Back();
 
+    //! Sets the sound effects a race start
+    void playRaceSound1();
+    void playRaceSound2();
+
 };
 
 #endif // WORLD_H
