@@ -192,8 +192,8 @@ void World::gameLoop()
 
     // Apply forces dependant on current user input
     mCar1->computeUserInput(mCurrentInputStatePlayer1);
-    mCar1->updatePosition(1, mUnderwaterActive);
-    if(!mUnderwaterActive)
+    mCar1->updatePosition(1, mUnderwaterActivePlayer1);
+    if(!mUnderwaterActivePlayer1)
         mViewPlayer1->ensureVisible(mCar1, mVisibleWidth, mVisibleHeight);
 
     // Check for checkpoint collision
@@ -209,8 +209,9 @@ void World::gameLoop()
     if(mIsMultiplayer)
     {
         mCar2->computeUserInput(mCurrentInputStatePlayer2);
-        mCar2->updatePosition(2, false);
-        mViewPlayer2->ensureVisible(mCar2,mVisibleWidth, mVisibleHeight);
+        mCar2->updatePosition(2, mUnderwaterActivePlayer2);
+        if(!mUnderwaterActivePlayer2)
+            mViewPlayer2->ensureVisible(mCar2,mVisibleWidth, mVisibleHeight);
         mTrack->updateCheckpoints(mCar2, 2);
         mCar2->render();
         mViewPlayer2->updateOverlay(mCar2->pos(),mFps);
@@ -257,7 +258,8 @@ void World::startLoop()
 void World::loadTrack(int width, int height, QString background_path, QString gray_path, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, int carCount, WorldPosition* carPositions, bool isMultiplayer, int speedValue, int accelerationValue, int handlingValue)
 {
     mIsMultiplayer = isMultiplayer;
-    mUnderwaterActive = false;
+    mUnderwaterActivePlayer1 = false;
+    mUnderwaterActivePlayer2 = false;
 
     // copy the starting positions for restart game
     mCarStartingPositions = (WorldPosition*) malloc(20 * sizeof(WorldPosition));
@@ -317,9 +319,26 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveLapTime()));
         connect(mTrack, SIGNAL(LapChanged2()), mViewPlayer2, SLOT(saveLapTime()));
-        //       connect(mCar1,SIGNAL(startUnderwaterEffect()),mViewPlayer1,SLOT(startColorizeEffect()));
-        //       connect(mCar2,SIGNAL(startUnderwaterEffect()),mViewPlayer2,SLOT(startColorizeEffect()));
 
+        // Init colorize graphics effect
+        mColorize = new QGraphicsColorizeEffect(this);
+        mColorStrengthPlayer1 = 0.0;
+        mColorStrengthPlayer2 = 0.0;
+        mColorize->setStrength(mColorStrengthPlayer1);
+        mColorize->setEnabled(false);
+
+        mColorizeTimerPlayer1 = new QTimer(this);
+        mColorizeTimerPlayer2 = new QTimer(this);
+
+        connect(mCar1,SIGNAL(startUnderwaterEffect(int)),this,SLOT(startColorizeEffect(int)));
+        connect(mCar2,SIGNAL(startUnderwaterEffect(int)),this,SLOT(startColorizeEffect(int)));
+        connect(mColorizeTimerPlayer1,SIGNAL(timeout()),this,SLOT(setColorizeStrengthPlayer1()));
+        connect(mColorizeTimerPlayer2,SIGNAL(timeout()),this,SLOT(setColorizeStrengthPlayer2()));
+        connect(this,SIGNAL(colorize(qreal)),mColorize,SLOT(setStrength(qreal)));
+        connect(this,SIGNAL(setCar1Back()),mCar1,SLOT(setToResetPos()));
+        connect(this,SIGNAL(setCar2Back()),mCar2,SLOT(setToResetPos()));
+
+        // Set variables for ensureVisible()
         mVisibleWidth = 0.4 * mWidth/2;
         mVisibleHeight =  0.4 * mHeight;
 
@@ -375,16 +394,16 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         // Init colorize graphics effect
         mColorize = new QGraphicsColorizeEffect(this);
-        mColorStrength = 0.0;
-        mColorize->setStrength(mColorStrength);
+        mColorStrengthPlayer1 = 0.0;
+        mColorize->setStrength(mColorStrengthPlayer1);
         mColorize->setEnabled(false);
 
-        mColorizeTimer = new QTimer(this);
+        mColorizeTimerPlayer1 = new QTimer(this);
 
-        connect(mCar1,SIGNAL(startUnderwaterEffect()),this,SLOT(startColorizeEffect()));
-        connect(mColorizeTimer,SIGNAL(timeout()),this,SLOT(setColorizeStrength()));
+        connect(mCar1,SIGNAL(startUnderwaterEffect(int index)),this,SLOT(startColorizeEffect(int index)));
+        connect(mColorizeTimerPlayer1,SIGNAL(timeout()),this,SLOT(setColorizeStrengthPlayer1()));
         connect(this,SIGNAL(colorize(qreal)),mColorize,SLOT(setStrength(qreal)));
-        connect(this,SIGNAL(setCarBack()),mCar1,SLOT(setToResetPos()));
+        connect(this,SIGNAL(setCar1Back()),mCar1,SLOT(setToResetPos()));
 
         // Set variables for ensureVisible()
         mVisibleWidth = 0.4 * mWidth;
@@ -428,28 +447,40 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
 }
 
-void World::startColorizeEffect()
+void World::startColorizeEffect(int index)
 {
-    mUnderwaterActive = true;
-    mCar1->setGraphicsEffect(mColorize);
-    mColorStrength = 0.0;
-    mColorize->setStrength(mColorStrength);
-    mColorize->setEnabled(true);
-    mColorizeTimer->start(100);
+    if(index == 1)
+    {
+        mCar1->setGraphicsEffect(mColorize);
+        mUnderwaterActivePlayer1 = true;
+        mColorStrengthPlayer1 = 0.0;
+        mColorize->setStrength(mColorStrengthPlayer1);
+        mColorize->setEnabled(true);
+        mColorizeTimerPlayer1->start(100);
+    }
+    else
+    {
+        mCar2->setGraphicsEffect(mColorize);
+        mUnderwaterActivePlayer2 = true;
+        mColorStrengthPlayer2 = 0.0;
+        mColorize->setStrength(mColorStrengthPlayer2);
+        mColorize->setEnabled(true);
+        mColorizeTimerPlayer2->start(100);
+    }
 }
 
-void World::setColorizeStrength()
+void World::setColorizeStrengthPlayer1()
 {
-    if(mColorStrength < 1.0)
+    if(mColorStrengthPlayer1 < 1.0)
     {
-        mColorize->setStrength(mColorStrength);
-        mColorStrength += 0.1;
+        mColorize->setStrength(mColorStrengthPlayer1);
+        mColorStrengthPlayer1 += 0.1;
         mCar1->setScale(mCar1->scale() - 0.067);
         mCar1->setOpacity(mCar1->opacity() - 0.05);
     }
-    else if (mColorStrength < 1.5)
+    else if (mColorStrengthPlayer1 < 1.5)
     {
-        mColorStrength += 0.1;
+        mColorStrengthPlayer1 += 0.1;
         mCar1->setOpacity(mCar1->opacity() - 0.1);
     }
     else
@@ -457,10 +488,36 @@ void World::setColorizeStrength()
         mColorize->setEnabled(false);
         mCar1->setScale(1.0f);
         mCar1->setOpacity(1.0f);
-        emit setCarBack();
-        mUnderwaterActive = false;
-        mColorizeTimer->stop();
+        emit setCar1Back();
+        mUnderwaterActivePlayer1 = false;
+        mColorizeTimerPlayer1->stop();
         mViewPlayer1->centerOn(mCar1);
+    }
+}
+
+void World::setColorizeStrengthPlayer2()
+{
+    if(mColorStrengthPlayer2 < 1.0)
+    {
+        mColorize->setStrength(mColorStrengthPlayer2);
+        mColorStrengthPlayer2 += 0.1;
+        mCar2->setScale(mCar2->scale() - 0.067);
+        mCar2->setOpacity(mCar2->opacity() - 0.05);
+    }
+    else if (mColorStrengthPlayer2 < 1.5)
+    {
+        mColorStrengthPlayer2 += 0.1;
+        mCar2->setOpacity(mCar2->opacity() - 0.1);
+    }
+    else
+    {
+        mColorize->setEnabled(false);
+        mCar2->setScale(1.0f);
+        mCar2->setOpacity(1.0f);
+        emit setCar2Back();
+        mUnderwaterActivePlayer2 = false;
+        mColorizeTimerPlayer2->stop();
+        mViewPlayer2->centerOn(mCar2);
     }
 }
 

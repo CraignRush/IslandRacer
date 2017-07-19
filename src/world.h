@@ -29,12 +29,11 @@ private:
     int mWidth;                 // Width of world/scene
     int mHeight;                // Height of world/scene
 
-    int mVisibleWidth;
-    int mVisibleHeight;
+    int mVisibleWidth;          // Widht of rect for ensureVisible()
+    int mVisibleHeight;         // Widht of rect for ensureVisible()
 
-    bool mIsMultiplayer;
-    WorldPosition* mCarStartingPositions;
-    bool mUnderwaterActive;
+    bool mIsMultiplayer;        // Flag if game is in multiplayer mode
+    WorldPosition* mCarStartingPositions;   // Starting positions for cars
 
     QStackedLayout* mMainLayout;             // Main layout for game window
     QHBoxLayout* mViewportLayout;            // Layout for player viewport side by side
@@ -68,10 +67,13 @@ private:
     int mStartCounter;              // remaining start sequence Time in 10msec steps
     float mOpacity;                 // Opacity for fade out effect of StartCounter
 
-    qreal mColorStrength;        // between 0 (transparent) and 1 (fully colorized)
-    QTimer* mColorizeTimer;      //timer to enable gradual rendering
-    QGraphicsColorizeEffect* mColorize; //instance of effect
-    QColor mColor;
+    bool mUnderwaterActivePlayer1;      // Flag if swirl animation is active (player1)
+    bool mUnderwaterActivePlayer2;      // Flag if swirl animation is active (player2)
+    qreal mColorStrengthPlayer1;        // between 0 (transparent) and 1 (fully colorized)
+    qreal mColorStrengthPlayer2;        // between 0 (transparent) and 1 (fully colorized)
+    QTimer* mColorizeTimerPlayer1;             // timer to enable gradual rendering
+    QTimer* mColorizeTimerPlayer2;             // timer to enable gradual rendering
+    QGraphicsColorizeEffect* mColorize; // instance of effect
 
 public:
     //! Set up basic game elements
@@ -134,13 +136,17 @@ public slots:
     //! End Game
     void exitGame();
 
-    void startColorizeEffect();
-    void setColorizeStrength();
+    //! Start swirl effect
+    //*! \param car Car which has watercontact
+    void startColorizeEffect(int index);
+    void setColorizeStrengthPlayer1();
+    void setColorizeStrengthPlayer2();
 
 signals:
     //! Calls the setStrength Slot of the Colorize Effect to change the transparency
     void colorize(qreal strength);
-    void setCarBack();
+    void setCar1Back();
+    void setCar2Back();
 
 };
 

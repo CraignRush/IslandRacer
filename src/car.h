@@ -102,7 +102,7 @@ signals:
     void playCarSound();
 
     //! Signal to start the underwater effect if user drove into water
-    void startUnderwaterEffect();
+    void startUnderwaterEffect(int index);
 
     //! Signal to stop car sound.
     void stopCarSound();
