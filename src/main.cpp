@@ -4,6 +4,7 @@
 #include <mainmenu.h>
 #include "game.h"
 #include "pausemenu.h"
+#include "speedometer.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +12,7 @@ int main(int argc, char *argv[])
 
     QPixmap pixmap(":/images/images/Logo_Splash.png");
     QSplashScreen splash(pixmap);
-    splash.setWindowFlags(Qt::WindowStaysOnTopHint);
+    splash.setWindowFlag(Qt::WindowStaysOnTopHint);
     splash.setStyleSheet("background: tranparent;");
     splash.show();
     splash.showMessage("Loading modules",Qt::AlignHCenter | Qt::AlignTop);

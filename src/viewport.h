@@ -11,6 +11,7 @@
 #include <QLabel>
 #include "track.h"
 #include "sound.h"
+#include "speedometer.h"
 
 //! Provides the view for the track
 class Viewport : public QGraphicsView
@@ -19,7 +20,7 @@ class Viewport : public QGraphicsView
 
 private:
     int mWidth, mHeight;
-    QLabel* mSpeedDisplay;              // Display current Speed
+    Speedometer* mSpeedDisplay;              // Display current Speed
     QLabel* mLapTimeLabel;              // contains the String with the elapsed time per lap
     QLabel* mTotalTimeLabel;            // contains the String with the total elapsed time
     QLabel* mLapLabel;                  // contains the label in the scene

@@ -957,7 +957,8 @@ void World::exitGame()
 
 Viewport* World::getViewPlayer(int number)
 {
-    switch (number) {
+    switch (number)
+    {
     case 0:
         break;
     case 1:
@@ -968,6 +969,8 @@ Viewport* World::getViewPlayer(int number)
             return mViewPlayer2;
         break;
     }
+
+    return NULL;
 }
 
 

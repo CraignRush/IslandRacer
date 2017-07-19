@@ -43,6 +43,8 @@
         <file>images/2car.png</file>
         <file>images/Logo.jpg</file>
         <file>images/Logo_Splash.png</file>
+        <file>images/speedometer_background.png</file>
+        <file>images/speedometer_needle.png</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>
