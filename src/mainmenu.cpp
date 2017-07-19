@@ -10,6 +10,9 @@ mainMenu::mainMenu(QWidget *parent) :
 
 	ui->setupUi(this);
 
+    // set window title from src.exe to IslandRacer
+    setWindowTitle(tr("IslandRacer"));
+
 	// Initial Values
 	ui->stackedWidget->setCurrentIndex(0);
 
