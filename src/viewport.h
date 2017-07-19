@@ -10,6 +10,7 @@
 #include <QKeyEvent>
 #include <QLabel>
 #include "track.h"
+#include "sound.h"
 
 //! Provides the view for the track
 class Viewport : public QGraphicsView

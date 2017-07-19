@@ -142,6 +142,10 @@ signals:
     void colorize(qreal strength);
     void setCarBack();
 
+    //! Sets the sound effects a race start
+    void playRaceSound1();
+    void playRaceSound2();
+
 };
 
 #endif // WORLD_H

@@ -53,6 +53,11 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     // Init colorize effect
     mColorize = NULL;
 
+    // Connect start sounds
+    connect(this,SIGNAL(playRaceSound1()),Sound::getSoundInstance(this),SLOT(playRaceStart1Sound()));
+    connect(this,SIGNAL(playRaceSound2()),Sound::getSoundInstance(this),SLOT(playRaceStart2Sound()));
+
+
     // Create horizontal border line between the two viewports
     mVerticalSeperatorLine->setFixedWidth(2);
     mVerticalSeperatorLine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -92,7 +97,6 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     setCentralWidget(mMainWidget);
 
     //set background properties to pause menu
-
     QPalette pal;
     pal.setColor(QPalette::Background,QColor(255,255,255,70));
     mPauseMenuWidget->setPalette(pal);
@@ -230,11 +234,13 @@ void World::startLoop()
     {
         mOpacity=1.0f;
         mCounter->setText(QString::number(mStartCounter/100));
+        emit playRaceSound1();
     }
     if(mStartCounter == 0)
     {
         mOpacity=1.0f;
         mCounter->setText("GO!");
+        emit playRaceSound2();
         mStartTimer->start(15);
 
         //start the race time immediately after go
@@ -366,6 +372,9 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         connect(mViewPlayer2, SIGNAL(stopGame()),this, SLOT(stopGame()));
         connect(mViewPlayer1, SIGNAL(quitGame()),this, SLOT(exitGame()));
         connect(mViewPlayer2, SIGNAL(quitGame()),this, SLOT(exitGame()));
+        //Initialize finish sound
+        connect(mViewPlayer1,SIGNAL(raceFinished(QString*,QString)),Sound::getSoundInstance(this),SLOT(playFinishSound()));
+        connect(mViewPlayer2,SIGNAL(raceFinished(QString*,QString)),Sound::getSoundInstance(this),SLOT(playFinishSound()));
     }
     else
     {
@@ -392,6 +401,9 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         connect(mColorizeTimer,SIGNAL(timeout()),this,SLOT(setColorizeStrength()));
         connect(this,SIGNAL(colorize(qreal)),mColorize,SLOT(setStrength(qreal)));
         connect(this,SIGNAL(setCarBack()),mCar1,SLOT(setToResetPos()));
+
+        //Initialize finish sound
+        connect(mViewPlayer1,SIGNAL(raceFinished(QString*,QString)),Sound::getSoundInstance(this),SLOT(playFinishSound()));
 
         // Set variables for ensureVisible()
         mVisibleWidth = 0.4 * mWidth;

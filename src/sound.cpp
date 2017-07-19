@@ -23,6 +23,21 @@ Sound::Sound(QObject* parent)
     mBackgroundMusic->setLoopCount(QSoundEffect::Infinite);
     mBackgroundMusic->setParent(parent);
 
+    // Init race start sound(1)
+    mRaceStartSound1 = new QSoundEffect();
+    mRaceStartSound1->setSource(QUrl("qrc:/sounds/sounds/GT_Start.wav"));
+    mRaceStartSound1->setParent(parent);
+
+    // Init race start sound(2)
+    mRaceStartSound2 = new QSoundEffect();
+    mRaceStartSound2->setSource(QUrl("qrc:/sounds/sounds/GT_End.wav"));
+    mRaceStartSound2->setParent(parent);
+
+    // Init finish sound effect
+    mFinishTheme = new QSoundEffect();
+    mFinishTheme->setSource(QUrl("qrc:/sounds/sounds/WinTheme.wav"));
+    mFinishTheme->setParent(parent);
+
     // Start sound engine in extra thread in background
     mSoundThread = new QThread();
     this->moveToThread(mSoundThread);
@@ -83,6 +98,8 @@ void Sound::stopCarSound()
 void Sound::setCarSoundVolume(int volume)
 {
     mCarAcceleratingSound->setVolume(volume/100.0f);
+    mRaceStartSound1->setVolume(volume/100.0f);
+    mRaceStartSound2->setVolume(volume/100.0f);
 }
 
 void Sound::playButtonSound()
@@ -93,4 +110,19 @@ void Sound::playButtonSound()
 void Sound::setButtonSoundVolume(int volume)
 {
     mButtonClickSound->setVolume(volume/100.0f);
+}
+
+void Sound::playRaceStart1Sound()
+{
+    mRaceStartSound1->play();
+}
+
+void Sound::playRaceStart2Sound()
+{
+    mRaceStartSound2->play();
+}
+
+void Sound::playFinishSound()
+{
+    mFinishTheme->play();
 }

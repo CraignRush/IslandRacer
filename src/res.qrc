@@ -60,5 +60,8 @@
         <file>sounds/intense-bg-music.wav</file>
         <file>sounds/background_andi.mp3</file>
         <file>sounds/background_andi.wav</file>
+        <file>sounds/GT_End.wav</file>
+        <file>sounds/GT_Start.wav</file>
+        <file>sounds/WinTheme.wav</file>
     </qresource>
 </RCC>

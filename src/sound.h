@@ -18,6 +18,9 @@ private:
     QSoundEffect* mCarAcceleratingSound;
     QSoundEffect* mButtonClickSound;
     QSoundEffect* mBackgroundMusic;
+    QSoundEffect* mRaceStartSound1;
+    QSoundEffect* mRaceStartSound2;
+    QSoundEffect* mFinishTheme;
 
 public:
     static Sound* getSoundInstance(QObject* parent);
@@ -35,6 +38,9 @@ public slots:
     void setCarSoundVolume(int volume);
     void playButtonSound();
     void setButtonSoundVolume(int volume);
+    void playRaceStart1Sound();
+    void playRaceStart2Sound();
+    void playFinishSound();
 };
 
 #endif // SOUND_H
