@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
     QPixmap pixmap(":/images/images/Logo_Splash.png");
     QSplashScreen splash(pixmap);
-    splash.setWindowFlags(Qt::WindowStaysOnTopHint);
+    splash.setWindowFlags(Qt::WindowTransparentForInput | Qt::NoDropShadowWindowHint | Qt::FramelessWindowHint | Qt::WindowDoesNotAcceptFocus | Qt::WindowStaysOnTopHint | Qt::BypassWindowManagerHint);
     splash.setStyleSheet("background: tranparent;");
     splash.show();
     splash.showMessage("Loading modules",Qt::AlignHCenter | Qt::AlignTop);
