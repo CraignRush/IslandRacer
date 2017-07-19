@@ -12,6 +12,8 @@
 #include <QGraphicsOpacityEffect>
 #include <QGraphicsColorizeEffect>
 #include <QGraphicsBlurEffect>
+#include <time.h>
+#include <cmath>
 
 #include "track.h"
 #include "car.h"
@@ -49,6 +51,8 @@ private:
 
     Car* mCar1;                 // car object (Graphics item) for player 1
     Car* mCar2;                 // car object for player 2
+    int mCarValue1;
+    int mCarValue2;
 
     enum InputState mCurrentInputStatePlayer1;
     enum InputState mCurrentInputStatePlayer2;

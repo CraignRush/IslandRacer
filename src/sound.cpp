@@ -108,7 +108,7 @@ void Sound::stopCarSound()
 
 void Sound::setCarSoundVolume(int volume)
 {
-    mCarAcceleratingSound->setVolume(volume/100.0f);
+    mCarAcceleratingSound->setVolume(volume/300.0f);
     mRaceStartSound1->setVolume(volume/100.0f);
     mRaceStartSound2->setVolume(volume/100.0f);
     mWaterSound->setVolume(volume/100.0f);

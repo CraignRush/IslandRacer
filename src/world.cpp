@@ -322,15 +322,14 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
     if(mIsMultiplayer)
     {
-        int i = rand() % 7 + 1;
-        emit setCar1Pixmap(i);
-        if(i == 7 || i == 6){
-            i = rand() % 5 + 1;
-        }
-        else{
-            i = i + 2;
-        }
-        emit setCar2Pixmap(i);
+        srand(time(NULL));
+        mCarValue1 = rand() % 7 + 1;
+        emit setCar1Pixmap(mCarValue1);
+        do{
+            srand(time(NULL));
+            mCarValue2 = rand() % 7 + 1; // car number from 1 to 7
+        }while(mCarValue2 == mCarValue1);
+        emit setCar2Pixmap(mCarValue2);
 
         // Add second car to scene
         mTrack->addItem(mCar1);
@@ -345,6 +344,54 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         // Create new Viewports for Player
         mViewPlayer1 = new Viewport(mWidth/2, mHeight, mTrack, true);
         mViewPlayer2 = new Viewport(mWidth/2, mHeight, mTrack, true);
+
+        switch(mCarValue1){
+        case 1:
+            mViewPlayer1->setLabelStyleSheets(201,0,0,255);
+            break;
+        case 2:
+            mViewPlayer1->setLabelStyleSheets(11,37,196,255);
+            break;
+        case 3:
+            mViewPlayer1->setLabelStyleSheets(0,184,30,255);
+            break;
+        case 4:
+            mViewPlayer1->setLabelStyleSheets(255,234,0,255);
+            break;
+        case 5:
+            mViewPlayer1->setLabelStyleSheets(253,11,244,255);
+            break;
+        case 6:
+            mViewPlayer1->setLabelStyleSheets(254,156,103,255);
+            break;
+        case 7:
+            mViewPlayer1->setLabelStyleSheets(129,129,129,255);
+            break;
+        }
+
+        switch(mCarValue2){
+        case 1:
+            mViewPlayer2->setLabelStyleSheets(201,0,0,255);
+            break;
+        case 2:
+            mViewPlayer2->setLabelStyleSheets(11,37,196,255);
+            break;
+        case 3:
+            mViewPlayer2->setLabelStyleSheets(0,184,30,255);
+            break;
+        case 4:
+            mViewPlayer2->setLabelStyleSheets(255,234,0,255);
+            break;
+        case 5:
+            mViewPlayer2->setLabelStyleSheets(253,11,244,255);
+            break;
+        case 6:
+            mViewPlayer2->setLabelStyleSheets(254,156,103,255);
+            break;
+        case 7:
+            mViewPlayer2->setLabelStyleSheets(129,129,129,255);
+            break;
+        }
 
         connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveLapTime()));
         connect(mTrack, SIGNAL(LapChanged2()), mViewPlayer2, SLOT(saveLapTime()));
@@ -463,6 +510,31 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         mViewPlayer1->setGraphicsEffect(mBlurEffectView1);
 
         mViewportLayout->addWidget(mViewPlayer1);
+
+
+        switch(carValue){
+        case 1:
+            mViewPlayer1->setLabelStyleSheets(201,0,0,255);
+            break;
+        case 2:
+            mViewPlayer1->setLabelStyleSheets(11,37,196,255);
+            break;
+        case 3:
+            mViewPlayer1->setLabelStyleSheets(0,184,30,255);
+            break;
+        case 4:
+            mViewPlayer1->setLabelStyleSheets(255,234,0,255);
+            break;
+        case 5:
+            mViewPlayer1->setLabelStyleSheets(253,11,244,255);
+            break;
+        case 6:
+            mViewPlayer1->setLabelStyleSheets(254,156,103,255);
+            break;
+        case 7:
+            mViewPlayer1->setLabelStyleSheets(129,129,129,255);
+            break;
+        }
 
         //connect end race event to stop game loop
         connect(mViewPlayer1, SIGNAL(stopGame()),this, SLOT(stopGame()));

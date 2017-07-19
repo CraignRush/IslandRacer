@@ -68,5 +68,6 @@
         <file>sounds/GT_End.wav</file>
         <file>sounds/GT_Start.wav</file>
         <file>sounds/WinTheme.wav</file>
+        <file>sounds/Waterdrop.wav</file>
     </qresource>
 </RCC>

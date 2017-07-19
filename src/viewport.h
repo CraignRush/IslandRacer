@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include <QTime>
 #include <QTimer>
+#include <QString>
 #include <QElapsedTimer>
 #include <QGraphicsOpacityEffect>
 #include <QObject>
@@ -80,6 +81,8 @@ public:
      * \param fps Frames per second of the game
      */
     void updateOverlay(QPointF carpos, int fps);
+
+    void setLabelStyleSheets(int r, int g, int b, int alpha);
 
 signals:
     //! Signal to the world that all laps are completed and stop game loop

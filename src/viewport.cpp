@@ -166,6 +166,15 @@ void Viewport::updateOverlay(QPointF carpos, int fps)
     mPrevPos = carpos;
 }
 
+void Viewport::setLabelStyleSheets(int r, int g, int b, int alpha)
+{
+    QString string("QLabel { background-color : rgba(255,255,255,50); color : rgba(" + QString::number(r) + ","  + QString::number(g) + "," + QString::number(b) + "," + QString::number(alpha) + "); }");
+    mTotalTimeLabel->setStyleSheet(string);
+    mLapTimeLabel->setStyleSheet(string);
+    mLapLabel->setStyleSheet(string);
+    mSpeedDisplay->setStyleSheet(string);
+}
+
 void Viewport::saveLapTime()
 {
     if(mLaps <= 2) {
