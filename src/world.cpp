@@ -91,6 +91,13 @@ World::World(int width, int height) : mWidth{width}, mHeight{height}
     mMainWidget->setLayout(mMainLayout);
     setCentralWidget(mMainWidget);
 
+    //set background properties to pause menu
+
+    QPalette pal;
+    pal.setColor(QPalette::Background,QColor(255,255,255,70));
+    mPauseMenuWidget->setPalette(pal);
+    mPauseMenuWidget->setAutoFillBackground(true);
+
     // create timer for game loop
     mTimer = new QTimer(this);
 
