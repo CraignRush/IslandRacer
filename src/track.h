@@ -76,6 +76,7 @@ public:
      */
     void loadTrack(int width, int height, QImage background, QImage grayImage, int checkpointCount, WorldPosition* checkpointPositions, WorldPosition* carResetPositions, bool isMultiplayer);
 
+    //! Get colorize effect
     QGraphicsColorizeEffect* getEffect();
 signals:
 
