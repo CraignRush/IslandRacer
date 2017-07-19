@@ -168,7 +168,7 @@ void Viewport::updateOverlay(QPointF carpos, int fps)
 
 void Viewport::saveLapTime()
 {
-    if(mLaps >= 2) {
+    if(mLaps <= 2) {
         mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.z");
         mLaps++;
     }else{

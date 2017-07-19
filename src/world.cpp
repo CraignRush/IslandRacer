@@ -416,7 +416,7 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
 
         mColorizeTimerPlayer1 = new QTimer(this);
 
-        connect(mCar1,SIGNAL(startUnderwaterEffect(int index)),this,SLOT(startColorizeEffect(int index)));
+        connect(mCar1,SIGNAL(startUnderwaterEffect(int)),this,SLOT(startColorizeEffect(int)));
         connect(mColorizeTimerPlayer1,SIGNAL(timeout()),this,SLOT(setColorizeStrengthPlayer1()));
         connect(this,SIGNAL(colorize(qreal)),mColorize,SLOT(setStrength(qreal)));
         connect(this,SIGNAL(setCar1Back()),mCar1,SLOT(setToResetPos()));
