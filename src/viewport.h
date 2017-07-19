@@ -57,6 +57,7 @@ public:
      * \param width The width of the view
      * \param height The height of the view
      * \param track The QGraphics scene which is displayed
+     * \param isMultiplayer Needed to adjust size for MP or SP
      */
     Viewport(int width, int height, Track* track, bool isMultiplayer);
     ~Viewport();
@@ -83,11 +84,19 @@ public:
      */
     void updateOverlay(QPointF carpos, int fps);
 
+    //! Sets Style of labels
+    /*!
+     * \param r Red value
+     * \param g Green value
+     * \param b Blue value
+     * \param alpha Transparency
+     */
     void setLabelStyleSheets(int r, int g, int b, int alpha);
 
 signals:
     //! Signal to the world that all laps are completed and stop game loop
     void stopGame();
+    //! Signal to quit game after loser/winner label faded out
     void quitGame();
     //! Signal that race is finished and start end dialog in player class
     void raceFinished(QString* mLapTimeEnd,QString mTotalTimeEnd);
@@ -98,8 +107,11 @@ public slots:
     /*! Updates all label params for a new lap
      */
     void saveLapTime();
+    //! Shows loser label to the loser in MP
     void showLooserLabel();
+    //! Shows winner label to the winner in MP
     void showWinnerLabel();
+    //! Fade out winner/loser label in MP
     void updateLabelOpacity();
 };
 
