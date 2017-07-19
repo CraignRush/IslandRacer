@@ -11,9 +11,6 @@ Sound::Sound(QObject* parent)
     mPlaylist = new QMediaPlaylist();
     mPlaylist->addMedia(QUrl("qrc:/sounds/sounds/background_andi.wav"));
     mPlaylist->addMedia(QUrl("qrc:/sounds/sounds/intense-bg-music.wav"));
-    // mPlaylist->addMedia(QUrl("qrc:/sounds/sounds/GT_Start.wav"));
-    //mPlaylist->addMedia(QUrl("qrc:/sounds/sounds/GT_Stop.wav"));
-    //mPlaylist->addMedia(QUrl("qrc:/sounds/sounds/WinTheme.wav"));
     mBackgroundMusic->setPlaylist(mPlaylist);
     mPlaylist->setPlaybackMode(QMediaPlaylist::Random);
     mBackgroundMusic->play();
@@ -29,11 +26,10 @@ Sound::Sound(QObject* parent)
     mButtonClickSound->setSource(QUrl("qrc:/sounds/sounds/buttonsound.wav"));
     mButtonClickSound->setParent(parent);
 
-    //    // Init background music
-    //    mBackgroundMusic = new QSoundEffect();
-    //    mBackgroundMusic->setSource(QUrl("qrc:/sounds/sounds/background_andi.wav"));
-    //    mBackgroundMusic->setLoopCount(QSoundEffect::Infinite);
-    //    mBackgroundMusic->setParent(parent);
+    // Init water drop sound
+    mWaterSound = new QSoundEffect();
+    mWaterSound->setSource(QUrl("qrc:/sounds/sounds/Waterdrop.wav"));
+    mWaterSound->setParent(parent);
 
     // Init race start sound(1)
     mRaceStartSound1 = new QSoundEffect();
@@ -75,6 +71,9 @@ Sound::~Sound()
     delete mButtonClickSound;
     mButtonClickSound = NULL;
 
+    delete mWaterSound;
+    mWaterSound = NULL;
+
     delete mBackgroundMusic;
     mBackgroundMusic = NULL;
 
@@ -112,6 +111,7 @@ void Sound::setCarSoundVolume(int volume)
     mCarAcceleratingSound->setVolume(volume/100.0f);
     mRaceStartSound1->setVolume(volume/100.0f);
     mRaceStartSound2->setVolume(volume/100.0f);
+    mWaterSound->setVolume(volume/100.0f);
 }
 
 void Sound::playButtonSound()
@@ -119,6 +119,10 @@ void Sound::playButtonSound()
     mButtonClickSound->play();
 }
 
+void Sound::playWaterSound()
+{
+    mWaterSound->play();
+}
 void Sound::setButtonSoundVolume(int volume)
 {
     mButtonClickSound->setVolume(volume/100.0f);

@@ -117,6 +117,7 @@ Car::Car(b2World* world, Track* track, int carIndex) : mWorld{world}, mTrack{tra
     //connect with sound class
     connect(this, SIGNAL(playCarSound()), Sound::getSoundInstance(this), SLOT(playCarSound()));
     connect(this, SIGNAL(stopCarSound()), Sound::getSoundInstance(this), SLOT(stopCarSound()));
+    connect(this, SIGNAL(playWaterSound()), Sound::getSoundInstance(this), SLOT(playWaterSound()));
 
     //delete tmp vars
     delete bodyDef;
@@ -267,6 +268,7 @@ void Car::computeUndergroundImpact(int index)
         break;
     case Water:
         mEngineSpeed = 0.0f;
+        emit playWaterSound();
         emit startUnderwaterEffect(index);
         //WorldPosition pos = mTrack->getLastCheckpointPosition(mIndex);
         //setPosition(pos.x(), pos.y(), pos.angle());

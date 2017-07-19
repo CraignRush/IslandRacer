@@ -98,17 +98,21 @@ private:
     Track* mTrack;
 
 signals:
-    //! Signal to start car sound.
+    //! Signal to start car sound
     void playCarSound();
+
+    //! Signal to start water sound
+    void playWaterSound();
 
     //! Signal to start the underwater effect if user drove into water
     void startUnderwaterEffect(int index);
 
-    //! Signal to stop car sound.
+    //! Signal to stop car sound
     void stopCarSound();
 
+
 public:
-    //! Fill the world with car object.
+    //! Fill the world with car object
     Car(b2World* world, Track* track, int i);
     ~Car();
 
