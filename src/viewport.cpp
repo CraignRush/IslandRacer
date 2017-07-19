@@ -183,7 +183,7 @@ void Viewport::setLabelStyleSheets(int r, int g, int b, int alpha)
     mTotalTimeLabel->setStyleSheet(string);
     mLapTimeLabel->setStyleSheet(string);
     mLapLabel->setStyleSheet(string);
-    mSpeedDisplay->setStyleSheet(string);
+    mSpeedDisplay->setColor(r,g,b,alpha);
 }
 
 void Viewport::saveLapTime()

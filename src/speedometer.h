@@ -33,6 +33,8 @@ public:
     //! \param velocity current velocity
     void setVelocity(double velocity);
 
+    void setColor(int r, int g, int b, int alpha);
+
 signals:
 
 public slots:

@@ -63,3 +63,10 @@ void Speedometer::setVelocity(double velocity)
     // Update text
     mDisplay->setText(QString::number(velocity, 'f', 1) + "km/h");
 }
+
+void Speedometer::setColor(int r, int g, int b, int alpha)
+{
+    mDisplay->setStyleSheet(QString("QLabel { background-color : rgba(255,255,255,30); color : rgba(" + QString::number(r) + "," + QString::number(g) + "," + QString::number(b) + "," + QString::number(alpha) + "); }"));
+}
+
+
