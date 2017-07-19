@@ -41,6 +41,8 @@
         <file>images/YasMarinatextur.jpg</file>
         <file>images/1car.png</file>
         <file>images/2car.png</file>
+        <file>images/Logo.jpg</file>
+        <file>images/Logo_Splash.png</file>
     </qresource>
     <qresource prefix="/circuits">
         <file>Monza.circuit</file>

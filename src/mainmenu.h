@@ -6,6 +6,7 @@
 #include <QMediaPlaylist>
 #include <QMediaPlayer>
 #include <QPixmap>
+#include <QSplashScreen>
 #include <QPalette>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
@@ -18,6 +19,7 @@
 #include "sound.h"
 #include "qscreen.h"
 #include "game.h"
+#include "player.h"
 
 namespace Ui {
 class mainMenu;
@@ -30,6 +32,8 @@ class mainMenu : public QMainWindow
 private:
     Ui::mainMenu *ui;
     Game* game;
+
+    QStringList mCircuitName;
 
     // Screen size
     int mScreenWidth;
@@ -60,6 +64,8 @@ private:
 
     // Game Mode
     bool mIsMultiplayer;
+
+    QSplashScreen* mSplash;
 
 public:
 	explicit mainMenu(QWidget *parent = 0);

@@ -15,7 +15,7 @@
 //! @enum all possible racing maps
 enum Circuit
 {
-	Monza = 1,
+    Monza = 0,
 	Hockenheimring,
     YasMarina,
     Bahrain,
