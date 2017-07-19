@@ -18,7 +18,7 @@ mainMenu::mainMenu(QWidget *parent) :
 
     mSplash = new QSplashScreen(QPixmap(":/images/images/Logo_Splash.png"));
     mSplash->hide();
-    mSplash->setWindowFlags(Qt::WindowStaysOnTopHint);
+    mSplash->setWindowFlags(Qt::NoDropShadowWindowHint | Qt::FramelessWindowHint | Qt::WindowDoesNotAcceptFocus | Qt::WindowStaysOnTopHint | Qt::BypassWindowManagerHint);
     mSplash->setStyleSheet("background: tranparent;");
 
     // Read in garage values
