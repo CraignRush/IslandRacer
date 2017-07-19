@@ -68,6 +68,7 @@ Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
     mLapTimeEnd = new QString[3];
 
     //Initialize Label for speedometer
+/*
     mSpeedDisplay = new QLabel();
     mSpeedDisplay->setVisible(false);
     mSpeedDisplay->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
@@ -76,10 +77,20 @@ Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
     mSpeedDisplay->adjustSize();
     mSpeedDisplay->setParent(this);
     mPrevPos = QPointF(0,0);
+*/
+    if(isMultiplayer)
+        mSpeedDisplay = new Speedometer(0.2 * mHeight,0.2 * mHeight);
+    else
+        mSpeedDisplay = new Speedometer(0.3 * mHeight,0.3 * mHeight);
+    mSpeedDisplay->setVisible(false);
+    mSpeedDisplay->adjustSize();
+    mSpeedDisplay->setParent(this);
+    mPrevPos = QPointF(0,0);
 
     mLapLabel->setGeometry(mWidth - mLapLabel->size().width() - (0.02 * mWidth), mHeight - (3 * mLapLabel->size().height()) - (3 * (0.2 * mLapLabel->size().height())), mLapLabel->size().width(), mLapLabel->size().height());
     mLapTimeLabel->setGeometry(width - mLapTimeLabel->size().width() - (0.02 * mWidth), mHeight -(2 * mLapTimeLabel->size().height()) - (2 * (0.2 * mLapTimeLabel->size().height())), mLapTimeLabel->size().width(), mLapTimeLabel->size().height());
     mTotalTimeLabel->setGeometry(width - mTotalTimeLabel->size().width() - (0.02 * mWidth), mHeight - mTotalTimeLabel->size().height() - (0.2 * mTotalTimeLabel->size().height()), mTotalTimeLabel->size().width(), mTotalTimeLabel->size().height());
+    //mSpeedDisplay->setGeometry(0.024 * mHeight, mHeight - mSpeedDisplay->size().height() - (0.024 * mHeight), mSpeedDisplay->size().width(), mSpeedDisplay->size().height());
     mSpeedDisplay->setGeometry(0.024 * mHeight, mHeight - mSpeedDisplay->size().height() - (0.024 * mHeight), mSpeedDisplay->size().width(), mSpeedDisplay->size().height());
 
     mWinnerLabel = NULL;
@@ -162,13 +173,14 @@ void Viewport::updateOverlay(QPointF carpos, int fps)
 
     //Display current speed
     double mSpeed = sqrt(qPow((carpos.x()-mPrevPos.x()),2)+qPow((carpos.y()-mPrevPos.y()),2))/20.f*fps*3.6*2.5;
-    mSpeedDisplay->setText(QString::number(mSpeed, 'f', 1) + "km/h");
+    //mSpeedDisplay->setText(QString::number(mSpeed, 'f', 1) + "km/h");
+    mSpeedDisplay->setVelocity(mSpeed);
     mPrevPos = carpos;
 }
 
 void Viewport::setLabelStyleSheets(int r, int g, int b, int alpha)
 {
-    QString string("QLabel { background-color : rgba(255,255,255,50); color : rgba(" + QString::number(r) + ","  + QString::number(g) + "," + QString::number(b) + "," + QString::number(alpha) + "); }");
+    QString string("QLabel { background-color : rgba(255,255,255,120); color : rgba(" + QString::number(r) + ","  + QString::number(g) + "," + QString::number(b) + "," + QString::number(alpha) + "); }");
     mTotalTimeLabel->setStyleSheet(string);
     mLapTimeLabel->setStyleSheet(string);
     mLapLabel->setStyleSheet(string);
