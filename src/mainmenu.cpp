@@ -734,6 +734,56 @@ void mainMenu::on_main2Settings_clicked()
 {
     playbuttonsound();
     ui->stackedWidget->setCurrentIndex(3);
+
+    // Read in the sound values (can be changed in pause menu as well)
+    QString filename;
+    filename = "settings/sound.set";
+    QFile inputFile2(filename);
+    if (inputFile2.open(QIODevice::ReadOnly))
+    {
+        QTextStream in2(&inputFile2);
+        QString line;
+        QStringList list;
+
+        while(!in2.atEnd())
+        {
+            line = in2.readLine();
+            list = line.split(QRegExp("\\="));
+
+            if(list.value(0) == "backgroundSoundValue")
+            {
+                mBackgroundSoundValue = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "backgroundSoundActive")
+            {
+                mBackgroundSoundActive = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "buttonSoundValue")
+            {
+                mButtonSoundValue = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "buttonSoundActive")
+            {
+                mButtonSoundActive = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "raceSoundValue")
+            {
+                mRaceSoundValue = list.value(1).toInt();
+                continue;
+            }
+            if(list.value(0) == "raceSoundActive")
+            {
+                mRaceSoundActive = list.value(1).toInt();
+                continue;
+            }
+        }
+        inputFile2.close();
+    }
+
     if(mBackgroundSoundActive == 1)
     {
         ui->settingsBackgroundSoundSlider->setValue(mBackgroundSoundValue);
