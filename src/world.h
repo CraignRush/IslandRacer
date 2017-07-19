@@ -142,23 +142,38 @@ public slots:
     void exitGame();
 
     //! Start swirl effect
-    //*! \param car Car which has watercontact
+    //! \param car Car which has water contact
     void startColorizeEffect(int index);
+
+    //! Updates colorize strength player1
     void setColorizeStrengthPlayer1();
+
+    //! Updates colorize strength player1
     void setColorizeStrengthPlayer2();
 
 signals:
     //! Calls the setStrength Slot of the Colorize Effect to change the transparency
+    //! \param strength Strength value
     void colorize(qreal strength);
+
+    //! Resets the car1 to last checkpoint
     void setCar1Back();
+
+    //! Resets the car2 to last checkpoint
     void setCar2Back();
 
-    //! Sets the pixmap of the car
+    //! Sets the pixmap of the car1
+    //! \param i Car index
     void setCar1Pixmap(int i);
+
+    //! Sets the pixmap of the car2
+    //! \param i Car index
     void setCar2Pixmap(int i);
 
-    //! Sets the sound effects a race start
+    //! Sets the sound effects when a race start (short beep)
     void playRaceSound1();
+
+    //! Sets the sound effects when a race start (long beep)
     void playRaceSound2();
 
 };

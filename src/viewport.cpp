@@ -99,7 +99,6 @@ Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
 
 Viewport::~Viewport()
 {
-
     delete mOpacityEffect;
     mOpacityEffect = NULL;
 
