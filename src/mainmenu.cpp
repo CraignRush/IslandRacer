@@ -1695,7 +1695,7 @@ void mainMenu::on_level1_2Play_clicked()
 
     mSplash->showMessage(QString("Loading " + mCircuitName.at(Monza) + " Map"),Qt::AlignHCenter | Qt::AlignTop);
 
-    game->loadCircuit(Monza, mTopspeedValue, mAccelerationValue, mHandlingValue);
+    game->loadCircuit(Monza, mTopspeedValue, mAccelerationValue, mHandlingValue, mCarValue);
     mSplash->close();
 }
 // End level 1
@@ -1746,7 +1746,7 @@ void mainMenu::on_level2_2Play_clicked()
     playbuttonsound();
 
     mSplash->showMessage(QString("Loading " + mCircuitName.at(Hockenheimring) + " Map"),Qt::AlignHCenter | Qt::AlignTop);
-    game->loadCircuit(Hockenheimring, mTopspeedValue, mAccelerationValue, mHandlingValue);
+    game->loadCircuit(Hockenheimring, mTopspeedValue, mAccelerationValue, mHandlingValue, mCarValue);
     mSplash->close();
 }
 // End level 2
@@ -1811,7 +1811,7 @@ void mainMenu::on_level3_2Play_clicked()
     playbuttonsound();
 
     mSplash->showMessage(QString("Loading " + mCircuitName.at(YasMarina) + " Map"),Qt::AlignHCenter | Qt::AlignTop);
-    game->loadCircuit(YasMarina, mTopspeedValue, mAccelerationValue, mHandlingValue);
+    game->loadCircuit(YasMarina, mTopspeedValue, mAccelerationValue, mHandlingValue, mCarValue);
     mSplash->close();
 }
 // End level 3
@@ -1876,7 +1876,7 @@ void mainMenu::on_level4_2Play_clicked()
     playbuttonsound();
 
     mSplash->showMessage(QString("Loading " + mCircuitName.at(Bahrain) + " Map"),Qt::AlignHCenter | Qt::AlignTop);
-    game->loadCircuit(Bahrain, mTopspeedValue, mAccelerationValue, mHandlingValue);
+    game->loadCircuit(Bahrain, mTopspeedValue, mAccelerationValue, mHandlingValue, mCarValue);
     mSplash->close();
 }
 // End level 4
@@ -1927,7 +1927,7 @@ void mainMenu::on_level5_2Play_clicked()
     playbuttonsound();
 
     mSplash->showMessage(QString("Loading " + mCircuitName.at(Silverstone) + " Map"),Qt::AlignHCenter | Qt::AlignTop);
-    game->loadCircuit(Silverstone, mTopspeedValue, mAccelerationValue, mHandlingValue);
+    game->loadCircuit(Silverstone, mTopspeedValue, mAccelerationValue, mHandlingValue, mCarValue);
     mSplash->close();
 }
 // End level 5

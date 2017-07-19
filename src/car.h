@@ -110,10 +110,9 @@ signals:
     //! Signal to stop car sound
     void stopCarSound();
 
-
 public:
     //! Fill the world with car object
-    Car(b2World* world, Track* track, int i);
+    Car(b2World* world, Track* track);
     ~Car();
 
     //! Show the car on screen
@@ -163,8 +162,12 @@ public:
      * \param handlingValue Garage value for handling
      */
     void setCarParams(int speedValue, int accelerationValue, int handlingValue);
+
 public slots:
+
     void setToResetPos();
+
+    void setCarPixmap(int carIndex);
 };
 
 #endif // CAR_H
