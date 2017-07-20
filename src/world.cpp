@@ -463,12 +463,14 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
         emit setCar1Pixmap(carValue);
         mTrack->addItem(mCar1);
 
+        mCarValue1 = carValue;
+
         // set car to starting position
         mCar1->setPosition(carPositions[0].x(), carPositions[0].y(), carPositions[0].angle());
         mCar1->setCarParams(speedValue, accelerationValue, handlingValue);
 
         // Create new Viewports for Player
-        mViewPlayer1 = new Viewport(mWidth, mHeight, mTrack, true);
+        mViewPlayer1 = new Viewport(mWidth, mHeight, mTrack, false);
 
         connect(mTrack, SIGNAL(LapChanged1()), mViewPlayer1, SLOT(saveLapTime()));
 
@@ -552,7 +554,53 @@ void World::loadTrack(int width, int height, QString background_path, QString gr
     mStartTimer->start(50);
     mCounter->show();
 
+    switch(mCarValue1){
+    case 1:
+        mViewPlayer1->showInfoLabel("PLAYER 1",201,0,0,255);
+        break;
+    case 2:
+        mViewPlayer1->showInfoLabel("PLAYER 1",11,37,196,255);
+        break;
+    case 3:
+        mViewPlayer1->showInfoLabel("PLAYER 1",0,184,30,255);
+        break;
+    case 4:
+        mViewPlayer1->showInfoLabel("PLAYER 1",255,234,0,255);
+        break;
+    case 5:
+        mViewPlayer1->showInfoLabel("PLAYER 1",253,11,244,255);
+        break;
+    case 6:
+        mViewPlayer1->showInfoLabel("PLAYER 1",254,156,103,255);
+        break;
+    case 7:
+        mViewPlayer1->showInfoLabel("PLAYER 1",129,129,129,255);
+        break;
+    }
 
+    switch(mCarValue2){
+    case 1:
+        mViewPlayer2->showInfoLabel("PLAYER 2",201,0,0,255);
+        break;
+    case 2:
+        mViewPlayer2->showInfoLabel("PLAYER 2",11,37,196,255);
+        break;
+    case 3:
+        mViewPlayer2->showInfoLabel("PLAYER 2",0,184,30,255);
+        break;
+    case 4:
+        mViewPlayer2->showInfoLabel("PLAYER 2",255,234,0,255);
+        break;
+    case 5:
+        mViewPlayer2->showInfoLabel("PLAYER 2",253,11,244,255);
+        break;
+    case 6:
+        mViewPlayer2->showInfoLabel("PLAYER 2",254,156,103,255);
+        break;
+    case 7:
+        mViewPlayer2->showInfoLabel("PLAYER 2",129,129,129,255);
+        break;
+    }
 }
 
 void World::startColorizeEffect(int index)
@@ -626,6 +674,106 @@ void World::setColorizeStrengthPlayer2()
         mUnderwaterActivePlayer2 = false;
         mColorizeTimerPlayer2->stop();
         mViewPlayer2->centerOn(mCar2);
+    }
+}
+
+void World::raceFinished(Viewport* viewport)
+{
+    if(mViewPlayer1 == viewport){
+        switch(mCarValue1){
+        case 1:
+            mViewPlayer1->showInfoLabel("Winner!!",201,0,0,255);
+            break;
+        case 2:
+            mViewPlayer1->showInfoLabel("Winner!!",11,37,196,255);
+            break;
+        case 3:
+            mViewPlayer1->showInfoLabel("Winner!!",0,184,30,255);
+            break;
+        case 4:
+            mViewPlayer1->showInfoLabel("Winner!!",255,234,0,255);
+            break;
+        case 5:
+            mViewPlayer1->showInfoLabel("Winner!!",253,11,244,255);
+            break;
+        case 6:
+            mViewPlayer1->showInfoLabel("Winner!!",254,156,103,255);
+            break;
+        case 7:
+            mViewPlayer1->showInfoLabel("Winner!!",129,129,129,255);
+            break;
+        }
+
+        switch(mCarValue2){
+        case 1:
+            mViewPlayer2->showInfoLabel("Loooser!!",201,0,0,255);
+            break;
+        case 2:
+            mViewPlayer2->showInfoLabel("Loooser!!",11,37,196,255);
+            break;
+        case 3:
+            mViewPlayer2->showInfoLabel("Loooser!!",0,184,30,255);
+            break;
+        case 4:
+            mViewPlayer2->showInfoLabel("Loooser!!",255,234,0,255);
+            break;
+        case 5:
+            mViewPlayer2->showInfoLabel("Loooser!!",253,11,244,255);
+            break;
+        case 6:
+            mViewPlayer2->showInfoLabel("Loooser!!",254,156,103,255);
+            break;
+        case 7:
+            mViewPlayer2->showInfoLabel("Loooser!!",129,129,129,255);
+            break;
+        }
+    } else{
+        switch(mCarValue1){
+        case 1:
+            mViewPlayer1->showInfoLabel("Loooser!!",201,0,0,255);
+            break;
+        case 2:
+            mViewPlayer1->showInfoLabel("Loooser!!",11,37,196,255);
+            break;
+        case 3:
+            mViewPlayer1->showInfoLabel("Loooser!!",0,184,30,255);
+            break;
+        case 4:
+            mViewPlayer1->showInfoLabel("Loooser!!",255,234,0,255);
+            break;
+        case 5:
+            mViewPlayer1->showInfoLabel("Loooser!!",253,11,244,255);
+            break;
+        case 6:
+            mViewPlayer1->showInfoLabel("Loooser!!",254,156,103,255);
+            break;
+        case 7:
+            mViewPlayer1->showInfoLabel("Loooser!!",129,129,129,255);
+            break;
+        }
+        switch(mCarValue2){
+        case 1:
+            mViewPlayer2->showInfoLabel("Winner!!",201,0,0,255);
+            break;
+        case 2:
+            mViewPlayer2->showInfoLabel("Winner!!",11,37,196,255);
+            break;
+        case 3:
+            mViewPlayer2->showInfoLabel("Winner!!",0,184,30,255);
+            break;
+        case 4:
+            mViewPlayer2->showInfoLabel("Winner!!",255,234,0,255);
+            break;
+        case 5:
+            mViewPlayer2->showInfoLabel("Winner!!",253,11,244,255);
+            break;
+        case 6:
+            mViewPlayer2->showInfoLabel("Winner!!",254,156,103,255);
+            break;
+        case 7:
+            mViewPlayer2->showInfoLabel("Winner!!",129,129,129,255);
+            break;
+        }
     }
 }
 

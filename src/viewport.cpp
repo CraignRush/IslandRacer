@@ -7,6 +7,7 @@ Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
     mHeight = height;
     // Set track as scene for this view
     setScene(track);
+    mIsMultiplayer = isMultiplayer;
 
     // Set size for view and disable scrollbars
     setFixedSize(mWidth, mHeight);
@@ -64,20 +65,8 @@ Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
     mLapTimeLabel->setAlignment(Qt::AlignLeft);
     mLapTimeLabel->setParent(this);
 
-    //
     mLapTimeEnd = new QString[3];
 
-    //Initialize Label for speedometer
-/*
-    mSpeedDisplay = new QLabel();
-    mSpeedDisplay->setVisible(false);
-    mSpeedDisplay->setStyleSheet("QLabel { background-color : rgba(255,255,255,30); color : red; }");
-    mSpeedDisplay->setFont(QFont("GillSansMT",mTextSizeSpeed,60));
-    mSpeedDisplay->setText("000.0km/h");
-    mSpeedDisplay->adjustSize();
-    mSpeedDisplay->setParent(this);
-    mPrevPos = QPointF(0,0);
-*/
     if(isMultiplayer)
         mSpeedDisplay = new Speedometer(0.2 * mHeight,0.2 * mHeight);
     else
@@ -90,11 +79,9 @@ Viewport::Viewport(int width, int height, Track* track, bool isMultiplayer)
     mLapLabel->setGeometry(mWidth - mLapLabel->size().width() - (0.02 * mWidth), mHeight - (3 * mLapLabel->size().height()) - (3 * (0.2 * mLapLabel->size().height())), mLapLabel->size().width(), mLapLabel->size().height());
     mLapTimeLabel->setGeometry(width - mLapTimeLabel->size().width() - (0.02 * mWidth), mHeight -(2 * mLapTimeLabel->size().height()) - (2 * (0.2 * mLapTimeLabel->size().height())), mLapTimeLabel->size().width(), mLapTimeLabel->size().height());
     mTotalTimeLabel->setGeometry(width - mTotalTimeLabel->size().width() - (0.02 * mWidth), mHeight - mTotalTimeLabel->size().height() - (0.2 * mTotalTimeLabel->size().height()), mTotalTimeLabel->size().width(), mTotalTimeLabel->size().height());
-    //mSpeedDisplay->setGeometry(0.024 * mHeight, mHeight - mSpeedDisplay->size().height() - (0.024 * mHeight), mSpeedDisplay->size().width(), mSpeedDisplay->size().height());
     mSpeedDisplay->setGeometry(0.024 * mHeight, mHeight - mSpeedDisplay->size().height() - (0.024 * mHeight), mSpeedDisplay->size().width(), mSpeedDisplay->size().height());
 
-    mWinnerLabel = NULL;
-    mLooserLabel = NULL;
+    mInfoLabel = NULL;
 }
 
 Viewport::~Viewport()
@@ -102,15 +89,10 @@ Viewport::~Viewport()
     delete mOpacityEffect;
     mOpacityEffect = NULL;
 
-    if(mLooserLabel != NULL)
+    if(mInfoLabel != NULL)
     {
-        delete mLooserLabel;
-        mLooserLabel = NULL;
-    }
-    if(mWinnerLabel != NULL)
-    {
-        delete mWinnerLabel;
-        mWinnerLabel = NULL;
+        delete mInfoLabel;
+        mInfoLabel = NULL;
     }
     delete mLapTimeLabel;
     mLapTimeLabel = NULL;
@@ -172,7 +154,6 @@ void Viewport::updateOverlay(QPointF carpos, int fps)
 
     //Display current speed
     double mSpeed = sqrt(qPow((carpos.x()-mPrevPos.x()),2)+qPow((carpos.y()-mPrevPos.y()),2))/20.f*fps*3.6*2.5;
-    //mSpeedDisplay->setText(QString::number(mSpeed, 'f', 1) + "km/h");
     mSpeedDisplay->setVelocity(mSpeed);
     mPrevPos = carpos;
 }
@@ -188,55 +169,47 @@ void Viewport::setLabelStyleSheets(int r, int g, int b, int alpha)
 
 void Viewport::saveLapTime()
 {
-    if(mLaps <= 2) {
+    if(mLaps >= 2) {
         mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.z");
         mLaps++;
     }else{
         emit stopGame();
         mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.zzz");
         mTotalTimeEnd = mTime2.toString("mm:ss.zzz");
-        emit raceFinished(mLapTimeEnd, mTotalTimeEnd);
+        if(!mIsMultiplayer){
+            emit raceFinished(mLapTimeEnd, mTotalTimeEnd);
+        } else {
+            emit raceFinishedMultiplayer(this);
+        }
+        mElapsed = 0;
+        mCurLap = 0;
+        mLapTimeElapsed.restart();
     }
-    mElapsed = 0;
-    mCurLap = 0;
-    mLapTimeElapsed.restart();
 }
 
-void Viewport::showLooserLabel()
+void Viewport::showInfoLabel(QString name, int r, int g, int b, int alpha)
 {
-    mLooserLabel = new QLabel;
-    mLooserLabel->setVisible(false);
-    mLooserLabel->setFont(QFont("GillSansMT",mWidth/20,60));
-    mLooserLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,0); color : red; }");
-    mLooserLabel->setText("LOOSER!!");
-    mLooserLabel->adjustSize();
-    mLooserLabel->setGeometry(mWidth/2 - (mLooserLabel->size().width()/2), mHeight/2 - (mLooserLabel->size().height()), mLooserLabel->size().width(), mLooserLabel->size().height());
-    mLooserLabel->setParent(this);
-    mLooserLabel->setVisible(true);
-    mLooserLabel->setGraphicsEffect(mOpacityEffect);
+    mInfoLabel = new QLabel(name);
+    mInfoLabel->setVisible(false);
+    mInfoLabel->setFont(QFont("GillSansMT",mWidth/20,60));
+
+    QString string("QLabel { background-color : rgba(255,255,255,120); color : rgba(" + QString::number(r) + ","  + QString::number(g) + "," + QString::number(b) + "," + QString::number(alpha) + "); }");
+    mInfoLabel->setStyleSheet(string);
+    mInfoLabel->adjustSize();
+    mInfoLabel->setGeometry(mWidth/2 - (mInfoLabel->size().width()/2), mHeight/2 - (mInfoLabel->size().height()), mInfoLabel->size().width(), mInfoLabel->size().height());
+    mInfoLabel->setParent(this);
+    mInfoLabel->setVisible(true);
+    mInfoLabel->setGraphicsEffect(mOpacityEffect);
     mOpacityTimer->start();
 }
 
-void Viewport::showWinnerLabel()
-{
-    mWinnerLabel = new QLabel;
-    mWinnerLabel->setVisible(false);
-    mWinnerLabel->setFont(QFont("GillSansMT",mWidth/20,60));
-    mWinnerLabel->setStyleSheet("QLabel { background-color : rgba(255,255,255,0); color : green; }");
-    mWinnerLabel->setText("WINNER!!");
-    mWinnerLabel->adjustSize();
-    mWinnerLabel->setGeometry(mWidth/2 - (mWinnerLabel->size().width()/2), mHeight/2 - (mWinnerLabel->size().height()/2), mWinnerLabel->size().width(), mWinnerLabel->size().height());
-    mWinnerLabel->setParent(this);
-    mWinnerLabel->setVisible(true);
-    mWinnerLabel->setGraphicsEffect(mOpacityEffect);
-    mOpacityTimer->start();
-}
 
 void Viewport::updateLabelOpacity()
 {
     if(mOpacity < 0.01){
         mOpacityTimer->stop();
-        emit quitGame();
+        if(mInfoLabel->text() == "Winner!!" || mInfoLabel->text() == "Loooser!!")
+            emit quitGame();
     }
     mOpacity -= 0.025;
     mOpacityEffect->setOpacity(mOpacity);

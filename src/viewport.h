@@ -21,12 +21,12 @@ class Viewport : public QGraphicsView
 
 private:
     int mWidth, mHeight;
+    bool mIsMultiplayer;
     Speedometer* mSpeedDisplay;              // Display current Speed
     QLabel* mLapTimeLabel;              // contains the String with the elapsed time per lap
     QLabel* mTotalTimeLabel;            // contains the String with the total elapsed time
     QLabel* mLapLabel;                  // contains the label in the scene
-    QLabel* mLooserLabel = NULL;
-    QLabel* mWinnerLabel = NULL;
+    QLabel* mInfoLabel = NULL;
     QElapsedTimer mLapTimeElapsed;     	// computes the elapsed time since "GO!" in ms
     QElapsedTimer mTotalTimeElapsed;
     QElapsedTimer mPauseTimeElapsed;	// Computes the time of pause pressed
@@ -101,16 +101,17 @@ signals:
     //! Signal that race is finished and start end dialog in player class
     void raceFinished(QString* mLapTimeEnd,QString mTotalTimeEnd);
 
+    void raceFinishedMultiplayer(Viewport* viewport);
 
 public slots:
     //! Slot which is called every time a lap is completed
     /*! Updates all label params for a new lap
      */
     void saveLapTime();
+
     //! Shows loser label to the loser in MP
-    void showLooserLabel();
-    //! Shows winner label to the winner in MP
-    void showWinnerLabel();
+    void showInfoLabel(QString name,int r, int g, int b, int alpha);
+
     //! Fade out winner/loser label in MP
     void updateLabelOpacity();
 };

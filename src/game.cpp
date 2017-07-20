@@ -157,11 +157,8 @@ void Game::loadCircuit(Circuit circuit, int speedValue, int accelerationValue, i
         } else {
             // load circuit with parameter
             mWorld->loadTrack(width, height, background_path, gray_path, checkpointCount, checkpointPositions, carResetPositions, 2, carPositions, mMultiplayer, speedValue, accelerationValue, handlingValue, carValue);
-            connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString*,QString)),mWorld->getViewPlayer(2),SLOT(showLooserLabel()));
-            connect(mWorld->getViewPlayer(2),SIGNAL(raceFinished(QString*,QString)),mWorld->getViewPlayer(1),SLOT(showLooserLabel()));
-
-            connect(mWorld->getViewPlayer(1),SIGNAL(raceFinished(QString*,QString)),mWorld->getViewPlayer(1),SLOT(showWinnerLabel()));
-            connect(mWorld->getViewPlayer(2),SIGNAL(raceFinished(QString*,QString)),mWorld->getViewPlayer(2),SLOT(showWinnerLabel()));
+           connect(mWorld->getViewPlayer(1),SIGNAL(raceFinishedMultiplayer(Viewport*)),mWorld,SLOT(raceFinished(Viewport*)));
+           connect(mWorld->getViewPlayer(2),SIGNAL(raceFinishedMultiplayer(Viewport*)),mWorld,SLOT(raceFinished(Viewport*)));
         }
         // show window on top
         mWorld->showFullScreen();

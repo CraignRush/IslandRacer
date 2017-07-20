@@ -151,6 +151,9 @@ public slots:
     //! Updates colorize strength player1
     void setColorizeStrengthPlayer2();
 
+    //! Determines the winning and loosing label
+    void raceFinished(Viewport* viewport);
+
 signals:
     //! Calls the setStrength Slot of the Colorize Effect to change the transparency
     //! \param strength Strength value
