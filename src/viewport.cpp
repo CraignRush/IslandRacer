@@ -169,7 +169,7 @@ void Viewport::setLabelStyleSheets(int r, int g, int b, int alpha)
 
 void Viewport::saveLapTime()
 {
-    if(mLaps >= 2) {
+    if(mLaps <= 2) {
         mLapTimeEnd[mLaps - 1] = mTime.toString("mm:ss.z");
         mLaps++;
     }else{
@@ -208,11 +208,20 @@ void Viewport::updateLabelOpacity()
 {
     if(mOpacity < 0.01){
         mOpacityTimer->stop();
-        if(mInfoLabel->text() == "Winner!!" || mInfoLabel->text() == "Loooser!!")
+        if(mInfoLabel->text() == "Winner!!" || mInfoLabel->text() == "Loooser!!"){
             emit quitGame();
-    }
+        } else {
+            //mInfoLabel->setGraphicsEffect(NULL);
+            //mOpacityEffect->setParent(NULL);
+            //delete mInfoLabel;
+            //mInfoLabel = NULL;
+            mInfoLabel->hide();
+            mOpacity = 1.0;
+        }
+    } else {
     mOpacity -= 0.025;
     mOpacityEffect->setOpacity(mOpacity);
+    }
 }
 
 
