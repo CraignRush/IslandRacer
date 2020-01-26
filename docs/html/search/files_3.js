@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['mainmenu_2ecpp',['mainmenu.cpp',['../mainmenu_8cpp.html',1,'']]],
-  ['mainmenu_2eh',['mainmenu.h',['../mainmenu_8h.html',1,'']]]
+  ['pausemenu_2ecpp',['pausemenu.cpp',['../pausemenu_8cpp.html',1,'']]],
+  ['pausemenu_2eh',['pausemenu.h',['../pausemenu_8h.html',1,'']]],
+  ['player_2ecpp',['player.cpp',['../player_8cpp.html',1,'']]],
+  ['player_2eh',['player.h',['../player_8h.html',1,'']]]
 ];

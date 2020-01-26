@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['pausemenu',['PauseMenu',['../class_pause_menu.html',1,'']]],
-  ['player',['Player',['../class_player.html',1,'']]]
+  ['sound',['Sound',['../class_sound.html',1,'']]],
+  ['speedometer',['Speedometer',['../class_speedometer.html',1,'']]]
 ];

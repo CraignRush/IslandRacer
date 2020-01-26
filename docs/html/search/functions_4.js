@@ -1,9 +1,14 @@
 var searchData=
 [
-  ['enablelimit',['EnableLimit',['../classb2_prismatic_joint.html#a6d419afe7bd4b0e36d2e4607df7f79f2',1,'b2PrismaticJoint::EnableLimit()'],['../classb2_revolute_joint.html#a56bdfdd04e906e52d0258f6a481b9093',1,'b2RevoluteJoint::EnableLimit()']]],
-  ['enablemotor',['EnableMotor',['../classb2_prismatic_joint.html#a4a7fd079de49f7ed5aa4a5d8d90be2a2',1,'b2PrismaticJoint::EnableMotor()'],['../classb2_revolute_joint.html#a80ed5a07d9a0e07d010808a73ffae6ff',1,'b2RevoluteJoint::EnableMotor()'],['../classb2_wheel_joint.html#a7a832d814bdda135a78fad41ba671da6',1,'b2WheelJoint::EnableMotor()']]],
-  ['endcontact',['EndContact',['../classb2_contact_listener.html#afb3059058e5c47903a3947c2eef5826b',1,'b2ContactListener']]],
-  ['endracedialog',['endRaceDialog',['../class_player.html#afcd2ddce4619ffac88b5a4040c5b7833',1,'Player']]],
-  ['evaluate',['Evaluate',['../structb2_separation_function.html#a68224ac8a89b10a9d1b39789ccc78d4c',1,'b2SeparationFunction::Evaluate()'],['../classb2_chain_and_circle_contact.html#abdc7f895b76f99f7ddc444ed11986c89',1,'b2ChainAndCircleContact::Evaluate()'],['../classb2_chain_and_polygon_contact.html#a607e7a8b4b0a5ee9bfd100a365fb6f3b',1,'b2ChainAndPolygonContact::Evaluate()'],['../classb2_circle_contact.html#a90036965fd66469e916a5afc6c244092',1,'b2CircleContact::Evaluate()'],['../classb2_contact.html#ae3c2842e5325b2d4500f8ed1d4de2f72',1,'b2Contact::Evaluate()'],['../classb2_edge_and_circle_contact.html#aec021f688dcf2b5a2c483edde476d4b6',1,'b2EdgeAndCircleContact::Evaluate()'],['../classb2_edge_and_polygon_contact.html#ae99fba8c1cb7e5d7c11ab78ca80e775d',1,'b2EdgeAndPolygonContact::Evaluate()'],['../classb2_polygon_and_circle_contact.html#a4af8338f124be0b7ec704997be4736b1',1,'b2PolygonAndCircleContact::Evaluate()'],['../classb2_polygon_contact.html#aa9581ba4a2bc769b80e3f107801d0950',1,'b2PolygonContact::Evaluate()']]],
-  ['exitgame',['exitGame',['../class_world.html#af9f6c83d12bb7d513eddba723f69f562',1,'World']]]
+  ['game',['Game',['../class_game.html#ad59df6562a58a614fda24622d3715b65',1,'Game::Game()'],['../class_game.html#af2d18d34a602be70fc43b12d52964d07',1,'Game::Game(int screenWidth, int screenHeight, bool fullscreen)']]],
+  ['gameexit',['GameExit',['../class_world.html#a112fa179ec08117eaeb58f5a81650559',1,'World']]],
+  ['gameloop',['gameLoop',['../class_world.html#af2b4ba4ce188c2770f13108e4277414f',1,'World']]],
+  ['getcheckpoint',['GetCheckpoint',['../class_checkpoint.html#a7e0785010e4a35ce3825d22322dbd449',1,'Checkpoint']]],
+  ['geteffect',['getEffect',['../class_track.html#a6dc1474b201e82f4fe7408276d1f0fdf',1,'Track']]],
+  ['getlaps',['GetLaps',['../class_checkpoint.html#acb598b1238d4760ba1fceca3744f3634',1,'Checkpoint']]],
+  ['getlastcheckpointposition',['getLastCheckpointPosition',['../class_checkpoint.html#a13fd023c0131da6fb54ae699fbd68049',1,'Checkpoint::getLastCheckpointPosition()'],['../class_track.html#afab8a8f2ca23861eac3e59c6fddc6647',1,'Track::getLastCheckpointPosition()']]],
+  ['getnumberofcheckpoints',['GetNumberOfCheckpoints',['../class_checkpoint.html#afcc076878559f9e2d738d79759c462f0',1,'Checkpoint']]],
+  ['getsoundinstance',['getSoundInstance',['../class_sound.html#a2685a4d6cbb5b6f57c1a8880336c68a5',1,'Sound']]],
+  ['getunderground',['getUnderground',['../class_track.html#a461d8e6729dab9eb3bd2c48cd5c19d5d',1,'Track']]],
+  ['getviewplayer',['getViewPlayer',['../class_world.html#aa3c1a0e1064a02a465f9e4c3574fd6bd',1,'World']]]
 ];

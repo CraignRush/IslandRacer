@@ -1,27 +1,5 @@
 var searchData=
 [
-  ['damping',['damping',['../structb2_rope_def.html#a13ad872bb9d4926f3e4e49b7061613cb',1,'b2RopeDef']]],
-  ['dampingratio',['dampingRatio',['../structb2_distance_joint_def.html#ad009b24ff211158eb4e1db4815a63b94',1,'b2DistanceJointDef::dampingRatio()'],['../structb2_mouse_joint_def.html#aee42888dab204a5c5745ba61acbfb7d6',1,'b2MouseJointDef::dampingRatio()'],['../structb2_weld_joint_def.html#ace1f0131610f14558f3dbaaed7b10e24',1,'b2WeldJointDef::dampingRatio()'],['../structb2_wheel_joint_def.html#a9976584bfee18b46dec355764797ce54',1,'b2WheelJointDef::dampingRatio()']]],
-  ['data',['data',['../structb2_stack_entry.html#af98aedeec2c20af0b7d3508a687ddd86',1,'b2StackEntry']]],
-  ['density',['density',['../structb2_fixture_def.html#a6e27d733789a35aa689af2b30a1de0ff',1,'b2FixtureDef']]],
-  ['destroy',['Destroy',['../classb2_contact_manager.html#a0c331884df23a930837933fc77c9a99b',1,'b2ContactManager::Destroy()'],['../classb2_fixture.html#a279301181668f724c027020a654efe42',1,'b2Fixture::Destroy()'],['../classb2_chain_and_circle_contact.html#a1070fc727a3c52a160c7919c9650b4e3',1,'b2ChainAndCircleContact::Destroy()'],['../classb2_chain_and_polygon_contact.html#aa31bf71d64dd78583505b6da76ef289c',1,'b2ChainAndPolygonContact::Destroy()'],['../classb2_circle_contact.html#a4ca67c653a18d88180e49149f0df742a',1,'b2CircleContact::Destroy()'],['../classb2_contact.html#a36c1f6767f212f2e4ddb4c4b2c7cdb75',1,'b2Contact::Destroy(b2Contact *contact, b2Shape::Type typeA, b2Shape::Type typeB, b2BlockAllocator *allocator)'],['../classb2_contact.html#ab57797a25c2206edf1ad7c4dcd1cbca5',1,'b2Contact::Destroy(b2Contact *contact, b2BlockAllocator *allocator)'],['../classb2_edge_and_circle_contact.html#a123eeb8144b01fc15c1318eacd0da4ca',1,'b2EdgeAndCircleContact::Destroy()'],['../classb2_edge_and_polygon_contact.html#a83260c190706928518ab1a3040c0c515',1,'b2EdgeAndPolygonContact::Destroy()'],['../classb2_polygon_and_circle_contact.html#a04e9a3fcdcf52821fb90b8206b8bb2f0',1,'b2PolygonAndCircleContact::Destroy()'],['../classb2_polygon_contact.html#a0cb55fd6af6f49d36c3cda15ffd96e63',1,'b2PolygonContact::Destroy()'],['../classb2_joint.html#acf52946b6672d77f268b849ccb09e003',1,'b2Joint::Destroy()']]],
-  ['destroybody',['DestroyBody',['../classb2_world.html#ad52231ad7a9556ef5735ac79cbcd8fcf',1,'b2World']]],
-  ['destroyfcn',['destroyFcn',['../structb2_contact_register.html#a95862aec746f5fd6ffa00a6729dec61f',1,'b2ContactRegister']]],
-  ['destroyfixture',['DestroyFixture',['../classb2_body.html#a856d1df86b7bded91f02d8cfcaea1c2f',1,'b2Body']]],
-  ['destroyjoint',['DestroyJoint',['../classb2_world.html#add5942aef171e54cfa384c8975746dca',1,'b2World']]],
-  ['destroyproxies',['DestroyProxies',['../classb2_fixture.html#a1def068c9ce09e2ebcccc556951b7979',1,'b2Fixture']]],
-  ['destroyproxy',['DestroyProxy',['../classb2_broad_phase.html#a84f0fb227dc01a9b9baa55c7b8c68984',1,'b2BroadPhase::DestroyProxy()'],['../classb2_dynamic_tree.html#a62aa451e7d7fe029818dd05f76ea9cdc',1,'b2DynamicTree::DestroyProxy()']]],
-  ['distance',['distance',['../structb2_distance_output.html#ae67f480ff37d4ab732e6366f485c7f55',1,'b2DistanceOutput']]],
-  ['draw',['Draw',['../classb2_rope.html#a9545f16b4ed203890a290d58ba56255c',1,'b2Rope']]],
-  ['drawcircle',['DrawCircle',['../classb2_draw.html#ae2effe9bca87c8d7cb90e860d13b7e9e',1,'b2Draw']]],
-  ['drawdebugdata',['DrawDebugData',['../classb2_world.html#a293d9865e407fd463e168b0a29856acc',1,'b2World']]],
-  ['drawpoint',['DrawPoint',['../classb2_draw.html#acc83934a18c276d4391296c4968d9e16',1,'b2Draw']]],
-  ['drawpolygon',['DrawPolygon',['../classb2_draw.html#acd5427d1d2e7d19f1b34ad3620134d28',1,'b2Draw']]],
-  ['drawsegment',['DrawSegment',['../classb2_draw.html#a1de5aaf50db875d1c644c596832af57d',1,'b2Draw']]],
-  ['drawsolidcircle',['DrawSolidCircle',['../classb2_draw.html#a775a1d0472c5980d597904c7b596a0a6',1,'b2Draw']]],
-  ['drawsolidpolygon',['DrawSolidPolygon',['../classb2_draw.html#a76f2d67de0781a32cab116278c5c9eea',1,'b2Draw']]],
-  ['drawtransform',['DrawTransform',['../classb2_draw.html#ade698123482a491a7a61fa1fe4d3a4f4',1,'b2Draw']]],
-  ['dt',['dt',['../structb2_time_step.html#a74e20836809accba98a4445fbcb3427c',1,'b2TimeStep']]],
-  ['dtratio',['dtRatio',['../structb2_time_step.html#aa67bc8a12ffafce918d9e6a0d8d3f203',1,'b2TimeStep']]],
-  ['dump',['Dump',['../classb2_body.html#ac9e482f7d9df92801c24e79a7e751d06',1,'b2Body::Dump()'],['../classb2_fixture.html#a57485e73a2063060e320c7176676cd5e',1,'b2Fixture::Dump()'],['../classb2_world.html#a73c1fec260d460514edd335d4c235893',1,'b2World::Dump()'],['../classb2_distance_joint.html#a3cebcc6ccce6f3c24432cd130fd53517',1,'b2DistanceJoint::Dump()'],['../classb2_friction_joint.html#a934a3ce5bda09bc07111c1dd4e192406',1,'b2FrictionJoint::Dump()'],['../classb2_gear_joint.html#a40ca34a7853db14d3978c0b18598dd8d',1,'b2GearJoint::Dump()'],['../classb2_joint.html#abd35e7316017ad9a40d5dbf9b5ba3f36',1,'b2Joint::Dump()'],['../classb2_motor_joint.html#abb67754f39b4747ae07af5cb5b348836',1,'b2MotorJoint::Dump()'],['../classb2_mouse_joint.html#aea1ff1e5b71ba5630875585cab1e2a96',1,'b2MouseJoint::Dump()'],['../classb2_prismatic_joint.html#a843ddb0f912085f3deb3ee7320d7ddc7',1,'b2PrismaticJoint::Dump()'],['../classb2_pulley_joint.html#a51b3fa745fc43f806cee1328099b4623',1,'b2PulleyJoint::Dump()'],['../classb2_revolute_joint.html#a408badabe21b169412a5c4a2f36bbbd8',1,'b2RevoluteJoint::Dump()'],['../classb2_rope_joint.html#a0028d3d3710bf1a9a905e9b55a4f37c5',1,'b2RopeJoint::Dump()'],['../classb2_weld_joint.html#a59de1cad3229b41886bc23c4d6216e2f',1,'b2WeldJoint::Dump()'],['../classb2_wheel_joint.html#a8295644bd733c28c8c9fa6390a367f3f',1,'b2WheelJoint::Dump()']]]
+  ['endracedialog',['endRaceDialog',['../class_player.html#afcd2ddce4619ffac88b5a4040c5b7833',1,'Player']]],
+  ['exitgame',['exitGame',['../class_world.html#af9f6c83d12bb7d513eddba723f69f562',1,'World']]]
 ];

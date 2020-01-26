@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['query',['Query',['../classb2_broad_phase.html#a187586ea98b9d16e5ef6e12fa31f8de2',1,'b2BroadPhase::Query()'],['../classb2_dynamic_tree.html#a324df3eb65dfc22d3dcdca387737b193',1,'b2DynamicTree::Query()']]],
-  ['queryaabb',['QueryAABB',['../classb2_world.html#ad169fae775be1e1f16386f7587786fa8',1,'b2World']]],
-  ['querycallback',['QueryCallback',['../structb2_world_query_wrapper.html#a660a482e5a15b7f40a103b2dfb1711c1',1,'b2WorldQueryWrapper']]],
-  ['quitgame',['quitGame',['../class_pause_menu.html#a1db9704223355ed9ea8fa011d6c669ed',1,'PauseMenu::quitGame()'],['../class_viewport.html#a6381ca87ee7069368f5c14e544814292',1,'Viewport::quitGame()']]]
+  ['updatecheckpoints',['updateCheckpoints',['../class_track.html#afc8312f0254b11da8ec7c379d8aad898',1,'Track']]],
+  ['updatefile',['updateFile',['../class_player.html#a5393b97ffbc11743033b44a15e9eae04',1,'Player']]],
+  ['updatelabelopacity',['updateLabelOpacity',['../class_viewport.html#ae0531bc2b8462937158f67e44b85f0fb',1,'Viewport']]],
+  ['updateoverlay',['updateOverlay',['../class_viewport.html#a11b053c166cbf98f4323bb7b7449b462',1,'Viewport']]],
+  ['updateposition',['updatePosition',['../class_car.html#a19984606f16a1f3e5cc60dd498d49e21',1,'Car']]]
 ];
