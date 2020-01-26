@@ -1,0 +1,79 @@
+\hypertarget{classb2_edge_and_circle_contact}{}\section{b2\+Edge\+And\+Circle\+Contact Class Reference}
+\label{classb2_edge_and_circle_contact}\index{b2EdgeAndCircleContact@{b2EdgeAndCircleContact}}
+
+
+{\ttfamily \#include $<$b2\+Edge\+And\+Circle\+Contact.\+h$>$}
+
+Inheritance diagram for b2\+Edge\+And\+Circle\+Contact\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classb2_edge_and_circle_contact}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classb2_edge_and_circle_contact_a9de91d6afe4d2407f679b2ccaded9c02}{b2\+Edge\+And\+Circle\+Contact}} (\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureA, \mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureB)
+\item 
+\mbox{\hyperlink{classb2_edge_and_circle_contact_a4e292462d90ad267adbac3670077eade}{$\sim$b2\+Edge\+And\+Circle\+Contact}} ()
+\item 
+void \mbox{\hyperlink{classb2_edge_and_circle_contact_aec021f688dcf2b5a2c483edde476d4b6}{Evaluate}} (\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$manifold, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfA, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfB) override
+\begin{DoxyCompactList}\small\item\em Evaluate this contact with your own manifold and transforms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ \mbox{\hyperlink{classb2_edge_and_circle_contact_a1b4a2a1d4098288c84a7778a4949d0f0}{Create}} (\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureA, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexA, \mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureB, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexB, \mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$allocator)
+\item 
+static void \mbox{\hyperlink{classb2_edge_and_circle_contact_a123eeb8144b01fc15c1318eacd0da4ca}{Destroy}} (\mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$contact, \mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$allocator)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classb2_edge_and_circle_contact_a9de91d6afe4d2407f679b2ccaded9c02}\label{classb2_edge_and_circle_contact_a9de91d6afe4d2407f679b2ccaded9c02}} 
+\index{b2EdgeAndCircleContact@{b2EdgeAndCircleContact}!b2EdgeAndCircleContact@{b2EdgeAndCircleContact}}
+\index{b2EdgeAndCircleContact@{b2EdgeAndCircleContact}!b2EdgeAndCircleContact@{b2EdgeAndCircleContact}}
+\subsubsection{\texorpdfstring{b2EdgeAndCircleContact()}{b2EdgeAndCircleContact()}}
+{\footnotesize\ttfamily b2\+Edge\+And\+Circle\+Contact\+::b2\+Edge\+And\+Circle\+Contact (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureA,  }\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureB }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classb2_edge_and_circle_contact_a4e292462d90ad267adbac3670077eade}\label{classb2_edge_and_circle_contact_a4e292462d90ad267adbac3670077eade}} 
+\index{b2EdgeAndCircleContact@{b2EdgeAndCircleContact}!````~b2EdgeAndCircleContact@{$\sim$b2EdgeAndCircleContact}}
+\index{````~b2EdgeAndCircleContact@{$\sim$b2EdgeAndCircleContact}!b2EdgeAndCircleContact@{b2EdgeAndCircleContact}}
+\subsubsection{\texorpdfstring{$\sim$b2EdgeAndCircleContact()}{~b2EdgeAndCircleContact()}}
+{\footnotesize\ttfamily b2\+Edge\+And\+Circle\+Contact\+::$\sim$b2\+Edge\+And\+Circle\+Contact (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classb2_edge_and_circle_contact_a1b4a2a1d4098288c84a7778a4949d0f0}\label{classb2_edge_and_circle_contact_a1b4a2a1d4098288c84a7778a4949d0f0}} 
+\index{b2EdgeAndCircleContact@{b2EdgeAndCircleContact}!Create@{Create}}
+\index{Create@{Create}!b2EdgeAndCircleContact@{b2EdgeAndCircleContact}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ b2\+Edge\+And\+Circle\+Contact\+::\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureA,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexA,  }\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureB,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexB,  }\item[{\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classb2_edge_and_circle_contact_a123eeb8144b01fc15c1318eacd0da4ca}\label{classb2_edge_and_circle_contact_a123eeb8144b01fc15c1318eacd0da4ca}} 
+\index{b2EdgeAndCircleContact@{b2EdgeAndCircleContact}!Destroy@{Destroy}}
+\index{Destroy@{Destroy}!b2EdgeAndCircleContact@{b2EdgeAndCircleContact}}
+\subsubsection{\texorpdfstring{Destroy()}{Destroy()}}
+{\footnotesize\ttfamily void b2\+Edge\+And\+Circle\+Contact\+::\+Destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$}]{contact,  }\item[{\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classb2_edge_and_circle_contact_aec021f688dcf2b5a2c483edde476d4b6}\label{classb2_edge_and_circle_contact_aec021f688dcf2b5a2c483edde476d4b6}} 
+\index{b2EdgeAndCircleContact@{b2EdgeAndCircleContact}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!b2EdgeAndCircleContact@{b2EdgeAndCircleContact}}
+\subsubsection{\texorpdfstring{Evaluate()}{Evaluate()}}
+{\footnotesize\ttfamily void b2\+Edge\+And\+Circle\+Contact\+::\+Evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$}]{manifold,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfA,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluate this contact with your own manifold and transforms. 
+
+
+
+Implements \mbox{\hyperlink{classb2_contact_ae3c2842e5325b2d4500f8ed1d4de2f72}{b2\+Contact}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\+Contacts/\mbox{\hyperlink{b2_edge_and_circle_contact_8h}{b2\+Edge\+And\+Circle\+Contact.\+h}}\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\+Contacts/\mbox{\hyperlink{b2_edge_and_circle_contact_8cpp}{b2\+Edge\+And\+Circle\+Contact.\+cpp}}\end{DoxyCompactItemize}

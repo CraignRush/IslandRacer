@@ -1,0 +1,90 @@
+\hypertarget{b2_time_of_impact_8cpp}{}\section{E\+:/\+Uni/6.Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Collision/b2\+Time\+Of\+Impact.cpp File Reference}
+\label{b2_time_of_impact_8cpp}\index{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Collision/b2TimeOfImpact.cpp@{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Collision/b2TimeOfImpact.cpp}}
+{\ttfamily \#include \char`\"{}Box2\+D/\+Collision/b2\+Collision.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Box2\+D/\+Collision/b2\+Distance.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Box2\+D/\+Collision/b2\+Time\+Of\+Impact.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Box2\+D/\+Collision/\+Shapes/b2\+Circle\+Shape.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Box2\+D/\+Collision/\+Shapes/b2\+Polygon\+Shape.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Box2\+D/\+Common/b2\+Timer.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structb2_separation_function}{b2\+Separation\+Function}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{b2_time_of_impact_8cpp_a8b6d601bca44a2f3ed67a71304ba8b51}{b2\+Time\+Of\+Impact}} (\mbox{\hyperlink{structb2_t_o_i_output}{b2\+T\+O\+I\+Output}} $\ast$output, const \mbox{\hyperlink{structb2_t_o_i_input}{b2\+T\+O\+I\+Input}} $\ast$input)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{b2_time_of_impact_8cpp_a151bdbce9adab54c41e20e9b30309a66}{b2\+\_\+toi\+Time}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{b2_time_of_impact_8cpp_afd30fdd6bbb7d2bc0261bc8d255c5195}{b2\+\_\+toi\+Max\+Time}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_time_of_impact_8cpp_aeb2ead11e080105034e715f476ac8ec3}{b2\+\_\+toi\+Calls}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_time_of_impact_8cpp_a7a7964f72e8cc113cc688956b4fec2ed}{b2\+\_\+toi\+Iters}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_time_of_impact_8cpp_a6abec89675e9355f99f36806bcf206d8}{b2\+\_\+toi\+Max\+Iters}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_time_of_impact_8cpp_ac08703e568ee5b38d0f7df35124cef68}{b2\+\_\+toi\+Root\+Iters}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_time_of_impact_8cpp_a5a44392a24816e8836d2a14354507e2a}{b2\+\_\+toi\+Max\+Root\+Iters}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{b2_time_of_impact_8cpp_a8b6d601bca44a2f3ed67a71304ba8b51}\label{b2_time_of_impact_8cpp_a8b6d601bca44a2f3ed67a71304ba8b51}} 
+\index{b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}!b2TimeOfImpact@{b2TimeOfImpact}}
+\index{b2TimeOfImpact@{b2TimeOfImpact}!b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}}
+\subsubsection{\texorpdfstring{b2TimeOfImpact()}{b2TimeOfImpact()}}
+{\footnotesize\ttfamily void b2\+Time\+Of\+Impact (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_t_o_i_output}{b2\+T\+O\+I\+Output}} $\ast$}]{output,  }\item[{const \mbox{\hyperlink{structb2_t_o_i_input}{b2\+T\+O\+I\+Input}} $\ast$}]{input }\end{DoxyParamCaption})}
+
+Compute the upper bound on time before two shapes penetrate. Time is represented as a fraction between \mbox{[}0,t\+Max\mbox{]}. This uses a swept separating axis and may miss some intermediate, non-\/tunneling collision. If you change the time interval, you should call this function again. Note\+: use b2\+Distance to compute the contact point and normal at the time of impact. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{b2_time_of_impact_8cpp_aeb2ead11e080105034e715f476ac8ec3}\label{b2_time_of_impact_8cpp_aeb2ead11e080105034e715f476ac8ec3}} 
+\index{b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}!b2\_toiCalls@{b2\_toiCalls}}
+\index{b2\_toiCalls@{b2\_toiCalls}!b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}}
+\subsubsection{\texorpdfstring{b2\_toiCalls}{b2\_toiCalls}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+toi\+Calls}
+
+\mbox{\Hypertarget{b2_time_of_impact_8cpp_a7a7964f72e8cc113cc688956b4fec2ed}\label{b2_time_of_impact_8cpp_a7a7964f72e8cc113cc688956b4fec2ed}} 
+\index{b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}!b2\_toiIters@{b2\_toiIters}}
+\index{b2\_toiIters@{b2\_toiIters}!b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}}
+\subsubsection{\texorpdfstring{b2\_toiIters}{b2\_toiIters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+toi\+Iters}
+
+\mbox{\Hypertarget{b2_time_of_impact_8cpp_a6abec89675e9355f99f36806bcf206d8}\label{b2_time_of_impact_8cpp_a6abec89675e9355f99f36806bcf206d8}} 
+\index{b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}!b2\_toiMaxIters@{b2\_toiMaxIters}}
+\index{b2\_toiMaxIters@{b2\_toiMaxIters}!b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}}
+\subsubsection{\texorpdfstring{b2\_toiMaxIters}{b2\_toiMaxIters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+toi\+Max\+Iters}
+
+\mbox{\Hypertarget{b2_time_of_impact_8cpp_a5a44392a24816e8836d2a14354507e2a}\label{b2_time_of_impact_8cpp_a5a44392a24816e8836d2a14354507e2a}} 
+\index{b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}!b2\_toiMaxRootIters@{b2\_toiMaxRootIters}}
+\index{b2\_toiMaxRootIters@{b2\_toiMaxRootIters}!b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}}
+\subsubsection{\texorpdfstring{b2\_toiMaxRootIters}{b2\_toiMaxRootIters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+toi\+Max\+Root\+Iters}
+
+\mbox{\Hypertarget{b2_time_of_impact_8cpp_afd30fdd6bbb7d2bc0261bc8d255c5195}\label{b2_time_of_impact_8cpp_afd30fdd6bbb7d2bc0261bc8d255c5195}} 
+\index{b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}!b2\_toiMaxTime@{b2\_toiMaxTime}}
+\index{b2\_toiMaxTime@{b2\_toiMaxTime}!b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}}
+\subsubsection{\texorpdfstring{b2\_toiMaxTime}{b2\_toiMaxTime}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+\_\+toi\+Max\+Time}
+
+\mbox{\Hypertarget{b2_time_of_impact_8cpp_ac08703e568ee5b38d0f7df35124cef68}\label{b2_time_of_impact_8cpp_ac08703e568ee5b38d0f7df35124cef68}} 
+\index{b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}!b2\_toiRootIters@{b2\_toiRootIters}}
+\index{b2\_toiRootIters@{b2\_toiRootIters}!b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}}
+\subsubsection{\texorpdfstring{b2\_toiRootIters}{b2\_toiRootIters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+toi\+Root\+Iters}
+
+\mbox{\Hypertarget{b2_time_of_impact_8cpp_a151bdbce9adab54c41e20e9b30309a66}\label{b2_time_of_impact_8cpp_a151bdbce9adab54c41e20e9b30309a66}} 
+\index{b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}!b2\_toiTime@{b2\_toiTime}}
+\index{b2\_toiTime@{b2\_toiTime}!b2TimeOfImpact.cpp@{b2TimeOfImpact.cpp}}
+\subsubsection{\texorpdfstring{b2\_toiTime}{b2\_toiTime}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+\_\+toi\+Time}
+

@@ -1,0 +1,227 @@
+\hypertarget{classb2_shape}{}\section{b2\+Shape Class Reference}
+\label{classb2_shape}\index{b2Shape@{b2Shape}}
+
+
+{\ttfamily \#include $<$b2\+Shape.\+h$>$}
+
+Inheritance diagram for b2\+Shape\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classb2_shape}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0}{Type}} \{ \newline
+\mbox{\hyperlink{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a09ab906cedd1b94ebb6fedb29dace063}{e\+\_\+circle}} = 0, 
+\mbox{\hyperlink{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a707a159824d438c541a452382c0daced}{e\+\_\+edge}} = 1, 
+\mbox{\hyperlink{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a08afe1f3d5964062239783063a3a671f}{e\+\_\+polygon}} = 2, 
+\mbox{\hyperlink{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a3649c133fa23d5af940705432e9170f2}{e\+\_\+chain}} = 3, 
+\newline
+\mbox{\hyperlink{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0aad7c674a33e8ca4ee9b717f226553596}{e\+\_\+type\+Count}} = 4
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classb2_shape_a7c14c5dcf134d22e0b5790518632d05a}{$\sim$b2\+Shape}} ()
+\item 
+virtual \mbox{\hyperlink{classb2_shape}{b2\+Shape}} $\ast$ \mbox{\hyperlink{classb2_shape_a4716243454bb9cf7c7ee1d9cb23ae634}{Clone}} (\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$allocator) const =0
+\begin{DoxyCompactList}\small\item\em Clone the concrete shape using the provided allocator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0}{Type}} \mbox{\hyperlink{classb2_shape_a600cceee6186d81bb1b8ab142324bba6}{Get\+Type}} () const
+\item 
+virtual \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{classb2_shape_a05a3c445017d96df9238ceefe6ce37ab}{Get\+Child\+Count}} () const =0
+\begin{DoxyCompactList}\small\item\em Get the number of child primitives. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classb2_shape_a6ac968e403e2d93e8ae46d728a2e50fa}{Test\+Point}} (const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xf, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&p) const =0
+\item 
+virtual bool \mbox{\hyperlink{classb2_shape_aee53a926f4fe64cd03693f6211ef6335}{Ray\+Cast}} (\mbox{\hyperlink{structb2_ray_cast_output}{b2\+Ray\+Cast\+Output}} $\ast$output, const \mbox{\hyperlink{structb2_ray_cast_input}{b2\+Ray\+Cast\+Input}} \&input, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&transform, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} child\+Index) const =0
+\item 
+virtual void \mbox{\hyperlink{classb2_shape_a88e9807fab0c8ca9a98d8926e50a1411}{Compute\+A\+A\+BB}} (\mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} $\ast$aabb, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xf, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} child\+Index) const =0
+\item 
+virtual void \mbox{\hyperlink{classb2_shape_a61b365526241b47f124789b0309cac69}{Compute\+Mass}} (\mbox{\hyperlink{structb2_mass_data}{b2\+Mass\+Data}} $\ast$mass\+Data, \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} density) const =0
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0}{Type}} \mbox{\hyperlink{classb2_shape_adb051791133b24f53c6e9a565a7b7bbb}{m\+\_\+type}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{classb2_shape_a5de7a9bd3f9e72ef7025a65c304aaf1a}{m\+\_\+radius}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A shape is used for collision detection. You can create a shape however you like. Shapes used for simulation in \mbox{\hyperlink{classb2_world}{b2\+World}} are created automatically when a \mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} is created. Shapes may encapsulate a one or more child shapes. 
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0}\label{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0}} 
+\index{b2Shape@{b2Shape}!Type@{Type}}
+\index{Type@{Type}!b2Shape@{b2Shape}}
+\subsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0}{b2\+Shape\+::\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e\_circle@{e\_circle}!b2Shape@{b2Shape}}\index{b2Shape@{b2Shape}!e\_circle@{e\_circle}}}\mbox{\Hypertarget{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a09ab906cedd1b94ebb6fedb29dace063}\label{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a09ab906cedd1b94ebb6fedb29dace063}} 
+e\+\_\+circle&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e\_edge@{e\_edge}!b2Shape@{b2Shape}}\index{b2Shape@{b2Shape}!e\_edge@{e\_edge}}}\mbox{\Hypertarget{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a707a159824d438c541a452382c0daced}\label{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a707a159824d438c541a452382c0daced}} 
+e\+\_\+edge&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e\_polygon@{e\_polygon}!b2Shape@{b2Shape}}\index{b2Shape@{b2Shape}!e\_polygon@{e\_polygon}}}\mbox{\Hypertarget{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a08afe1f3d5964062239783063a3a671f}\label{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a08afe1f3d5964062239783063a3a671f}} 
+e\+\_\+polygon&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e\_chain@{e\_chain}!b2Shape@{b2Shape}}\index{b2Shape@{b2Shape}!e\_chain@{e\_chain}}}\mbox{\Hypertarget{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a3649c133fa23d5af940705432e9170f2}\label{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0a3649c133fa23d5af940705432e9170f2}} 
+e\+\_\+chain&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{e\_typeCount@{e\_typeCount}!b2Shape@{b2Shape}}\index{b2Shape@{b2Shape}!e\_typeCount@{e\_typeCount}}}\mbox{\Hypertarget{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0aad7c674a33e8ca4ee9b717f226553596}\label{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0aad7c674a33e8ca4ee9b717f226553596}} 
+e\+\_\+type\+Count&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classb2_shape_a7c14c5dcf134d22e0b5790518632d05a}\label{classb2_shape_a7c14c5dcf134d22e0b5790518632d05a}} 
+\index{b2Shape@{b2Shape}!````~b2Shape@{$\sim$b2Shape}}
+\index{````~b2Shape@{$\sim$b2Shape}!b2Shape@{b2Shape}}
+\subsubsection{\texorpdfstring{$\sim$b2Shape()}{~b2Shape()}}
+{\footnotesize\ttfamily virtual b2\+Shape\+::$\sim$b2\+Shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classb2_shape_a4716243454bb9cf7c7ee1d9cb23ae634}\label{classb2_shape_a4716243454bb9cf7c7ee1d9cb23ae634}} 
+\index{b2Shape@{b2Shape}!Clone@{Clone}}
+\index{Clone@{Clone}!b2Shape@{b2Shape}}
+\subsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classb2_shape}{b2\+Shape}}$\ast$ b2\+Shape\+::\+Clone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Clone the concrete shape using the provided allocator. 
+
+
+
+Implemented in \mbox{\hyperlink{classb2_chain_shape_a03d2ea80168d29c553fa21b5a821e6d8}{b2\+Chain\+Shape}}, \mbox{\hyperlink{classb2_edge_shape_a52ed696717f44ed02b7a88ccf201563c}{b2\+Edge\+Shape}}, \mbox{\hyperlink{classb2_polygon_shape_ae2c2343be33db465f7e83db2061fdd51}{b2\+Polygon\+Shape}}, and \mbox{\hyperlink{classb2_circle_shape_a5ff8fbab7dff87784fbff20b07e55cfc}{b2\+Circle\+Shape}}.
+
+\mbox{\Hypertarget{classb2_shape_a88e9807fab0c8ca9a98d8926e50a1411}\label{classb2_shape_a88e9807fab0c8ca9a98d8926e50a1411}} 
+\index{b2Shape@{b2Shape}!ComputeAABB@{ComputeAABB}}
+\index{ComputeAABB@{ComputeAABB}!b2Shape@{b2Shape}}
+\subsubsection{\texorpdfstring{ComputeAABB()}{ComputeAABB()}}
+{\footnotesize\ttfamily virtual void b2\+Shape\+::\+Compute\+A\+A\+BB (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} $\ast$}]{aabb,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xf,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{child\+Index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Given a transform, compute the associated axis aligned bounding box for a child shape. 
+\begin{DoxyParams}{Parameters}
+{\em aabb} & returns the axis aligned box. \\
+\hline
+{\em xf} & the world transform of the shape. \\
+\hline
+{\em child\+Index} & the child shape \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classb2_chain_shape_ae1d7470ce8d32e92d27c149ab45f5468}{b2\+Chain\+Shape}}, \mbox{\hyperlink{classb2_polygon_shape_ae9bcc185caf4a030003cefc4576e4717}{b2\+Polygon\+Shape}}, \mbox{\hyperlink{classb2_edge_shape_a238139ae1736b457d77443133ff16854}{b2\+Edge\+Shape}}, and \mbox{\hyperlink{classb2_circle_shape_af4a4ea78780af7a7ce40bf5d54affe83}{b2\+Circle\+Shape}}.
+
+\mbox{\Hypertarget{classb2_shape_a61b365526241b47f124789b0309cac69}\label{classb2_shape_a61b365526241b47f124789b0309cac69}} 
+\index{b2Shape@{b2Shape}!ComputeMass@{ComputeMass}}
+\index{ComputeMass@{ComputeMass}!b2Shape@{b2Shape}}
+\subsubsection{\texorpdfstring{ComputeMass()}{ComputeMass()}}
+{\footnotesize\ttfamily virtual void b2\+Shape\+::\+Compute\+Mass (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_mass_data}{b2\+Mass\+Data}} $\ast$}]{mass\+Data,  }\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{density }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Compute the mass properties of this shape using its dimensions and density. The inertia tensor is computed about the local origin. 
+\begin{DoxyParams}{Parameters}
+{\em mass\+Data} & returns the mass data for this shape. \\
+\hline
+{\em density} & the density in kilograms per meter squared. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classb2_chain_shape_aad3671d6eab61f6b26e2f1b6ac50bb98}{b2\+Chain\+Shape}}, \mbox{\hyperlink{classb2_polygon_shape_a908db2a51fc79fd49d6fe06be2cd8474}{b2\+Polygon\+Shape}}, \mbox{\hyperlink{classb2_edge_shape_ac738c1e0ab2f4dfbab26e3942efa60af}{b2\+Edge\+Shape}}, and \mbox{\hyperlink{classb2_circle_shape_a7dc07891abd015863fbf03076e47eec5}{b2\+Circle\+Shape}}.
+
+\mbox{\Hypertarget{classb2_shape_a05a3c445017d96df9238ceefe6ce37ab}\label{classb2_shape_a05a3c445017d96df9238ceefe6ce37ab}} 
+\index{b2Shape@{b2Shape}!GetChildCount@{GetChildCount}}
+\index{GetChildCount@{GetChildCount}!b2Shape@{b2Shape}}
+\subsubsection{\texorpdfstring{GetChildCount()}{GetChildCount()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+Shape\+::\+Get\+Child\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the number of child primitives. 
+
+
+
+Implemented in \mbox{\hyperlink{classb2_chain_shape_a4d4fd8f5386a30f35b10d1b2848dbe54}{b2\+Chain\+Shape}}, \mbox{\hyperlink{classb2_edge_shape_ae9dcaa2f4b77fcf182d29159658da82a}{b2\+Edge\+Shape}}, \mbox{\hyperlink{classb2_polygon_shape_aa8bb0d5a88624104425cdee0b2f4427a}{b2\+Polygon\+Shape}}, and \mbox{\hyperlink{classb2_circle_shape_a552db3402aed5d12c3177981e5208065}{b2\+Circle\+Shape}}.
+
+\mbox{\Hypertarget{classb2_shape_a600cceee6186d81bb1b8ab142324bba6}\label{classb2_shape_a600cceee6186d81bb1b8ab142324bba6}} 
+\index{b2Shape@{b2Shape}!GetType@{GetType}}
+\index{GetType@{GetType}!b2Shape@{b2Shape}}
+\subsubsection{\texorpdfstring{GetType()}{GetType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0}{b2\+Shape\+::\+Type}} b2\+Shape\+::\+Get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the type of this shape. You can use this to down cast to the concrete shape. \begin{DoxyReturn}{Returns}
+the shape type. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classb2_shape_aee53a926f4fe64cd03693f6211ef6335}\label{classb2_shape_aee53a926f4fe64cd03693f6211ef6335}} 
+\index{b2Shape@{b2Shape}!RayCast@{RayCast}}
+\index{RayCast@{RayCast}!b2Shape@{b2Shape}}
+\subsubsection{\texorpdfstring{RayCast()}{RayCast()}}
+{\footnotesize\ttfamily virtual bool b2\+Shape\+::\+Ray\+Cast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_ray_cast_output}{b2\+Ray\+Cast\+Output}} $\ast$}]{output,  }\item[{const \mbox{\hyperlink{structb2_ray_cast_input}{b2\+Ray\+Cast\+Input}} \&}]{input,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{transform,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{child\+Index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Cast a ray against a child shape. 
+\begin{DoxyParams}{Parameters}
+{\em output} & the ray-\/cast results. \\
+\hline
+{\em input} & the ray-\/cast input parameters. \\
+\hline
+{\em transform} & the transform to be applied to the shape. \\
+\hline
+{\em child\+Index} & the child shape index \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classb2_chain_shape_add9e88f7f90b32ae75738cfb042ef532}{b2\+Chain\+Shape}}, \mbox{\hyperlink{classb2_polygon_shape_a41f20072763688f1745f12f67f40e904}{b2\+Polygon\+Shape}}, \mbox{\hyperlink{classb2_edge_shape_a192cf10bd556a5a90b29a2bcee2ddd75}{b2\+Edge\+Shape}}, and \mbox{\hyperlink{classb2_circle_shape_a442e847b9fc3d1344b02b48d490eb0c6}{b2\+Circle\+Shape}}.
+
+\mbox{\Hypertarget{classb2_shape_a6ac968e403e2d93e8ae46d728a2e50fa}\label{classb2_shape_a6ac968e403e2d93e8ae46d728a2e50fa}} 
+\index{b2Shape@{b2Shape}!TestPoint@{TestPoint}}
+\index{TestPoint@{TestPoint}!b2Shape@{b2Shape}}
+\subsubsection{\texorpdfstring{TestPoint()}{TestPoint()}}
+{\footnotesize\ttfamily virtual bool b2\+Shape\+::\+Test\+Point (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xf,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Test a point for containment in this shape. This only works for convex shapes. 
+\begin{DoxyParams}{Parameters}
+{\em xf} & the shape world transform. \\
+\hline
+{\em p} & a point in world coordinates. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classb2_chain_shape_afd03c8679f18f9962a6c76bde629c62a}{b2\+Chain\+Shape}}, \mbox{\hyperlink{classb2_polygon_shape_a129c4ac76727fe02724f675e3fef7fe5}{b2\+Polygon\+Shape}}, \mbox{\hyperlink{classb2_edge_shape_a15151673cf9ad585779c70363425f470}{b2\+Edge\+Shape}}, and \mbox{\hyperlink{classb2_circle_shape_a84e22b3807e84b72f2981010fc197099}{b2\+Circle\+Shape}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classb2_shape_a5de7a9bd3f9e72ef7025a65c304aaf1a}\label{classb2_shape_a5de7a9bd3f9e72ef7025a65c304aaf1a}} 
+\index{b2Shape@{b2Shape}!m\_radius@{m\_radius}}
+\index{m\_radius@{m\_radius}!b2Shape@{b2Shape}}
+\subsubsection{\texorpdfstring{m\_radius}{m\_radius}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Shape\+::m\+\_\+radius}
+
+Radius of a shape. For polygonal shapes this must be b2\+\_\+polygon\+Radius. There is no support for making rounded polygons. \mbox{\Hypertarget{classb2_shape_adb051791133b24f53c6e9a565a7b7bbb}\label{classb2_shape_adb051791133b24f53c6e9a565a7b7bbb}} 
+\index{b2Shape@{b2Shape}!m\_type@{m\_type}}
+\index{m\_type@{m\_type}!b2Shape@{b2Shape}}
+\subsubsection{\texorpdfstring{m\_type}{m\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_shape_a4c1f3a9ad6b3150bb90ad9018ca4b1e0}{Type}} b2\+Shape\+::m\+\_\+type}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Collision/\+Shapes/\mbox{\hyperlink{b2_shape_8h}{b2\+Shape.\+h}}\end{DoxyCompactItemize}

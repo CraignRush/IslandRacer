@@ -1,0 +1,385 @@
+\hypertarget{b2_settings_8h}{}\section{E\+:/\+Uni/6.Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Common/b2\+Settings.h File Reference}
+\label{b2_settings_8h}\index{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Common/b2Settings.h@{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Common/b2Settings.h}}
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$float.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structb2_version}{b2\+Version}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a76c36ad7e53158b76b87f84d8260623a}{b2\+D\+E\+B\+UG}}
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a24cdaa0e73463ad545524b9aee142b7b}{B2\+\_\+\+N\+O\+T\+\_\+\+U\+S\+ED}}(x)~((void)(x))
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_ab3fe3791ea4d700d5cc1f8124d2edf33}{b2\+Assert}}(A)~assert(A)
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a034400dadc97431610fe4a0f38d5c1c7}{b2\+\_\+max\+Float}}~F\+L\+T\+\_\+\+M\+AX
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_ae6bc48338c82daa4598d38f8ebc6f075}{b2\+\_\+epsilon}}~F\+L\+T\+\_\+\+E\+P\+S\+I\+L\+ON
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a3f1872f3fc3c46abc809e7f7d467eb6c}{b2\+\_\+pi}}~3.\+14159265359f
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_aa5f44cc9edf711433dea2b2ec94f3c42}{b2\+\_\+max\+Manifold\+Points}}~2
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a09d71ee1993bee28b5b2e6d893b41884}{b2\+\_\+max\+Polygon\+Vertices}}~8
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_adb86e231496fdd6ac7795ce58d40c870}{b2\+\_\+aabb\+Extension}}~0.\+1f
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a7d1bd1594f20601d4079bccbd0a6a03c}{b2\+\_\+aabb\+Multiplier}}~2.\+0f
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a57268ade379c5c3373d0ff558b0350cf}{b2\+\_\+linear\+Slop}}~0.\+005f
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a67810fb101bb7a7e0b3afc14845383ee}{b2\+\_\+angular\+Slop}}~(2.\+0f / 180.\+0f $\ast$ b2\+\_\+pi)
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_afc0f934dabffb1e83e081249133ad860}{b2\+\_\+polygon\+Radius}}~(2.\+0f $\ast$ b2\+\_\+linear\+Slop)
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_ac1fd56e39ab8499f344b6398b7332e55}{b2\+\_\+max\+Sub\+Steps}}~8
+\begin{DoxyCompactList}\small\item\em Maximum number of sub-\/steps per contact in continuous physics simulation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{b2_settings_8h_aad3a54bcae5f7ec0235963403c2fccc9}{b2\+\_\+max\+T\+O\+I\+Contacts}}~32
+\begin{DoxyCompactList}\small\item\em Maximum number of contacts to be handled to solve a T\+OI impact. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a690b448aa2dba2a1393781f8c059c22a}{b2\+\_\+velocity\+Threshold}}~1.\+0f
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a23ab70e4809f5ee23abcd52018d5eb88}{b2\+\_\+max\+Linear\+Correction}}~0.\+2f
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a823e4f9a6fa4b9de3c97da696571400a}{b2\+\_\+max\+Angular\+Correction}}~(8.\+0f / 180.\+0f $\ast$ b2\+\_\+pi)
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_af2bad257bfbafed3665df3e243ba2b52}{b2\+\_\+max\+Translation}}~2.\+0f
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a06db101442fde26e8ffb875af5c2f588}{b2\+\_\+max\+Translation\+Squared}}~(\mbox{\hyperlink{b2_settings_8h_af2bad257bfbafed3665df3e243ba2b52}{b2\+\_\+max\+Translation}} $\ast$ \mbox{\hyperlink{b2_settings_8h_af2bad257bfbafed3665df3e243ba2b52}{b2\+\_\+max\+Translation}})
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a5808c5f1e946205d8f7458101ccc698e}{b2\+\_\+max\+Rotation}}~(0.\+5f $\ast$ b2\+\_\+pi)
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_ac0ea425673819f24093ef7875c1025dd}{b2\+\_\+max\+Rotation\+Squared}}~(\mbox{\hyperlink{b2_settings_8h_a5808c5f1e946205d8f7458101ccc698e}{b2\+\_\+max\+Rotation}} $\ast$ \mbox{\hyperlink{b2_settings_8h_a5808c5f1e946205d8f7458101ccc698e}{b2\+\_\+max\+Rotation}})
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a88e32539e0f9e69e3832e1321eba3caa}{b2\+\_\+baumgarte}}~0.\+2f
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_addf67cb7c89ad8a0370b488e8120a6ed}{b2\+\_\+toi\+Baugarte}}~0.\+75f
+\item 
+\#define \mbox{\hyperlink{b2_settings_8h_ab021adb740e4a5e1f5f7d9913ed94781}{b2\+\_\+time\+To\+Sleep}}~0.\+5f
+\begin{DoxyCompactList}\small\item\em The time that a body must be still before it will go to sleep. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a6d882c48142a8c73011b576e20dc6dd8}{b2\+\_\+linear\+Sleep\+Tolerance}}~0.\+01f
+\begin{DoxyCompactList}\small\item\em A body cannot sleep if its linear velocity is above this tolerance. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{b2_settings_8h_a571f3e7c864aca14141b163205600eef}{b2\+\_\+angular\+Sleep\+Tolerance}}~(2.\+0f / 180.\+0f $\ast$ b2\+\_\+pi)
+\begin{DoxyCompactList}\small\item\em A body cannot sleep if its angular velocity is above this tolerance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef signed char \mbox{\hyperlink{b2_settings_8h_a1b956fe1df85f3c132b21edb4e116458}{int8}}
+\item 
+typedef signed short \mbox{\hyperlink{b2_settings_8h_a259fa4834387bd68627ddf37bb3ebdb9}{int16}}
+\item 
+typedef signed int \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}
+\item 
+typedef unsigned char \mbox{\hyperlink{b2_settings_8h_adde6aaee8457bee49c2a92621fe22b79}{uint8}}
+\item 
+typedef unsigned short \mbox{\hyperlink{b2_settings_8h_a05f6b0ae8f6a6e135b0e290c25fe0e4e}{uint16}}
+\item 
+typedef unsigned int \mbox{\hyperlink{b2_settings_8h_a1134b580f8da4de94ca6b1de4d37975e}{uint32}}
+\item 
+typedef float \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}
+\item 
+typedef double \mbox{\hyperlink{b2_settings_8h_a232fad1b0d6dcc7c16aabde98b2e2a80}{float64}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{b2_settings_8h_a2dca9b286e9b9d6d022055fd61534bd7}{b2\+Alloc}} (\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} size)
+\begin{DoxyCompactList}\small\item\em Implement this function to use your own memory allocator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{b2_settings_8h_a50f4abf5edeabd0300946edbd542e24d}{b2\+Free}} (void $\ast$mem)
+\begin{DoxyCompactList}\small\item\em If you implement b2\+Alloc, you should also implement this function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{b2_settings_8h_a9f10095d05c74eebfe535931c9061ab2}{b2\+Log}} (const char $\ast$string,...)
+\begin{DoxyCompactList}\small\item\em Logging function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structb2_version}{b2\+Version}} \mbox{\hyperlink{b2_settings_8h_a3a20e3b6a8b05633d911fea031f7a44f}{b2\+\_\+version}}
+\begin{DoxyCompactList}\small\item\em Current version. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Global tuning constants based on meters-\/kilograms-\/seconds (M\+KS) units. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{b2_settings_8h_adb86e231496fdd6ac7795ce58d40c870}\label{b2_settings_8h_adb86e231496fdd6ac7795ce58d40c870}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_aabbExtension@{b2\_aabbExtension}}
+\index{b2\_aabbExtension@{b2\_aabbExtension}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_aabbExtension}{b2\_aabbExtension}}
+{\footnotesize\ttfamily \#define b2\+\_\+aabb\+Extension~0.\+1f}
+
+This is used to fatten A\+A\+B\+Bs in the dynamic tree. This allows proxies to move by a small amount without triggering a tree adjustment. This is in meters. \mbox{\Hypertarget{b2_settings_8h_a7d1bd1594f20601d4079bccbd0a6a03c}\label{b2_settings_8h_a7d1bd1594f20601d4079bccbd0a6a03c}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_aabbMultiplier@{b2\_aabbMultiplier}}
+\index{b2\_aabbMultiplier@{b2\_aabbMultiplier}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_aabbMultiplier}{b2\_aabbMultiplier}}
+{\footnotesize\ttfamily \#define b2\+\_\+aabb\+Multiplier~2.\+0f}
+
+This is used to fatten A\+A\+B\+Bs in the dynamic tree. This is used to predict the future position based on the current displacement. This is a dimensionless multiplier. \mbox{\Hypertarget{b2_settings_8h_a571f3e7c864aca14141b163205600eef}\label{b2_settings_8h_a571f3e7c864aca14141b163205600eef}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_angularSleepTolerance@{b2\_angularSleepTolerance}}
+\index{b2\_angularSleepTolerance@{b2\_angularSleepTolerance}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_angularSleepTolerance}{b2\_angularSleepTolerance}}
+{\footnotesize\ttfamily \#define b2\+\_\+angular\+Sleep\+Tolerance~(2.\+0f / 180.\+0f $\ast$ b2\+\_\+pi)}
+
+
+
+A body cannot sleep if its angular velocity is above this tolerance. 
+
+\mbox{\Hypertarget{b2_settings_8h_a67810fb101bb7a7e0b3afc14845383ee}\label{b2_settings_8h_a67810fb101bb7a7e0b3afc14845383ee}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_angularSlop@{b2\_angularSlop}}
+\index{b2\_angularSlop@{b2\_angularSlop}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_angularSlop}{b2\_angularSlop}}
+{\footnotesize\ttfamily \#define b2\+\_\+angular\+Slop~(2.\+0f / 180.\+0f $\ast$ b2\+\_\+pi)}
+
+A small angle used as a collision and constraint tolerance. Usually it is chosen to be numerically significant, but visually insignificant. \mbox{\Hypertarget{b2_settings_8h_a88e32539e0f9e69e3832e1321eba3caa}\label{b2_settings_8h_a88e32539e0f9e69e3832e1321eba3caa}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_baumgarte@{b2\_baumgarte}}
+\index{b2\_baumgarte@{b2\_baumgarte}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_baumgarte}{b2\_baumgarte}}
+{\footnotesize\ttfamily \#define b2\+\_\+baumgarte~0.\+2f}
+
+This scale factor controls how fast overlap is resolved. Ideally this would be 1 so that overlap is removed in one time step. However using values close to 1 often lead to overshoot. \mbox{\Hypertarget{b2_settings_8h_ae6bc48338c82daa4598d38f8ebc6f075}\label{b2_settings_8h_ae6bc48338c82daa4598d38f8ebc6f075}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_epsilon@{b2\_epsilon}}
+\index{b2\_epsilon@{b2\_epsilon}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_epsilon}{b2\_epsilon}}
+{\footnotesize\ttfamily \#define b2\+\_\+epsilon~F\+L\+T\+\_\+\+E\+P\+S\+I\+L\+ON}
+
+\mbox{\Hypertarget{b2_settings_8h_a6d882c48142a8c73011b576e20dc6dd8}\label{b2_settings_8h_a6d882c48142a8c73011b576e20dc6dd8}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_linearSleepTolerance@{b2\_linearSleepTolerance}}
+\index{b2\_linearSleepTolerance@{b2\_linearSleepTolerance}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_linearSleepTolerance}{b2\_linearSleepTolerance}}
+{\footnotesize\ttfamily \#define b2\+\_\+linear\+Sleep\+Tolerance~0.\+01f}
+
+
+
+A body cannot sleep if its linear velocity is above this tolerance. 
+
+\mbox{\Hypertarget{b2_settings_8h_a57268ade379c5c3373d0ff558b0350cf}\label{b2_settings_8h_a57268ade379c5c3373d0ff558b0350cf}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_linearSlop@{b2\_linearSlop}}
+\index{b2\_linearSlop@{b2\_linearSlop}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_linearSlop}{b2\_linearSlop}}
+{\footnotesize\ttfamily \#define b2\+\_\+linear\+Slop~0.\+005f}
+
+A small length used as a collision and constraint tolerance. Usually it is chosen to be numerically significant, but visually insignificant. \mbox{\Hypertarget{b2_settings_8h_a823e4f9a6fa4b9de3c97da696571400a}\label{b2_settings_8h_a823e4f9a6fa4b9de3c97da696571400a}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_maxAngularCorrection@{b2\_maxAngularCorrection}}
+\index{b2\_maxAngularCorrection@{b2\_maxAngularCorrection}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_maxAngularCorrection}{b2\_maxAngularCorrection}}
+{\footnotesize\ttfamily \#define b2\+\_\+max\+Angular\+Correction~(8.\+0f / 180.\+0f $\ast$ b2\+\_\+pi)}
+
+The maximum angular position correction used when solving constraints. This helps to prevent overshoot. \mbox{\Hypertarget{b2_settings_8h_a034400dadc97431610fe4a0f38d5c1c7}\label{b2_settings_8h_a034400dadc97431610fe4a0f38d5c1c7}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_maxFloat@{b2\_maxFloat}}
+\index{b2\_maxFloat@{b2\_maxFloat}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_maxFloat}{b2\_maxFloat}}
+{\footnotesize\ttfamily \#define b2\+\_\+max\+Float~F\+L\+T\+\_\+\+M\+AX}
+
+\mbox{\Hypertarget{b2_settings_8h_a23ab70e4809f5ee23abcd52018d5eb88}\label{b2_settings_8h_a23ab70e4809f5ee23abcd52018d5eb88}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_maxLinearCorrection@{b2\_maxLinearCorrection}}
+\index{b2\_maxLinearCorrection@{b2\_maxLinearCorrection}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_maxLinearCorrection}{b2\_maxLinearCorrection}}
+{\footnotesize\ttfamily \#define b2\+\_\+max\+Linear\+Correction~0.\+2f}
+
+The maximum linear position correction used when solving constraints. This helps to prevent overshoot. \mbox{\Hypertarget{b2_settings_8h_aa5f44cc9edf711433dea2b2ec94f3c42}\label{b2_settings_8h_aa5f44cc9edf711433dea2b2ec94f3c42}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_maxManifoldPoints@{b2\_maxManifoldPoints}}
+\index{b2\_maxManifoldPoints@{b2\_maxManifoldPoints}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_maxManifoldPoints}{b2\_maxManifoldPoints}}
+{\footnotesize\ttfamily \#define b2\+\_\+max\+Manifold\+Points~2}
+
+The maximum number of contact points between two convex shapes. Do not change this value. \mbox{\Hypertarget{b2_settings_8h_a09d71ee1993bee28b5b2e6d893b41884}\label{b2_settings_8h_a09d71ee1993bee28b5b2e6d893b41884}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_maxPolygonVertices@{b2\_maxPolygonVertices}}
+\index{b2\_maxPolygonVertices@{b2\_maxPolygonVertices}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_maxPolygonVertices}{b2\_maxPolygonVertices}}
+{\footnotesize\ttfamily \#define b2\+\_\+max\+Polygon\+Vertices~8}
+
+The maximum number of vertices on a convex polygon. You cannot increase this too much because \mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} has a maximum object size. \mbox{\Hypertarget{b2_settings_8h_a5808c5f1e946205d8f7458101ccc698e}\label{b2_settings_8h_a5808c5f1e946205d8f7458101ccc698e}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_maxRotation@{b2\_maxRotation}}
+\index{b2\_maxRotation@{b2\_maxRotation}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_maxRotation}{b2\_maxRotation}}
+{\footnotesize\ttfamily \#define b2\+\_\+max\+Rotation~(0.\+5f $\ast$ b2\+\_\+pi)}
+
+The maximum angular velocity of a body. This limit is very large and is used to prevent numerical problems. You shouldn\textquotesingle{}t need to adjust this. \mbox{\Hypertarget{b2_settings_8h_ac0ea425673819f24093ef7875c1025dd}\label{b2_settings_8h_ac0ea425673819f24093ef7875c1025dd}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_maxRotationSquared@{b2\_maxRotationSquared}}
+\index{b2\_maxRotationSquared@{b2\_maxRotationSquared}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_maxRotationSquared}{b2\_maxRotationSquared}}
+{\footnotesize\ttfamily \#define b2\+\_\+max\+Rotation\+Squared~(\mbox{\hyperlink{b2_settings_8h_a5808c5f1e946205d8f7458101ccc698e}{b2\+\_\+max\+Rotation}} $\ast$ \mbox{\hyperlink{b2_settings_8h_a5808c5f1e946205d8f7458101ccc698e}{b2\+\_\+max\+Rotation}})}
+
+\mbox{\Hypertarget{b2_settings_8h_ac1fd56e39ab8499f344b6398b7332e55}\label{b2_settings_8h_ac1fd56e39ab8499f344b6398b7332e55}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_maxSubSteps@{b2\_maxSubSteps}}
+\index{b2\_maxSubSteps@{b2\_maxSubSteps}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_maxSubSteps}{b2\_maxSubSteps}}
+{\footnotesize\ttfamily \#define b2\+\_\+max\+Sub\+Steps~8}
+
+
+
+Maximum number of sub-\/steps per contact in continuous physics simulation. 
+
+\mbox{\Hypertarget{b2_settings_8h_aad3a54bcae5f7ec0235963403c2fccc9}\label{b2_settings_8h_aad3a54bcae5f7ec0235963403c2fccc9}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_maxTOIContacts@{b2\_maxTOIContacts}}
+\index{b2\_maxTOIContacts@{b2\_maxTOIContacts}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_maxTOIContacts}{b2\_maxTOIContacts}}
+{\footnotesize\ttfamily \#define b2\+\_\+max\+T\+O\+I\+Contacts~32}
+
+
+
+Maximum number of contacts to be handled to solve a T\+OI impact. 
+
+\mbox{\Hypertarget{b2_settings_8h_af2bad257bfbafed3665df3e243ba2b52}\label{b2_settings_8h_af2bad257bfbafed3665df3e243ba2b52}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_maxTranslation@{b2\_maxTranslation}}
+\index{b2\_maxTranslation@{b2\_maxTranslation}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_maxTranslation}{b2\_maxTranslation}}
+{\footnotesize\ttfamily \#define b2\+\_\+max\+Translation~2.\+0f}
+
+The maximum linear velocity of a body. This limit is very large and is used to prevent numerical problems. You shouldn\textquotesingle{}t need to adjust this. \mbox{\Hypertarget{b2_settings_8h_a06db101442fde26e8ffb875af5c2f588}\label{b2_settings_8h_a06db101442fde26e8ffb875af5c2f588}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_maxTranslationSquared@{b2\_maxTranslationSquared}}
+\index{b2\_maxTranslationSquared@{b2\_maxTranslationSquared}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_maxTranslationSquared}{b2\_maxTranslationSquared}}
+{\footnotesize\ttfamily \#define b2\+\_\+max\+Translation\+Squared~(\mbox{\hyperlink{b2_settings_8h_af2bad257bfbafed3665df3e243ba2b52}{b2\+\_\+max\+Translation}} $\ast$ \mbox{\hyperlink{b2_settings_8h_af2bad257bfbafed3665df3e243ba2b52}{b2\+\_\+max\+Translation}})}
+
+\mbox{\Hypertarget{b2_settings_8h_a24cdaa0e73463ad545524b9aee142b7b}\label{b2_settings_8h_a24cdaa0e73463ad545524b9aee142b7b}} 
+\index{b2Settings.h@{b2Settings.h}!B2\_NOT\_USED@{B2\_NOT\_USED}}
+\index{B2\_NOT\_USED@{B2\_NOT\_USED}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{B2\_NOT\_USED}{B2\_NOT\_USED}}
+{\footnotesize\ttfamily \#define B2\+\_\+\+N\+O\+T\+\_\+\+U\+S\+ED(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((void)(x))}
+
+\mbox{\Hypertarget{b2_settings_8h_a3f1872f3fc3c46abc809e7f7d467eb6c}\label{b2_settings_8h_a3f1872f3fc3c46abc809e7f7d467eb6c}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_pi@{b2\_pi}}
+\index{b2\_pi@{b2\_pi}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_pi}{b2\_pi}}
+{\footnotesize\ttfamily \#define b2\+\_\+pi~3.\+14159265359f}
+
+\mbox{\Hypertarget{b2_settings_8h_afc0f934dabffb1e83e081249133ad860}\label{b2_settings_8h_afc0f934dabffb1e83e081249133ad860}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_polygonRadius@{b2\_polygonRadius}}
+\index{b2\_polygonRadius@{b2\_polygonRadius}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_polygonRadius}{b2\_polygonRadius}}
+{\footnotesize\ttfamily \#define b2\+\_\+polygon\+Radius~(2.\+0f $\ast$ b2\+\_\+linear\+Slop)}
+
+The radius of the polygon/edge shape skin. This should not be modified. Making this smaller means polygons will have an insufficient buffer for continuous collision. Making it larger may create artifacts for vertex collision. \mbox{\Hypertarget{b2_settings_8h_ab021adb740e4a5e1f5f7d9913ed94781}\label{b2_settings_8h_ab021adb740e4a5e1f5f7d9913ed94781}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_timeToSleep@{b2\_timeToSleep}}
+\index{b2\_timeToSleep@{b2\_timeToSleep}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_timeToSleep}{b2\_timeToSleep}}
+{\footnotesize\ttfamily \#define b2\+\_\+time\+To\+Sleep~0.\+5f}
+
+
+
+The time that a body must be still before it will go to sleep. 
+
+\mbox{\Hypertarget{b2_settings_8h_addf67cb7c89ad8a0370b488e8120a6ed}\label{b2_settings_8h_addf67cb7c89ad8a0370b488e8120a6ed}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_toiBaugarte@{b2\_toiBaugarte}}
+\index{b2\_toiBaugarte@{b2\_toiBaugarte}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_toiBaugarte}{b2\_toiBaugarte}}
+{\footnotesize\ttfamily \#define b2\+\_\+toi\+Baugarte~0.\+75f}
+
+\mbox{\Hypertarget{b2_settings_8h_a690b448aa2dba2a1393781f8c059c22a}\label{b2_settings_8h_a690b448aa2dba2a1393781f8c059c22a}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_velocityThreshold@{b2\_velocityThreshold}}
+\index{b2\_velocityThreshold@{b2\_velocityThreshold}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_velocityThreshold}{b2\_velocityThreshold}}
+{\footnotesize\ttfamily \#define b2\+\_\+velocity\+Threshold~1.\+0f}
+
+A velocity threshold for elastic collisions. Any collision with a relative linear velocity below this threshold will be treated as inelastic. \mbox{\Hypertarget{b2_settings_8h_ab3fe3791ea4d700d5cc1f8124d2edf33}\label{b2_settings_8h_ab3fe3791ea4d700d5cc1f8124d2edf33}} 
+\index{b2Settings.h@{b2Settings.h}!b2Assert@{b2Assert}}
+\index{b2Assert@{b2Assert}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2Assert}{b2Assert}}
+{\footnotesize\ttfamily \#define b2\+Assert(\begin{DoxyParamCaption}\item[{}]{A }\end{DoxyParamCaption})~assert(A)}
+
+\mbox{\Hypertarget{b2_settings_8h_a76c36ad7e53158b76b87f84d8260623a}\label{b2_settings_8h_a76c36ad7e53158b76b87f84d8260623a}} 
+\index{b2Settings.h@{b2Settings.h}!b2DEBUG@{b2DEBUG}}
+\index{b2DEBUG@{b2DEBUG}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2DEBUG}{b2DEBUG}}
+{\footnotesize\ttfamily \#define b2\+D\+E\+B\+UG}
+
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}\label{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}} 
+\index{b2Settings.h@{b2Settings.h}!float32@{float32}}
+\index{float32@{float32}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{float32}{float32}}
+{\footnotesize\ttfamily typedef float \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}
+
+\mbox{\Hypertarget{b2_settings_8h_a232fad1b0d6dcc7c16aabde98b2e2a80}\label{b2_settings_8h_a232fad1b0d6dcc7c16aabde98b2e2a80}} 
+\index{b2Settings.h@{b2Settings.h}!float64@{float64}}
+\index{float64@{float64}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{float64}{float64}}
+{\footnotesize\ttfamily typedef double \mbox{\hyperlink{b2_settings_8h_a232fad1b0d6dcc7c16aabde98b2e2a80}{float64}}}
+
+\mbox{\Hypertarget{b2_settings_8h_a259fa4834387bd68627ddf37bb3ebdb9}\label{b2_settings_8h_a259fa4834387bd68627ddf37bb3ebdb9}} 
+\index{b2Settings.h@{b2Settings.h}!int16@{int16}}
+\index{int16@{int16}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{int16}{int16}}
+{\footnotesize\ttfamily typedef signed short \mbox{\hyperlink{b2_settings_8h_a259fa4834387bd68627ddf37bb3ebdb9}{int16}}}
+
+\mbox{\Hypertarget{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}\label{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}} 
+\index{b2Settings.h@{b2Settings.h}!int32@{int32}}
+\index{int32@{int32}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{int32}{int32}}
+{\footnotesize\ttfamily typedef signed int \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}
+
+\mbox{\Hypertarget{b2_settings_8h_a1b956fe1df85f3c132b21edb4e116458}\label{b2_settings_8h_a1b956fe1df85f3c132b21edb4e116458}} 
+\index{b2Settings.h@{b2Settings.h}!int8@{int8}}
+\index{int8@{int8}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{int8}{int8}}
+{\footnotesize\ttfamily typedef signed char \mbox{\hyperlink{b2_settings_8h_a1b956fe1df85f3c132b21edb4e116458}{int8}}}
+
+\mbox{\Hypertarget{b2_settings_8h_a05f6b0ae8f6a6e135b0e290c25fe0e4e}\label{b2_settings_8h_a05f6b0ae8f6a6e135b0e290c25fe0e4e}} 
+\index{b2Settings.h@{b2Settings.h}!uint16@{uint16}}
+\index{uint16@{uint16}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{uint16}{uint16}}
+{\footnotesize\ttfamily typedef unsigned short \mbox{\hyperlink{b2_settings_8h_a05f6b0ae8f6a6e135b0e290c25fe0e4e}{uint16}}}
+
+\mbox{\Hypertarget{b2_settings_8h_a1134b580f8da4de94ca6b1de4d37975e}\label{b2_settings_8h_a1134b580f8da4de94ca6b1de4d37975e}} 
+\index{b2Settings.h@{b2Settings.h}!uint32@{uint32}}
+\index{uint32@{uint32}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{uint32}{uint32}}
+{\footnotesize\ttfamily typedef unsigned int \mbox{\hyperlink{b2_settings_8h_a1134b580f8da4de94ca6b1de4d37975e}{uint32}}}
+
+\mbox{\Hypertarget{b2_settings_8h_adde6aaee8457bee49c2a92621fe22b79}\label{b2_settings_8h_adde6aaee8457bee49c2a92621fe22b79}} 
+\index{b2Settings.h@{b2Settings.h}!uint8@{uint8}}
+\index{uint8@{uint8}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{uint8}{uint8}}
+{\footnotesize\ttfamily typedef unsigned char \mbox{\hyperlink{b2_settings_8h_adde6aaee8457bee49c2a92621fe22b79}{uint8}}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{b2_settings_8h_a2dca9b286e9b9d6d022055fd61534bd7}\label{b2_settings_8h_a2dca9b286e9b9d6d022055fd61534bd7}} 
+\index{b2Settings.h@{b2Settings.h}!b2Alloc@{b2Alloc}}
+\index{b2Alloc@{b2Alloc}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2Alloc()}{b2Alloc()}}
+{\footnotesize\ttfamily void$\ast$ b2\+Alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Implement this function to use your own memory allocator. 
+
+\mbox{\Hypertarget{b2_settings_8h_a50f4abf5edeabd0300946edbd542e24d}\label{b2_settings_8h_a50f4abf5edeabd0300946edbd542e24d}} 
+\index{b2Settings.h@{b2Settings.h}!b2Free@{b2Free}}
+\index{b2Free@{b2Free}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2Free()}{b2Free()}}
+{\footnotesize\ttfamily void b2\+Free (\begin{DoxyParamCaption}\item[{void $\ast$}]{mem }\end{DoxyParamCaption})}
+
+
+
+If you implement b2\+Alloc, you should also implement this function. 
+
+\mbox{\Hypertarget{b2_settings_8h_a9f10095d05c74eebfe535931c9061ab2}\label{b2_settings_8h_a9f10095d05c74eebfe535931c9061ab2}} 
+\index{b2Settings.h@{b2Settings.h}!b2Log@{b2Log}}
+\index{b2Log@{b2Log}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2Log()}{b2Log()}}
+{\footnotesize\ttfamily void b2\+Log (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Logging function. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{b2_settings_8h_a3a20e3b6a8b05633d911fea031f7a44f}\label{b2_settings_8h_a3a20e3b6a8b05633d911fea031f7a44f}} 
+\index{b2Settings.h@{b2Settings.h}!b2\_version@{b2\_version}}
+\index{b2\_version@{b2\_version}!b2Settings.h@{b2Settings.h}}
+\subsubsection{\texorpdfstring{b2\_version}{b2\_version}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_version}{b2\+Version}} b2\+\_\+version}
+
+
+
+Current version. 
+

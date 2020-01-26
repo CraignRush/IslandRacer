@@ -1,0 +1,91 @@
+\hypertarget{car_8h}{}\section{car.\+h File Reference}
+\label{car_8h}\index{car.h@{car.h}}
+{\ttfamily \#include $<$Box2\+D/\+Box2\+D.\+h$>$}\newline
+{\ttfamily \#include $<$Qt\+Core/\+Qt\+Math$>$}\newline
+{\ttfamily \#include $<$Q\+Graphics\+Pixmap\+Item$>$}\newline
+{\ttfamily \#include $<$Q\+Graphics\+Rect\+Item$>$}\newline
+{\ttfamily \#include $<$Q\+Timer$>$}\newline
+{\ttfamily \#include $<$Q\+Object$>$}\newline
+{\ttfamily \#include $<$Q\+Media\+Player$>$}\newline
+{\ttfamily \#include $<$Q\+Media\+Playlist$>$}\newline
+{\ttfamily \#include $<$Q\+Thread$>$}\newline
+{\ttfamily \#include $<$Q\+Debug$>$}\newline
+{\ttfamily \#include $<$Q\+Meta\+Object$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}worldposition.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}track.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sound.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_car}{Car}}
+\begin{DoxyCompactList}\small\item\em Creates a car with interact methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{car_8h_aecfb003a08d29c0b75cd266ca0cadb76}{Input\+State}} \{ \newline
+\mbox{\hyperlink{car_8h_aecfb003a08d29c0b75cd266ca0cadb76ac9d3e887722f2bc482bcca9d41c512af}{None}} = 0, 
+\mbox{\hyperlink{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a475d3cfd9106751bd2cb65ef189be213}{Accelerate}}, 
+\mbox{\hyperlink{car_8h_aecfb003a08d29c0b75cd266ca0cadb76aafd491fad7cf029b403434ee876a3c57}{Accelerate\+Steer\+Right}}, 
+\mbox{\hyperlink{car_8h_aecfb003a08d29c0b75cd266ca0cadb76ab14c692ab2c7a27c98f61dbdd4f85e04}{Accelerate\+Steer\+Left}}, 
+\newline
+\mbox{\hyperlink{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a54957cf47b2c20cda66ae848d2b3aacb}{Break}}, 
+\mbox{\hyperlink{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a9d9cb41279eb46ce45379115b3eb861e}{Break\+Steer\+Right}}, 
+\mbox{\hyperlink{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a643f8653f7d670b67d94a531e9b0c86d}{Break\+Steer\+Left}}, 
+\mbox{\hyperlink{car_8h_aecfb003a08d29c0b75cd266ca0cadb76acfaca206a70356b4f901dff03b335e17}{Steer\+Right}}, 
+\newline
+\mbox{\hyperlink{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a75c51eb03194000babe1d96429234d95}{Steer\+Left}}
+ \}
+\begin{DoxyCompactList}\small\item\em This enum contains all posible car movments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{car_8h_aecfb003a08d29c0b75cd266ca0cadb76}\label{car_8h_aecfb003a08d29c0b75cd266ca0cadb76}} 
+\index{car.h@{car.h}!InputState@{InputState}}
+\index{InputState@{InputState}!car.h@{car.h}}
+\subsubsection{\texorpdfstring{InputState}{InputState}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{car_8h_aecfb003a08d29c0b75cd266ca0cadb76}{Input\+State}}}
+
+
+
+This enum contains all posible car movments. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!car.h@{car.h}}\index{car.h@{car.h}!None@{None}}}\mbox{\Hypertarget{car_8h_aecfb003a08d29c0b75cd266ca0cadb76ac9d3e887722f2bc482bcca9d41c512af}\label{car_8h_aecfb003a08d29c0b75cd266ca0cadb76ac9d3e887722f2bc482bcca9d41c512af}} 
+None&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Accelerate@{Accelerate}!car.h@{car.h}}\index{car.h@{car.h}!Accelerate@{Accelerate}}}\mbox{\Hypertarget{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a475d3cfd9106751bd2cb65ef189be213}\label{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a475d3cfd9106751bd2cb65ef189be213}} 
+Accelerate&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AccelerateSteerRight@{AccelerateSteerRight}!car.h@{car.h}}\index{car.h@{car.h}!AccelerateSteerRight@{AccelerateSteerRight}}}\mbox{\Hypertarget{car_8h_aecfb003a08d29c0b75cd266ca0cadb76aafd491fad7cf029b403434ee876a3c57}\label{car_8h_aecfb003a08d29c0b75cd266ca0cadb76aafd491fad7cf029b403434ee876a3c57}} 
+Accelerate\+Steer\+Right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AccelerateSteerLeft@{AccelerateSteerLeft}!car.h@{car.h}}\index{car.h@{car.h}!AccelerateSteerLeft@{AccelerateSteerLeft}}}\mbox{\Hypertarget{car_8h_aecfb003a08d29c0b75cd266ca0cadb76ab14c692ab2c7a27c98f61dbdd4f85e04}\label{car_8h_aecfb003a08d29c0b75cd266ca0cadb76ab14c692ab2c7a27c98f61dbdd4f85e04}} 
+Accelerate\+Steer\+Left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Break@{Break}!car.h@{car.h}}\index{car.h@{car.h}!Break@{Break}}}\mbox{\Hypertarget{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a54957cf47b2c20cda66ae848d2b3aacb}\label{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a54957cf47b2c20cda66ae848d2b3aacb}} 
+Break&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BreakSteerRight@{BreakSteerRight}!car.h@{car.h}}\index{car.h@{car.h}!BreakSteerRight@{BreakSteerRight}}}\mbox{\Hypertarget{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a9d9cb41279eb46ce45379115b3eb861e}\label{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a9d9cb41279eb46ce45379115b3eb861e}} 
+Break\+Steer\+Right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BreakSteerLeft@{BreakSteerLeft}!car.h@{car.h}}\index{car.h@{car.h}!BreakSteerLeft@{BreakSteerLeft}}}\mbox{\Hypertarget{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a643f8653f7d670b67d94a531e9b0c86d}\label{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a643f8653f7d670b67d94a531e9b0c86d}} 
+Break\+Steer\+Left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SteerRight@{SteerRight}!car.h@{car.h}}\index{car.h@{car.h}!SteerRight@{SteerRight}}}\mbox{\Hypertarget{car_8h_aecfb003a08d29c0b75cd266ca0cadb76acfaca206a70356b4f901dff03b335e17}\label{car_8h_aecfb003a08d29c0b75cd266ca0cadb76acfaca206a70356b4f901dff03b335e17}} 
+Steer\+Right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SteerLeft@{SteerLeft}!car.h@{car.h}}\index{car.h@{car.h}!SteerLeft@{SteerLeft}}}\mbox{\Hypertarget{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a75c51eb03194000babe1d96429234d95}\label{car_8h_aecfb003a08d29c0b75cd266ca0cadb76a75c51eb03194000babe1d96429234d95}} 
+Steer\+Left&\\
+\hline
+
+\end{DoxyEnumFields}

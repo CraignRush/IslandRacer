@@ -1,0 +1,105 @@
+\hypertarget{class_game}{}\section{Game Class Reference}
+\label{class_game}\index{Game@{Game}}
+
+
+Loads the game and connect player with world class.  
+
+
+
+
+{\ttfamily \#include $<$game.\+h$>$}
+
+Inheritance diagram for Game\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_game_a79c2ba5d0577929a299a51cbbaba383a}{set\+Game\+Mode}} (bool mp)
+\begin{DoxyCompactList}\small\item\em Slot to select multi-\/ or singleplayer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_ad59df6562a58a614fda24622d3715b65}{Game}} ()
+\begin{DoxyCompactList}\small\item\em Generates world with standard screen size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_af2d18d34a602be70fc43b12d52964d07}{Game}} (int screen\+Width, int screen\+Height, bool fullscreen)
+\begin{DoxyCompactList}\small\item\em Generates world with selected screen size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_ae3d112ca6e0e55150d2fdbc704474530}{$\sim$\+Game}} ()
+\item 
+void \mbox{\hyperlink{class_game_a82cadd0c1af42e957ccdb47e8cf7ff04}{load\+Circuit}} (enum \mbox{\hyperlink{player_8h_a9c0489b2664a5ac943d6f70b3a8dcd67}{Circuit}} circuit, int speed\+Value, int acceleration\+Value, int handling\+Value, int car\+Value)
+\begin{DoxyCompactList}\small\item\em Opens selected .circuit file and reads all necessary values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Loads the game and connect player with world class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_game_ad59df6562a58a614fda24622d3715b65}\label{class_game_ad59df6562a58a614fda24622d3715b65}} 
+\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\subsubsection{\texorpdfstring{Game()}{Game()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Game\+::\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generates world with standard screen size. 
+
+\mbox{\Hypertarget{class_game_af2d18d34a602be70fc43b12d52964d07}\label{class_game_af2d18d34a602be70fc43b12d52964d07}} 
+\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\subsubsection{\texorpdfstring{Game()}{Game()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Game\+::\+Game (\begin{DoxyParamCaption}\item[{int}]{screen\+Width,  }\item[{int}]{screen\+Height,  }\item[{bool}]{fullscreen }\end{DoxyParamCaption})}
+
+
+
+Generates world with selected screen size. 
+
+\mbox{\Hypertarget{class_game_ae3d112ca6e0e55150d2fdbc704474530}\label{class_game_ae3d112ca6e0e55150d2fdbc704474530}} 
+\index{Game@{Game}!````~Game@{$\sim$Game}}
+\index{````~Game@{$\sim$Game}!Game@{Game}}
+\subsubsection{\texorpdfstring{$\sim$Game()}{~Game()}}
+{\footnotesize\ttfamily Game\+::$\sim$\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_a82cadd0c1af42e957ccdb47e8cf7ff04}\label{class_game_a82cadd0c1af42e957ccdb47e8cf7ff04}} 
+\index{Game@{Game}!loadCircuit@{loadCircuit}}
+\index{loadCircuit@{loadCircuit}!Game@{Game}}
+\subsubsection{\texorpdfstring{loadCircuit()}{loadCircuit()}}
+{\footnotesize\ttfamily void Game\+::load\+Circuit (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{player_8h_a9c0489b2664a5ac943d6f70b3a8dcd67}{Circuit}}}]{circuit,  }\item[{int}]{speed\+Value,  }\item[{int}]{acceleration\+Value,  }\item[{int}]{handling\+Value,  }\item[{int}]{car\+Value }\end{DoxyParamCaption})}
+
+
+
+Opens selected .circuit file and reads all necessary values. 
+
+The read values are passed to world class 
+\begin{DoxyParams}{Parameters}
+{\em circuit} & Circuit enum values which are defined in \mbox{\hyperlink{player_8h}{player.\+h}} \\
+\hline
+{\em speed\+Value} & Garage value for topspeed \\
+\hline
+{\em acceleration\+Value} & Garage value for acceleration \\
+\hline
+{\em handling\+Value} & Garage value for handling \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_game_a79c2ba5d0577929a299a51cbbaba383a}\label{class_game_a79c2ba5d0577929a299a51cbbaba383a}} 
+\index{Game@{Game}!setGameMode@{setGameMode}}
+\index{setGameMode@{setGameMode}!Game@{Game}}
+\subsubsection{\texorpdfstring{setGameMode}{setGameMode}}
+{\footnotesize\ttfamily void Game\+::set\+Game\+Mode (\begin{DoxyParamCaption}\item[{bool}]{mp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Slot to select multi-\/ or singleplayer. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{game_8h}{game.\+h}}\item 
+\mbox{\hyperlink{game_8cpp}{game.\+cpp}}\end{DoxyCompactItemize}

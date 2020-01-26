@@ -1,0 +1,46 @@
+\hypertarget{b2_block_allocator_8h}{}\section{E\+:/\+Uni/6.Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Common/b2\+Block\+Allocator.h File Reference}
+\label{b2_block_allocator_8h}\index{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Common/b2BlockAllocator.h@{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Common/b2BlockAllocator.h}}
+{\ttfamily \#include \char`\"{}Box2\+D/\+Common/b2\+Settings.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_block_allocator_8h_a911ec59e46ab201a0f5326550bd3d30a}{b2\+\_\+chunk\+Size}} = 16 $\ast$ 1024
+\item 
+const \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_block_allocator_8h_a828c28d738659ce7ad2af589a1f3cebc}{b2\+\_\+max\+Block\+Size}} = 640
+\item 
+const \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_block_allocator_8h_a5b62b6dca4dae27d8de51f130ab6f5b8}{b2\+\_\+block\+Sizes}} = 14
+\item 
+const \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_block_allocator_8h_aea90339946bc263db8eec04ce1f8ae73}{b2\+\_\+chunk\+Array\+Increment}} = 128
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{b2_block_allocator_8h_a5b62b6dca4dae27d8de51f130ab6f5b8}\label{b2_block_allocator_8h_a5b62b6dca4dae27d8de51f130ab6f5b8}} 
+\index{b2BlockAllocator.h@{b2BlockAllocator.h}!b2\_blockSizes@{b2\_blockSizes}}
+\index{b2\_blockSizes@{b2\_blockSizes}!b2BlockAllocator.h@{b2BlockAllocator.h}}
+\subsubsection{\texorpdfstring{b2\_blockSizes}{b2\_blockSizes}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+block\+Sizes = 14}
+
+\mbox{\Hypertarget{b2_block_allocator_8h_aea90339946bc263db8eec04ce1f8ae73}\label{b2_block_allocator_8h_aea90339946bc263db8eec04ce1f8ae73}} 
+\index{b2BlockAllocator.h@{b2BlockAllocator.h}!b2\_chunkArrayIncrement@{b2\_chunkArrayIncrement}}
+\index{b2\_chunkArrayIncrement@{b2\_chunkArrayIncrement}!b2BlockAllocator.h@{b2BlockAllocator.h}}
+\subsubsection{\texorpdfstring{b2\_chunkArrayIncrement}{b2\_chunkArrayIncrement}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+chunk\+Array\+Increment = 128}
+
+\mbox{\Hypertarget{b2_block_allocator_8h_a911ec59e46ab201a0f5326550bd3d30a}\label{b2_block_allocator_8h_a911ec59e46ab201a0f5326550bd3d30a}} 
+\index{b2BlockAllocator.h@{b2BlockAllocator.h}!b2\_chunkSize@{b2\_chunkSize}}
+\index{b2\_chunkSize@{b2\_chunkSize}!b2BlockAllocator.h@{b2BlockAllocator.h}}
+\subsubsection{\texorpdfstring{b2\_chunkSize}{b2\_chunkSize}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+chunk\+Size = 16 $\ast$ 1024}
+
+\mbox{\Hypertarget{b2_block_allocator_8h_a828c28d738659ce7ad2af589a1f3cebc}\label{b2_block_allocator_8h_a828c28d738659ce7ad2af589a1f3cebc}} 
+\index{b2BlockAllocator.h@{b2BlockAllocator.h}!b2\_maxBlockSize@{b2\_maxBlockSize}}
+\index{b2\_maxBlockSize@{b2\_maxBlockSize}!b2BlockAllocator.h@{b2BlockAllocator.h}}
+\subsubsection{\texorpdfstring{b2\_maxBlockSize}{b2\_maxBlockSize}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+max\+Block\+Size = 640}
+

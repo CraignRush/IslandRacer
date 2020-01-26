@@ -1,0 +1,79 @@
+\hypertarget{classb2_polygon_contact}{}\section{b2\+Polygon\+Contact Class Reference}
+\label{classb2_polygon_contact}\index{b2PolygonContact@{b2PolygonContact}}
+
+
+{\ttfamily \#include $<$b2\+Polygon\+Contact.\+h$>$}
+
+Inheritance diagram for b2\+Polygon\+Contact\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classb2_polygon_contact}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classb2_polygon_contact_a93cabf086e75ae40dcd1881760c71c63}{b2\+Polygon\+Contact}} (\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureA, \mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureB)
+\item 
+\mbox{\hyperlink{classb2_polygon_contact_a438093c76d08fc66459eeac9c35807db}{$\sim$b2\+Polygon\+Contact}} ()
+\item 
+void \mbox{\hyperlink{classb2_polygon_contact_aa9581ba4a2bc769b80e3f107801d0950}{Evaluate}} (\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$manifold, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfA, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfB) override
+\begin{DoxyCompactList}\small\item\em Evaluate this contact with your own manifold and transforms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ \mbox{\hyperlink{classb2_polygon_contact_a65356af432d877838e14755c5eb3c553}{Create}} (\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureA, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexA, \mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureB, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexB, \mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$allocator)
+\item 
+static void \mbox{\hyperlink{classb2_polygon_contact_a0cb55fd6af6f49d36c3cda15ffd96e63}{Destroy}} (\mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$contact, \mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$allocator)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classb2_polygon_contact_a93cabf086e75ae40dcd1881760c71c63}\label{classb2_polygon_contact_a93cabf086e75ae40dcd1881760c71c63}} 
+\index{b2PolygonContact@{b2PolygonContact}!b2PolygonContact@{b2PolygonContact}}
+\index{b2PolygonContact@{b2PolygonContact}!b2PolygonContact@{b2PolygonContact}}
+\subsubsection{\texorpdfstring{b2PolygonContact()}{b2PolygonContact()}}
+{\footnotesize\ttfamily b2\+Polygon\+Contact\+::b2\+Polygon\+Contact (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureA,  }\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureB }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classb2_polygon_contact_a438093c76d08fc66459eeac9c35807db}\label{classb2_polygon_contact_a438093c76d08fc66459eeac9c35807db}} 
+\index{b2PolygonContact@{b2PolygonContact}!````~b2PolygonContact@{$\sim$b2PolygonContact}}
+\index{````~b2PolygonContact@{$\sim$b2PolygonContact}!b2PolygonContact@{b2PolygonContact}}
+\subsubsection{\texorpdfstring{$\sim$b2PolygonContact()}{~b2PolygonContact()}}
+{\footnotesize\ttfamily b2\+Polygon\+Contact\+::$\sim$b2\+Polygon\+Contact (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classb2_polygon_contact_a65356af432d877838e14755c5eb3c553}\label{classb2_polygon_contact_a65356af432d877838e14755c5eb3c553}} 
+\index{b2PolygonContact@{b2PolygonContact}!Create@{Create}}
+\index{Create@{Create}!b2PolygonContact@{b2PolygonContact}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ b2\+Polygon\+Contact\+::\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureA,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexA,  }\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureB,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexB,  }\item[{\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classb2_polygon_contact_a0cb55fd6af6f49d36c3cda15ffd96e63}\label{classb2_polygon_contact_a0cb55fd6af6f49d36c3cda15ffd96e63}} 
+\index{b2PolygonContact@{b2PolygonContact}!Destroy@{Destroy}}
+\index{Destroy@{Destroy}!b2PolygonContact@{b2PolygonContact}}
+\subsubsection{\texorpdfstring{Destroy()}{Destroy()}}
+{\footnotesize\ttfamily void b2\+Polygon\+Contact\+::\+Destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$}]{contact,  }\item[{\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classb2_polygon_contact_aa9581ba4a2bc769b80e3f107801d0950}\label{classb2_polygon_contact_aa9581ba4a2bc769b80e3f107801d0950}} 
+\index{b2PolygonContact@{b2PolygonContact}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!b2PolygonContact@{b2PolygonContact}}
+\subsubsection{\texorpdfstring{Evaluate()}{Evaluate()}}
+{\footnotesize\ttfamily void b2\+Polygon\+Contact\+::\+Evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$}]{manifold,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfA,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluate this contact with your own manifold and transforms. 
+
+
+
+Implements \mbox{\hyperlink{classb2_contact_ae3c2842e5325b2d4500f8ed1d4de2f72}{b2\+Contact}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\+Contacts/\mbox{\hyperlink{b2_polygon_contact_8h}{b2\+Polygon\+Contact.\+h}}\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\+Contacts/\mbox{\hyperlink{b2_polygon_contact_8cpp}{b2\+Polygon\+Contact.\+cpp}}\end{DoxyCompactItemize}

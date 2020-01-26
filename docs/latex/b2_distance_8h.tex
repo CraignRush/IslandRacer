@@ -1,0 +1,29 @@
+\hypertarget{b2_distance_8h}{}\section{E\+:/\+Uni/6.Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Collision/b2\+Distance.h File Reference}
+\label{b2_distance_8h}\index{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Collision/b2Distance.h@{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Collision/b2Distance.h}}
+{\ttfamily \#include \char`\"{}Box2\+D/\+Common/b2\+Math.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structb2_distance_proxy}{b2\+Distance\+Proxy}}
+\item 
+struct \mbox{\hyperlink{structb2_simplex_cache}{b2\+Simplex\+Cache}}
+\item 
+struct \mbox{\hyperlink{structb2_distance_input}{b2\+Distance\+Input}}
+\item 
+struct \mbox{\hyperlink{structb2_distance_output}{b2\+Distance\+Output}}
+\begin{DoxyCompactList}\small\item\em Output for b2\+Distance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{b2_distance_8h_af8aa0d6b55c276763e2d2d8854400a8e}{b2\+Distance}} (\mbox{\hyperlink{structb2_distance_output}{b2\+Distance\+Output}} $\ast$output, \mbox{\hyperlink{structb2_simplex_cache}{b2\+Simplex\+Cache}} $\ast$cache, const \mbox{\hyperlink{structb2_distance_input}{b2\+Distance\+Input}} $\ast$input)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{b2_distance_8h_af8aa0d6b55c276763e2d2d8854400a8e}\label{b2_distance_8h_af8aa0d6b55c276763e2d2d8854400a8e}} 
+\index{b2Distance.h@{b2Distance.h}!b2Distance@{b2Distance}}
+\index{b2Distance@{b2Distance}!b2Distance.h@{b2Distance.h}}
+\subsubsection{\texorpdfstring{b2Distance()}{b2Distance()}}
+{\footnotesize\ttfamily void b2\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_distance_output}{b2\+Distance\+Output}} $\ast$}]{output,  }\item[{\mbox{\hyperlink{structb2_simplex_cache}{b2\+Simplex\+Cache}} $\ast$}]{cache,  }\item[{const \mbox{\hyperlink{structb2_distance_input}{b2\+Distance\+Input}} $\ast$}]{input }\end{DoxyParamCaption})}
+
+Compute the closest points between two shapes. Supports any combination of\+: \mbox{\hyperlink{classb2_circle_shape}{b2\+Circle\+Shape}}, \mbox{\hyperlink{classb2_polygon_shape}{b2\+Polygon\+Shape}}, \mbox{\hyperlink{classb2_edge_shape}{b2\+Edge\+Shape}}. The simplex cache is input/output. On the first call set \mbox{\hyperlink{structb2_simplex_cache_a5ef63839988cc06210ae76bcef96f56c}{b2\+Simplex\+Cache.\+count}} to zero. 

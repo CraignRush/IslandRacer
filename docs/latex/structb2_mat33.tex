@@ -1,0 +1,133 @@
+\hypertarget{structb2_mat33}{}\section{b2\+Mat33 Struct Reference}
+\label{structb2_mat33}\index{b2Mat33@{b2Mat33}}
+
+
+A 3-\/by-\/3 matrix. Stored in column-\/major order.  
+
+
+
+
+{\ttfamily \#include $<$b2\+Math.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structb2_mat33_a1f4d7ddf1c8a202fc08ec64dfe191463}{b2\+Mat33}} ()
+\begin{DoxyCompactList}\small\item\em The default constructor does nothing (for performance). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_mat33_a36d99a037008776c8d09fe0aeb5c759c}{b2\+Mat33}} (const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&c1, const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&c2, const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&c3)
+\begin{DoxyCompactList}\small\item\em Construct this matrix using columns. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structb2_mat33_a42fc6953b025e1c8b59717d0ee7accde}{Set\+Zero}} ()
+\begin{DoxyCompactList}\small\item\em Set this matrix to all zeros. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \mbox{\hyperlink{structb2_mat33_a2ce48f409ba5951a04da821dada9e285}{Solve33}} (const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&b) const
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{structb2_mat33_acdf892aab7e26283f8aa600ade91dcef}{Solve22}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b) const
+\item 
+void \mbox{\hyperlink{structb2_mat33_aa020bfd08e28c4cecda303ba335fe517}{Get\+Inverse22}} (\mbox{\hyperlink{structb2_mat33}{b2\+Mat33}} $\ast$M) const
+\item 
+void \mbox{\hyperlink{structb2_mat33_a2620944663233096d3b82bc4b1a991e9}{Get\+Sym\+Inverse33}} (\mbox{\hyperlink{structb2_mat33}{b2\+Mat33}} $\ast$M) const
+\begin{DoxyCompactList}\small\item\em Returns the zero matrix if singular. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \mbox{\hyperlink{structb2_mat33_a132f00e6550d1e19c75fb60ce1229638}{ex}}
+\item 
+\mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \mbox{\hyperlink{structb2_mat33_ababc69c718c73a04a651f7a6a981ecf4}{ey}}
+\item 
+\mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \mbox{\hyperlink{structb2_mat33_ae700fc46f679b4ef211a2517005b0557}{ez}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A 3-\/by-\/3 matrix. Stored in column-\/major order. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structb2_mat33_a1f4d7ddf1c8a202fc08ec64dfe191463}\label{structb2_mat33_a1f4d7ddf1c8a202fc08ec64dfe191463}} 
+\index{b2Mat33@{b2Mat33}!b2Mat33@{b2Mat33}}
+\index{b2Mat33@{b2Mat33}!b2Mat33@{b2Mat33}}
+\subsubsection{\texorpdfstring{b2Mat33()}{b2Mat33()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily b2\+Mat33\+::b2\+Mat33 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The default constructor does nothing (for performance). 
+
+\mbox{\Hypertarget{structb2_mat33_a36d99a037008776c8d09fe0aeb5c759c}\label{structb2_mat33_a36d99a037008776c8d09fe0aeb5c759c}} 
+\index{b2Mat33@{b2Mat33}!b2Mat33@{b2Mat33}}
+\index{b2Mat33@{b2Mat33}!b2Mat33@{b2Mat33}}
+\subsubsection{\texorpdfstring{b2Mat33()}{b2Mat33()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily b2\+Mat33\+::b2\+Mat33 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{c1,  }\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{c2,  }\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{c3 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct this matrix using columns. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structb2_mat33_aa020bfd08e28c4cecda303ba335fe517}\label{structb2_mat33_aa020bfd08e28c4cecda303ba335fe517}} 
+\index{b2Mat33@{b2Mat33}!GetInverse22@{GetInverse22}}
+\index{GetInverse22@{GetInverse22}!b2Mat33@{b2Mat33}}
+\subsubsection{\texorpdfstring{GetInverse22()}{GetInverse22()}}
+{\footnotesize\ttfamily void b2\+Mat33\+::\+Get\+Inverse22 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_mat33}{b2\+Mat33}} $\ast$}]{M }\end{DoxyParamCaption}) const}
+
+Get the inverse of this matrix as a 2-\/by-\/2. Returns the zero matrix if singular. \mbox{\Hypertarget{structb2_mat33_a2620944663233096d3b82bc4b1a991e9}\label{structb2_mat33_a2620944663233096d3b82bc4b1a991e9}} 
+\index{b2Mat33@{b2Mat33}!GetSymInverse33@{GetSymInverse33}}
+\index{GetSymInverse33@{GetSymInverse33}!b2Mat33@{b2Mat33}}
+\subsubsection{\texorpdfstring{GetSymInverse33()}{GetSymInverse33()}}
+{\footnotesize\ttfamily void b2\+Mat33\+::\+Get\+Sym\+Inverse33 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_mat33}{b2\+Mat33}} $\ast$}]{M }\end{DoxyParamCaption}) const}
+
+
+
+Returns the zero matrix if singular. 
+
+Get the symmetric inverse of this matrix as a 3-\/by-\/3. Returns the zero matrix if singular. \mbox{\Hypertarget{structb2_mat33_a42fc6953b025e1c8b59717d0ee7accde}\label{structb2_mat33_a42fc6953b025e1c8b59717d0ee7accde}} 
+\index{b2Mat33@{b2Mat33}!SetZero@{SetZero}}
+\index{SetZero@{SetZero}!b2Mat33@{b2Mat33}}
+\subsubsection{\texorpdfstring{SetZero()}{SetZero()}}
+{\footnotesize\ttfamily void b2\+Mat33\+::\+Set\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set this matrix to all zeros. 
+
+\mbox{\Hypertarget{structb2_mat33_acdf892aab7e26283f8aa600ade91dcef}\label{structb2_mat33_acdf892aab7e26283f8aa600ade91dcef}} 
+\index{b2Mat33@{b2Mat33}!Solve22@{Solve22}}
+\index{Solve22@{Solve22}!b2Mat33@{b2Mat33}}
+\subsubsection{\texorpdfstring{Solve22()}{Solve22()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Mat33\+::\+Solve22 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption}) const}
+
+Solve A $\ast$ x = b, where b is a column vector. This is more efficient than computing the inverse in one-\/shot cases. Solve only the upper 2-\/by-\/2 matrix equation.
+
+Solve A $\ast$ x = b, where b is a column vector. This is more efficient than computing the inverse in one-\/shot cases. \mbox{\Hypertarget{structb2_mat33_a2ce48f409ba5951a04da821dada9e285}\label{structb2_mat33_a2ce48f409ba5951a04da821dada9e285}} 
+\index{b2Mat33@{b2Mat33}!Solve33@{Solve33}}
+\index{Solve33@{Solve33}!b2Mat33@{b2Mat33}}
+\subsubsection{\texorpdfstring{Solve33()}{Solve33()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} b2\+Mat33\+::\+Solve33 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{b }\end{DoxyParamCaption}) const}
+
+Solve A $\ast$ x = b, where b is a column vector. This is more efficient than computing the inverse in one-\/shot cases. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structb2_mat33_a132f00e6550d1e19c75fb60ce1229638}\label{structb2_mat33_a132f00e6550d1e19c75fb60ce1229638}} 
+\index{b2Mat33@{b2Mat33}!ex@{ex}}
+\index{ex@{ex}!b2Mat33@{b2Mat33}}
+\subsubsection{\texorpdfstring{ex}{ex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} b2\+Mat33\+::ex}
+
+\mbox{\Hypertarget{structb2_mat33_ababc69c718c73a04a651f7a6a981ecf4}\label{structb2_mat33_ababc69c718c73a04a651f7a6a981ecf4}} 
+\index{b2Mat33@{b2Mat33}!ey@{ey}}
+\index{ey@{ey}!b2Mat33@{b2Mat33}}
+\subsubsection{\texorpdfstring{ey}{ey}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} b2\+Mat33\+::ey}
+
+\mbox{\Hypertarget{structb2_mat33_ae700fc46f679b4ef211a2517005b0557}\label{structb2_mat33_ae700fc46f679b4ef211a2517005b0557}} 
+\index{b2Mat33@{b2Mat33}!ez@{ez}}
+\index{ez@{ez}!b2Mat33@{b2Mat33}}
+\subsubsection{\texorpdfstring{ez}{ez}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} b2\+Mat33\+::ez}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Common/\mbox{\hyperlink{b2_math_8h}{b2\+Math.\+h}}\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Common/\mbox{\hyperlink{b2_math_8cpp}{b2\+Math.\+cpp}}\end{DoxyCompactItemize}

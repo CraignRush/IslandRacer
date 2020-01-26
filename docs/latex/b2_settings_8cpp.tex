@@ -1,0 +1,66 @@
+\hypertarget{b2_settings_8cpp}{}\section{E\+:/\+Uni/6.Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Common/b2\+Settings.cpp File Reference}
+\label{b2_settings_8cpp}\index{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Common/b2Settings.cpp@{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Common/b2Settings.cpp}}
+{\ttfamily \#include \char`\"{}Box2\+D/\+Common/b2\+Settings.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{b2_settings_8cpp_a2dca9b286e9b9d6d022055fd61534bd7}{b2\+Alloc}} (\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} size)
+\begin{DoxyCompactList}\small\item\em Implement this function to use your own memory allocator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{b2_settings_8cpp_a50f4abf5edeabd0300946edbd542e24d}{b2\+Free}} (void $\ast$mem)
+\begin{DoxyCompactList}\small\item\em If you implement b2\+Alloc, you should also implement this function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{b2_settings_8cpp_a9f10095d05c74eebfe535931c9061ab2}{b2\+Log}} (const char $\ast$string,...)
+\begin{DoxyCompactList}\small\item\em Logging function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structb2_version}{b2\+Version}} \mbox{\hyperlink{b2_settings_8cpp_a3a20e3b6a8b05633d911fea031f7a44f}{b2\+\_\+version}} = \{2, 3, 2\}
+\begin{DoxyCompactList}\small\item\em Current version. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{b2_settings_8cpp_a2dca9b286e9b9d6d022055fd61534bd7}\label{b2_settings_8cpp_a2dca9b286e9b9d6d022055fd61534bd7}} 
+\index{b2Settings.cpp@{b2Settings.cpp}!b2Alloc@{b2Alloc}}
+\index{b2Alloc@{b2Alloc}!b2Settings.cpp@{b2Settings.cpp}}
+\subsubsection{\texorpdfstring{b2Alloc()}{b2Alloc()}}
+{\footnotesize\ttfamily void$\ast$ b2\+Alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{size }\end{DoxyParamCaption})}
+
+
+
+Implement this function to use your own memory allocator. 
+
+\mbox{\Hypertarget{b2_settings_8cpp_a50f4abf5edeabd0300946edbd542e24d}\label{b2_settings_8cpp_a50f4abf5edeabd0300946edbd542e24d}} 
+\index{b2Settings.cpp@{b2Settings.cpp}!b2Free@{b2Free}}
+\index{b2Free@{b2Free}!b2Settings.cpp@{b2Settings.cpp}}
+\subsubsection{\texorpdfstring{b2Free()}{b2Free()}}
+{\footnotesize\ttfamily void b2\+Free (\begin{DoxyParamCaption}\item[{void $\ast$}]{mem }\end{DoxyParamCaption})}
+
+
+
+If you implement b2\+Alloc, you should also implement this function. 
+
+\mbox{\Hypertarget{b2_settings_8cpp_a9f10095d05c74eebfe535931c9061ab2}\label{b2_settings_8cpp_a9f10095d05c74eebfe535931c9061ab2}} 
+\index{b2Settings.cpp@{b2Settings.cpp}!b2Log@{b2Log}}
+\index{b2Log@{b2Log}!b2Settings.cpp@{b2Settings.cpp}}
+\subsubsection{\texorpdfstring{b2Log()}{b2Log()}}
+{\footnotesize\ttfamily void b2\+Log (\begin{DoxyParamCaption}\item[{const char $\ast$}]{string,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Logging function. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{b2_settings_8cpp_a3a20e3b6a8b05633d911fea031f7a44f}\label{b2_settings_8cpp_a3a20e3b6a8b05633d911fea031f7a44f}} 
+\index{b2Settings.cpp@{b2Settings.cpp}!b2\_version@{b2\_version}}
+\index{b2\_version@{b2\_version}!b2Settings.cpp@{b2Settings.cpp}}
+\subsubsection{\texorpdfstring{b2\_version}{b2\_version}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_version}{b2\+Version}} b2\+\_\+version = \{2, 3, 2\}}
+
+
+
+Current version. 
+

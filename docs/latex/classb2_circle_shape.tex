@@ -1,0 +1,155 @@
+\hypertarget{classb2_circle_shape}{}\section{b2\+Circle\+Shape Class Reference}
+\label{classb2_circle_shape}\index{b2CircleShape@{b2CircleShape}}
+
+
+A circle shape.  
+
+
+
+
+{\ttfamily \#include $<$b2\+Circle\+Shape.\+h$>$}
+
+Inheritance diagram for b2\+Circle\+Shape\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classb2_circle_shape}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classb2_circle_shape_a73bb9f0ea1c28d772db1192c52572018}{b2\+Circle\+Shape}} ()
+\item 
+\mbox{\hyperlink{classb2_shape}{b2\+Shape}} $\ast$ \mbox{\hyperlink{classb2_circle_shape_a5ff8fbab7dff87784fbff20b07e55cfc}{Clone}} (\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$allocator) const override
+\begin{DoxyCompactList}\small\item\em Implement \mbox{\hyperlink{classb2_shape}{b2\+Shape}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{classb2_circle_shape_a552db3402aed5d12c3177981e5208065}{Get\+Child\+Count}} () const override
+\item 
+bool \mbox{\hyperlink{classb2_circle_shape_a84e22b3807e84b72f2981010fc197099}{Test\+Point}} (const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&transform, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&p) const override
+\begin{DoxyCompactList}\small\item\em Implement \mbox{\hyperlink{classb2_shape}{b2\+Shape}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classb2_circle_shape_a442e847b9fc3d1344b02b48d490eb0c6}{Ray\+Cast}} (\mbox{\hyperlink{structb2_ray_cast_output}{b2\+Ray\+Cast\+Output}} $\ast$output, const \mbox{\hyperlink{structb2_ray_cast_input}{b2\+Ray\+Cast\+Input}} \&input, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&transform, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} child\+Index) const override
+\begin{DoxyCompactList}\small\item\em Implement \mbox{\hyperlink{classb2_shape}{b2\+Shape}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classb2_circle_shape_af4a4ea78780af7a7ce40bf5d54affe83}{Compute\+A\+A\+BB}} (\mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} $\ast$aabb, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&transform, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} child\+Index) const override
+\item 
+void \mbox{\hyperlink{classb2_circle_shape_a7dc07891abd015863fbf03076e47eec5}{Compute\+Mass}} (\mbox{\hyperlink{structb2_mass_data}{b2\+Mass\+Data}} $\ast$mass\+Data, \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} density) const override
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{classb2_circle_shape_a190705618b2e65f636f1dc03c63640ff}{m\+\_\+p}}
+\begin{DoxyCompactList}\small\item\em Position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A circle shape. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classb2_circle_shape_a73bb9f0ea1c28d772db1192c52572018}\label{classb2_circle_shape_a73bb9f0ea1c28d772db1192c52572018}} 
+\index{b2CircleShape@{b2CircleShape}!b2CircleShape@{b2CircleShape}}
+\index{b2CircleShape@{b2CircleShape}!b2CircleShape@{b2CircleShape}}
+\subsubsection{\texorpdfstring{b2CircleShape()}{b2CircleShape()}}
+{\footnotesize\ttfamily b2\+Circle\+Shape\+::b2\+Circle\+Shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classb2_circle_shape_a5ff8fbab7dff87784fbff20b07e55cfc}\label{classb2_circle_shape_a5ff8fbab7dff87784fbff20b07e55cfc}} 
+\index{b2CircleShape@{b2CircleShape}!Clone@{Clone}}
+\index{Clone@{Clone}!b2CircleShape@{b2CircleShape}}
+\subsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_shape}{b2\+Shape}} $\ast$ b2\+Circle\+Shape\+::\+Clone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implement \mbox{\hyperlink{classb2_shape}{b2\+Shape}}. 
+
+
+
+Implements \mbox{\hyperlink{classb2_shape_a4716243454bb9cf7c7ee1d9cb23ae634}{b2\+Shape}}.
+
+\mbox{\Hypertarget{classb2_circle_shape_af4a4ea78780af7a7ce40bf5d54affe83}\label{classb2_circle_shape_af4a4ea78780af7a7ce40bf5d54affe83}} 
+\index{b2CircleShape@{b2CircleShape}!ComputeAABB@{ComputeAABB}}
+\index{ComputeAABB@{ComputeAABB}!b2CircleShape@{b2CircleShape}}
+\subsubsection{\texorpdfstring{ComputeAABB()}{ComputeAABB()}}
+{\footnotesize\ttfamily void b2\+Circle\+Shape\+::\+Compute\+A\+A\+BB (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} $\ast$}]{aabb,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{transform,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{child\+Index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classb2_shape_a88e9807fab0c8ca9a98d8926e50a1411}{b2\+Shape\+::\+Compute\+A\+A\+BB}} 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classb2_shape_a88e9807fab0c8ca9a98d8926e50a1411}{b2\+Shape}}.
+
+\mbox{\Hypertarget{classb2_circle_shape_a7dc07891abd015863fbf03076e47eec5}\label{classb2_circle_shape_a7dc07891abd015863fbf03076e47eec5}} 
+\index{b2CircleShape@{b2CircleShape}!ComputeMass@{ComputeMass}}
+\index{ComputeMass@{ComputeMass}!b2CircleShape@{b2CircleShape}}
+\subsubsection{\texorpdfstring{ComputeMass()}{ComputeMass()}}
+{\footnotesize\ttfamily void b2\+Circle\+Shape\+::\+Compute\+Mass (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_mass_data}{b2\+Mass\+Data}} $\ast$}]{mass\+Data,  }\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{density }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classb2_shape_a61b365526241b47f124789b0309cac69}{b2\+Shape\+::\+Compute\+Mass}} 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classb2_shape_a61b365526241b47f124789b0309cac69}{b2\+Shape}}.
+
+\mbox{\Hypertarget{classb2_circle_shape_a552db3402aed5d12c3177981e5208065}\label{classb2_circle_shape_a552db3402aed5d12c3177981e5208065}} 
+\index{b2CircleShape@{b2CircleShape}!GetChildCount@{GetChildCount}}
+\index{GetChildCount@{GetChildCount}!b2CircleShape@{b2CircleShape}}
+\subsubsection{\texorpdfstring{GetChildCount()}{GetChildCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+Circle\+Shape\+::\+Get\+Child\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classb2_shape_a05a3c445017d96df9238ceefe6ce37ab}{b2\+Shape\+::\+Get\+Child\+Count}} 
+\end{DoxySeeAlso}
+
+
+Implements \mbox{\hyperlink{classb2_shape_a05a3c445017d96df9238ceefe6ce37ab}{b2\+Shape}}.
+
+\mbox{\Hypertarget{classb2_circle_shape_a442e847b9fc3d1344b02b48d490eb0c6}\label{classb2_circle_shape_a442e847b9fc3d1344b02b48d490eb0c6}} 
+\index{b2CircleShape@{b2CircleShape}!RayCast@{RayCast}}
+\index{RayCast@{RayCast}!b2CircleShape@{b2CircleShape}}
+\subsubsection{\texorpdfstring{RayCast()}{RayCast()}}
+{\footnotesize\ttfamily bool b2\+Circle\+Shape\+::\+Ray\+Cast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_ray_cast_output}{b2\+Ray\+Cast\+Output}} $\ast$}]{output,  }\item[{const \mbox{\hyperlink{structb2_ray_cast_input}{b2\+Ray\+Cast\+Input}} \&}]{input,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{transform,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{child\+Index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implement \mbox{\hyperlink{classb2_shape}{b2\+Shape}}. 
+
+
+
+Implements \mbox{\hyperlink{classb2_shape_aee53a926f4fe64cd03693f6211ef6335}{b2\+Shape}}.
+
+\mbox{\Hypertarget{classb2_circle_shape_a84e22b3807e84b72f2981010fc197099}\label{classb2_circle_shape_a84e22b3807e84b72f2981010fc197099}} 
+\index{b2CircleShape@{b2CircleShape}!TestPoint@{TestPoint}}
+\index{TestPoint@{TestPoint}!b2CircleShape@{b2CircleShape}}
+\subsubsection{\texorpdfstring{TestPoint()}{TestPoint()}}
+{\footnotesize\ttfamily bool b2\+Circle\+Shape\+::\+Test\+Point (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{transform,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implement \mbox{\hyperlink{classb2_shape}{b2\+Shape}}. 
+
+
+
+Implements \mbox{\hyperlink{classb2_shape_a6ac968e403e2d93e8ae46d728a2e50fa}{b2\+Shape}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classb2_circle_shape_a190705618b2e65f636f1dc03c63640ff}\label{classb2_circle_shape_a190705618b2e65f636f1dc03c63640ff}} 
+\index{b2CircleShape@{b2CircleShape}!m\_p@{m\_p}}
+\index{m\_p@{m\_p}!b2CircleShape@{b2CircleShape}}
+\subsubsection{\texorpdfstring{m\_p}{m\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Circle\+Shape\+::m\+\_\+p}
+
+
+
+Position. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Collision/\+Shapes/\mbox{\hyperlink{b2_circle_shape_8h}{b2\+Circle\+Shape.\+h}}\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Collision/\+Shapes/\mbox{\hyperlink{b2_circle_shape_8cpp}{b2\+Circle\+Shape.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,79 @@
+\hypertarget{classb2_polygon_and_circle_contact}{}\section{b2\+Polygon\+And\+Circle\+Contact Class Reference}
+\label{classb2_polygon_and_circle_contact}\index{b2PolygonAndCircleContact@{b2PolygonAndCircleContact}}
+
+
+{\ttfamily \#include $<$b2\+Polygon\+And\+Circle\+Contact.\+h$>$}
+
+Inheritance diagram for b2\+Polygon\+And\+Circle\+Contact\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classb2_polygon_and_circle_contact}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classb2_polygon_and_circle_contact_a38158da229eee22253c1f64df1982e40}{b2\+Polygon\+And\+Circle\+Contact}} (\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureA, \mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureB)
+\item 
+\mbox{\hyperlink{classb2_polygon_and_circle_contact_abe6539183d4904194418809915b20490}{$\sim$b2\+Polygon\+And\+Circle\+Contact}} ()
+\item 
+void \mbox{\hyperlink{classb2_polygon_and_circle_contact_a4af8338f124be0b7ec704997be4736b1}{Evaluate}} (\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$manifold, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfA, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfB) override
+\begin{DoxyCompactList}\small\item\em Evaluate this contact with your own manifold and transforms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ \mbox{\hyperlink{classb2_polygon_and_circle_contact_a0b83e092a7d14f9cdd919fa15ef6058f}{Create}} (\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureA, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexA, \mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureB, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexB, \mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$allocator)
+\item 
+static void \mbox{\hyperlink{classb2_polygon_and_circle_contact_a04e9a3fcdcf52821fb90b8206b8bb2f0}{Destroy}} (\mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$contact, \mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$allocator)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classb2_polygon_and_circle_contact_a38158da229eee22253c1f64df1982e40}\label{classb2_polygon_and_circle_contact_a38158da229eee22253c1f64df1982e40}} 
+\index{b2PolygonAndCircleContact@{b2PolygonAndCircleContact}!b2PolygonAndCircleContact@{b2PolygonAndCircleContact}}
+\index{b2PolygonAndCircleContact@{b2PolygonAndCircleContact}!b2PolygonAndCircleContact@{b2PolygonAndCircleContact}}
+\subsubsection{\texorpdfstring{b2PolygonAndCircleContact()}{b2PolygonAndCircleContact()}}
+{\footnotesize\ttfamily b2\+Polygon\+And\+Circle\+Contact\+::b2\+Polygon\+And\+Circle\+Contact (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureA,  }\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureB }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classb2_polygon_and_circle_contact_abe6539183d4904194418809915b20490}\label{classb2_polygon_and_circle_contact_abe6539183d4904194418809915b20490}} 
+\index{b2PolygonAndCircleContact@{b2PolygonAndCircleContact}!````~b2PolygonAndCircleContact@{$\sim$b2PolygonAndCircleContact}}
+\index{````~b2PolygonAndCircleContact@{$\sim$b2PolygonAndCircleContact}!b2PolygonAndCircleContact@{b2PolygonAndCircleContact}}
+\subsubsection{\texorpdfstring{$\sim$b2PolygonAndCircleContact()}{~b2PolygonAndCircleContact()}}
+{\footnotesize\ttfamily b2\+Polygon\+And\+Circle\+Contact\+::$\sim$b2\+Polygon\+And\+Circle\+Contact (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classb2_polygon_and_circle_contact_a0b83e092a7d14f9cdd919fa15ef6058f}\label{classb2_polygon_and_circle_contact_a0b83e092a7d14f9cdd919fa15ef6058f}} 
+\index{b2PolygonAndCircleContact@{b2PolygonAndCircleContact}!Create@{Create}}
+\index{Create@{Create}!b2PolygonAndCircleContact@{b2PolygonAndCircleContact}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ b2\+Polygon\+And\+Circle\+Contact\+::\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureA,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexA,  }\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureB,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexB,  }\item[{\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classb2_polygon_and_circle_contact_a04e9a3fcdcf52821fb90b8206b8bb2f0}\label{classb2_polygon_and_circle_contact_a04e9a3fcdcf52821fb90b8206b8bb2f0}} 
+\index{b2PolygonAndCircleContact@{b2PolygonAndCircleContact}!Destroy@{Destroy}}
+\index{Destroy@{Destroy}!b2PolygonAndCircleContact@{b2PolygonAndCircleContact}}
+\subsubsection{\texorpdfstring{Destroy()}{Destroy()}}
+{\footnotesize\ttfamily void b2\+Polygon\+And\+Circle\+Contact\+::\+Destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$}]{contact,  }\item[{\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classb2_polygon_and_circle_contact_a4af8338f124be0b7ec704997be4736b1}\label{classb2_polygon_and_circle_contact_a4af8338f124be0b7ec704997be4736b1}} 
+\index{b2PolygonAndCircleContact@{b2PolygonAndCircleContact}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!b2PolygonAndCircleContact@{b2PolygonAndCircleContact}}
+\subsubsection{\texorpdfstring{Evaluate()}{Evaluate()}}
+{\footnotesize\ttfamily void b2\+Polygon\+And\+Circle\+Contact\+::\+Evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$}]{manifold,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfA,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluate this contact with your own manifold and transforms. 
+
+
+
+Implements \mbox{\hyperlink{classb2_contact_ae3c2842e5325b2d4500f8ed1d4de2f72}{b2\+Contact}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\+Contacts/\mbox{\hyperlink{b2_polygon_and_circle_contact_8h}{b2\+Polygon\+And\+Circle\+Contact.\+h}}\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\+Contacts/\mbox{\hyperlink{b2_polygon_and_circle_contact_8cpp}{b2\+Polygon\+And\+Circle\+Contact.\+cpp}}\end{DoxyCompactItemize}

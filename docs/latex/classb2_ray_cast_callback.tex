@@ -1,0 +1,51 @@
+\hypertarget{classb2_ray_cast_callback}{}\section{b2\+Ray\+Cast\+Callback Class Reference}
+\label{classb2_ray_cast_callback}\index{b2RayCastCallback@{b2RayCastCallback}}
+
+
+{\ttfamily \#include $<$b2\+World\+Callbacks.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classb2_ray_cast_callback_a8d7bab364f08f8ab122b59560355a739}{$\sim$b2\+Ray\+Cast\+Callback}} ()
+\item 
+virtual \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{classb2_ray_cast_callback_a658d5c8e89e0c73230cc8bddade4f3a4}{Report\+Fixture}} (\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixture, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&point, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&normal, \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} fraction)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Callback class for ray casts. See \mbox{\hyperlink{classb2_world_aa9955d94a254253997daaf16ce77bab6}{b2\+World\+::\+Ray\+Cast}} 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classb2_ray_cast_callback_a8d7bab364f08f8ab122b59560355a739}\label{classb2_ray_cast_callback_a8d7bab364f08f8ab122b59560355a739}} 
+\index{b2RayCastCallback@{b2RayCastCallback}!````~b2RayCastCallback@{$\sim$b2RayCastCallback}}
+\index{````~b2RayCastCallback@{$\sim$b2RayCastCallback}!b2RayCastCallback@{b2RayCastCallback}}
+\subsubsection{\texorpdfstring{$\sim$b2RayCastCallback()}{~b2RayCastCallback()}}
+{\footnotesize\ttfamily virtual b2\+Ray\+Cast\+Callback\+::$\sim$b2\+Ray\+Cast\+Callback (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classb2_ray_cast_callback_a658d5c8e89e0c73230cc8bddade4f3a4}\label{classb2_ray_cast_callback_a658d5c8e89e0c73230cc8bddade4f3a4}} 
+\index{b2RayCastCallback@{b2RayCastCallback}!ReportFixture@{ReportFixture}}
+\index{ReportFixture@{ReportFixture}!b2RayCastCallback@{b2RayCastCallback}}
+\subsubsection{\texorpdfstring{ReportFixture()}{ReportFixture()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Ray\+Cast\+Callback\+::\+Report\+Fixture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixture,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{point,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{normal,  }\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{fraction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Called for each fixture found in the query. You control how the ray cast proceeds by returning a float\+: return -\/1\+: ignore this fixture and continue return 0\+: terminate the ray cast return fraction\+: clip the ray to this point return 1\+: don\textquotesingle{}t clip the ray and continue 
+\begin{DoxyParams}{Parameters}
+{\em fixture} & the fixture hit by the ray \\
+\hline
+{\em point} & the point of initial intersection \\
+\hline
+{\em normal} & the normal vector at the point of intersection \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 to filter, 0 to terminate, fraction to clip the ray for closest hit, 1 to continue 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\mbox{\hyperlink{b2_world_callbacks_8h}{b2\+World\+Callbacks.\+h}}\end{DoxyCompactItemize}

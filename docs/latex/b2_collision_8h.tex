@@ -1,0 +1,188 @@
+\hypertarget{b2_collision_8h}{}\section{E\+:/\+Uni/6.Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Collision/b2\+Collision.h File Reference}
+\label{b2_collision_8h}\index{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Collision/b2Collision.h@{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Collision/b2Collision.h}}
+{\ttfamily \#include \char`\"{}Box2\+D/\+Common/b2\+Math.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structb2_contact_feature}{b2\+Contact\+Feature}}
+\item 
+union \mbox{\hyperlink{unionb2_contact_i_d}{b2\+Contact\+ID}}
+\begin{DoxyCompactList}\small\item\em Contact ids to facilitate warm starting. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structb2_manifold_point}{b2\+Manifold\+Point}}
+\item 
+struct \mbox{\hyperlink{structb2_manifold}{b2\+Manifold}}
+\item 
+struct \mbox{\hyperlink{structb2_world_manifold}{b2\+World\+Manifold}}
+\begin{DoxyCompactList}\small\item\em This is used to compute the current state of a contact manifold. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structb2_clip_vertex}{b2\+Clip\+Vertex}}
+\begin{DoxyCompactList}\small\item\em Used for computing contact manifolds. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structb2_ray_cast_input}{b2\+Ray\+Cast\+Input}}
+\begin{DoxyCompactList}\small\item\em Ray-\/cast input data. The ray extends from p1 to p1 + max\+Fraction $\ast$ (p2 -\/ p1). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structb2_ray_cast_output}{b2\+Ray\+Cast\+Output}}
+\item 
+struct \mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}}
+\begin{DoxyCompactList}\small\item\em An axis aligned bounding box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663d}{b2\+Point\+State}} \{ \mbox{\hyperlink{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663da7ce77ce1a592f49d92939997976c217b}{b2\+\_\+null\+State}}, 
+\mbox{\hyperlink{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663dac60dc479bee2089a695b37948179b3d4}{b2\+\_\+add\+State}}, 
+\mbox{\hyperlink{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663dafb032f2175741fa95361e55d1c069e0a}{b2\+\_\+persist\+State}}, 
+\mbox{\hyperlink{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663da42ca6d7de57b948c8c895cd6f51ee8be}{b2\+\_\+remove\+State}}
+ \}
+\begin{DoxyCompactList}\small\item\em This is used for determining the state of contact points. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{b2_collision_8h_a401e2747d276e9fbfd131989e02ff568}{b2\+Get\+Point\+States}} (\mbox{\hyperlink{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663d}{b2\+Point\+State}} state1\mbox{[}\mbox{\hyperlink{b2_settings_8h_aa5f44cc9edf711433dea2b2ec94f3c42}{b2\+\_\+max\+Manifold\+Points}}\mbox{]}, \mbox{\hyperlink{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663d}{b2\+Point\+State}} state2\mbox{[}\mbox{\hyperlink{b2_settings_8h_aa5f44cc9edf711433dea2b2ec94f3c42}{b2\+\_\+max\+Manifold\+Points}}\mbox{]}, const \mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$manifold1, const \mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$manifold2)
+\item 
+void \mbox{\hyperlink{b2_collision_8h_ab8a1bf2c6a9453307466f4870c1fa333}{b2\+Collide\+Circles}} (\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$manifold, const \mbox{\hyperlink{classb2_circle_shape}{b2\+Circle\+Shape}} $\ast$circleA, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfA, const \mbox{\hyperlink{classb2_circle_shape}{b2\+Circle\+Shape}} $\ast$circleB, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfB)
+\begin{DoxyCompactList}\small\item\em Compute the collision manifold between two circles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{b2_collision_8h_a30da13c857596fbefa40b47c3e1e78d0}{b2\+Collide\+Polygon\+And\+Circle}} (\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$manifold, const \mbox{\hyperlink{classb2_polygon_shape}{b2\+Polygon\+Shape}} $\ast$polygonA, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfA, const \mbox{\hyperlink{classb2_circle_shape}{b2\+Circle\+Shape}} $\ast$circleB, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfB)
+\begin{DoxyCompactList}\small\item\em Compute the collision manifold between a polygon and a circle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{b2_collision_8h_a2f7b9859479384c0e2cceb9e7744afcb}{b2\+Collide\+Polygons}} (\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$manifold, const \mbox{\hyperlink{classb2_polygon_shape}{b2\+Polygon\+Shape}} $\ast$polygonA, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfA, const \mbox{\hyperlink{classb2_polygon_shape}{b2\+Polygon\+Shape}} $\ast$polygonB, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfB)
+\begin{DoxyCompactList}\small\item\em Compute the collision manifold between two polygons. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{b2_collision_8h_aee6f752fdf8c89152e824da12e944733}{b2\+Collide\+Edge\+And\+Circle}} (\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$manifold, const \mbox{\hyperlink{classb2_edge_shape}{b2\+Edge\+Shape}} $\ast$polygonA, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfA, const \mbox{\hyperlink{classb2_circle_shape}{b2\+Circle\+Shape}} $\ast$circleB, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfB)
+\begin{DoxyCompactList}\small\item\em Compute the collision manifold between an edge and a circle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{b2_collision_8h_a5d0c5fab412d5ca886b1965666b16d99}{b2\+Collide\+Edge\+And\+Polygon}} (\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$manifold, const \mbox{\hyperlink{classb2_edge_shape}{b2\+Edge\+Shape}} $\ast$edgeA, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfA, const \mbox{\hyperlink{classb2_polygon_shape}{b2\+Polygon\+Shape}} $\ast$circleB, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfB)
+\begin{DoxyCompactList}\small\item\em Compute the collision manifold between an edge and a circle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_collision_8h_a8b36e651798f55f2533f9837462ded41}{b2\+Clip\+Segment\+To\+Line}} (\mbox{\hyperlink{structb2_clip_vertex}{b2\+Clip\+Vertex}} v\+Out\mbox{[}2\mbox{]}, const \mbox{\hyperlink{structb2_clip_vertex}{b2\+Clip\+Vertex}} v\+In\mbox{[}2\mbox{]}, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&normal, \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} offset, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} vertex\+IndexA)
+\begin{DoxyCompactList}\small\item\em Clipping for contact manifolds. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{b2_collision_8h_ae7601420d0b42c1ee494e879dd2009a5}{b2\+Test\+Overlap}} (const \mbox{\hyperlink{classb2_shape}{b2\+Shape}} $\ast$shapeA, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexA, const \mbox{\hyperlink{classb2_shape}{b2\+Shape}} $\ast$shapeB, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexB, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfA, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfB)
+\begin{DoxyCompactList}\small\item\em Determine if two generic shapes overlap. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{b2_collision_8h_a3dea7a8a1115626c450a697f6c6bf97e}{b2\+Test\+Overlap}} (const \mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} \&a, const \mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} \&b)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{b2_settings_8h_adde6aaee8457bee49c2a92621fe22b79}{uint8}} \mbox{\hyperlink{b2_collision_8h_a910fdc8a802b3cac220f2ee873109818}{b2\+\_\+null\+Feature}} = U\+C\+H\+A\+R\+\_\+\+M\+AX
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Structures and functions used for computing contact points, distance queries, and T\+OI queries. 
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663d}\label{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663d}} 
+\index{b2Collision.h@{b2Collision.h}!b2PointState@{b2PointState}}
+\index{b2PointState@{b2PointState}!b2Collision.h@{b2Collision.h}}
+\subsubsection{\texorpdfstring{b2PointState}{b2PointState}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663d}{b2\+Point\+State}}}
+
+
+
+This is used for determining the state of contact points. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b2\_nullState@{b2\_nullState}!b2Collision.h@{b2Collision.h}}\index{b2Collision.h@{b2Collision.h}!b2\_nullState@{b2\_nullState}}}\mbox{\Hypertarget{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663da7ce77ce1a592f49d92939997976c217b}\label{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663da7ce77ce1a592f49d92939997976c217b}} 
+b2\+\_\+null\+State&point does not exist \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b2\_addState@{b2\_addState}!b2Collision.h@{b2Collision.h}}\index{b2Collision.h@{b2Collision.h}!b2\_addState@{b2\_addState}}}\mbox{\Hypertarget{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663dac60dc479bee2089a695b37948179b3d4}\label{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663dac60dc479bee2089a695b37948179b3d4}} 
+b2\+\_\+add\+State&point was added in the update \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b2\_persistState@{b2\_persistState}!b2Collision.h@{b2Collision.h}}\index{b2Collision.h@{b2Collision.h}!b2\_persistState@{b2\_persistState}}}\mbox{\Hypertarget{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663dafb032f2175741fa95361e55d1c069e0a}\label{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663dafb032f2175741fa95361e55d1c069e0a}} 
+b2\+\_\+persist\+State&point persisted across the update \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{b2\_removeState@{b2\_removeState}!b2Collision.h@{b2Collision.h}}\index{b2Collision.h@{b2Collision.h}!b2\_removeState@{b2\_removeState}}}\mbox{\Hypertarget{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663da42ca6d7de57b948c8c895cd6f51ee8be}\label{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663da42ca6d7de57b948c8c895cd6f51ee8be}} 
+b2\+\_\+remove\+State&point was removed in the update \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{b2_collision_8h_a8b36e651798f55f2533f9837462ded41}\label{b2_collision_8h_a8b36e651798f55f2533f9837462ded41}} 
+\index{b2Collision.h@{b2Collision.h}!b2ClipSegmentToLine@{b2ClipSegmentToLine}}
+\index{b2ClipSegmentToLine@{b2ClipSegmentToLine}!b2Collision.h@{b2Collision.h}}
+\subsubsection{\texorpdfstring{b2ClipSegmentToLine()}{b2ClipSegmentToLine()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+Clip\+Segment\+To\+Line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_clip_vertex}{b2\+Clip\+Vertex}}}]{v\+Out\mbox{[}2\mbox{]},  }\item[{const \mbox{\hyperlink{structb2_clip_vertex}{b2\+Clip\+Vertex}}}]{v\+In\mbox{[}2\mbox{]},  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{normal,  }\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{offset,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{vertex\+IndexA }\end{DoxyParamCaption})}
+
+
+
+Clipping for contact manifolds. 
+
+\mbox{\Hypertarget{b2_collision_8h_ab8a1bf2c6a9453307466f4870c1fa333}\label{b2_collision_8h_ab8a1bf2c6a9453307466f4870c1fa333}} 
+\index{b2Collision.h@{b2Collision.h}!b2CollideCircles@{b2CollideCircles}}
+\index{b2CollideCircles@{b2CollideCircles}!b2Collision.h@{b2Collision.h}}
+\subsubsection{\texorpdfstring{b2CollideCircles()}{b2CollideCircles()}}
+{\footnotesize\ttfamily void b2\+Collide\+Circles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$}]{manifold,  }\item[{const \mbox{\hyperlink{classb2_circle_shape}{b2\+Circle\+Shape}} $\ast$}]{circleA,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfA,  }\item[{const \mbox{\hyperlink{classb2_circle_shape}{b2\+Circle\+Shape}} $\ast$}]{circleB,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfB }\end{DoxyParamCaption})}
+
+
+
+Compute the collision manifold between two circles. 
+
+\mbox{\Hypertarget{b2_collision_8h_aee6f752fdf8c89152e824da12e944733}\label{b2_collision_8h_aee6f752fdf8c89152e824da12e944733}} 
+\index{b2Collision.h@{b2Collision.h}!b2CollideEdgeAndCircle@{b2CollideEdgeAndCircle}}
+\index{b2CollideEdgeAndCircle@{b2CollideEdgeAndCircle}!b2Collision.h@{b2Collision.h}}
+\subsubsection{\texorpdfstring{b2CollideEdgeAndCircle()}{b2CollideEdgeAndCircle()}}
+{\footnotesize\ttfamily void b2\+Collide\+Edge\+And\+Circle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$}]{manifold,  }\item[{const \mbox{\hyperlink{classb2_edge_shape}{b2\+Edge\+Shape}} $\ast$}]{polygonA,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfA,  }\item[{const \mbox{\hyperlink{classb2_circle_shape}{b2\+Circle\+Shape}} $\ast$}]{circleB,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfB }\end{DoxyParamCaption})}
+
+
+
+Compute the collision manifold between an edge and a circle. 
+
+\mbox{\Hypertarget{b2_collision_8h_a5d0c5fab412d5ca886b1965666b16d99}\label{b2_collision_8h_a5d0c5fab412d5ca886b1965666b16d99}} 
+\index{b2Collision.h@{b2Collision.h}!b2CollideEdgeAndPolygon@{b2CollideEdgeAndPolygon}}
+\index{b2CollideEdgeAndPolygon@{b2CollideEdgeAndPolygon}!b2Collision.h@{b2Collision.h}}
+\subsubsection{\texorpdfstring{b2CollideEdgeAndPolygon()}{b2CollideEdgeAndPolygon()}}
+{\footnotesize\ttfamily void b2\+Collide\+Edge\+And\+Polygon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$}]{manifold,  }\item[{const \mbox{\hyperlink{classb2_edge_shape}{b2\+Edge\+Shape}} $\ast$}]{edgeA,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfA,  }\item[{const \mbox{\hyperlink{classb2_polygon_shape}{b2\+Polygon\+Shape}} $\ast$}]{circleB,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfB }\end{DoxyParamCaption})}
+
+
+
+Compute the collision manifold between an edge and a circle. 
+
+\mbox{\Hypertarget{b2_collision_8h_a30da13c857596fbefa40b47c3e1e78d0}\label{b2_collision_8h_a30da13c857596fbefa40b47c3e1e78d0}} 
+\index{b2Collision.h@{b2Collision.h}!b2CollidePolygonAndCircle@{b2CollidePolygonAndCircle}}
+\index{b2CollidePolygonAndCircle@{b2CollidePolygonAndCircle}!b2Collision.h@{b2Collision.h}}
+\subsubsection{\texorpdfstring{b2CollidePolygonAndCircle()}{b2CollidePolygonAndCircle()}}
+{\footnotesize\ttfamily void b2\+Collide\+Polygon\+And\+Circle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$}]{manifold,  }\item[{const \mbox{\hyperlink{classb2_polygon_shape}{b2\+Polygon\+Shape}} $\ast$}]{polygonA,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfA,  }\item[{const \mbox{\hyperlink{classb2_circle_shape}{b2\+Circle\+Shape}} $\ast$}]{circleB,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfB }\end{DoxyParamCaption})}
+
+
+
+Compute the collision manifold between a polygon and a circle. 
+
+\mbox{\Hypertarget{b2_collision_8h_a2f7b9859479384c0e2cceb9e7744afcb}\label{b2_collision_8h_a2f7b9859479384c0e2cceb9e7744afcb}} 
+\index{b2Collision.h@{b2Collision.h}!b2CollidePolygons@{b2CollidePolygons}}
+\index{b2CollidePolygons@{b2CollidePolygons}!b2Collision.h@{b2Collision.h}}
+\subsubsection{\texorpdfstring{b2CollidePolygons()}{b2CollidePolygons()}}
+{\footnotesize\ttfamily void b2\+Collide\+Polygons (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$}]{manifold,  }\item[{const \mbox{\hyperlink{classb2_polygon_shape}{b2\+Polygon\+Shape}} $\ast$}]{polygonA,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfA,  }\item[{const \mbox{\hyperlink{classb2_polygon_shape}{b2\+Polygon\+Shape}} $\ast$}]{polygonB,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfB }\end{DoxyParamCaption})}
+
+
+
+Compute the collision manifold between two polygons. 
+
+\mbox{\Hypertarget{b2_collision_8h_a401e2747d276e9fbfd131989e02ff568}\label{b2_collision_8h_a401e2747d276e9fbfd131989e02ff568}} 
+\index{b2Collision.h@{b2Collision.h}!b2GetPointStates@{b2GetPointStates}}
+\index{b2GetPointStates@{b2GetPointStates}!b2Collision.h@{b2Collision.h}}
+\subsubsection{\texorpdfstring{b2GetPointStates()}{b2GetPointStates()}}
+{\footnotesize\ttfamily void b2\+Get\+Point\+States (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663d}{b2\+Point\+State}}}]{state1\mbox{[}b2\+\_\+max\+Manifold\+Points\mbox{]},  }\item[{\mbox{\hyperlink{b2_collision_8h_a0a894e3715ce8c61b7958dd6e083663d}{b2\+Point\+State}}}]{state2\mbox{[}b2\+\_\+max\+Manifold\+Points\mbox{]},  }\item[{const \mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$}]{manifold1,  }\item[{const \mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$}]{manifold2 }\end{DoxyParamCaption})}
+
+Compute the point states given two manifolds. The states pertain to the transition from manifold1 to manifold2. So state1 is either persist or remove while state2 is either add or persist. \mbox{\Hypertarget{b2_collision_8h_ae7601420d0b42c1ee494e879dd2009a5}\label{b2_collision_8h_ae7601420d0b42c1ee494e879dd2009a5}} 
+\index{b2Collision.h@{b2Collision.h}!b2TestOverlap@{b2TestOverlap}}
+\index{b2TestOverlap@{b2TestOverlap}!b2Collision.h@{b2Collision.h}}
+\subsubsection{\texorpdfstring{b2TestOverlap()}{b2TestOverlap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool b2\+Test\+Overlap (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classb2_shape}{b2\+Shape}} $\ast$}]{shapeA,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexA,  }\item[{const \mbox{\hyperlink{classb2_shape}{b2\+Shape}} $\ast$}]{shapeB,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexB,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfA,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfB }\end{DoxyParamCaption})}
+
+
+
+Determine if two generic shapes overlap. 
+
+\mbox{\Hypertarget{b2_collision_8h_a3dea7a8a1115626c450a697f6c6bf97e}\label{b2_collision_8h_a3dea7a8a1115626c450a697f6c6bf97e}} 
+\index{b2Collision.h@{b2Collision.h}!b2TestOverlap@{b2TestOverlap}}
+\index{b2TestOverlap@{b2TestOverlap}!b2Collision.h@{b2Collision.h}}
+\subsubsection{\texorpdfstring{b2TestOverlap()}{b2TestOverlap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool b2\+Test\+Overlap (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{b2_collision_8h_a910fdc8a802b3cac220f2ee873109818}\label{b2_collision_8h_a910fdc8a802b3cac220f2ee873109818}} 
+\index{b2Collision.h@{b2Collision.h}!b2\_nullFeature@{b2\_nullFeature}}
+\index{b2\_nullFeature@{b2\_nullFeature}!b2Collision.h@{b2Collision.h}}
+\subsubsection{\texorpdfstring{b2\_nullFeature}{b2\_nullFeature}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{b2_settings_8h_adde6aaee8457bee49c2a92621fe22b79}{uint8}} b2\+\_\+null\+Feature = U\+C\+H\+A\+R\+\_\+\+M\+AX}
+

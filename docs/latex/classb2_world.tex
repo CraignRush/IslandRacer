@@ -1,0 +1,565 @@
+\hypertarget{classb2_world}{}\section{b2\+World Class Reference}
+\label{classb2_world}\index{b2World@{b2World}}
+
+
+{\ttfamily \#include $<$b2\+World.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classb2_world_aeccc87fd9e36702c821a8244ca7cd875}{b2\+World}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&gravity)
+\item 
+\mbox{\hyperlink{classb2_world_a5250ae4487475c33ccefdead07c768c8}{$\sim$b2\+World}} ()
+\begin{DoxyCompactList}\small\item\em Destruct the world. All physics entities are destroyed and all heap memory is released. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classb2_world_ae377f2dd5512ada7d27f4ad3541c75bf}{Set\+Destruction\+Listener}} (\mbox{\hyperlink{classb2_destruction_listener}{b2\+Destruction\+Listener}} $\ast$listener)
+\item 
+void \mbox{\hyperlink{classb2_world_a85e6e1e911c7d6366f8c7d57a12b72ff}{Set\+Contact\+Filter}} (\mbox{\hyperlink{classb2_contact_filter}{b2\+Contact\+Filter}} $\ast$filter)
+\item 
+void \mbox{\hyperlink{classb2_world_a614549967fb8a1584b61c11e2d553d42}{Set\+Contact\+Listener}} (\mbox{\hyperlink{classb2_contact_listener}{b2\+Contact\+Listener}} $\ast$listener)
+\item 
+void \mbox{\hyperlink{classb2_world_a6976d2c67400df03c0d44174ffcfb7ee}{Set\+Debug\+Draw}} (\mbox{\hyperlink{classb2_draw}{b2\+Draw}} $\ast$debug\+Draw)
+\item 
+\mbox{\hyperlink{classb2_body}{b2\+Body}} $\ast$ \mbox{\hyperlink{classb2_world_a2eb36e967e43294bfa03ec3d177c2dae}{Create\+Body}} (const \mbox{\hyperlink{structb2_body_def}{b2\+Body\+Def}} $\ast$def)
+\item 
+void \mbox{\hyperlink{classb2_world_ad52231ad7a9556ef5735ac79cbcd8fcf}{Destroy\+Body}} (\mbox{\hyperlink{classb2_body}{b2\+Body}} $\ast$body)
+\item 
+\mbox{\hyperlink{classb2_joint}{b2\+Joint}} $\ast$ \mbox{\hyperlink{classb2_world_a5cba9d0653149eb62504154e6fb35021}{Create\+Joint}} (const \mbox{\hyperlink{structb2_joint_def}{b2\+Joint\+Def}} $\ast$def)
+\item 
+void \mbox{\hyperlink{classb2_world_add5942aef171e54cfa384c8975746dca}{Destroy\+Joint}} (\mbox{\hyperlink{classb2_joint}{b2\+Joint}} $\ast$joint)
+\item 
+void \mbox{\hyperlink{classb2_world_a7a8eff61af98461f978fe43f3af7be90}{Step}} (\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} time\+Step, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} velocity\+Iterations, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} position\+Iterations)
+\item 
+void \mbox{\hyperlink{classb2_world_ac082ab4c4ad0b1c5ec4674315eeec643}{Clear\+Forces}} ()
+\item 
+void \mbox{\hyperlink{classb2_world_a293d9865e407fd463e168b0a29856acc}{Draw\+Debug\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Call this to draw shapes and other debug draw data. This is intentionally non-\/const. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classb2_world_ad169fae775be1e1f16386f7587786fa8}{Query\+A\+A\+BB}} (\mbox{\hyperlink{classb2_query_callback}{b2\+Query\+Callback}} $\ast$callback, const \mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} \&aabb) const
+\item 
+void \mbox{\hyperlink{classb2_world_aa9955d94a254253997daaf16ce77bab6}{Ray\+Cast}} (\mbox{\hyperlink{classb2_ray_cast_callback}{b2\+Ray\+Cast\+Callback}} $\ast$callback, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&point1, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&point2) const
+\item 
+\mbox{\hyperlink{classb2_body}{b2\+Body}} $\ast$ \mbox{\hyperlink{classb2_world_a1b87c03955e3312d308ddf679adf3c85}{Get\+Body\+List}} ()
+\item 
+const \mbox{\hyperlink{classb2_body}{b2\+Body}} $\ast$ \mbox{\hyperlink{classb2_world_a8afde497a719bb1507fdfb474e79881a}{Get\+Body\+List}} () const
+\item 
+\mbox{\hyperlink{classb2_joint}{b2\+Joint}} $\ast$ \mbox{\hyperlink{classb2_world_a55db7240f8290aa02cab79f181934de8}{Get\+Joint\+List}} ()
+\item 
+const \mbox{\hyperlink{classb2_joint}{b2\+Joint}} $\ast$ \mbox{\hyperlink{classb2_world_af5f7feca7396ce10b905966a464177aa}{Get\+Joint\+List}} () const
+\item 
+\mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ \mbox{\hyperlink{classb2_world_ab1e1c59fd7534c0268c2a3e31370a425}{Get\+Contact\+List}} ()
+\item 
+const \mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ \mbox{\hyperlink{classb2_world_a8a947dbda196b037b922d62e6a54062f}{Get\+Contact\+List}} () const
+\item 
+void \mbox{\hyperlink{classb2_world_a6755872564fc3db70c69d2b9d349fa33}{Set\+Allow\+Sleeping}} (bool flag)
+\begin{DoxyCompactList}\small\item\em Enable/disable sleep. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classb2_world_a3d7ce9b87a54fb4f84433f6223d81175}{Get\+Allow\+Sleeping}} () const
+\item 
+void \mbox{\hyperlink{classb2_world_a8e8c12142e8c4884a18787926a261359}{Set\+Warm\+Starting}} (bool flag)
+\begin{DoxyCompactList}\small\item\em Enable/disable warm starting. For testing. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classb2_world_af23e93dbf44ebfc3c7ce9dfdc00b8ff7}{Get\+Warm\+Starting}} () const
+\item 
+void \mbox{\hyperlink{classb2_world_a536dd9181c2e20096073e3cfe2c8530a}{Set\+Continuous\+Physics}} (bool flag)
+\begin{DoxyCompactList}\small\item\em Enable/disable continuous physics. For testing. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classb2_world_afec853cfec7a8bbffc20d4acc99963e7}{Get\+Continuous\+Physics}} () const
+\item 
+void \mbox{\hyperlink{classb2_world_ae8aacc78ea4753075067daff51b61778}{Set\+Sub\+Stepping}} (bool flag)
+\begin{DoxyCompactList}\small\item\em Enable/disable single stepped continuous physics. For testing. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classb2_world_aa41f23e3e12f82ce229ce644ecdac28b}{Get\+Sub\+Stepping}} () const
+\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{classb2_world_a088742d580bfc42531790ea8747bb8f8}{Get\+Proxy\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of broad-\/phase proxies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{classb2_world_a41c8b37baf5165c06932e8f08eb758de}{Get\+Body\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of bodies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{classb2_world_a98bd6ca53dbc376f210beced33901934}{Get\+Joint\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of joints. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{classb2_world_aa47375fc3ca9f09d0350c61cfeabcee9}{Get\+Contact\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of contacts (each may have 0 or more contact points). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{classb2_world_abc99b2beb6ba79ac6c80f33bac264b52}{Get\+Tree\+Height}} () const
+\begin{DoxyCompactList}\small\item\em Get the height of the dynamic tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{classb2_world_aaca027331f06d93d978b44e065873f80}{Get\+Tree\+Balance}} () const
+\begin{DoxyCompactList}\small\item\em Get the balance of the dynamic tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{classb2_world_a562935b3b8161dd18a467e02f479e88a}{Get\+Tree\+Quality}} () const
+\item 
+void \mbox{\hyperlink{classb2_world_aeafa43d6580e1dddb0675e672ca2375c}{Set\+Gravity}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&gravity)
+\begin{DoxyCompactList}\small\item\em Change the global gravity vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{classb2_world_abd41cdde8eaa3d1c58d2f00eaf688ec3}{Get\+Gravity}} () const
+\begin{DoxyCompactList}\small\item\em Get the global gravity vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classb2_world_a71ca09a3082945a7e77f3f39fb021237}{Is\+Locked}} () const
+\begin{DoxyCompactList}\small\item\em Is the world locked (in the middle of a time step). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classb2_world_aa2bced28ddef5bbb00ed5666e5e9f620}{Set\+Auto\+Clear\+Forces}} (bool flag)
+\begin{DoxyCompactList}\small\item\em Set flag to control automatic clearing of forces after each time step. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classb2_world_ae1fa8272edf37a4e2a7be08f6e0a8cc6}{Get\+Auto\+Clear\+Forces}} () const
+\begin{DoxyCompactList}\small\item\em Get the flag that controls automatic clearing of forces after each time step. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classb2_world_afc33e20e64252c5be115216051408047}{Shift\+Origin}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&new\+Origin)
+\item 
+const \mbox{\hyperlink{classb2_contact_manager}{b2\+Contact\+Manager}} \& \mbox{\hyperlink{classb2_world_a3d321151cd851d39bdc8fe52a5be426c}{Get\+Contact\+Manager}} () const
+\begin{DoxyCompactList}\small\item\em Get the contact manager for testing. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structb2_profile}{b2\+Profile}} \& \mbox{\hyperlink{classb2_world_aec4fb0a888e69e0db7f37a4921761711}{Get\+Profile}} () const
+\begin{DoxyCompactList}\small\item\em Get the current profile. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classb2_world_a73c1fec260d460514edd335d4c235893}{Dump}} ()
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classb2_world_a010ab52de250e5fe30a45d642f46405b}{b2\+Body}}
+\item 
+class \mbox{\hyperlink{classb2_world_afb35b0e61f6ee3cc516c40ea251f3236}{b2\+Fixture}}
+\item 
+class \mbox{\hyperlink{classb2_world_aece264d42f69aed410f5eb3beba6ddf2}{b2\+Contact\+Manager}}
+\item 
+class \mbox{\hyperlink{classb2_world_ad0171f9dac44cc7aae065c618c0d165b}{b2\+Controller}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The world class manages all physics entities, dynamic simulation, and asynchronous queries. The world also contains efficient memory management facilities. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classb2_world_aeccc87fd9e36702c821a8244ca7cd875}\label{classb2_world_aeccc87fd9e36702c821a8244ca7cd875}} 
+\index{b2World@{b2World}!b2World@{b2World}}
+\index{b2World@{b2World}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{b2World()}{b2World()}}
+{\footnotesize\ttfamily b2\+World\+::b2\+World (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{gravity }\end{DoxyParamCaption})}
+
+Construct a world object. 
+\begin{DoxyParams}{Parameters}
+{\em gravity} & the world gravity vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classb2_world_a5250ae4487475c33ccefdead07c768c8}\label{classb2_world_a5250ae4487475c33ccefdead07c768c8}} 
+\index{b2World@{b2World}!````~b2World@{$\sim$b2World}}
+\index{````~b2World@{$\sim$b2World}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{$\sim$b2World()}{~b2World()}}
+{\footnotesize\ttfamily b2\+World\+::$\sim$b2\+World (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destruct the world. All physics entities are destroyed and all heap memory is released. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classb2_world_ac082ab4c4ad0b1c5ec4674315eeec643}\label{classb2_world_ac082ab4c4ad0b1c5ec4674315eeec643}} 
+\index{b2World@{b2World}!ClearForces@{ClearForces}}
+\index{ClearForces@{ClearForces}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{ClearForces()}{ClearForces()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Clear\+Forces (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Manually clear the force buffer on all bodies. By default, forces are cleared automatically after each call to Step. The default behavior is modified by calling Set\+Auto\+Clear\+Forces. The purpose of this function is to support sub-\/stepping. Sub-\/stepping is often used to maintain a fixed sized time step under a variable frame-\/rate. When you perform sub-\/stepping you will disable auto clearing of forces and instead call Clear\+Forces after all sub-\/steps are complete in one pass of your game loop. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classb2_world_aa2bced28ddef5bbb00ed5666e5e9f620}{Set\+Auto\+Clear\+Forces}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classb2_world_a2eb36e967e43294bfa03ec3d177c2dae}\label{classb2_world_a2eb36e967e43294bfa03ec3d177c2dae}} 
+\index{b2World@{b2World}!CreateBody@{CreateBody}}
+\index{CreateBody@{CreateBody}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{CreateBody()}{CreateBody()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_body}{b2\+Body}} $\ast$ b2\+World\+::\+Create\+Body (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_body_def}{b2\+Body\+Def}} $\ast$}]{def }\end{DoxyParamCaption})}
+
+Create a rigid body given a definition. No reference to the definition is retained. \begin{DoxyWarning}{Warning}
+This function is locked during callbacks. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{classb2_world_a5cba9d0653149eb62504154e6fb35021}\label{classb2_world_a5cba9d0653149eb62504154e6fb35021}} 
+\index{b2World@{b2World}!CreateJoint@{CreateJoint}}
+\index{CreateJoint@{CreateJoint}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{CreateJoint()}{CreateJoint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_joint}{b2\+Joint}} $\ast$ b2\+World\+::\+Create\+Joint (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_joint_def}{b2\+Joint\+Def}} $\ast$}]{def }\end{DoxyParamCaption})}
+
+Create a joint to constrain bodies together. No reference to the definition is retained. This may cause the connected bodies to cease colliding. \begin{DoxyWarning}{Warning}
+This function is locked during callbacks. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{classb2_world_ad52231ad7a9556ef5735ac79cbcd8fcf}\label{classb2_world_ad52231ad7a9556ef5735ac79cbcd8fcf}} 
+\index{b2World@{b2World}!DestroyBody@{DestroyBody}}
+\index{DestroyBody@{DestroyBody}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{DestroyBody()}{DestroyBody()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Destroy\+Body (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_body}{b2\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+Destroy a rigid body given a definition. No reference to the definition is retained. This function is locked during callbacks. \begin{DoxyWarning}{Warning}
+This automatically deletes all associated shapes and joints. 
+
+This function is locked during callbacks. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{classb2_world_add5942aef171e54cfa384c8975746dca}\label{classb2_world_add5942aef171e54cfa384c8975746dca}} 
+\index{b2World@{b2World}!DestroyJoint@{DestroyJoint}}
+\index{DestroyJoint@{DestroyJoint}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{DestroyJoint()}{DestroyJoint()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Destroy\+Joint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_joint}{b2\+Joint}} $\ast$}]{joint }\end{DoxyParamCaption})}
+
+Destroy a joint. This may cause the connected bodies to begin colliding. \begin{DoxyWarning}{Warning}
+This function is locked during callbacks. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{classb2_world_a293d9865e407fd463e168b0a29856acc}\label{classb2_world_a293d9865e407fd463e168b0a29856acc}} 
+\index{b2World@{b2World}!DrawDebugData@{DrawDebugData}}
+\index{DrawDebugData@{DrawDebugData}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{DrawDebugData()}{DrawDebugData()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Draw\+Debug\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Call this to draw shapes and other debug draw data. This is intentionally non-\/const. 
+
+\mbox{\Hypertarget{classb2_world_a73c1fec260d460514edd335d4c235893}\label{classb2_world_a73c1fec260d460514edd335d4c235893}} 
+\index{b2World@{b2World}!Dump@{Dump}}
+\index{Dump@{Dump}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{Dump()}{Dump()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Dump (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Dump the world into the log file. \begin{DoxyWarning}{Warning}
+this should be called outside of a time step. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{classb2_world_a3d7ce9b87a54fb4f84433f6223d81175}\label{classb2_world_a3d7ce9b87a54fb4f84433f6223d81175}} 
+\index{b2World@{b2World}!GetAllowSleeping@{GetAllowSleeping}}
+\index{GetAllowSleeping@{GetAllowSleeping}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetAllowSleeping()}{GetAllowSleeping()}}
+{\footnotesize\ttfamily bool b2\+World\+::\+Get\+Allow\+Sleeping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classb2_world_ae1fa8272edf37a4e2a7be08f6e0a8cc6}\label{classb2_world_ae1fa8272edf37a4e2a7be08f6e0a8cc6}} 
+\index{b2World@{b2World}!GetAutoClearForces@{GetAutoClearForces}}
+\index{GetAutoClearForces@{GetAutoClearForces}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetAutoClearForces()}{GetAutoClearForces()}}
+{\footnotesize\ttfamily bool b2\+World\+::\+Get\+Auto\+Clear\+Forces (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the flag that controls automatic clearing of forces after each time step. 
+
+\mbox{\Hypertarget{classb2_world_a41c8b37baf5165c06932e8f08eb758de}\label{classb2_world_a41c8b37baf5165c06932e8f08eb758de}} 
+\index{b2World@{b2World}!GetBodyCount@{GetBodyCount}}
+\index{GetBodyCount@{GetBodyCount}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetBodyCount()}{GetBodyCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+World\+::\+Get\+Body\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number of bodies. 
+
+\mbox{\Hypertarget{classb2_world_a1b87c03955e3312d308ddf679adf3c85}\label{classb2_world_a1b87c03955e3312d308ddf679adf3c85}} 
+\index{b2World@{b2World}!GetBodyList@{GetBodyList}}
+\index{GetBodyList@{GetBodyList}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetBodyList()}{GetBodyList()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_body}{b2\+Body}} $\ast$ b2\+World\+::\+Get\+Body\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the world body list. With the returned body, use \mbox{\hyperlink{classb2_body_ad54182a11d02362b027a0eb072775bdc}{b2\+Body\+::\+Get\+Next}} to get the next body in the world list. A N\+U\+LL body indicates the end of the list. \begin{DoxyReturn}{Returns}
+the head of the world body list. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classb2_world_a8afde497a719bb1507fdfb474e79881a}\label{classb2_world_a8afde497a719bb1507fdfb474e79881a}} 
+\index{b2World@{b2World}!GetBodyList@{GetBodyList}}
+\index{GetBodyList@{GetBodyList}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetBodyList()}{GetBodyList()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classb2_body}{b2\+Body}} $\ast$ b2\+World\+::\+Get\+Body\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classb2_world_aa47375fc3ca9f09d0350c61cfeabcee9}\label{classb2_world_aa47375fc3ca9f09d0350c61cfeabcee9}} 
+\index{b2World@{b2World}!GetContactCount@{GetContactCount}}
+\index{GetContactCount@{GetContactCount}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetContactCount()}{GetContactCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+World\+::\+Get\+Contact\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number of contacts (each may have 0 or more contact points). 
+
+\mbox{\Hypertarget{classb2_world_ab1e1c59fd7534c0268c2a3e31370a425}\label{classb2_world_ab1e1c59fd7534c0268c2a3e31370a425}} 
+\index{b2World@{b2World}!GetContactList@{GetContactList}}
+\index{GetContactList@{GetContactList}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetContactList()}{GetContactList()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ b2\+World\+::\+Get\+Contact\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the world contact list. With the returned contact, use \mbox{\hyperlink{classb2_contact_aebfebb1e4b27dc0bd7aa120093e3d650}{b2\+Contact\+::\+Get\+Next}} to get the next contact in the world list. A N\+U\+LL contact indicates the end of the list. \begin{DoxyReturn}{Returns}
+the head of the world contact list. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+contacts are created and destroyed in the middle of a time step. Use \mbox{\hyperlink{classb2_contact_listener}{b2\+Contact\+Listener}} to avoid missing contacts. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{classb2_world_a8a947dbda196b037b922d62e6a54062f}\label{classb2_world_a8a947dbda196b037b922d62e6a54062f}} 
+\index{b2World@{b2World}!GetContactList@{GetContactList}}
+\index{GetContactList@{GetContactList}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetContactList()}{GetContactList()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ b2\+World\+::\+Get\+Contact\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classb2_world_a3d321151cd851d39bdc8fe52a5be426c}\label{classb2_world_a3d321151cd851d39bdc8fe52a5be426c}} 
+\index{b2World@{b2World}!GetContactManager@{GetContactManager}}
+\index{GetContactManager@{GetContactManager}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetContactManager()}{GetContactManager()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classb2_contact_manager}{b2\+Contact\+Manager}} \& b2\+World\+::\+Get\+Contact\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the contact manager for testing. 
+
+\mbox{\Hypertarget{classb2_world_afec853cfec7a8bbffc20d4acc99963e7}\label{classb2_world_afec853cfec7a8bbffc20d4acc99963e7}} 
+\index{b2World@{b2World}!GetContinuousPhysics@{GetContinuousPhysics}}
+\index{GetContinuousPhysics@{GetContinuousPhysics}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetContinuousPhysics()}{GetContinuousPhysics()}}
+{\footnotesize\ttfamily bool b2\+World\+::\+Get\+Continuous\+Physics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classb2_world_abd41cdde8eaa3d1c58d2f00eaf688ec3}\label{classb2_world_abd41cdde8eaa3d1c58d2f00eaf688ec3}} 
+\index{b2World@{b2World}!GetGravity@{GetGravity}}
+\index{GetGravity@{GetGravity}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetGravity()}{GetGravity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+World\+::\+Get\+Gravity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the global gravity vector. 
+
+\mbox{\Hypertarget{classb2_world_a98bd6ca53dbc376f210beced33901934}\label{classb2_world_a98bd6ca53dbc376f210beced33901934}} 
+\index{b2World@{b2World}!GetJointCount@{GetJointCount}}
+\index{GetJointCount@{GetJointCount}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetJointCount()}{GetJointCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+World\+::\+Get\+Joint\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number of joints. 
+
+\mbox{\Hypertarget{classb2_world_a55db7240f8290aa02cab79f181934de8}\label{classb2_world_a55db7240f8290aa02cab79f181934de8}} 
+\index{b2World@{b2World}!GetJointList@{GetJointList}}
+\index{GetJointList@{GetJointList}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetJointList()}{GetJointList()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_joint}{b2\+Joint}} $\ast$ b2\+World\+::\+Get\+Joint\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the world joint list. With the returned joint, use \mbox{\hyperlink{classb2_joint_a1a0e2137b631010750c728cb4e276e5d}{b2\+Joint\+::\+Get\+Next}} to get the next joint in the world list. A N\+U\+LL joint indicates the end of the list. \begin{DoxyReturn}{Returns}
+the head of the world joint list. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classb2_world_af5f7feca7396ce10b905966a464177aa}\label{classb2_world_af5f7feca7396ce10b905966a464177aa}} 
+\index{b2World@{b2World}!GetJointList@{GetJointList}}
+\index{GetJointList@{GetJointList}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetJointList()}{GetJointList()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classb2_joint}{b2\+Joint}} $\ast$ b2\+World\+::\+Get\+Joint\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classb2_world_aec4fb0a888e69e0db7f37a4921761711}\label{classb2_world_aec4fb0a888e69e0db7f37a4921761711}} 
+\index{b2World@{b2World}!GetProfile@{GetProfile}}
+\index{GetProfile@{GetProfile}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetProfile()}{GetProfile()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structb2_profile}{b2\+Profile}} \& b2\+World\+::\+Get\+Profile (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the current profile. 
+
+\mbox{\Hypertarget{classb2_world_a088742d580bfc42531790ea8747bb8f8}\label{classb2_world_a088742d580bfc42531790ea8747bb8f8}} 
+\index{b2World@{b2World}!GetProxyCount@{GetProxyCount}}
+\index{GetProxyCount@{GetProxyCount}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetProxyCount()}{GetProxyCount()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+World\+::\+Get\+Proxy\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the number of broad-\/phase proxies. 
+
+\mbox{\Hypertarget{classb2_world_aa41f23e3e12f82ce229ce644ecdac28b}\label{classb2_world_aa41f23e3e12f82ce229ce644ecdac28b}} 
+\index{b2World@{b2World}!GetSubStepping@{GetSubStepping}}
+\index{GetSubStepping@{GetSubStepping}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetSubStepping()}{GetSubStepping()}}
+{\footnotesize\ttfamily bool b2\+World\+::\+Get\+Sub\+Stepping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classb2_world_aaca027331f06d93d978b44e065873f80}\label{classb2_world_aaca027331f06d93d978b44e065873f80}} 
+\index{b2World@{b2World}!GetTreeBalance@{GetTreeBalance}}
+\index{GetTreeBalance@{GetTreeBalance}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetTreeBalance()}{GetTreeBalance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+World\+::\+Get\+Tree\+Balance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the balance of the dynamic tree. 
+
+\mbox{\Hypertarget{classb2_world_abc99b2beb6ba79ac6c80f33bac264b52}\label{classb2_world_abc99b2beb6ba79ac6c80f33bac264b52}} 
+\index{b2World@{b2World}!GetTreeHeight@{GetTreeHeight}}
+\index{GetTreeHeight@{GetTreeHeight}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetTreeHeight()}{GetTreeHeight()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+World\+::\+Get\+Tree\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the height of the dynamic tree. 
+
+\mbox{\Hypertarget{classb2_world_a562935b3b8161dd18a467e02f479e88a}\label{classb2_world_a562935b3b8161dd18a467e02f479e88a}} 
+\index{b2World@{b2World}!GetTreeQuality@{GetTreeQuality}}
+\index{GetTreeQuality@{GetTreeQuality}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetTreeQuality()}{GetTreeQuality()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+World\+::\+Get\+Tree\+Quality (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the quality metric of the dynamic tree. The smaller the better. The minimum is 1. \mbox{\Hypertarget{classb2_world_af23e93dbf44ebfc3c7ce9dfdc00b8ff7}\label{classb2_world_af23e93dbf44ebfc3c7ce9dfdc00b8ff7}} 
+\index{b2World@{b2World}!GetWarmStarting@{GetWarmStarting}}
+\index{GetWarmStarting@{GetWarmStarting}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{GetWarmStarting()}{GetWarmStarting()}}
+{\footnotesize\ttfamily bool b2\+World\+::\+Get\+Warm\+Starting (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classb2_world_a71ca09a3082945a7e77f3f39fb021237}\label{classb2_world_a71ca09a3082945a7e77f3f39fb021237}} 
+\index{b2World@{b2World}!IsLocked@{IsLocked}}
+\index{IsLocked@{IsLocked}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{IsLocked()}{IsLocked()}}
+{\footnotesize\ttfamily bool b2\+World\+::\+Is\+Locked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Is the world locked (in the middle of a time step). 
+
+\mbox{\Hypertarget{classb2_world_ad169fae775be1e1f16386f7587786fa8}\label{classb2_world_ad169fae775be1e1f16386f7587786fa8}} 
+\index{b2World@{b2World}!QueryAABB@{QueryAABB}}
+\index{QueryAABB@{QueryAABB}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{QueryAABB()}{QueryAABB()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Query\+A\+A\+BB (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_query_callback}{b2\+Query\+Callback}} $\ast$}]{callback,  }\item[{const \mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} \&}]{aabb }\end{DoxyParamCaption}) const}
+
+Query the world for all fixtures that potentially overlap the provided A\+A\+BB. 
+\begin{DoxyParams}{Parameters}
+{\em callback} & a user implemented callback class. \\
+\hline
+{\em aabb} & the query box. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classb2_world_aa9955d94a254253997daaf16ce77bab6}\label{classb2_world_aa9955d94a254253997daaf16ce77bab6}} 
+\index{b2World@{b2World}!RayCast@{RayCast}}
+\index{RayCast@{RayCast}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{RayCast()}{RayCast()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Ray\+Cast (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_ray_cast_callback}{b2\+Ray\+Cast\+Callback}} $\ast$}]{callback,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{point1,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{point2 }\end{DoxyParamCaption}) const}
+
+Ray-\/cast the world for all fixtures in the path of the ray. Your callback controls whether you get the closest point, any point, or n-\/points. The ray-\/cast ignores shapes that contain the starting point. 
+\begin{DoxyParams}{Parameters}
+{\em callback} & a user implemented callback class. \\
+\hline
+{\em point1} & the ray starting point \\
+\hline
+{\em point2} & the ray ending point \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classb2_world_a6755872564fc3db70c69d2b9d349fa33}\label{classb2_world_a6755872564fc3db70c69d2b9d349fa33}} 
+\index{b2World@{b2World}!SetAllowSleeping@{SetAllowSleeping}}
+\index{SetAllowSleeping@{SetAllowSleeping}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{SetAllowSleeping()}{SetAllowSleeping()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Set\+Allow\+Sleeping (\begin{DoxyParamCaption}\item[{bool}]{flag }\end{DoxyParamCaption})}
+
+
+
+Enable/disable sleep. 
+
+\mbox{\Hypertarget{classb2_world_aa2bced28ddef5bbb00ed5666e5e9f620}\label{classb2_world_aa2bced28ddef5bbb00ed5666e5e9f620}} 
+\index{b2World@{b2World}!SetAutoClearForces@{SetAutoClearForces}}
+\index{SetAutoClearForces@{SetAutoClearForces}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{SetAutoClearForces()}{SetAutoClearForces()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Set\+Auto\+Clear\+Forces (\begin{DoxyParamCaption}\item[{bool}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set flag to control automatic clearing of forces after each time step. 
+
+\mbox{\Hypertarget{classb2_world_a85e6e1e911c7d6366f8c7d57a12b72ff}\label{classb2_world_a85e6e1e911c7d6366f8c7d57a12b72ff}} 
+\index{b2World@{b2World}!SetContactFilter@{SetContactFilter}}
+\index{SetContactFilter@{SetContactFilter}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{SetContactFilter()}{SetContactFilter()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Set\+Contact\+Filter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_contact_filter}{b2\+Contact\+Filter}} $\ast$}]{filter }\end{DoxyParamCaption})}
+
+Register a contact filter to provide specific control over collision. Otherwise the default filter is used (b2\+\_\+default\+Filter). The listener is owned by you and must remain in scope. \mbox{\Hypertarget{classb2_world_a614549967fb8a1584b61c11e2d553d42}\label{classb2_world_a614549967fb8a1584b61c11e2d553d42}} 
+\index{b2World@{b2World}!SetContactListener@{SetContactListener}}
+\index{SetContactListener@{SetContactListener}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{SetContactListener()}{SetContactListener()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Set\+Contact\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_contact_listener}{b2\+Contact\+Listener}} $\ast$}]{listener }\end{DoxyParamCaption})}
+
+Register a contact event listener. The listener is owned by you and must remain in scope. \mbox{\Hypertarget{classb2_world_a536dd9181c2e20096073e3cfe2c8530a}\label{classb2_world_a536dd9181c2e20096073e3cfe2c8530a}} 
+\index{b2World@{b2World}!SetContinuousPhysics@{SetContinuousPhysics}}
+\index{SetContinuousPhysics@{SetContinuousPhysics}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{SetContinuousPhysics()}{SetContinuousPhysics()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Set\+Continuous\+Physics (\begin{DoxyParamCaption}\item[{bool}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Enable/disable continuous physics. For testing. 
+
+\mbox{\Hypertarget{classb2_world_a6976d2c67400df03c0d44174ffcfb7ee}\label{classb2_world_a6976d2c67400df03c0d44174ffcfb7ee}} 
+\index{b2World@{b2World}!SetDebugDraw@{SetDebugDraw}}
+\index{SetDebugDraw@{SetDebugDraw}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{SetDebugDraw()}{SetDebugDraw()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Set\+Debug\+Draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_draw}{b2\+Draw}} $\ast$}]{debug\+Draw }\end{DoxyParamCaption})}
+
+Register a routine for debug drawing. The debug draw functions are called inside with \mbox{\hyperlink{classb2_world_a293d9865e407fd463e168b0a29856acc}{b2\+World\+::\+Draw\+Debug\+Data}} method. The debug draw object is owned by you and must remain in scope. \mbox{\Hypertarget{classb2_world_ae377f2dd5512ada7d27f4ad3541c75bf}\label{classb2_world_ae377f2dd5512ada7d27f4ad3541c75bf}} 
+\index{b2World@{b2World}!SetDestructionListener@{SetDestructionListener}}
+\index{SetDestructionListener@{SetDestructionListener}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{SetDestructionListener()}{SetDestructionListener()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Set\+Destruction\+Listener (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_destruction_listener}{b2\+Destruction\+Listener}} $\ast$}]{listener }\end{DoxyParamCaption})}
+
+Register a destruction listener. The listener is owned by you and must remain in scope. \mbox{\Hypertarget{classb2_world_aeafa43d6580e1dddb0675e672ca2375c}\label{classb2_world_aeafa43d6580e1dddb0675e672ca2375c}} 
+\index{b2World@{b2World}!SetGravity@{SetGravity}}
+\index{SetGravity@{SetGravity}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{SetGravity()}{SetGravity()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Set\+Gravity (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{gravity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Change the global gravity vector. 
+
+\mbox{\Hypertarget{classb2_world_ae8aacc78ea4753075067daff51b61778}\label{classb2_world_ae8aacc78ea4753075067daff51b61778}} 
+\index{b2World@{b2World}!SetSubStepping@{SetSubStepping}}
+\index{SetSubStepping@{SetSubStepping}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{SetSubStepping()}{SetSubStepping()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Set\+Sub\+Stepping (\begin{DoxyParamCaption}\item[{bool}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Enable/disable single stepped continuous physics. For testing. 
+
+\mbox{\Hypertarget{classb2_world_a8e8c12142e8c4884a18787926a261359}\label{classb2_world_a8e8c12142e8c4884a18787926a261359}} 
+\index{b2World@{b2World}!SetWarmStarting@{SetWarmStarting}}
+\index{SetWarmStarting@{SetWarmStarting}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{SetWarmStarting()}{SetWarmStarting()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Set\+Warm\+Starting (\begin{DoxyParamCaption}\item[{bool}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Enable/disable warm starting. For testing. 
+
+\mbox{\Hypertarget{classb2_world_afc33e20e64252c5be115216051408047}\label{classb2_world_afc33e20e64252c5be115216051408047}} 
+\index{b2World@{b2World}!ShiftOrigin@{ShiftOrigin}}
+\index{ShiftOrigin@{ShiftOrigin}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{ShiftOrigin()}{ShiftOrigin()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Shift\+Origin (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{new\+Origin }\end{DoxyParamCaption})}
+
+Shift the world origin. Useful for large worlds. The body shift formula is\+: position -\/= new\+Origin 
+\begin{DoxyParams}{Parameters}
+{\em new\+Origin} & the new origin with respect to the old origin \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classb2_world_a7a8eff61af98461f978fe43f3af7be90}\label{classb2_world_a7a8eff61af98461f978fe43f3af7be90}} 
+\index{b2World@{b2World}!Step@{Step}}
+\index{Step@{Step}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{Step()}{Step()}}
+{\footnotesize\ttfamily void b2\+World\+::\+Step (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{time\+Step,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{velocity\+Iterations,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{position\+Iterations }\end{DoxyParamCaption})}
+
+Take a time step. This performs collision detection, integration, and constraint solution. 
+\begin{DoxyParams}{Parameters}
+{\em time\+Step} & the amount of time to simulate, this should not vary. \\
+\hline
+{\em velocity\+Iterations} & for the velocity constraint solver. \\
+\hline
+{\em position\+Iterations} & for the position constraint solver. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classb2_world_a010ab52de250e5fe30a45d642f46405b}\label{classb2_world_a010ab52de250e5fe30a45d642f46405b}} 
+\index{b2World@{b2World}!b2Body@{b2Body}}
+\index{b2Body@{b2Body}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{b2Body}{b2Body}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classb2_body}{b2\+Body}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{classb2_world_aece264d42f69aed410f5eb3beba6ddf2}\label{classb2_world_aece264d42f69aed410f5eb3beba6ddf2}} 
+\index{b2World@{b2World}!b2ContactManager@{b2ContactManager}}
+\index{b2ContactManager@{b2ContactManager}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{b2ContactManager}{b2ContactManager}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classb2_contact_manager}{b2\+Contact\+Manager}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{classb2_world_ad0171f9dac44cc7aae065c618c0d165b}\label{classb2_world_ad0171f9dac44cc7aae065c618c0d165b}} 
+\index{b2World@{b2World}!b2Controller@{b2Controller}}
+\index{b2Controller@{b2Controller}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{b2Controller}{b2Controller}}
+{\footnotesize\ttfamily friend class b2\+Controller\hspace{0.3cm}{\ttfamily [friend]}}
+
+\mbox{\Hypertarget{classb2_world_afb35b0e61f6ee3cc516c40ea251f3236}\label{classb2_world_afb35b0e61f6ee3cc516c40ea251f3236}} 
+\index{b2World@{b2World}!b2Fixture@{b2Fixture}}
+\index{b2Fixture@{b2Fixture}!b2World@{b2World}}
+\subsubsection{\texorpdfstring{b2Fixture}{b2Fixture}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classb2_fixture}{b2\+Fixture}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\mbox{\hyperlink{b2_world_8h}{b2\+World.\+h}}\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\mbox{\hyperlink{b2_world_8cpp}{b2\+World.\+cpp}}\end{DoxyCompactItemize}

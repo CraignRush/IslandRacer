@@ -1,0 +1,185 @@
+\hypertarget{structb2_body_def}{}\section{b2\+Body\+Def Struct Reference}
+\label{structb2_body_def}\index{b2BodyDef@{b2BodyDef}}
+
+
+{\ttfamily \#include $<$b2\+Body.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structb2_body_def_a87bee47596b3b3eced0d9dd1f4c18fee}{b2\+Body\+Def}} ()
+\begin{DoxyCompactList}\small\item\em This constructor sets the body definition default values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{b2_body_8h_a74ddb02261648c2bff691a866b5c03e0}{b2\+Body\+Type}} \mbox{\hyperlink{structb2_body_def_a89cc3ad1873908042b002147b3861381}{type}}
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{structb2_body_def_a680cadc09ad6cf4b3366cbf0914c648b}{position}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{structb2_body_def_a564b16f4f8e9fcb5dda397e64aa9be6f}{angle}}
+\begin{DoxyCompactList}\small\item\em The world angle of the body in radians. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{structb2_body_def_a25fa5aa78d93159c344241af95bec2bf}{linear\+Velocity}}
+\begin{DoxyCompactList}\small\item\em The linear velocity of the body\textquotesingle{}s origin in world co-\/ordinates. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{structb2_body_def_add7809f7a29656b8c4b643ad8c2f34a9}{angular\+Velocity}}
+\begin{DoxyCompactList}\small\item\em The angular velocity of the body. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{structb2_body_def_a728f6df3be7dedb331455105e3659d46}{linear\+Damping}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{structb2_body_def_a01b8dc8ad9f0962efef9e4a8e836feb6}{angular\+Damping}}
+\item 
+bool \mbox{\hyperlink{structb2_body_def_a0765068172e521ed63cb34084c59c003}{allow\+Sleep}}
+\item 
+bool \mbox{\hyperlink{structb2_body_def_a17a8102638aac41e7ab94278651a45bd}{awake}}
+\begin{DoxyCompactList}\small\item\em Is this body initially awake or sleeping? \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structb2_body_def_a273a51c57440a8884de5939d76b6e3ea}{fixed\+Rotation}}
+\begin{DoxyCompactList}\small\item\em Should this body be prevented from rotating? Useful for characters. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structb2_body_def_a7c0047c9a98a1d20614eeddcdbce7586}{bullet}}
+\item 
+bool \mbox{\hyperlink{structb2_body_def_adf6f3e9a9e124e080c68bc0edeb170df}{active}}
+\begin{DoxyCompactList}\small\item\em Does this body start out active? \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{structb2_body_def_ae457dd1d39be09945eace6061121be29}{user\+Data}}
+\begin{DoxyCompactList}\small\item\em Use this to store application specific body data. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{structb2_body_def_aadea3fa173ed1014739ec8b023de4336}{gravity\+Scale}}
+\begin{DoxyCompactList}\small\item\em Scale the gravity applied to this body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A body definition holds all the data needed to construct a rigid body. You can safely re-\/use body definitions. Shapes are added to a body after construction. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structb2_body_def_a87bee47596b3b3eced0d9dd1f4c18fee}\label{structb2_body_def_a87bee47596b3b3eced0d9dd1f4c18fee}} 
+\index{b2BodyDef@{b2BodyDef}!b2BodyDef@{b2BodyDef}}
+\index{b2BodyDef@{b2BodyDef}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{b2BodyDef()}{b2BodyDef()}}
+{\footnotesize\ttfamily b2\+Body\+Def\+::b2\+Body\+Def (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This constructor sets the body definition default values. 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structb2_body_def_adf6f3e9a9e124e080c68bc0edeb170df}\label{structb2_body_def_adf6f3e9a9e124e080c68bc0edeb170df}} 
+\index{b2BodyDef@{b2BodyDef}!active@{active}}
+\index{active@{active}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{active}{active}}
+{\footnotesize\ttfamily bool b2\+Body\+Def\+::active}
+
+
+
+Does this body start out active? 
+
+\mbox{\Hypertarget{structb2_body_def_a0765068172e521ed63cb34084c59c003}\label{structb2_body_def_a0765068172e521ed63cb34084c59c003}} 
+\index{b2BodyDef@{b2BodyDef}!allowSleep@{allowSleep}}
+\index{allowSleep@{allowSleep}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{allowSleep}{allowSleep}}
+{\footnotesize\ttfamily bool b2\+Body\+Def\+::allow\+Sleep}
+
+Set this flag to false if this body should never fall asleep. Note that this increases C\+PU usage. \mbox{\Hypertarget{structb2_body_def_a564b16f4f8e9fcb5dda397e64aa9be6f}\label{structb2_body_def_a564b16f4f8e9fcb5dda397e64aa9be6f}} 
+\index{b2BodyDef@{b2BodyDef}!angle@{angle}}
+\index{angle@{angle}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{angle}{angle}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Body\+Def\+::angle}
+
+
+
+The world angle of the body in radians. 
+
+\mbox{\Hypertarget{structb2_body_def_a01b8dc8ad9f0962efef9e4a8e836feb6}\label{structb2_body_def_a01b8dc8ad9f0962efef9e4a8e836feb6}} 
+\index{b2BodyDef@{b2BodyDef}!angularDamping@{angularDamping}}
+\index{angularDamping@{angularDamping}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{angularDamping}{angularDamping}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Body\+Def\+::angular\+Damping}
+
+Angular damping is use to reduce the angular velocity. The damping parameter can be larger than 1.\+0f but the damping effect becomes sensitive to the time step when the damping parameter is large. Units are 1/time \mbox{\Hypertarget{structb2_body_def_add7809f7a29656b8c4b643ad8c2f34a9}\label{structb2_body_def_add7809f7a29656b8c4b643ad8c2f34a9}} 
+\index{b2BodyDef@{b2BodyDef}!angularVelocity@{angularVelocity}}
+\index{angularVelocity@{angularVelocity}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{angularVelocity}{angularVelocity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Body\+Def\+::angular\+Velocity}
+
+
+
+The angular velocity of the body. 
+
+\mbox{\Hypertarget{structb2_body_def_a17a8102638aac41e7ab94278651a45bd}\label{structb2_body_def_a17a8102638aac41e7ab94278651a45bd}} 
+\index{b2BodyDef@{b2BodyDef}!awake@{awake}}
+\index{awake@{awake}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{awake}{awake}}
+{\footnotesize\ttfamily bool b2\+Body\+Def\+::awake}
+
+
+
+Is this body initially awake or sleeping? 
+
+\mbox{\Hypertarget{structb2_body_def_a7c0047c9a98a1d20614eeddcdbce7586}\label{structb2_body_def_a7c0047c9a98a1d20614eeddcdbce7586}} 
+\index{b2BodyDef@{b2BodyDef}!bullet@{bullet}}
+\index{bullet@{bullet}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{bullet}{bullet}}
+{\footnotesize\ttfamily bool b2\+Body\+Def\+::bullet}
+
+Is this a fast moving body that should be prevented from tunneling through other moving bodies? Note that all bodies are prevented from tunneling through kinematic and static bodies. This setting is only considered on dynamic bodies. \begin{DoxyWarning}{Warning}
+You should use this flag sparingly since it increases processing time. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{structb2_body_def_a273a51c57440a8884de5939d76b6e3ea}\label{structb2_body_def_a273a51c57440a8884de5939d76b6e3ea}} 
+\index{b2BodyDef@{b2BodyDef}!fixedRotation@{fixedRotation}}
+\index{fixedRotation@{fixedRotation}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{fixedRotation}{fixedRotation}}
+{\footnotesize\ttfamily bool b2\+Body\+Def\+::fixed\+Rotation}
+
+
+
+Should this body be prevented from rotating? Useful for characters. 
+
+\mbox{\Hypertarget{structb2_body_def_aadea3fa173ed1014739ec8b023de4336}\label{structb2_body_def_aadea3fa173ed1014739ec8b023de4336}} 
+\index{b2BodyDef@{b2BodyDef}!gravityScale@{gravityScale}}
+\index{gravityScale@{gravityScale}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{gravityScale}{gravityScale}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Body\+Def\+::gravity\+Scale}
+
+
+
+Scale the gravity applied to this body. 
+
+\mbox{\Hypertarget{structb2_body_def_a728f6df3be7dedb331455105e3659d46}\label{structb2_body_def_a728f6df3be7dedb331455105e3659d46}} 
+\index{b2BodyDef@{b2BodyDef}!linearDamping@{linearDamping}}
+\index{linearDamping@{linearDamping}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{linearDamping}{linearDamping}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Body\+Def\+::linear\+Damping}
+
+Linear damping is use to reduce the linear velocity. The damping parameter can be larger than 1.\+0f but the damping effect becomes sensitive to the time step when the damping parameter is large. Units are 1/time \mbox{\Hypertarget{structb2_body_def_a25fa5aa78d93159c344241af95bec2bf}\label{structb2_body_def_a25fa5aa78d93159c344241af95bec2bf}} 
+\index{b2BodyDef@{b2BodyDef}!linearVelocity@{linearVelocity}}
+\index{linearVelocity@{linearVelocity}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{linearVelocity}{linearVelocity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Body\+Def\+::linear\+Velocity}
+
+
+
+The linear velocity of the body\textquotesingle{}s origin in world co-\/ordinates. 
+
+\mbox{\Hypertarget{structb2_body_def_a680cadc09ad6cf4b3366cbf0914c648b}\label{structb2_body_def_a680cadc09ad6cf4b3366cbf0914c648b}} 
+\index{b2BodyDef@{b2BodyDef}!position@{position}}
+\index{position@{position}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Body\+Def\+::position}
+
+The world position of the body. Avoid creating bodies at the origin since this can lead to many overlapping shapes. \mbox{\Hypertarget{structb2_body_def_a89cc3ad1873908042b002147b3861381}\label{structb2_body_def_a89cc3ad1873908042b002147b3861381}} 
+\index{b2BodyDef@{b2BodyDef}!type@{type}}
+\index{type@{type}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_body_8h_a74ddb02261648c2bff691a866b5c03e0}{b2\+Body\+Type}} b2\+Body\+Def\+::type}
+
+The body type\+: static, kinematic, or dynamic. Note\+: if a dynamic body would have zero mass, the mass is set to one. \mbox{\Hypertarget{structb2_body_def_ae457dd1d39be09945eace6061121be29}\label{structb2_body_def_ae457dd1d39be09945eace6061121be29}} 
+\index{b2BodyDef@{b2BodyDef}!userData@{userData}}
+\index{userData@{userData}!b2BodyDef@{b2BodyDef}}
+\subsubsection{\texorpdfstring{userData}{userData}}
+{\footnotesize\ttfamily void$\ast$ b2\+Body\+Def\+::user\+Data}
+
+
+
+Use this to store application specific body data. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\mbox{\hyperlink{b2_body_8h}{b2\+Body.\+h}}\end{DoxyCompactItemize}

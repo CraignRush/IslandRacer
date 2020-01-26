@@ -1,0 +1,213 @@
+\hypertarget{class_pause_menu}{}\section{Pause\+Menu Class Reference}
+\label{class_pause_menu}\index{PauseMenu@{PauseMenu}}
+
+
+Show pause menu if E\+SC was pressed while playing the game.  
+
+
+
+
+{\ttfamily \#include $<$pausemenu.\+h$>$}
+
+Inheritance diagram for Pause\+Menu\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_pause_menu}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_pause_menu_a294b2f57ecba7ee42a871f1c6ed614eb}{resume\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Signal to resume game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pause_menu_a0e589c9e7ac92ad7a9478b100f2b94c1}{restart\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Signal to restart game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pause_menu_a1db9704223355ed9ea8fa011d6c669ed}{quit\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Signal to quit game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pause_menu_ae1b441da8a1a0ae3ffc64a8ce89432f0}{play\+Background\+Music}} ()
+\begin{DoxyCompactList}\small\item\em Signal to start background music. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pause_menu_a06f6d713caf70ef71c3bde13e4873a7c}{stop\+Background\+Music}} ()
+\begin{DoxyCompactList}\small\item\em Signal to stop background music. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pause_menu_ad0c8d82848648993031ece9694b236d2}{set\+Background\+Music\+Volume}} (int volume)
+\begin{DoxyCompactList}\small\item\em Signal to set volume of background music. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pause_menu_aafbc3cdef6e016d6ac9c6c21a45c03b9}{play\+Car\+Sound}} ()
+\begin{DoxyCompactList}\small\item\em Signal to start car sound. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pause_menu_a0d4bdd4e4dfabd83cb41eb872f15bb8a}{stop\+Car\+Sound}} ()
+\begin{DoxyCompactList}\small\item\em Signal to stop car sound. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pause_menu_a4f2c59b2eac366bf3a6a133c0b39ac56}{set\+Car\+Sound\+Volume}} (int volume)
+\begin{DoxyCompactList}\small\item\em Signal to set volume of car sound. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pause_menu_a4ce973fdc189fbe933282d6dbf307ccc}{play\+Button\+Sound}} ()
+\begin{DoxyCompactList}\small\item\em Signal to play button sound. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_pause_menu_a7b5a4790719c2c8692ce3a30ff1eb6e6}{set\+Button\+Sound\+Volume}} (int volume)
+\begin{DoxyCompactList}\small\item\em Signal to set volume of button sound. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_pause_menu_aa05ad1aa7b76298fb296d65a41ca2f9b}{Pause\+Menu}} (int screen\+Height, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\hyperlink{class_pause_menu_af30f0b8f5f59c6779434295a731b0e35}{$\sim$\+Pause\+Menu}} ()
+\item 
+void \mbox{\hyperlink{class_pause_menu_ac4f80ef846911fca05673e0e11d33e20}{play\+Button\+Sound\+If\+On}} ()
+\begin{DoxyCompactList}\small\item\em Plays button \mbox{\hyperlink{class_sound}{Sound}} if active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Show pause menu if E\+SC was pressed while playing the game. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_pause_menu_aa05ad1aa7b76298fb296d65a41ca2f9b}\label{class_pause_menu_aa05ad1aa7b76298fb296d65a41ca2f9b}} 
+\index{PauseMenu@{PauseMenu}!PauseMenu@{PauseMenu}}
+\index{PauseMenu@{PauseMenu}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{PauseMenu()}{PauseMenu()}}
+{\footnotesize\ttfamily Pause\+Menu\+::\+Pause\+Menu (\begin{DoxyParamCaption}\item[{int}]{screen\+Height,  }\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{class_pause_menu_af30f0b8f5f59c6779434295a731b0e35}\label{class_pause_menu_af30f0b8f5f59c6779434295a731b0e35}} 
+\index{PauseMenu@{PauseMenu}!````~PauseMenu@{$\sim$PauseMenu}}
+\index{````~PauseMenu@{$\sim$PauseMenu}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{$\sim$PauseMenu()}{~PauseMenu()}}
+{\footnotesize\ttfamily Pause\+Menu\+::$\sim$\+Pause\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_pause_menu_ae1b441da8a1a0ae3ffc64a8ce89432f0}\label{class_pause_menu_ae1b441da8a1a0ae3ffc64a8ce89432f0}} 
+\index{PauseMenu@{PauseMenu}!playBackgroundMusic@{playBackgroundMusic}}
+\index{playBackgroundMusic@{playBackgroundMusic}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{playBackgroundMusic}{playBackgroundMusic}}
+{\footnotesize\ttfamily void Pause\+Menu\+::play\+Background\+Music (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to start background music. 
+
+\mbox{\Hypertarget{class_pause_menu_a4ce973fdc189fbe933282d6dbf307ccc}\label{class_pause_menu_a4ce973fdc189fbe933282d6dbf307ccc}} 
+\index{PauseMenu@{PauseMenu}!playButtonSound@{playButtonSound}}
+\index{playButtonSound@{playButtonSound}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{playButtonSound}{playButtonSound}}
+{\footnotesize\ttfamily void Pause\+Menu\+::play\+Button\+Sound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to play button sound. 
+
+\mbox{\Hypertarget{class_pause_menu_ac4f80ef846911fca05673e0e11d33e20}\label{class_pause_menu_ac4f80ef846911fca05673e0e11d33e20}} 
+\index{PauseMenu@{PauseMenu}!playButtonSoundIfOn@{playButtonSoundIfOn}}
+\index{playButtonSoundIfOn@{playButtonSoundIfOn}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{playButtonSoundIfOn()}{playButtonSoundIfOn()}}
+{\footnotesize\ttfamily void Pause\+Menu\+::play\+Button\+Sound\+If\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Plays button \mbox{\hyperlink{class_sound}{Sound}} if active. 
+
+\mbox{\Hypertarget{class_pause_menu_aafbc3cdef6e016d6ac9c6c21a45c03b9}\label{class_pause_menu_aafbc3cdef6e016d6ac9c6c21a45c03b9}} 
+\index{PauseMenu@{PauseMenu}!playCarSound@{playCarSound}}
+\index{playCarSound@{playCarSound}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{playCarSound}{playCarSound}}
+{\footnotesize\ttfamily void Pause\+Menu\+::play\+Car\+Sound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to start car sound. 
+
+\mbox{\Hypertarget{class_pause_menu_a1db9704223355ed9ea8fa011d6c669ed}\label{class_pause_menu_a1db9704223355ed9ea8fa011d6c669ed}} 
+\index{PauseMenu@{PauseMenu}!quitGame@{quitGame}}
+\index{quitGame@{quitGame}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{quitGame}{quitGame}}
+{\footnotesize\ttfamily void Pause\+Menu\+::quit\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to quit game. 
+
+\mbox{\Hypertarget{class_pause_menu_a0e589c9e7ac92ad7a9478b100f2b94c1}\label{class_pause_menu_a0e589c9e7ac92ad7a9478b100f2b94c1}} 
+\index{PauseMenu@{PauseMenu}!restartGame@{restartGame}}
+\index{restartGame@{restartGame}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{restartGame}{restartGame}}
+{\footnotesize\ttfamily void Pause\+Menu\+::restart\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to restart game. 
+
+\mbox{\Hypertarget{class_pause_menu_a294b2f57ecba7ee42a871f1c6ed614eb}\label{class_pause_menu_a294b2f57ecba7ee42a871f1c6ed614eb}} 
+\index{PauseMenu@{PauseMenu}!resumeGame@{resumeGame}}
+\index{resumeGame@{resumeGame}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{resumeGame}{resumeGame}}
+{\footnotesize\ttfamily void Pause\+Menu\+::resume\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to resume game. 
+
+\mbox{\Hypertarget{class_pause_menu_ad0c8d82848648993031ece9694b236d2}\label{class_pause_menu_ad0c8d82848648993031ece9694b236d2}} 
+\index{PauseMenu@{PauseMenu}!setBackgroundMusicVolume@{setBackgroundMusicVolume}}
+\index{setBackgroundMusicVolume@{setBackgroundMusicVolume}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{setBackgroundMusicVolume}{setBackgroundMusicVolume}}
+{\footnotesize\ttfamily void Pause\+Menu\+::set\+Background\+Music\+Volume (\begin{DoxyParamCaption}\item[{int}]{volume }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to set volume of background music. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em volume} & Volume of the background music \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_pause_menu_a7b5a4790719c2c8692ce3a30ff1eb6e6}\label{class_pause_menu_a7b5a4790719c2c8692ce3a30ff1eb6e6}} 
+\index{PauseMenu@{PauseMenu}!setButtonSoundVolume@{setButtonSoundVolume}}
+\index{setButtonSoundVolume@{setButtonSoundVolume}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{setButtonSoundVolume}{setButtonSoundVolume}}
+{\footnotesize\ttfamily void Pause\+Menu\+::set\+Button\+Sound\+Volume (\begin{DoxyParamCaption}\item[{int}]{volume }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to set volume of button sound. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em volume} & Volume of the button sound \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_pause_menu_a4f2c59b2eac366bf3a6a133c0b39ac56}\label{class_pause_menu_a4f2c59b2eac366bf3a6a133c0b39ac56}} 
+\index{PauseMenu@{PauseMenu}!setCarSoundVolume@{setCarSoundVolume}}
+\index{setCarSoundVolume@{setCarSoundVolume}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{setCarSoundVolume}{setCarSoundVolume}}
+{\footnotesize\ttfamily void Pause\+Menu\+::set\+Car\+Sound\+Volume (\begin{DoxyParamCaption}\item[{int}]{volume }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to set volume of car sound. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em volume} & Volume of the car sound \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_pause_menu_a06f6d713caf70ef71c3bde13e4873a7c}\label{class_pause_menu_a06f6d713caf70ef71c3bde13e4873a7c}} 
+\index{PauseMenu@{PauseMenu}!stopBackgroundMusic@{stopBackgroundMusic}}
+\index{stopBackgroundMusic@{stopBackgroundMusic}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{stopBackgroundMusic}{stopBackgroundMusic}}
+{\footnotesize\ttfamily void Pause\+Menu\+::stop\+Background\+Music (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to stop background music. 
+
+\mbox{\Hypertarget{class_pause_menu_a0d4bdd4e4dfabd83cb41eb872f15bb8a}\label{class_pause_menu_a0d4bdd4e4dfabd83cb41eb872f15bb8a}} 
+\index{PauseMenu@{PauseMenu}!stopCarSound@{stopCarSound}}
+\index{stopCarSound@{stopCarSound}!PauseMenu@{PauseMenu}}
+\subsubsection{\texorpdfstring{stopCarSound}{stopCarSound}}
+{\footnotesize\ttfamily void Pause\+Menu\+::stop\+Car\+Sound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to stop car sound. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{pausemenu_8h}{pausemenu.\+h}}\item 
+\mbox{\hyperlink{pausemenu_8cpp}{pausemenu.\+cpp}}\end{DoxyCompactItemize}

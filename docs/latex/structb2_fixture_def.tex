@@ -1,0 +1,114 @@
+\hypertarget{structb2_fixture_def}{}\section{b2\+Fixture\+Def Struct Reference}
+\label{structb2_fixture_def}\index{b2FixtureDef@{b2FixtureDef}}
+
+
+{\ttfamily \#include $<$b2\+Fixture.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structb2_fixture_def_aa34ba06bcf0d6d981931a83cf124a602}{b2\+Fixture\+Def}} ()
+\begin{DoxyCompactList}\small\item\em The constructor sets the default fixture definition values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classb2_shape}{b2\+Shape}} $\ast$ \mbox{\hyperlink{structb2_fixture_def_a1e41753d89abf3443e7897e2498a3240}{shape}}
+\item 
+void $\ast$ \mbox{\hyperlink{structb2_fixture_def_a4f77ef2b2585a40899b61faf53db1093}{user\+Data}}
+\begin{DoxyCompactList}\small\item\em Use this to store application specific fixture data. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{structb2_fixture_def_a66081c8d0e12d4bdb0b341fb97b46eb6}{friction}}
+\begin{DoxyCompactList}\small\item\em The friction coefficient, usually in the range \mbox{[}0,1\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{structb2_fixture_def_ad7ee26656e4749f7b548d2cc0cf9f168}{restitution}}
+\begin{DoxyCompactList}\small\item\em The restitution (elasticity) usually in the range \mbox{[}0,1\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{structb2_fixture_def_a6e27d733789a35aa689af2b30a1de0ff}{density}}
+\begin{DoxyCompactList}\small\item\em The density, usually in kg/m$^\wedge$2. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structb2_fixture_def_ac8cfcc6208663c92861eaab3b3fdc57e}{is\+Sensor}}
+\item 
+\mbox{\hyperlink{structb2_filter}{b2\+Filter}} \mbox{\hyperlink{structb2_fixture_def_a4c3e493a13d11ab27fcc2eee9f52fd61}{filter}}
+\begin{DoxyCompactList}\small\item\em Contact filtering data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A fixture definition is used to create a fixture. This class defines an abstract fixture definition. You can reuse fixture definitions safely. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structb2_fixture_def_aa34ba06bcf0d6d981931a83cf124a602}\label{structb2_fixture_def_aa34ba06bcf0d6d981931a83cf124a602}} 
+\index{b2FixtureDef@{b2FixtureDef}!b2FixtureDef@{b2FixtureDef}}
+\index{b2FixtureDef@{b2FixtureDef}!b2FixtureDef@{b2FixtureDef}}
+\subsubsection{\texorpdfstring{b2FixtureDef()}{b2FixtureDef()}}
+{\footnotesize\ttfamily b2\+Fixture\+Def\+::b2\+Fixture\+Def (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The constructor sets the default fixture definition values. 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structb2_fixture_def_a6e27d733789a35aa689af2b30a1de0ff}\label{structb2_fixture_def_a6e27d733789a35aa689af2b30a1de0ff}} 
+\index{b2FixtureDef@{b2FixtureDef}!density@{density}}
+\index{density@{density}!b2FixtureDef@{b2FixtureDef}}
+\subsubsection{\texorpdfstring{density}{density}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Fixture\+Def\+::density}
+
+
+
+The density, usually in kg/m$^\wedge$2. 
+
+\mbox{\Hypertarget{structb2_fixture_def_a4c3e493a13d11ab27fcc2eee9f52fd61}\label{structb2_fixture_def_a4c3e493a13d11ab27fcc2eee9f52fd61}} 
+\index{b2FixtureDef@{b2FixtureDef}!filter@{filter}}
+\index{filter@{filter}!b2FixtureDef@{b2FixtureDef}}
+\subsubsection{\texorpdfstring{filter}{filter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_filter}{b2\+Filter}} b2\+Fixture\+Def\+::filter}
+
+
+
+Contact filtering data. 
+
+\mbox{\Hypertarget{structb2_fixture_def_a66081c8d0e12d4bdb0b341fb97b46eb6}\label{structb2_fixture_def_a66081c8d0e12d4bdb0b341fb97b46eb6}} 
+\index{b2FixtureDef@{b2FixtureDef}!friction@{friction}}
+\index{friction@{friction}!b2FixtureDef@{b2FixtureDef}}
+\subsubsection{\texorpdfstring{friction}{friction}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Fixture\+Def\+::friction}
+
+
+
+The friction coefficient, usually in the range \mbox{[}0,1\mbox{]}. 
+
+\mbox{\Hypertarget{structb2_fixture_def_ac8cfcc6208663c92861eaab3b3fdc57e}\label{structb2_fixture_def_ac8cfcc6208663c92861eaab3b3fdc57e}} 
+\index{b2FixtureDef@{b2FixtureDef}!isSensor@{isSensor}}
+\index{isSensor@{isSensor}!b2FixtureDef@{b2FixtureDef}}
+\subsubsection{\texorpdfstring{isSensor}{isSensor}}
+{\footnotesize\ttfamily bool b2\+Fixture\+Def\+::is\+Sensor}
+
+A sensor shape collects contact information but never generates a collision response. \mbox{\Hypertarget{structb2_fixture_def_ad7ee26656e4749f7b548d2cc0cf9f168}\label{structb2_fixture_def_ad7ee26656e4749f7b548d2cc0cf9f168}} 
+\index{b2FixtureDef@{b2FixtureDef}!restitution@{restitution}}
+\index{restitution@{restitution}!b2FixtureDef@{b2FixtureDef}}
+\subsubsection{\texorpdfstring{restitution}{restitution}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Fixture\+Def\+::restitution}
+
+
+
+The restitution (elasticity) usually in the range \mbox{[}0,1\mbox{]}. 
+
+\mbox{\Hypertarget{structb2_fixture_def_a1e41753d89abf3443e7897e2498a3240}\label{structb2_fixture_def_a1e41753d89abf3443e7897e2498a3240}} 
+\index{b2FixtureDef@{b2FixtureDef}!shape@{shape}}
+\index{shape@{shape}!b2FixtureDef@{b2FixtureDef}}
+\subsubsection{\texorpdfstring{shape}{shape}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classb2_shape}{b2\+Shape}}$\ast$ b2\+Fixture\+Def\+::shape}
+
+The shape, this must be set. The shape will be cloned, so you can create the shape on the stack. \mbox{\Hypertarget{structb2_fixture_def_a4f77ef2b2585a40899b61faf53db1093}\label{structb2_fixture_def_a4f77ef2b2585a40899b61faf53db1093}} 
+\index{b2FixtureDef@{b2FixtureDef}!userData@{userData}}
+\index{userData@{userData}!b2FixtureDef@{b2FixtureDef}}
+\subsubsection{\texorpdfstring{userData}{userData}}
+{\footnotesize\ttfamily void$\ast$ b2\+Fixture\+Def\+::user\+Data}
+
+
+
+Use this to store application specific fixture data. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\mbox{\hyperlink{b2_fixture_8h}{b2\+Fixture.\+h}}\end{DoxyCompactItemize}

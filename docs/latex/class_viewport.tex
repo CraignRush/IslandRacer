@@ -1,0 +1,247 @@
+\hypertarget{class_viewport}{}\section{Viewport Class Reference}
+\label{class_viewport}\index{Viewport@{Viewport}}
+
+
+Provides the view for the track.  
+
+
+
+
+{\ttfamily \#include $<$viewport.\+h$>$}
+
+Inheritance diagram for Viewport\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_viewport}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_viewport_af6fe870956ea7f77a05d6287bafaa396}{save\+Lap\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Slot which is called every time a lap is completed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_viewport_aedf40f2474206479ff16782705c0e24a}{show\+Info\+Label}} (Q\+String name, int r, int g, int b, int alpha)
+\begin{DoxyCompactList}\small\item\em Shows loser label to the loser in MP. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_viewport_ae0531bc2b8462937158f67e44b85f0fb}{update\+Label\+Opacity}} ()
+\begin{DoxyCompactList}\small\item\em Fade out winner/loser label in MP. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_viewport_a760083af13499cfcd0bf3edcdd1cb667}{stop\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Signal to the world that all laps are completed and stop game loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_viewport_a6381ca87ee7069368f5c14e544814292}{quit\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Signal to quit game after loser/winner label faded out. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_viewport_ade60c881ba4012c6a0fad5fbea967981}{race\+Finished}} (Q\+String $\ast$m\+Lap\+Time\+End, Q\+String m\+Total\+Time\+End)
+\begin{DoxyCompactList}\small\item\em Signal that race is finished and start end dialog in player class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_viewport_a00e65ee2ec94764fb237b90462d540a5}{race\+Finished\+Multiplayer}} (\mbox{\hyperlink{class_viewport}{Viewport}} $\ast$viewport)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_viewport_a2beed15ff9b285141d86763168432b07}{Viewport}} (int width, int height, \mbox{\hyperlink{class_track}{Track}} $\ast$track, bool is\+Multiplayer)
+\begin{DoxyCompactList}\small\item\em Generates a Q\+Graphics\+View with some display elements. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_viewport_a1e18a1ff4a52be33ef63d25034561850}{$\sim$\+Viewport}} ()
+\item 
+void \mbox{\hyperlink{class_viewport_aaa69f6d1141316cace3925e861189b3c}{start\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Init label params for game start. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_viewport_a42c6a6a3ae0978cb4fd35e0fc7eff894}{resume\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Restarts the lap and total time counter after pausing game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_viewport_a154be67b66998968a60df76042438b4b}{pause\+Game}} (bool running)
+\begin{DoxyCompactList}\small\item\em Save previous time when pausing the game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_viewport_af4f56a75c3b96e1dd9d63bb469e3adc7}{restart\+Game}} ()
+\begin{DoxyCompactList}\small\item\em Resets all values (e.\+g. m\+Cur\+Lap or m\+Laps)to beginnig default. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_viewport_a11b053c166cbf98f4323bb7b7449b462}{update\+Overlay}} (Q\+PointF carpos, int fps)
+\begin{DoxyCompactList}\small\item\em Each time step during game\+Loop this function is called to update all labels. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_viewport_a7fd5efb74f43412ff49ca90632388a6d}{set\+Label\+Style\+Sheets}} (int r, int g, int b, int alpha)
+\begin{DoxyCompactList}\small\item\em Sets Style of labels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides the view for the track. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_viewport_a2beed15ff9b285141d86763168432b07}\label{class_viewport_a2beed15ff9b285141d86763168432b07}} 
+\index{Viewport@{Viewport}!Viewport@{Viewport}}
+\index{Viewport@{Viewport}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{Viewport()}{Viewport()}}
+{\footnotesize\ttfamily Viewport\+::\+Viewport (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height,  }\item[{\mbox{\hyperlink{class_track}{Track}} $\ast$}]{track,  }\item[{bool}]{is\+Multiplayer }\end{DoxyParamCaption})}
+
+
+
+Generates a Q\+Graphics\+View with some display elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The width of the view \\
+\hline
+{\em height} & The height of the view \\
+\hline
+{\em track} & The Q\+Graphics scene which is displayed \\
+\hline
+{\em is\+Multiplayer} & Needed to adjust size for MP or SP \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_viewport_a1e18a1ff4a52be33ef63d25034561850}\label{class_viewport_a1e18a1ff4a52be33ef63d25034561850}} 
+\index{Viewport@{Viewport}!````~Viewport@{$\sim$Viewport}}
+\index{````~Viewport@{$\sim$Viewport}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{$\sim$Viewport()}{~Viewport()}}
+{\footnotesize\ttfamily Viewport\+::$\sim$\+Viewport (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_viewport_a154be67b66998968a60df76042438b4b}\label{class_viewport_a154be67b66998968a60df76042438b4b}} 
+\index{Viewport@{Viewport}!pauseGame@{pauseGame}}
+\index{pauseGame@{pauseGame}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{pauseGame()}{pauseGame()}}
+{\footnotesize\ttfamily void Viewport\+::pause\+Game (\begin{DoxyParamCaption}\item[{bool}]{running }\end{DoxyParamCaption})}
+
+
+
+Save previous time when pausing the game. 
+
+If you pause the game during start\+Loop, running is False and time won\textquotesingle{}t be saved 
+\begin{DoxyParams}{Parameters}
+{\em running} & Indicats if pausing the game during game\+Loop or star\+Loop \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_viewport_a6381ca87ee7069368f5c14e544814292}\label{class_viewport_a6381ca87ee7069368f5c14e544814292}} 
+\index{Viewport@{Viewport}!quitGame@{quitGame}}
+\index{quitGame@{quitGame}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{quitGame}{quitGame}}
+{\footnotesize\ttfamily void Viewport\+::quit\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to quit game after loser/winner label faded out. 
+
+\mbox{\Hypertarget{class_viewport_ade60c881ba4012c6a0fad5fbea967981}\label{class_viewport_ade60c881ba4012c6a0fad5fbea967981}} 
+\index{Viewport@{Viewport}!raceFinished@{raceFinished}}
+\index{raceFinished@{raceFinished}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{raceFinished}{raceFinished}}
+{\footnotesize\ttfamily void Viewport\+::race\+Finished (\begin{DoxyParamCaption}\item[{Q\+String $\ast$}]{m\+Lap\+Time\+End,  }\item[{Q\+String}]{m\+Total\+Time\+End }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal that race is finished and start end dialog in player class. 
+
+\mbox{\Hypertarget{class_viewport_a00e65ee2ec94764fb237b90462d540a5}\label{class_viewport_a00e65ee2ec94764fb237b90462d540a5}} 
+\index{Viewport@{Viewport}!raceFinishedMultiplayer@{raceFinishedMultiplayer}}
+\index{raceFinishedMultiplayer@{raceFinishedMultiplayer}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{raceFinishedMultiplayer}{raceFinishedMultiplayer}}
+{\footnotesize\ttfamily void Viewport\+::race\+Finished\+Multiplayer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_viewport}{Viewport}} $\ast$}]{viewport }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\mbox{\Hypertarget{class_viewport_af4f56a75c3b96e1dd9d63bb469e3adc7}\label{class_viewport_af4f56a75c3b96e1dd9d63bb469e3adc7}} 
+\index{Viewport@{Viewport}!restartGame@{restartGame}}
+\index{restartGame@{restartGame}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{restartGame()}{restartGame()}}
+{\footnotesize\ttfamily void Viewport\+::restart\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resets all values (e.\+g. m\+Cur\+Lap or m\+Laps)to beginnig default. 
+
+\mbox{\Hypertarget{class_viewport_a42c6a6a3ae0978cb4fd35e0fc7eff894}\label{class_viewport_a42c6a6a3ae0978cb4fd35e0fc7eff894}} 
+\index{Viewport@{Viewport}!resumeGame@{resumeGame}}
+\index{resumeGame@{resumeGame}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{resumeGame()}{resumeGame()}}
+{\footnotesize\ttfamily void Viewport\+::resume\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Restarts the lap and total time counter after pausing game. 
+
+\mbox{\Hypertarget{class_viewport_af6fe870956ea7f77a05d6287bafaa396}\label{class_viewport_af6fe870956ea7f77a05d6287bafaa396}} 
+\index{Viewport@{Viewport}!saveLapTime@{saveLapTime}}
+\index{saveLapTime@{saveLapTime}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{saveLapTime}{saveLapTime}}
+{\footnotesize\ttfamily void Viewport\+::save\+Lap\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Slot which is called every time a lap is completed. 
+
+Updates all label params for a new lap \mbox{\Hypertarget{class_viewport_a7fd5efb74f43412ff49ca90632388a6d}\label{class_viewport_a7fd5efb74f43412ff49ca90632388a6d}} 
+\index{Viewport@{Viewport}!setLabelStyleSheets@{setLabelStyleSheets}}
+\index{setLabelStyleSheets@{setLabelStyleSheets}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{setLabelStyleSheets()}{setLabelStyleSheets()}}
+{\footnotesize\ttfamily void Viewport\+::set\+Label\+Style\+Sheets (\begin{DoxyParamCaption}\item[{int}]{r,  }\item[{int}]{g,  }\item[{int}]{b,  }\item[{int}]{alpha }\end{DoxyParamCaption})}
+
+
+
+Sets Style of labels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & Red value \\
+\hline
+{\em g} & Green value \\
+\hline
+{\em b} & Blue value \\
+\hline
+{\em alpha} & Transparency \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_viewport_aedf40f2474206479ff16782705c0e24a}\label{class_viewport_aedf40f2474206479ff16782705c0e24a}} 
+\index{Viewport@{Viewport}!showInfoLabel@{showInfoLabel}}
+\index{showInfoLabel@{showInfoLabel}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{showInfoLabel}{showInfoLabel}}
+{\footnotesize\ttfamily void Viewport\+::show\+Info\+Label (\begin{DoxyParamCaption}\item[{Q\+String}]{name,  }\item[{int}]{r,  }\item[{int}]{g,  }\item[{int}]{b,  }\item[{int}]{alpha }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Shows loser label to the loser in MP. 
+
+\mbox{\Hypertarget{class_viewport_aaa69f6d1141316cace3925e861189b3c}\label{class_viewport_aaa69f6d1141316cace3925e861189b3c}} 
+\index{Viewport@{Viewport}!startGame@{startGame}}
+\index{startGame@{startGame}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{startGame()}{startGame()}}
+{\footnotesize\ttfamily void Viewport\+::start\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Init label params for game start. 
+
+\mbox{\Hypertarget{class_viewport_a760083af13499cfcd0bf3edcdd1cb667}\label{class_viewport_a760083af13499cfcd0bf3edcdd1cb667}} 
+\index{Viewport@{Viewport}!stopGame@{stopGame}}
+\index{stopGame@{stopGame}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{stopGame}{stopGame}}
+{\footnotesize\ttfamily void Viewport\+::stop\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal to the world that all laps are completed and stop game loop. 
+
+\mbox{\Hypertarget{class_viewport_ae0531bc2b8462937158f67e44b85f0fb}\label{class_viewport_ae0531bc2b8462937158f67e44b85f0fb}} 
+\index{Viewport@{Viewport}!updateLabelOpacity@{updateLabelOpacity}}
+\index{updateLabelOpacity@{updateLabelOpacity}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{updateLabelOpacity}{updateLabelOpacity}}
+{\footnotesize\ttfamily void Viewport\+::update\+Label\+Opacity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Fade out winner/loser label in MP. 
+
+\mbox{\Hypertarget{class_viewport_a11b053c166cbf98f4323bb7b7449b462}\label{class_viewport_a11b053c166cbf98f4323bb7b7449b462}} 
+\index{Viewport@{Viewport}!updateOverlay@{updateOverlay}}
+\index{updateOverlay@{updateOverlay}!Viewport@{Viewport}}
+\subsubsection{\texorpdfstring{updateOverlay()}{updateOverlay()}}
+{\footnotesize\ttfamily void Viewport\+::update\+Overlay (\begin{DoxyParamCaption}\item[{Q\+PointF}]{carpos,  }\item[{int}]{fps }\end{DoxyParamCaption})}
+
+
+
+Each time step during game\+Loop this function is called to update all labels. 
+
+carpos and fps is need to calculate current speed 
+\begin{DoxyParams}{Parameters}
+{\em carpos} & Current position of car \\
+\hline
+{\em fps} & Frames per second of the game \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{viewport_8h}{viewport.\+h}}\item 
+\mbox{\hyperlink{viewport_8cpp}{viewport.\+cpp}}\end{DoxyCompactItemize}

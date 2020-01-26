@@ -1,0 +1,107 @@
+\hypertarget{structb2_tree_node}{}\section{b2\+Tree\+Node Struct Reference}
+\label{structb2_tree_node}\index{b2TreeNode@{b2TreeNode}}
+
+
+A node in the dynamic tree. The client does not interact with this directly.  
+
+
+
+
+{\ttfamily \#include $<$b2\+Dynamic\+Tree.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structb2_tree_node_a540267ce6fa890822f1eea2d1967f646}{Is\+Leaf}} () const
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} \mbox{\hyperlink{structb2_tree_node_a798f1a594b33c713be45e76e79912239}{aabb}}
+\begin{DoxyCompactList}\small\item\em Enlarged A\+A\+BB. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{structb2_tree_node_aff77b3eb48326aca1b0762f5c45e56e7}{user\+Data}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{structb2_tree_node_a6d293fa25192db51808ebec05ee7e56e}{parent}}\\
+\>\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{structb2_tree_node_a67ac768e9227b165198d3d4e2299f9b3}{next}}\\
+\}; \\
+
+\end{tabbing}\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{structb2_tree_node_a3a320f2afc7d223e92ee3629602be5ca}{child1}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{structb2_tree_node_aa6774ce329715b20d8b7cc8b6e3d50bc}{child2}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{structb2_tree_node_acd183ac94a8d44195c787111be4c22e2}{height}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A node in the dynamic tree. The client does not interact with this directly. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structb2_tree_node_a540267ce6fa890822f1eea2d1967f646}\label{structb2_tree_node_a540267ce6fa890822f1eea2d1967f646}} 
+\index{b2TreeNode@{b2TreeNode}!IsLeaf@{IsLeaf}}
+\index{IsLeaf@{IsLeaf}!b2TreeNode@{b2TreeNode}}
+\subsubsection{\texorpdfstring{IsLeaf()}{IsLeaf()}}
+{\footnotesize\ttfamily bool b2\+Tree\+Node\+::\+Is\+Leaf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structb2_tree_node_a9d8975d1e109fb59c7f549f1da7d75c4}\label{structb2_tree_node_a9d8975d1e109fb59c7f549f1da7d75c4}} 
+\subsubsection{\texorpdfstring{"@2}{@2}}
+{\footnotesize\ttfamily union \{ ... \} }
+
+\mbox{\Hypertarget{structb2_tree_node_a798f1a594b33c713be45e76e79912239}\label{structb2_tree_node_a798f1a594b33c713be45e76e79912239}} 
+\index{b2TreeNode@{b2TreeNode}!aabb@{aabb}}
+\index{aabb@{aabb}!b2TreeNode@{b2TreeNode}}
+\subsubsection{\texorpdfstring{aabb}{aabb}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_a_a_b_b}{b2\+A\+A\+BB}} b2\+Tree\+Node\+::aabb}
+
+
+
+Enlarged A\+A\+BB. 
+
+\mbox{\Hypertarget{structb2_tree_node_a3a320f2afc7d223e92ee3629602be5ca}\label{structb2_tree_node_a3a320f2afc7d223e92ee3629602be5ca}} 
+\index{b2TreeNode@{b2TreeNode}!child1@{child1}}
+\index{child1@{child1}!b2TreeNode@{b2TreeNode}}
+\subsubsection{\texorpdfstring{child1}{child1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+Tree\+Node\+::child1}
+
+\mbox{\Hypertarget{structb2_tree_node_aa6774ce329715b20d8b7cc8b6e3d50bc}\label{structb2_tree_node_aa6774ce329715b20d8b7cc8b6e3d50bc}} 
+\index{b2TreeNode@{b2TreeNode}!child2@{child2}}
+\index{child2@{child2}!b2TreeNode@{b2TreeNode}}
+\subsubsection{\texorpdfstring{child2}{child2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+Tree\+Node\+::child2}
+
+\mbox{\Hypertarget{structb2_tree_node_acd183ac94a8d44195c787111be4c22e2}\label{structb2_tree_node_acd183ac94a8d44195c787111be4c22e2}} 
+\index{b2TreeNode@{b2TreeNode}!height@{height}}
+\index{height@{height}!b2TreeNode@{b2TreeNode}}
+\subsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+Tree\+Node\+::height}
+
+\mbox{\Hypertarget{structb2_tree_node_a67ac768e9227b165198d3d4e2299f9b3}\label{structb2_tree_node_a67ac768e9227b165198d3d4e2299f9b3}} 
+\index{b2TreeNode@{b2TreeNode}!next@{next}}
+\index{next@{next}!b2TreeNode@{b2TreeNode}}
+\subsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+Tree\+Node\+::next}
+
+\mbox{\Hypertarget{structb2_tree_node_a6d293fa25192db51808ebec05ee7e56e}\label{structb2_tree_node_a6d293fa25192db51808ebec05ee7e56e}} 
+\index{b2TreeNode@{b2TreeNode}!parent@{parent}}
+\index{parent@{parent}!b2TreeNode@{b2TreeNode}}
+\subsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+Tree\+Node\+::parent}
+
+\mbox{\Hypertarget{structb2_tree_node_aff77b3eb48326aca1b0762f5c45e56e7}\label{structb2_tree_node_aff77b3eb48326aca1b0762f5c45e56e7}} 
+\index{b2TreeNode@{b2TreeNode}!userData@{userData}}
+\index{userData@{userData}!b2TreeNode@{b2TreeNode}}
+\subsubsection{\texorpdfstring{userData}{userData}}
+{\footnotesize\ttfamily void$\ast$ b2\+Tree\+Node\+::user\+Data}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Collision/\mbox{\hyperlink{b2_dynamic_tree_8h}{b2\+Dynamic\+Tree.\+h}}\end{DoxyCompactItemize}

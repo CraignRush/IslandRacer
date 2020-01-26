@@ -1,0 +1,496 @@
+\hypertarget{b2_math_8h}{}\section{E\+:/\+Uni/6.Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Common/b2\+Math.h File Reference}
+\label{b2_math_8h}\index{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Common/b2Math.h@{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Common/b2Math.h}}
+{\ttfamily \#include \char`\"{}Box2\+D/\+Common/b2\+Settings.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}}
+\begin{DoxyCompactList}\small\item\em A 2D column vector. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}}
+\begin{DoxyCompactList}\small\item\em A 2D column vector with 3 elements. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}}
+\begin{DoxyCompactList}\small\item\em A 2-\/by-\/2 matrix. Stored in column-\/major order. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structb2_mat33}{b2\+Mat33}}
+\begin{DoxyCompactList}\small\item\em A 3-\/by-\/3 matrix. Stored in column-\/major order. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structb2_rot}{b2\+Rot}}
+\begin{DoxyCompactList}\small\item\em Rotation. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structb2_transform}{b2\+Transform}}
+\item 
+struct \mbox{\hyperlink{structb2_sweep}{b2\+Sweep}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{b2_math_8h_a58e7c8ed67b5f0f98a0873cfb0035076}{b2\+Sqrt}}(x)~sqrtf(x)
+\item 
+\#define \mbox{\hyperlink{b2_math_8h_afe19f6449028d2aaa14c9c4c3b22066d}{b2\+Atan2}}(y,  x)~atan2f(y, x)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{b2_math_8h_a6e846de254fa783f9618ed93bcf8a394}{b2\+Is\+Valid}} (\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} x)
+\begin{DoxyCompactList}\small\item\em This function is used to ensure that a floating point number is not a NaN or infinity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{b2_math_8h_a94db844858ec5b062e9df27f843d1552}{b2\+Inv\+Sqrt}} (\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} x)
+\begin{DoxyCompactList}\small\item\em This is a approximate yet fast inverse square-\/root. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{b2_math_8h_a70b92f24af9112e7951ced79045363f1}{b2\+Dot}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b)
+\begin{DoxyCompactList}\small\item\em Perform the dot product on two vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{b2_math_8h_a33b1b80b1114eb2d03c307b02ca6fdf6}{b2\+Cross}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b)
+\begin{DoxyCompactList}\small\item\em Perform the cross product on two vectors. In 2D this produces a scalar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a7b096c85fbb12ec43c813f92ede17480}{b2\+Cross}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} s)
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_aa058d7bfcf20a7b49d1d22d2284fef8f}{b2\+Cross}} (\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} s, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a)
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a12738edb3f24ad9d872421f4e6898de9}{b2\+Mul}} (const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&A, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&v)
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a38bf48069527b2dc0224e0dedbafe17c}{b2\+MulT}} (const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&A, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&v)
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_aabe5cfd3c0c2436622fe392122f3504d}{operator+}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b)
+\begin{DoxyCompactList}\small\item\em Add two vectors component-\/wise. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a4f84297329b1c07fb3434760d02c1de0}{operator -\/}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b)
+\begin{DoxyCompactList}\small\item\em Subtract two vectors component-\/wise. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a722be80f987d50fab4a784987e3fbee8}{operator $\ast$}} (\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} s, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a)
+\item 
+bool \mbox{\hyperlink{b2_math_8h_af7e4f3ac0ffef6bbd586543e2e1b04d5}{operator==}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b)
+\item 
+bool \mbox{\hyperlink{b2_math_8h_aa55517a708b1bfa7d387ce82cb93b58f}{operator !=}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b)
+\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{b2_math_8h_a55ee8f478626440779e88f2343c698b1}{b2\+Distance}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b)
+\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{b2_math_8h_a1fb7f05d9bd9a362fa2c6741cf3fbd3b}{b2\+Distance\+Squared}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b)
+\item 
+\mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \mbox{\hyperlink{b2_math_8h_a8af9dc9a597a247a00000b85a5854f67}{operator $\ast$}} (\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} s, const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&a)
+\item 
+\mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \mbox{\hyperlink{b2_math_8h_ac5671b7f3534b00e99a757eb4ade907c}{operator+}} (const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&a, const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&b)
+\begin{DoxyCompactList}\small\item\em Add two vectors component-\/wise. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \mbox{\hyperlink{b2_math_8h_a252c19eef296965d71e3178b1d762626}{operator -\/}} (const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&a, const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&b)
+\begin{DoxyCompactList}\small\item\em Subtract two vectors component-\/wise. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} \mbox{\hyperlink{b2_math_8h_a1e77dac3105b68676fb43c15c0bb9ee3}{b2\+Dot}} (const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&a, const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&b)
+\begin{DoxyCompactList}\small\item\em Perform the dot product on two vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \mbox{\hyperlink{b2_math_8h_a25353226a22975a6774247a74c2309db}{b2\+Cross}} (const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&a, const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&b)
+\begin{DoxyCompactList}\small\item\em Perform the cross product on two vectors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \mbox{\hyperlink{b2_math_8h_ad26d99f359b3a6f100d9538ce8fba78f}{operator+}} (const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&A, const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&B)
+\item 
+\mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \mbox{\hyperlink{b2_math_8h_ac1fb7bf7a1dcf65382301b64ed0321a4}{b2\+Mul}} (const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&A, const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&B)
+\item 
+\mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \mbox{\hyperlink{b2_math_8h_a6904a90ebef81abe11a580958edb0768}{b2\+MulT}} (const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&A, const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&B)
+\item 
+\mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \mbox{\hyperlink{b2_math_8h_aea5a2dc18e95eea003db180aa6b65f5e}{b2\+Mul}} (const \mbox{\hyperlink{structb2_mat33}{b2\+Mat33}} \&A, const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&v)
+\begin{DoxyCompactList}\small\item\em Multiply a matrix times a vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a598e4404e88fde61e4be408721663193}{b2\+Mul22}} (const \mbox{\hyperlink{structb2_mat33}{b2\+Mat33}} \&A, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&v)
+\begin{DoxyCompactList}\small\item\em Multiply a matrix times a vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_rot}{b2\+Rot}} \mbox{\hyperlink{b2_math_8h_a8656bfe0202c1f9be67adbf172028e4f}{b2\+Mul}} (const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&q, const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&r)
+\begin{DoxyCompactList}\small\item\em Multiply two rotations\+: q $\ast$ r. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_rot}{b2\+Rot}} \mbox{\hyperlink{b2_math_8h_a37986fc259888a4e588e6cdb72ad9cd3}{b2\+MulT}} (const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&q, const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&r)
+\begin{DoxyCompactList}\small\item\em Transpose multiply two rotations\+: qT $\ast$ r. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a2c19b253c5ce1933a3520082a86f41f2}{b2\+Mul}} (const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&q, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&v)
+\begin{DoxyCompactList}\small\item\em Rotate a vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a61bc6ce555c51823d7c0747bc7b010b9}{b2\+MulT}} (const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&q, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&v)
+\begin{DoxyCompactList}\small\item\em Inverse rotate a vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_adc2859334a7f260742bf13e0d506e977}{b2\+Mul}} (const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&T, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&v)
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a157696518d038a2b900f81e0e40ef27f}{b2\+MulT}} (const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&T, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&v)
+\item 
+\mbox{\hyperlink{structb2_transform}{b2\+Transform}} \mbox{\hyperlink{b2_math_8h_a5dee99094252065c5c334ddde9c95e59}{b2\+Mul}} (const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&A, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&B)
+\item 
+\mbox{\hyperlink{structb2_transform}{b2\+Transform}} \mbox{\hyperlink{b2_math_8h_aa6a218f164938003edd5040760e36c8e}{b2\+MulT}} (const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&A, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&B)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{b2_math_8h_a7711eacff2f9755d3b34b360f679b33a}{b2\+Abs}} (T a)
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a9a96bf0b2b574a8b88346e631ce85312}{b2\+Abs}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a)
+\item 
+\mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \mbox{\hyperlink{b2_math_8h_a4e14463da9e9a214121aedc4590822c2}{b2\+Abs}} (const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&A)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{b2_math_8h_a169e88bf0dd7c5462555219dd725e11d}{b2\+Min}} (T a, T b)
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a87b278b32677b28124d594008742f8c7}{b2\+Min}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{b2_math_8h_ab35d30607cf554096fa67407304be217}{b2\+Max}} (T a, T b)
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_adf07fe44a1bfc17daef355f8f1281b00}{b2\+Max}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{b2_math_8h_afd644f04a598cfa9ee1286ff04333d53}{b2\+Clamp}} (T a, T low, T high)
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_a26a6e5df5af01d16c687a9d1a0d72771}{b2\+Clamp}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&a, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&low, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&high)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{b2_math_8h_a68c06593a75374fd69e2eb1d1f1caf09}{b2\+Swap}} (T \&a, T \&b)
+\item 
+\mbox{\hyperlink{b2_settings_8h_a1134b580f8da4de94ca6b1de4d37975e}{uint32}} \mbox{\hyperlink{b2_math_8h_a1bd53d288c039f6eeb1526bd55ce1414}{b2\+Next\+Power\+Of\+Two}} (\mbox{\hyperlink{b2_settings_8h_a1134b580f8da4de94ca6b1de4d37975e}{uint32}} x)
+\item 
+bool \mbox{\hyperlink{b2_math_8h_a8c73c20bd0705c5a19148486ae305a12}{b2\+Is\+Power\+Of\+Two}} (\mbox{\hyperlink{b2_settings_8h_a1134b580f8da4de94ca6b1de4d37975e}{uint32}} x)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{b2_math_8h_ad6f7495e1f1adf7369190bf3f89a60db}{b2\+Vec2\+\_\+zero}}
+\begin{DoxyCompactList}\small\item\em Useful constant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{b2_math_8h_afe19f6449028d2aaa14c9c4c3b22066d}\label{b2_math_8h_afe19f6449028d2aaa14c9c4c3b22066d}} 
+\index{b2Math.h@{b2Math.h}!b2Atan2@{b2Atan2}}
+\index{b2Atan2@{b2Atan2}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Atan2}{b2Atan2}}
+{\footnotesize\ttfamily \#define b2\+Atan2(\begin{DoxyParamCaption}\item[{}]{y,  }\item[{}]{x }\end{DoxyParamCaption})~atan2f(y, x)}
+
+\mbox{\Hypertarget{b2_math_8h_a58e7c8ed67b5f0f98a0873cfb0035076}\label{b2_math_8h_a58e7c8ed67b5f0f98a0873cfb0035076}} 
+\index{b2Math.h@{b2Math.h}!b2Sqrt@{b2Sqrt}}
+\index{b2Sqrt@{b2Sqrt}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Sqrt}{b2Sqrt}}
+{\footnotesize\ttfamily \#define b2\+Sqrt(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~sqrtf(x)}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{b2_math_8h_a7711eacff2f9755d3b34b360f679b33a}\label{b2_math_8h_a7711eacff2f9755d3b34b360f679b33a}} 
+\index{b2Math.h@{b2Math.h}!b2Abs@{b2Abs}}
+\index{b2Abs@{b2Abs}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Abs()}{b2Abs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T b2\+Abs (\begin{DoxyParamCaption}\item[{T}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a9a96bf0b2b574a8b88346e631ce85312}\label{b2_math_8h_a9a96bf0b2b574a8b88346e631ce85312}} 
+\index{b2Math.h@{b2Math.h}!b2Abs@{b2Abs}}
+\index{b2Abs@{b2Abs}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Abs()}{b2Abs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Abs (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a4e14463da9e9a214121aedc4590822c2}\label{b2_math_8h_a4e14463da9e9a214121aedc4590822c2}} 
+\index{b2Math.h@{b2Math.h}!b2Abs@{b2Abs}}
+\index{b2Abs@{b2Abs}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Abs()}{b2Abs()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} b2\+Abs (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_afd644f04a598cfa9ee1286ff04333d53}\label{b2_math_8h_afd644f04a598cfa9ee1286ff04333d53}} 
+\index{b2Math.h@{b2Math.h}!b2Clamp@{b2Clamp}}
+\index{b2Clamp@{b2Clamp}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Clamp()}{b2Clamp()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T b2\+Clamp (\begin{DoxyParamCaption}\item[{T}]{a,  }\item[{T}]{low,  }\item[{T}]{high }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a26a6e5df5af01d16c687a9d1a0d72771}\label{b2_math_8h_a26a6e5df5af01d16c687a9d1a0d72771}} 
+\index{b2Math.h@{b2Math.h}!b2Clamp@{b2Clamp}}
+\index{b2Clamp@{b2Clamp}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Clamp()}{b2Clamp()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Clamp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{low,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{high }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a33b1b80b1114eb2d03c307b02ca6fdf6}\label{b2_math_8h_a33b1b80b1114eb2d03c307b02ca6fdf6}} 
+\index{b2Math.h@{b2Math.h}!b2Cross@{b2Cross}}
+\index{b2Cross@{b2Cross}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Cross()}{b2Cross()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Cross (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Perform the cross product on two vectors. In 2D this produces a scalar. 
+
+\mbox{\Hypertarget{b2_math_8h_a7b096c85fbb12ec43c813f92ede17480}\label{b2_math_8h_a7b096c85fbb12ec43c813f92ede17480}} 
+\index{b2Math.h@{b2Math.h}!b2Cross@{b2Cross}}
+\index{b2Cross@{b2Cross}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Cross()}{b2Cross()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Cross (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Perform the cross product on a vector and a scalar. In 2D this produces a vector. \mbox{\Hypertarget{b2_math_8h_aa058d7bfcf20a7b49d1d22d2284fef8f}\label{b2_math_8h_aa058d7bfcf20a7b49d1d22d2284fef8f}} 
+\index{b2Math.h@{b2Math.h}!b2Cross@{b2Cross}}
+\index{b2Cross@{b2Cross}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Cross()}{b2Cross()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Cross (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{s,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Perform the cross product on a scalar and a vector. In 2D this produces a vector. \mbox{\Hypertarget{b2_math_8h_a25353226a22975a6774247a74c2309db}\label{b2_math_8h_a25353226a22975a6774247a74c2309db}} 
+\index{b2Math.h@{b2Math.h}!b2Cross@{b2Cross}}
+\index{b2Cross@{b2Cross}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Cross()}{b2Cross()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} b2\+Cross (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Perform the cross product on two vectors. 
+
+\mbox{\Hypertarget{b2_math_8h_a55ee8f478626440779e88f2343c698b1}\label{b2_math_8h_a55ee8f478626440779e88f2343c698b1}} 
+\index{b2Math.h@{b2Math.h}!b2Distance@{b2Distance}}
+\index{b2Distance@{b2Distance}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Distance()}{b2Distance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a1fb7f05d9bd9a362fa2c6741cf3fbd3b}\label{b2_math_8h_a1fb7f05d9bd9a362fa2c6741cf3fbd3b}} 
+\index{b2Math.h@{b2Math.h}!b2DistanceSquared@{b2DistanceSquared}}
+\index{b2DistanceSquared@{b2DistanceSquared}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2DistanceSquared()}{b2DistanceSquared()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Distance\+Squared (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a70b92f24af9112e7951ced79045363f1}\label{b2_math_8h_a70b92f24af9112e7951ced79045363f1}} 
+\index{b2Math.h@{b2Math.h}!b2Dot@{b2Dot}}
+\index{b2Dot@{b2Dot}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Dot()}{b2Dot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Perform the dot product on two vectors. 
+
+\mbox{\Hypertarget{b2_math_8h_a1e77dac3105b68676fb43c15c0bb9ee3}\label{b2_math_8h_a1e77dac3105b68676fb43c15c0bb9ee3}} 
+\index{b2Math.h@{b2Math.h}!b2Dot@{b2Dot}}
+\index{b2Dot@{b2Dot}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Dot()}{b2Dot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Perform the dot product on two vectors. 
+
+\mbox{\Hypertarget{b2_math_8h_a94db844858ec5b062e9df27f843d1552}\label{b2_math_8h_a94db844858ec5b062e9df27f843d1552}} 
+\index{b2Math.h@{b2Math.h}!b2InvSqrt@{b2InvSqrt}}
+\index{b2InvSqrt@{b2InvSqrt}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2InvSqrt()}{b2InvSqrt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} b2\+Inv\+Sqrt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This is a approximate yet fast inverse square-\/root. 
+
+\mbox{\Hypertarget{b2_math_8h_a8c73c20bd0705c5a19148486ae305a12}\label{b2_math_8h_a8c73c20bd0705c5a19148486ae305a12}} 
+\index{b2Math.h@{b2Math.h}!b2IsPowerOfTwo@{b2IsPowerOfTwo}}
+\index{b2IsPowerOfTwo@{b2IsPowerOfTwo}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2IsPowerOfTwo()}{b2IsPowerOfTwo()}}
+{\footnotesize\ttfamily bool b2\+Is\+Power\+Of\+Two (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_settings_8h_a1134b580f8da4de94ca6b1de4d37975e}{uint32}}}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a6e846de254fa783f9618ed93bcf8a394}\label{b2_math_8h_a6e846de254fa783f9618ed93bcf8a394}} 
+\index{b2Math.h@{b2Math.h}!b2IsValid@{b2IsValid}}
+\index{b2IsValid@{b2IsValid}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2IsValid()}{b2IsValid()}}
+{\footnotesize\ttfamily bool b2\+Is\+Valid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function is used to ensure that a floating point number is not a NaN or infinity. 
+
+\mbox{\Hypertarget{b2_math_8h_ab35d30607cf554096fa67407304be217}\label{b2_math_8h_ab35d30607cf554096fa67407304be217}} 
+\index{b2Math.h@{b2Math.h}!b2Max@{b2Max}}
+\index{b2Max@{b2Max}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Max()}{b2Max()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T b2\+Max (\begin{DoxyParamCaption}\item[{T}]{a,  }\item[{T}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_adf07fe44a1bfc17daef355f8f1281b00}\label{b2_math_8h_adf07fe44a1bfc17daef355f8f1281b00}} 
+\index{b2Math.h@{b2Math.h}!b2Max@{b2Max}}
+\index{b2Max@{b2Max}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Max()}{b2Max()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Max (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a169e88bf0dd7c5462555219dd725e11d}\label{b2_math_8h_a169e88bf0dd7c5462555219dd725e11d}} 
+\index{b2Math.h@{b2Math.h}!b2Min@{b2Min}}
+\index{b2Min@{b2Min}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Min()}{b2Min()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T b2\+Min (\begin{DoxyParamCaption}\item[{T}]{a,  }\item[{T}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a87b278b32677b28124d594008742f8c7}\label{b2_math_8h_a87b278b32677b28124d594008742f8c7}} 
+\index{b2Math.h@{b2Math.h}!b2Min@{b2Min}}
+\index{b2Min@{b2Min}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Min()}{b2Min()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Min (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a12738edb3f24ad9d872421f4e6898de9}\label{b2_math_8h_a12738edb3f24ad9d872421f4e6898de9}} 
+\index{b2Math.h@{b2Math.h}!b2Mul@{b2Mul}}
+\index{b2Mul@{b2Mul}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Mul()}{b2Mul()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Mul (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&}]{A,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Multiply a matrix times a vector. If a rotation matrix is provided, then this transforms the vector from one frame to another. \mbox{\Hypertarget{b2_math_8h_ac1fb7bf7a1dcf65382301b64ed0321a4}\label{b2_math_8h_ac1fb7bf7a1dcf65382301b64ed0321a4}} 
+\index{b2Math.h@{b2Math.h}!b2Mul@{b2Mul}}
+\index{b2Mul@{b2Mul}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Mul()}{b2Mul()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} b2\+Mul (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&}]{A,  }\item[{const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_aea5a2dc18e95eea003db180aa6b65f5e}\label{b2_math_8h_aea5a2dc18e95eea003db180aa6b65f5e}} 
+\index{b2Math.h@{b2Math.h}!b2Mul@{b2Mul}}
+\index{b2Mul@{b2Mul}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Mul()}{b2Mul()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} b2\+Mul (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_mat33}{b2\+Mat33}} \&}]{A,  }\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiply a matrix times a vector. 
+
+\mbox{\Hypertarget{b2_math_8h_a8656bfe0202c1f9be67adbf172028e4f}\label{b2_math_8h_a8656bfe0202c1f9be67adbf172028e4f}} 
+\index{b2Math.h@{b2Math.h}!b2Mul@{b2Mul}}
+\index{b2Mul@{b2Mul}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Mul()}{b2Mul()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_rot}{b2\+Rot}} b2\+Mul (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&}]{q,  }\item[{const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiply two rotations\+: q $\ast$ r. 
+
+\mbox{\Hypertarget{b2_math_8h_a2c19b253c5ce1933a3520082a86f41f2}\label{b2_math_8h_a2c19b253c5ce1933a3520082a86f41f2}} 
+\index{b2Math.h@{b2Math.h}!b2Mul@{b2Mul}}
+\index{b2Mul@{b2Mul}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Mul()}{b2Mul()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Mul (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&}]{q,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Rotate a vector. 
+
+\mbox{\Hypertarget{b2_math_8h_adc2859334a7f260742bf13e0d506e977}\label{b2_math_8h_adc2859334a7f260742bf13e0d506e977}} 
+\index{b2Math.h@{b2Math.h}!b2Mul@{b2Mul}}
+\index{b2Mul@{b2Mul}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Mul()}{b2Mul()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Mul (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{T,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a5dee99094252065c5c334ddde9c95e59}\label{b2_math_8h_a5dee99094252065c5c334ddde9c95e59}} 
+\index{b2Math.h@{b2Math.h}!b2Mul@{b2Mul}}
+\index{b2Mul@{b2Mul}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Mul()}{b2Mul()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_transform}{b2\+Transform}} b2\+Mul (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{A,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a598e4404e88fde61e4be408721663193}\label{b2_math_8h_a598e4404e88fde61e4be408721663193}} 
+\index{b2Math.h@{b2Math.h}!b2Mul22@{b2Mul22}}
+\index{b2Mul22@{b2Mul22}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Mul22()}{b2Mul22()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Mul22 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_mat33}{b2\+Mat33}} \&}]{A,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiply a matrix times a vector. 
+
+\mbox{\Hypertarget{b2_math_8h_a38bf48069527b2dc0224e0dedbafe17c}\label{b2_math_8h_a38bf48069527b2dc0224e0dedbafe17c}} 
+\index{b2Math.h@{b2Math.h}!b2MulT@{b2MulT}}
+\index{b2MulT@{b2MulT}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2MulT()}{b2MulT()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+MulT (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&}]{A,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Multiply a matrix transpose times a vector. If a rotation matrix is provided, then this transforms the vector from one frame to another (inverse transform). \mbox{\Hypertarget{b2_math_8h_a6904a90ebef81abe11a580958edb0768}\label{b2_math_8h_a6904a90ebef81abe11a580958edb0768}} 
+\index{b2Math.h@{b2Math.h}!b2MulT@{b2MulT}}
+\index{b2MulT@{b2MulT}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2MulT()}{b2MulT()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} b2\+MulT (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&}]{A,  }\item[{const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a37986fc259888a4e588e6cdb72ad9cd3}\label{b2_math_8h_a37986fc259888a4e588e6cdb72ad9cd3}} 
+\index{b2Math.h@{b2Math.h}!b2MulT@{b2MulT}}
+\index{b2MulT@{b2MulT}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2MulT()}{b2MulT()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_rot}{b2\+Rot}} b2\+MulT (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&}]{q,  }\item[{const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Transpose multiply two rotations\+: qT $\ast$ r. 
+
+\mbox{\Hypertarget{b2_math_8h_a61bc6ce555c51823d7c0747bc7b010b9}\label{b2_math_8h_a61bc6ce555c51823d7c0747bc7b010b9}} 
+\index{b2Math.h@{b2Math.h}!b2MulT@{b2MulT}}
+\index{b2MulT@{b2MulT}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2MulT()}{b2MulT()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+MulT (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_rot}{b2\+Rot}} \&}]{q,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inverse rotate a vector. 
+
+\mbox{\Hypertarget{b2_math_8h_a157696518d038a2b900f81e0e40ef27f}\label{b2_math_8h_a157696518d038a2b900f81e0e40ef27f}} 
+\index{b2Math.h@{b2Math.h}!b2MulT@{b2MulT}}
+\index{b2MulT@{b2MulT}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2MulT()}{b2MulT()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+MulT (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{T,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_aa6a218f164938003edd5040760e36c8e}\label{b2_math_8h_aa6a218f164938003edd5040760e36c8e}} 
+\index{b2Math.h@{b2Math.h}!b2MulT@{b2MulT}}
+\index{b2MulT@{b2MulT}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2MulT()}{b2MulT()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_transform}{b2\+Transform}} b2\+MulT (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{A,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a1bd53d288c039f6eeb1526bd55ce1414}\label{b2_math_8h_a1bd53d288c039f6eeb1526bd55ce1414}} 
+\index{b2Math.h@{b2Math.h}!b2NextPowerOfTwo@{b2NextPowerOfTwo}}
+\index{b2NextPowerOfTwo@{b2NextPowerOfTwo}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2NextPowerOfTwo()}{b2NextPowerOfTwo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a1134b580f8da4de94ca6b1de4d37975e}{uint32}} b2\+Next\+Power\+Of\+Two (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_settings_8h_a1134b580f8da4de94ca6b1de4d37975e}{uint32}}}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+"Next Largest Power of 2 Given a binary integer value x, the next largest power of 2 can be computed by a S\+W\+AR algorithm that recursively \char`\"{}folds\char`\"{} the upper bits into the lower bits. This process yields a bit vector with the same most significant 1 as x, but all 1\textquotesingle{}s below it. Adding 1 to that value yields the next largest power of 2. For a 32-\/bit value\+:" \mbox{\Hypertarget{b2_math_8h_a68c06593a75374fd69e2eb1d1f1caf09}\label{b2_math_8h_a68c06593a75374fd69e2eb1d1f1caf09}} 
+\index{b2Math.h@{b2Math.h}!b2Swap@{b2Swap}}
+\index{b2Swap@{b2Swap}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Swap()}{b2Swap()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void b2\+Swap (\begin{DoxyParamCaption}\item[{T \&}]{a,  }\item[{T \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_aa55517a708b1bfa7d387ce82cb93b58f}\label{b2_math_8h_aa55517a708b1bfa7d387ce82cb93b58f}} 
+\index{b2Math.h@{b2Math.h}!operator "!=@{operator "!=}}
+\index{operator "!=@{operator "!=}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{operator "!=()}{operator !=()}}
+{\footnotesize\ttfamily bool operator != (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a722be80f987d50fab4a784987e3fbee8}\label{b2_math_8h_a722be80f987d50fab4a784987e3fbee8}} 
+\index{b2Math.h@{b2Math.h}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} operator $\ast$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{s,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a8af9dc9a597a247a00000b85a5854f67}\label{b2_math_8h_a8af9dc9a597a247a00000b85a5854f67}} 
+\index{b2Math.h@{b2Math.h}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} operator $\ast$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{s,  }\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_a4f84297329b1c07fb3434760d02c1de0}\label{b2_math_8h_a4f84297329b1c07fb3434760d02c1de0}} 
+\index{b2Math.h@{b2Math.h}!operator -\/@{operator -\/}}
+\index{operator -\/@{operator -\/}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{operator -\/()}{operator -()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} operator -\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Subtract two vectors component-\/wise. 
+
+\mbox{\Hypertarget{b2_math_8h_a252c19eef296965d71e3178b1d762626}\label{b2_math_8h_a252c19eef296965d71e3178b1d762626}} 
+\index{b2Math.h@{b2Math.h}!operator -\/@{operator -\/}}
+\index{operator -\/@{operator -\/}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{operator -\/()}{operator -()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} operator -\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Subtract two vectors component-\/wise. 
+
+\mbox{\Hypertarget{b2_math_8h_aabe5cfd3c0c2436622fe392122f3504d}\label{b2_math_8h_aabe5cfd3c0c2436622fe392122f3504d}} 
+\index{b2Math.h@{b2Math.h}!operator+@{operator+}}
+\index{operator+@{operator+}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add two vectors component-\/wise. 
+
+\mbox{\Hypertarget{b2_math_8h_ac5671b7f3534b00e99a757eb4ade907c}\label{b2_math_8h_ac5671b7f3534b00e99a757eb4ade907c}} 
+\index{b2Math.h@{b2Math.h}!operator+@{operator+}}
+\index{operator+@{operator+}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec3}{b2\+Vec3}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add two vectors component-\/wise. 
+
+\mbox{\Hypertarget{b2_math_8h_ad26d99f359b3a6f100d9538ce8fba78f}\label{b2_math_8h_ad26d99f359b3a6f100d9538ce8fba78f}} 
+\index{b2Math.h@{b2Math.h}!operator+@{operator+}}
+\index{operator+@{operator+}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&}]{A,  }\item[{const \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \&}]{B }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{b2_math_8h_af7e4f3ac0ffef6bbd586543e2e1b04d5}\label{b2_math_8h_af7e4f3ac0ffef6bbd586543e2e1b04d5}} 
+\index{b2Math.h@{b2Math.h}!operator==@{operator==}}
+\index{operator==@{operator==}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{a,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{b2_math_8h_ad6f7495e1f1adf7369190bf3f89a60db}\label{b2_math_8h_ad6f7495e1f1adf7369190bf3f89a60db}} 
+\index{b2Math.h@{b2Math.h}!b2Vec2\_zero@{b2Vec2\_zero}}
+\index{b2Vec2\_zero@{b2Vec2\_zero}!b2Math.h@{b2Math.h}}
+\subsubsection{\texorpdfstring{b2Vec2\_zero}{b2Vec2\_zero}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Vec2\+\_\+zero}
+
+
+
+Useful constant. 
+

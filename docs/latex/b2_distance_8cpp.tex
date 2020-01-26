@@ -1,0 +1,58 @@
+\hypertarget{b2_distance_8cpp}{}\section{E\+:/\+Uni/6.Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Collision/b2\+Distance.cpp File Reference}
+\label{b2_distance_8cpp}\index{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Collision/b2Distance.cpp@{E:/Uni/6.Semester/Grundkurs\_C++/01-\/RaceGame/Box2D/Box2D/Collision/b2Distance.cpp}}
+{\ttfamily \#include \char`\"{}Box2\+D/\+Collision/b2\+Distance.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Box2\+D/\+Collision/\+Shapes/b2\+Circle\+Shape.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Box2\+D/\+Collision/\+Shapes/b2\+Edge\+Shape.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Box2\+D/\+Collision/\+Shapes/b2\+Chain\+Shape.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Box2\+D/\+Collision/\+Shapes/b2\+Polygon\+Shape.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structb2_simplex_vertex}{b2\+Simplex\+Vertex}}
+\item 
+struct \mbox{\hyperlink{structb2_simplex}{b2\+Simplex}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{b2_distance_8cpp_af8aa0d6b55c276763e2d2d8854400a8e}{b2\+Distance}} (\mbox{\hyperlink{structb2_distance_output}{b2\+Distance\+Output}} $\ast$output, \mbox{\hyperlink{structb2_simplex_cache}{b2\+Simplex\+Cache}} $\ast$cache, const \mbox{\hyperlink{structb2_distance_input}{b2\+Distance\+Input}} $\ast$input)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_distance_8cpp_a8f3360758f55ba662ee6dac2c5b937e2}{b2\+\_\+gjk\+Calls}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_distance_8cpp_abbe1a1b04ee3ebe86422d185d3e6f416}{b2\+\_\+gjk\+Iters}}
+\item 
+\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} \mbox{\hyperlink{b2_distance_8cpp_af745afdbd051a34f05d80e40742d19e5}{b2\+\_\+gjk\+Max\+Iters}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{b2_distance_8cpp_af8aa0d6b55c276763e2d2d8854400a8e}\label{b2_distance_8cpp_af8aa0d6b55c276763e2d2d8854400a8e}} 
+\index{b2Distance.cpp@{b2Distance.cpp}!b2Distance@{b2Distance}}
+\index{b2Distance@{b2Distance}!b2Distance.cpp@{b2Distance.cpp}}
+\subsubsection{\texorpdfstring{b2Distance()}{b2Distance()}}
+{\footnotesize\ttfamily void b2\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_distance_output}{b2\+Distance\+Output}} $\ast$}]{output,  }\item[{\mbox{\hyperlink{structb2_simplex_cache}{b2\+Simplex\+Cache}} $\ast$}]{cache,  }\item[{const \mbox{\hyperlink{structb2_distance_input}{b2\+Distance\+Input}} $\ast$}]{input }\end{DoxyParamCaption})}
+
+Compute the closest points between two shapes. Supports any combination of\+: \mbox{\hyperlink{classb2_circle_shape}{b2\+Circle\+Shape}}, \mbox{\hyperlink{classb2_polygon_shape}{b2\+Polygon\+Shape}}, \mbox{\hyperlink{classb2_edge_shape}{b2\+Edge\+Shape}}. The simplex cache is input/output. On the first call set \mbox{\hyperlink{structb2_simplex_cache_a5ef63839988cc06210ae76bcef96f56c}{b2\+Simplex\+Cache.\+count}} to zero. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{b2_distance_8cpp_a8f3360758f55ba662ee6dac2c5b937e2}\label{b2_distance_8cpp_a8f3360758f55ba662ee6dac2c5b937e2}} 
+\index{b2Distance.cpp@{b2Distance.cpp}!b2\_gjkCalls@{b2\_gjkCalls}}
+\index{b2\_gjkCalls@{b2\_gjkCalls}!b2Distance.cpp@{b2Distance.cpp}}
+\subsubsection{\texorpdfstring{b2\_gjkCalls}{b2\_gjkCalls}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+gjk\+Calls}
+
+\mbox{\Hypertarget{b2_distance_8cpp_abbe1a1b04ee3ebe86422d185d3e6f416}\label{b2_distance_8cpp_abbe1a1b04ee3ebe86422d185d3e6f416}} 
+\index{b2Distance.cpp@{b2Distance.cpp}!b2\_gjkIters@{b2\_gjkIters}}
+\index{b2\_gjkIters@{b2\_gjkIters}!b2Distance.cpp@{b2Distance.cpp}}
+\subsubsection{\texorpdfstring{b2\_gjkIters}{b2\_gjkIters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+gjk\+Iters}
+
+\mbox{\Hypertarget{b2_distance_8cpp_af745afdbd051a34f05d80e40742d19e5}\label{b2_distance_8cpp_af745afdbd051a34f05d80e40742d19e5}} 
+\index{b2Distance.cpp@{b2Distance.cpp}!b2\_gjkMaxIters@{b2\_gjkMaxIters}}
+\index{b2\_gjkMaxIters@{b2\_gjkMaxIters}!b2Distance.cpp@{b2Distance.cpp}}
+\subsubsection{\texorpdfstring{b2\_gjkMaxIters}{b2\_gjkMaxIters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} b2\+\_\+gjk\+Max\+Iters}
+

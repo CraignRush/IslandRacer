@@ -1,0 +1,138 @@
+\hypertarget{structb2_mat22}{}\section{b2\+Mat22 Struct Reference}
+\label{structb2_mat22}\index{b2Mat22@{b2Mat22}}
+
+
+A 2-\/by-\/2 matrix. Stored in column-\/major order.  
+
+
+
+
+{\ttfamily \#include $<$b2\+Math.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structb2_mat22_ac3e10f6d457c8dab9062ba378f66bc4d}{b2\+Mat22}} ()
+\begin{DoxyCompactList}\small\item\em The default constructor does nothing (for performance). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_mat22_abd674c6d92e26962977f34bcd92ff24d}{b2\+Mat22}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&c1, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&c2)
+\begin{DoxyCompactList}\small\item\em Construct this matrix using columns. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_mat22_a41d5d8743bda32cb8c6e212528934810}{b2\+Mat22}} (\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} a11, \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} a12, \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} a21, \mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}} a22)
+\begin{DoxyCompactList}\small\item\em Construct this matrix using scalars. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structb2_mat22_aed3bee1de38a0b3f36e21c90faa24112}{Set}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&c1, const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&c2)
+\begin{DoxyCompactList}\small\item\em Initialize this matrix using columns. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structb2_mat22_a7192f063b771ac9ded060e41df890509}{Set\+Identity}} ()
+\begin{DoxyCompactList}\small\item\em Set this to the identity matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structb2_mat22_aaeae95f61cf3171ffb94703980e3594b}{Set\+Zero}} ()
+\begin{DoxyCompactList}\small\item\em Set this matrix to all zeros. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} \mbox{\hyperlink{structb2_mat22_ad0b0676deea081b761c67be48e0ac850}{Get\+Inverse}} () const
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{structb2_mat22_a3313c8d135c01fbf74e7fea31f1ea4c1}{Solve}} (const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&b) const
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{structb2_mat22_abaffa5fc1d401ea36415acffa6205689}{ex}}
+\item 
+\mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \mbox{\hyperlink{structb2_mat22_af19db58941d2cd146325ef3191b776fd}{ey}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A 2-\/by-\/2 matrix. Stored in column-\/major order. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structb2_mat22_ac3e10f6d457c8dab9062ba378f66bc4d}\label{structb2_mat22_ac3e10f6d457c8dab9062ba378f66bc4d}} 
+\index{b2Mat22@{b2Mat22}!b2Mat22@{b2Mat22}}
+\index{b2Mat22@{b2Mat22}!b2Mat22@{b2Mat22}}
+\subsubsection{\texorpdfstring{b2Mat22()}{b2Mat22()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily b2\+Mat22\+::b2\+Mat22 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The default constructor does nothing (for performance). 
+
+\mbox{\Hypertarget{structb2_mat22_abd674c6d92e26962977f34bcd92ff24d}\label{structb2_mat22_abd674c6d92e26962977f34bcd92ff24d}} 
+\index{b2Mat22@{b2Mat22}!b2Mat22@{b2Mat22}}
+\index{b2Mat22@{b2Mat22}!b2Mat22@{b2Mat22}}
+\subsubsection{\texorpdfstring{b2Mat22()}{b2Mat22()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily b2\+Mat22\+::b2\+Mat22 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{c1,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{c2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct this matrix using columns. 
+
+\mbox{\Hypertarget{structb2_mat22_a41d5d8743bda32cb8c6e212528934810}\label{structb2_mat22_a41d5d8743bda32cb8c6e212528934810}} 
+\index{b2Mat22@{b2Mat22}!b2Mat22@{b2Mat22}}
+\index{b2Mat22@{b2Mat22}!b2Mat22@{b2Mat22}}
+\subsubsection{\texorpdfstring{b2Mat22()}{b2Mat22()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily b2\+Mat22\+::b2\+Mat22 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{a11,  }\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{a12,  }\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{a21,  }\item[{\mbox{\hyperlink{b2_settings_8h_aacdc525d6f7bddb3ae95d5c311bd06a1}{float32}}}]{a22 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct this matrix using scalars. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structb2_mat22_ad0b0676deea081b761c67be48e0ac850}\label{structb2_mat22_ad0b0676deea081b761c67be48e0ac850}} 
+\index{b2Mat22@{b2Mat22}!GetInverse@{GetInverse}}
+\index{GetInverse@{GetInverse}!b2Mat22@{b2Mat22}}
+\subsubsection{\texorpdfstring{GetInverse()}{GetInverse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_mat22}{b2\+Mat22}} b2\+Mat22\+::\+Get\+Inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structb2_mat22_aed3bee1de38a0b3f36e21c90faa24112}\label{structb2_mat22_aed3bee1de38a0b3f36e21c90faa24112}} 
+\index{b2Mat22@{b2Mat22}!Set@{Set}}
+\index{Set@{Set}!b2Mat22@{b2Mat22}}
+\subsubsection{\texorpdfstring{Set()}{Set()}}
+{\footnotesize\ttfamily void b2\+Mat22\+::\+Set (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{c1,  }\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{c2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialize this matrix using columns. 
+
+\mbox{\Hypertarget{structb2_mat22_a7192f063b771ac9ded060e41df890509}\label{structb2_mat22_a7192f063b771ac9ded060e41df890509}} 
+\index{b2Mat22@{b2Mat22}!SetIdentity@{SetIdentity}}
+\index{SetIdentity@{SetIdentity}!b2Mat22@{b2Mat22}}
+\subsubsection{\texorpdfstring{SetIdentity()}{SetIdentity()}}
+{\footnotesize\ttfamily void b2\+Mat22\+::\+Set\+Identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set this to the identity matrix. 
+
+\mbox{\Hypertarget{structb2_mat22_aaeae95f61cf3171ffb94703980e3594b}\label{structb2_mat22_aaeae95f61cf3171ffb94703980e3594b}} 
+\index{b2Mat22@{b2Mat22}!SetZero@{SetZero}}
+\index{SetZero@{SetZero}!b2Mat22@{b2Mat22}}
+\subsubsection{\texorpdfstring{SetZero()}{SetZero()}}
+{\footnotesize\ttfamily void b2\+Mat22\+::\+Set\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set this matrix to all zeros. 
+
+\mbox{\Hypertarget{structb2_mat22_a3313c8d135c01fbf74e7fea31f1ea4c1}\label{structb2_mat22_a3313c8d135c01fbf74e7fea31f1ea4c1}} 
+\index{b2Mat22@{b2Mat22}!Solve@{Solve}}
+\index{Solve@{Solve}!b2Mat22@{b2Mat22}}
+\subsubsection{\texorpdfstring{Solve()}{Solve()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Mat22\+::\+Solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Solve A $\ast$ x = b, where b is a column vector. This is more efficient than computing the inverse in one-\/shot cases. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structb2_mat22_abaffa5fc1d401ea36415acffa6205689}\label{structb2_mat22_abaffa5fc1d401ea36415acffa6205689}} 
+\index{b2Mat22@{b2Mat22}!ex@{ex}}
+\index{ex@{ex}!b2Mat22@{b2Mat22}}
+\subsubsection{\texorpdfstring{ex}{ex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Mat22\+::ex}
+
+\mbox{\Hypertarget{structb2_mat22_af19db58941d2cd146325ef3191b776fd}\label{structb2_mat22_af19db58941d2cd146325ef3191b776fd}} 
+\index{b2Mat22@{b2Mat22}!ey@{ey}}
+\index{ey@{ey}!b2Mat22@{b2Mat22}}
+\subsubsection{\texorpdfstring{ey}{ey}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structb2_vec2}{b2\+Vec2}} b2\+Mat22\+::ey}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Common/\mbox{\hyperlink{b2_math_8h}{b2\+Math.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,79 @@
+\hypertarget{classb2_chain_and_polygon_contact}{}\section{b2\+Chain\+And\+Polygon\+Contact Class Reference}
+\label{classb2_chain_and_polygon_contact}\index{b2ChainAndPolygonContact@{b2ChainAndPolygonContact}}
+
+
+{\ttfamily \#include $<$b2\+Chain\+And\+Polygon\+Contact.\+h$>$}
+
+Inheritance diagram for b2\+Chain\+And\+Polygon\+Contact\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classb2_chain_and_polygon_contact}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classb2_chain_and_polygon_contact_ae43cd05c72ccaeb5f03efc5df944648b}{b2\+Chain\+And\+Polygon\+Contact}} (\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureA, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexA, \mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureB, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexB)
+\item 
+\mbox{\hyperlink{classb2_chain_and_polygon_contact_a96a50e3119cb36040f5d75ffb5a68ae9}{$\sim$b2\+Chain\+And\+Polygon\+Contact}} ()
+\item 
+void \mbox{\hyperlink{classb2_chain_and_polygon_contact_a607e7a8b4b0a5ee9bfd100a365fb6f3b}{Evaluate}} (\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$manifold, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfA, const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&xfB) override
+\begin{DoxyCompactList}\small\item\em Evaluate this contact with your own manifold and transforms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ \mbox{\hyperlink{classb2_chain_and_polygon_contact_a03e9021485104ae8f485f986703fcd85}{Create}} (\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureA, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexA, \mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$fixtureB, \mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}} indexB, \mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$allocator)
+\item 
+static void \mbox{\hyperlink{classb2_chain_and_polygon_contact_aa31bf71d64dd78583505b6da76ef289c}{Destroy}} (\mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$contact, \mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$allocator)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classb2_chain_and_polygon_contact_ae43cd05c72ccaeb5f03efc5df944648b}\label{classb2_chain_and_polygon_contact_ae43cd05c72ccaeb5f03efc5df944648b}} 
+\index{b2ChainAndPolygonContact@{b2ChainAndPolygonContact}!b2ChainAndPolygonContact@{b2ChainAndPolygonContact}}
+\index{b2ChainAndPolygonContact@{b2ChainAndPolygonContact}!b2ChainAndPolygonContact@{b2ChainAndPolygonContact}}
+\subsubsection{\texorpdfstring{b2ChainAndPolygonContact()}{b2ChainAndPolygonContact()}}
+{\footnotesize\ttfamily b2\+Chain\+And\+Polygon\+Contact\+::b2\+Chain\+And\+Polygon\+Contact (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureA,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexA,  }\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureB,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexB }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classb2_chain_and_polygon_contact_a96a50e3119cb36040f5d75ffb5a68ae9}\label{classb2_chain_and_polygon_contact_a96a50e3119cb36040f5d75ffb5a68ae9}} 
+\index{b2ChainAndPolygonContact@{b2ChainAndPolygonContact}!````~b2ChainAndPolygonContact@{$\sim$b2ChainAndPolygonContact}}
+\index{````~b2ChainAndPolygonContact@{$\sim$b2ChainAndPolygonContact}!b2ChainAndPolygonContact@{b2ChainAndPolygonContact}}
+\subsubsection{\texorpdfstring{$\sim$b2ChainAndPolygonContact()}{~b2ChainAndPolygonContact()}}
+{\footnotesize\ttfamily b2\+Chain\+And\+Polygon\+Contact\+::$\sim$b2\+Chain\+And\+Polygon\+Contact (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classb2_chain_and_polygon_contact_a03e9021485104ae8f485f986703fcd85}\label{classb2_chain_and_polygon_contact_a03e9021485104ae8f485f986703fcd85}} 
+\index{b2ChainAndPolygonContact@{b2ChainAndPolygonContact}!Create@{Create}}
+\index{Create@{Create}!b2ChainAndPolygonContact@{b2ChainAndPolygonContact}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$ b2\+Chain\+And\+Polygon\+Contact\+::\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureA,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexA,  }\item[{\mbox{\hyperlink{classb2_fixture}{b2\+Fixture}} $\ast$}]{fixtureB,  }\item[{\mbox{\hyperlink{b2_settings_8h_a43d43196463bde49cb067f5c20ab8481}{int32}}}]{indexB,  }\item[{\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classb2_chain_and_polygon_contact_aa31bf71d64dd78583505b6da76ef289c}\label{classb2_chain_and_polygon_contact_aa31bf71d64dd78583505b6da76ef289c}} 
+\index{b2ChainAndPolygonContact@{b2ChainAndPolygonContact}!Destroy@{Destroy}}
+\index{Destroy@{Destroy}!b2ChainAndPolygonContact@{b2ChainAndPolygonContact}}
+\subsubsection{\texorpdfstring{Destroy()}{Destroy()}}
+{\footnotesize\ttfamily void b2\+Chain\+And\+Polygon\+Contact\+::\+Destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classb2_contact}{b2\+Contact}} $\ast$}]{contact,  }\item[{\mbox{\hyperlink{classb2_block_allocator}{b2\+Block\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classb2_chain_and_polygon_contact_a607e7a8b4b0a5ee9bfd100a365fb6f3b}\label{classb2_chain_and_polygon_contact_a607e7a8b4b0a5ee9bfd100a365fb6f3b}} 
+\index{b2ChainAndPolygonContact@{b2ChainAndPolygonContact}!Evaluate@{Evaluate}}
+\index{Evaluate@{Evaluate}!b2ChainAndPolygonContact@{b2ChainAndPolygonContact}}
+\subsubsection{\texorpdfstring{Evaluate()}{Evaluate()}}
+{\footnotesize\ttfamily void b2\+Chain\+And\+Polygon\+Contact\+::\+Evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structb2_manifold}{b2\+Manifold}} $\ast$}]{manifold,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfA,  }\item[{const \mbox{\hyperlink{structb2_transform}{b2\+Transform}} \&}]{xfB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluate this contact with your own manifold and transforms. 
+
+
+
+Implements \mbox{\hyperlink{classb2_contact_ae3c2842e5325b2d4500f8ed1d4de2f72}{b2\+Contact}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\+Contacts/\mbox{\hyperlink{b2_chain_and_polygon_contact_8h}{b2\+Chain\+And\+Polygon\+Contact.\+h}}\item 
+E\+:/\+Uni/6.\+Semester/\+Grundkurs\+\_\+\+C++/01-\/\+Race\+Game/\+Box2\+D/\+Box2\+D/\+Dynamics/\+Contacts/\mbox{\hyperlink{b2_chain_and_polygon_contact_8cpp}{b2\+Chain\+And\+Polygon\+Contact.\+cpp}}\end{DoxyCompactItemize}
